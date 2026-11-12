@@ -65,6 +65,9 @@ Séances à créer :
   valeurs (coût, contexte, durée) dans un fichier lu par `/cloture` ; plus de copier-coller. Modifie le setup → séance dédiée.
 - [ ] 13. **`progress.md` par séance** (K.3, Yanis) : le fil écrit PENDANT la séance (blocages en cours, essais
   ratés, signaux d'heuristique) ; survit à une coupure, nourrit /fin-session et les findings. Seul fichier écrit en cours de séance.
+- [ ] 14. **Branche préparée par `/debut-session`** (Yanis, 12/11) : faire tout seul `git switch main`, `git pull`,
+  `git switch -c seance/<code>-<slug>` (nom déduit du kernel) ; pendant de `/cloture` (11). D'ici là : à la main, pour
+  comprendre (choix de Yanis). Lié : worktrees git pour lancer deux contrats vraiment en parallèle.
 
 Décisions en attente :
 - [ ] 5. **Les 8 règles Anthropic** (fiche I.2 § 7) : où les ranger, dans la graine de
