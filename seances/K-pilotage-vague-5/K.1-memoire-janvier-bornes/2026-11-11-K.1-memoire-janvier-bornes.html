@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fiche mémoire K.1 — copiée de gabarits/fiche-memoire.html (8 sections). Lot de 2 repos. -->
+<title>test-ia + CARTE-des-richesses — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+pre.schema{background:var(--chip);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;line-height:1.45;margin:6px 0 12px}
+h3{font-size:13.5px;margin:12px 0 6px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>test-ia + CARTE-des-richesses</h1>
+  <div class="meta">
+    test-ia : 2026-01-07 → 2026-01-07 · 1 commit · 9 octets ·
+    CARTE-des-richesses : 2026-01-18 → 2026-01-18 (12:53–14:03) · 19 commits · 53 Ko ·
+    tous deux abandonnés · séance K.1 ← parent K · 2026-11-12 · statut complet
+  </div>
+  <span class="badge v-ignor">test-ia : IGNORER</span>
+  <span class="badge v-archiv">CARTE-des-richesses : ARCHIVER</span>
+</header>
+
+<p class="lead">Les deux bornes de janvier. test-ia, le tout premier repo du compte, est resté vide,
+la veille du cockpit. CARTE-des-richesses est la première fois que la méthode de janvier sert un
+sujet extérieur, une carte de Paris, en une après-midi.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p><b>test-ia.</b> Repo créé le 07/01 à 19:17 depuis le site GitHub, avec un README d'une ligne :
+    « # test-ia » <span class="ref">[1]</span>. C'est le premier repo du compte, la veille de
+    cockpit-solo <span class="ref">[2]</span>. Ce que Yanis voulait tester : à confirmer par Yanis.</p>
+    <p><b>CARTE-des-richesses.</b> Le 18/01, Yanis dépose deux versions d'un schéma de Paris
+    entouré de « couronnes » de communes. La seconde ajoute la rotation, le zoom et les
+    arrondissements <span class="ref">[4]</span> <span class="ref">[5]</span>. 27 minutes plus tard,
+    une réponse d'assistant IA est collée dans <code>task_plan.md</code> : « tu viens de tomber
+    pile sur le truc que la carte était censée te faire voir […] Paris est un nœud ». En regardant la
+    carte, Yanis a vu que tous les grands axes historiques convergent vers Paris
+    <span class="ref">[6]</span>. Le sens du mot « richesses » (« La carte des riches » pour la v0.0.1) :
+    à confirmer par Yanis, aucune trace ne l'explique <span class="ref">[13]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p><b>test-ia :</b> aucun objectif écrit <span class="ref">[1]</span>.</p>
+    <p><b>CARTE-des-richesses :</b> passer d'une carte en couronnes (qui montre l'expansion, pas la
+    raison) à une « carte des axes historiques structurants de la France convergeant vers Paris »
+    <span class="ref">[6]</span>. Bénéfice attendu, écrit comme un test : « un tiers doit pouvoir
+    répondre à la question : “Pourquoi Paris est au centre […] ?” Sans narration. Par la
+    structure. » <span class="ref">[7]</span>. Quatre sprints étaient prévus, jusqu'à « Paris comme
+    rose des vents historique » et une extension à toute la France <span class="ref">[6]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 0 — test-ia, le repo vide · 2026-01-07</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">01-07 19:17</td><td><code>3389ac5</code> « Initial commit » : README « # test-ia » (création sur le site GitHub)</td><td>À confirmer par Yanis</td><td>Un compte GitHub qui sert, au moins une fois, la veille du cockpit <span class="ref">[1]</span> <span class="ref">[2]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 1 — La carte des couronnes · 2026-01-18 12:53–12:57</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">12:53</td><td><code>f88ee94</code> Création du repo (README seul)</td><td>Ouvrir un lieu pour la carte</td><td>— <span class="ref">[3]</span></td></tr>
+    <tr><td class="d">12:56</td><td><code>ad1162d</code> <i>La carte des riches_v0.0.1</i> : page HTML, 367 lignes, Paris + couronnes de communes calculées par voisinage, « grandes routes » stylisées</td><td>Voir Paris et ses communes limitrophes comme des anneaux</td><td>Une première image, déposée d'un bloc <span class="ref">[4]</span></td></tr>
+    <tr><td class="d">12:57</td><td><code>d1d8f4a</code> <i>v0.0.2</i> : 609 lignes, + rotation N/E/S/O, zoom, déplacement, arrondissements schématiques</td><td>Pouvoir orienter la carte et y placer les arrondissements</td><td>C'est en regardant cette version que vient l'idée des axes <span class="ref">[5]</span> <span class="ref">[6]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 2 — Sprint 0 : formaliser les axes · 13:24–13:36</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">13:24</td><td><code>c451c17</code> <code>Sprint[n]/Sprint[0]/task_plan.md</code> : réponse d'IA collée (ontologie N, Aᵢ, Cⱼ, F, G ; 6 axes ; backlog de 4 sprints ; « Ce qu'on NE fait PAS encore »)</td><td>Garder la clarification et le plan</td><td>L'intuition devient une structure et un plan <span class="ref">[6]</span></td></tr>
+    <tr><td class="d">13:26–13:28</td><td><code>b84ecdc</code> GOAL · <code>d01cd0a</code> Sprint_Backlog (SB-1 : objet AXE à 8 champs) · <code>04d74b4</code> SB-2 (6 axes) · <code>a6ae7f0</code> SB-3 (neutralité) · <code>d478de4</code> DoD (« DONE si et seulement si »)</td><td>Appliquer à la lettre le contrat de sprint de la méthode</td><td>Un sprint de 3 items, avec une fin binaire <span class="ref">[7]</span></td></tr>
+    <tr><td class="d">13:36</td><td><code>ac67218</code> v0.0.2 + 6 axes convergeant vers Paris (message « feat: add historical axes … (Sprint 1) »)</td><td>Livrer le sprint</td><td>Les axes apparaissent sur la carte, mais la DoD n'est pas tenue (voir § 4) <span class="ref">[8]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 3 — Sprint 1 : séparer ce qu'on regarde · 13:44–14:03</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">13:44–13:47</td><td><code>a852c07</code> crée <code>Sprint[1]</code> comme FICHIER · <code>dd5088b</code> le supprime · <code>8488728</code> le recrée en dossier avec <code>Goal.md</code> (même texte)</td><td>Corriger une erreur de rangement sur le site GitHub</td><td>La structure <code>Sprint[n]/Sprint[k]/</code> est tenue <span class="ref">[9]</span></td></tr>
+    <tr><td class="d">13:47–13:48</td><td><code>790ebed</code> SB-2.1 styles · <code>11052c7</code> SB-2.2 légende · <code>0a0907d</code> SB-2.3 interrupteurs · <code>f3626f0</code> SB-2.4 ordre d'affichage · <code>b6bcaed</code> DoD.md</td><td>Goal : « en 3 secondes, un humain doit pouvoir dire “je regarde les couronnes” OU “je regarde les axes” »</td><td>Un second contrat de sprint, de 4 items <span class="ref">[9]</span></td></tr>
+    <tr><td class="d">14:03</td><td><code>12db21a</code> renommée « Paris – Carte des axes historiques (v0.0.4) » : interrupteurs Couronnes / Axes / Routes, flèches colorées par type</td><td>Livrer le sprint 1 (v0.0.3 absente)</td><td>Le nom dit enfin ce qu'est la carte. Mais ce commit introduit une erreur de syntaxe : la carte ne s'affiche plus. C'est le dernier commit <span class="ref">[10]</span> <span class="ref">[11]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Évolution de la pensée</h2>
+  <h3>A. Les étapes, en schéma (prolonge le schéma de la fiche J.2)</h3>
+<pre class="schema">ÉTAPE −1 · 07/01 — test-ia · un REPO VIDE, le premier du compte         [1][2]
+   « # test-ia » et rien d'autre ; aucun lien prouvé avec le constat
+   → dans la lignée par la DATE, hors lignée par le CONTENU (à confirmer)
+          │
+          ▼
+ÉTAPES 0 → 4 · 08–15/01 — constat, cockpit, PWF, méthode I→C→F→E,
+   chaîne I→C→O→A→T   (fiche J.2)                                      [14]
+          │
+          ▼
+ÉTAPE 4 bis · 18/01 — CARTE-des-richesses · la méthode sur un VRAI sujet  [3]–[11]
+   difficulté : une carte en couronnes montre l'expansion, pas la RAISON
+   déclic     : en la regardant, « Paris est un nœud » (axes convergents)
+   réponse    : Sprint[0] puis Sprint[1] = GOAL + Backlog (3 puis 4 items)
+                + DoD binaire + un TIERS juge (« sans narration, par la
+                structure ») + « ce qu'on NE fait PAS encore »
+   limite     : DoD du sprint 0 non vérifiée ; le dernier commit casse
+                la carte ; sprints 2 à 4 jamais commencés
+          │
+          │   ensuite : Clear Sky (Sprint 0, Contrat du sprint 1, Validateur
+          │   = « gate », PASS) + Miro (date non établie, ordre à confirmer)  [16]
+          ▼
+ÉTAPE 5 · 02/02 — CPE-PWF-Engine · un MOTEUR (fiche J.2, fiche I.1)       [14][15]
+          │
+          ▼
+… aujourd'hui : le skill cpe-sprint = Goal + NON-GOALS + Backlog + DoD
+   binaire + SCORE : la structure de CARTE, plus la note qui manquait   [18]</pre>
+  <p style="font-size:13px;color:var(--mute)">Les flèches de l'étape 4 bis vers Clear Sky et
+  cpe-sprint sont des liens <b>interprétés par Claude</b> (structure identique, pas de référence
+  explicite). Confiance moyenne, à confirmer par Yanis.</p>
+
+  <h3>B. Les difficultés rencontrées, et ce que Yanis en a fait</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>Difficulté</th><th>Réponse dans ce repo</th><th>Ce qu'elle est devenue ensuite (autres repos, setup actuel)</th></tr>
+    <tr><td>Ne pas savoir définir ce qu'il veut</td><td>Un GOAL qui se termine par un test : une question à laquelle un tiers doit savoir répondre (sprint 0), un critère « en 3 secondes » (sprint 1) <span class="ref">[7]</span> <span class="ref">[9]</span></td><td>Le Goal du skill cpe-sprint (lien interprété par Claude) <span class="ref">[18]</span></td></tr>
+    <tr><td>Apprendre ou livrer</td><td>Yanis apprend l'histoire de France EN livrant une carte. Garde-fou : « Pas de SIG, pas de géodésie, pas de sur-détails. Sinon tu perds exactement ce que tu viens de comprendre » <span class="ref">[6]</span></td><td>Les NON-GOALS de cpe-sprint <span class="ref">[18]</span> ; le piège revient en mai avec Claire <span class="ref">[14]</span></td></tr>
+    <tr><td>Ne pas avoir de professeur</td><td>Un juge extérieur : « Un lecteur externe peut reconstruire mentalement la carte sans image » (DoD) <span class="ref">[7]</span></td><td>L'axiome A6 du 13/01 appliqué hors de la méthode ; plus tard, les personas-prothèses (fiche J.2) <span class="ref">[14]</span></td></tr>
+    <tr><td>Savoir quand c'est « fini »</td><td>Une DoD « DONE si et seulement si »… mais personne ne la vérifie : 3 axes sur 6 ont 3 villes au lieu de 4, une direction « NW-SE » hors de la liste fermée, 3 champs sur 8 absents. Le sprint 1 démarre quand même <span class="ref">[8]</span></td><td>Le Validateur « gate » et le jeton PASS de Clear Sky, puis le score μA/μV de cpe-sprint : une vérification qui bloque (lien interprété par Claude) <span class="ref">[16]</span> <span class="ref">[18]</span></td></tr>
+    <tr><td>La mémoire du raisonnement</td><td>Un fichier nommé <code>task_plan.md</code> (le nom de PWF), mais qui contient la réponse IA collée. Pas de findings, pas de progress <span class="ref">[6]</span></td><td>À confirmer par Yanis</td></tr>
+  </table>
+  </div>
+
+  <h3>C. Ce que les traces ajoutent au souvenir</h3>
+  <p>(1) La méthode a servi un sujet extérieur dès le 18/01, six jours après sa création. C'est
+  une réponse possible à la question restée ouverte en J.2 : « À quel moment l'outil a-t-il servi
+  un vrai projet extérieur pour la première fois ? » Il reste à confirmer si Yanis tient la carte
+  pour un « vrai projet » <span class="ref">[14]</span>. (2) Tout tient en 70 minutes, carte et
+  deux sprints compris <span class="ref">[3]</span>. (3) La DoD a été écrite, mais pas appliquée
+  <span class="ref">[8]</span>. (4) La dernière version ne s'affiche plus : l'arrêt s'est fait sur
+  une carte cassée <span class="ref">[11]</span>. (5) test-ia est le premier repo du compte, avant
+  même cockpit-solo <span class="ref">[2]</span>. (6) À partir du 12/01, les commits sont signés
+  « Raja », et non plus « Yanis » (même compte GitHub) <span class="ref">[17]</span>.</p>
+</section>
+
+<section>
+  <h2>5 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">repo</span> test-ia : aucune trace d'usage, ni dans les autres repos ni
+    dans le vault <span class="ref">[1]</span> <span class="ref">[12]</span>.</li>
+    <li><span class="chip">routine</span> CARTE-des-richesses : l'arsenal de janvier, c'est un
+    assistant IA qui écrit (la carte HTML, le plan) et le site GitHub où Yanis dépose chaque
+    fichier à la main. Les 19 commits passent par l'interface web <span class="ref">[3]</span>
+    <span class="ref">[6]</span>. Ni skill, ni hook, ni script.</li>
+    <li><span class="chip">méthode</span> Le repo UTILISE la méthode de janvier (contrat de sprint,
+    tiers juge) au lieu de la construire. C'est le premier « client » de la lignée
+    <span class="ref">[7]</span> <span class="ref">[14]</span>.</li>
+    <li><span class="chip">skill</span> Aucune trace de CARTE dans le vault ni dans les repos
+    suivants <span class="ref">[12]</span>. Sa structure se retrouve pourtant dans le skill actuel
+    <code>cpe-sprint</code> (lien interprété par Claude) <span class="ref">[18]</span>.</li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>6 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu (test-ia) :</b> à confirmer par Yanis. Le nom évoque un essai avec une IA
+      <span class="ref">[1]</span>.</li>
+      <li><b>Réel (test-ia) :</b> rien après la création <span class="ref">[1]</span>.</li>
+      <li><b>Prévu (CARTE) :</b> une question d'histoire et de géographie → 4 sprints, jusqu'à
+      la rose des vents historique et l'extension nationale <span class="ref">[6]</span>.</li>
+      <li><b>Réel (CARTE) :</b> un déclic en regardant la carte → 2 sprints en 70 minutes. La
+      DoD n'a pas été vérifiée, la carte finale est cassée et les sprints 2 à 4 n'ont jamais
+      commencé <span class="ref">[3]</span> <span class="ref">[8]</span> <span class="ref">[11]</span>.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>7 · Où je me suis arrêté</h2>
+    <p>Le dernier commit date du 18/01 à 14:03 : la v0.0.4 avec ses interrupteurs. Une ligne de
+    dessin des axes a ses guillemets échappés (<code>\"stroke-width\"</code>), et tout le script
+    est rejeté <span class="ref">[11]</span>. Ce défaut est typique d'un code copié depuis une
+    réponse IA au format JSON (hypothèse de Claude, confiance moyenne). Il manquait les sprints 2
+    à 4 et la vérification de la DoD du sprint 0 <span class="ref">[6]</span>
+    <span class="ref">[8]</span>. Raison de l'arrêt : à confirmer par Yanis. Avait-il vu que la
+    carte ne s'affichait plus, ou l'idée était-elle déjà comprise ? Le repo suivant est
+    CPE-PWF-Engine, 15 jours plus tard <span class="ref">[15]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>8 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur le repo) :</b> test-ia → <b>IGNORER</b> : une ligne, aucun contenu
+    <span class="ref">[1]</span>. CARTE-des-richesses → <b>ARCHIVER</b> : c'est une trace de pensée,
+    la première application de la méthode à un sujet extérieur. Il n'y a pas de code à reprendre,
+    et la dernière version est cassée <span class="ref">[11]</span>.</li>
+    <li><b>Réutilisable :</b> le Sprint 0 de CARTE (GOAL, Backlog, DoD, « ce qu'on NE fait PAS »)
+    → exemple concret pour le skill <code>~/.claude/skills/cpe-sprint/</code>, y compris un
+    contre-exemple de DoD non vérifiée. C'est une simple recommandation, rien n'est installé
+    <span class="ref">[7]</span> <span class="ref">[8]</span> <span class="ref">[18]</span>.</li>
+    <li><b>Conflits gouvernance :</b> aucun. Les règles R1–R13 (revues le 20/05/2026) sont
+    postérieures à ces repos. La page HTML dynamique est sur GitHub, ce qui est conforme à la
+    taxonomie de R10, et rien n'est dans le Drive (R3) <span class="ref">[19]</span>.</li>
+    <li><b>À confirmer par Yanis :</b> (a) que voulait tester test-ia le 07/01, et était-ce
+    l'ouverture du compte GitHub ? (b) Que voulait dire « richesses » / « La carte des riches » ?
+    (c) Le déclic « Paris est un nœud » (1er arrondissement vers le nord, Seine vers la Manche)
+    est-il un souvenir ? (d) Avait-il vu que la v0.0.4 ne s'affichait plus ? (e) CARTE est-elle
+    venue avant ou après Clear Sky ? (f) Qui ou quoi est « Raja », le nom d'auteur dès le 12/01 ?
+    (g) La carte compte-t-elle comme le premier « vrai projet extérieur » ?</li>
+    <li><b>Pour la convergence :</b> la lignée de janvier compte-t-elle bien 5 repos ? Les traces
+    disent : 5 repos datés (test-ia, cockpit-solo, De-l-Intention, chaine, CARTE)
+    <span class="ref">[2]</span> <span class="ref">[15]</span>. Mais seuls 3 font avancer la
+    méthode. CARTE l'applique, et test-ia n'a pas de contenu. Proposition : « 3 étapes + 1
+    application + 1 borne vide ». Sur la carte des repos, relier CARTE → Clear Sky (Sprint 0/1,
+    gate) → cpe-sprint.</li>
+    <li><b>Proposition au pilote :</b> (1) <b>Incident de séances parallèles (12/11) :</b> K.1 et
+    K.2 tournaient dans le même dossier. K.2 a changé de branche, ce qui a aussi changé la branche
+    de K.1. Le contrôle de /debut-session l'a détecté avant toute écriture. K.1 travaille désormais
+    dans le worktree <code>reprise-nov-2026-K1</code>. À inscrire dans les règles du projet et les
+    kernels de vague : un worktree par contrat, nommé dans le kernel de lancement
+    <span class="ref">[20]</span> <span class="ref">[21]</span>. (2) Transmettre à la fiche J.2 la
+    réponse possible à sa question sur le premier projet extérieur (§ 4 C). (3) <b>Séance à créer :
+    « le système appliqué aux projets annexes ».</b> Yanis confirme que CARTE est le premier
+    exemple. Il applique son système à des projets annexes sans attendre qu'il soit fini, et
+    pense pouvoir y observer une amélioration de sa manière de travailler
+    <span class="ref">[22]</span>. Corpus repéré (noms seulement, non analysé) : CARTE-des-richesses
+    (01/2026) ; le projet du Drive <code>G:\Mon Drive\10 - Claude\C1-PERSO\PARIS-MONGOLIE\</code>
+    (06/2026 : <code>CLAUDE.md</code>, <code>findings.md</code> au format PWF, spec du 12/06) ;
+    voyage_voyage (lot K.2) ; les autres projets restent à lister par Yanis
+    <span class="ref">[23]</span>. Grille proposée, la même pour chaque projet : Goal ? backlog
+    ≤ 5 ? DoD binaire, et VÉRIFIÉE ? juge extérieur ? non-goals ? mémoire sur disque ? livré ou
+    abandonné ? Cette séance croise la phase 4 (pratique jugée).</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li>test-ia : <code>git log --all --stat</code> → 1 commit <code>3389ac5</code>, 2026-01-07 19:17 +0100, auteur « Yanis BENSALAMA », committer « GitHub » (interface web) ; <code>README.md</code> = « # test-ia » (9 octets) ; <code>gh repo view</code> : PUBLIC, diskUsage 0, description vide, branche unique <code>main</code> · certaine</li>
+    <li><code>gh repo list tactacboomboom --json name,createdAt</code> trié par date : test-ia (2026-01-07T18:17Z) est le premier, puis cockpit-solo (2026-01-08T09:40Z) · certaine</li>
+    <li>CARTE-des-richesses : <code>git log --all --stat</code> → 19 commits, branche unique <code>main</code>, 2026-01-18 12:53 → 14:03 +0100, auteur « Raja » (noreply 143390845 = compte tactacboomboom), committer « GitHub » pour tous ; <code>gh repo view</code> : PUBLIC, 53 Ko, description vide · certaine</li>
+    <li><code>ad1162d</code>, <i>La carte des riches_v0.0.1</i> l.6 : <code>&lt;title&gt;Paris (75) – Couronnes &amp; départements limitrophes&lt;/title&gt;</code> ; l.78 « Noyau “couronne 1” » ; l.92 « Couronne 2 » · certaine</li>
+    <li><code>d1d8f4a</code>, <i>v0.0.2</i> l.6 : « Couronnes + Orientation/Zoom + Arrondissements (stylisé) » ; l.35–38 « Rotation N/E/S/O », « Zoom molette + slider », « Arrondissements: schéma (non cadastral) » · certaine</li>
+    <li><code>c451c17</code>, <code>Sprint[n]/Sprint[0]/task_plan.md</code> : l.1 « Bon. Là, tu viens de tomber pile sur le truc que la carte était censée te faire voir. […] Et oui, Paris est un nœud. » ; § 1.1 ontologie N, Aᵢ, Cⱼ, F, G ; § 2 « Le 1er arrondissement en haut → Paris “orienté Nord” » ; § 4 backlog de 4 sprints (« Paris comme rose des vents historique », « Extension nationale ») ; § 5 « Ce qu'on NE fait PAS encore : Pas de géodésie exacte, Pas de SIG […] Sinon tu perds exactement ce que tu viens de comprendre » ; fin : « La carte a fait son boulot. Maintenant, on va lui donner un langage. » · certaine (contenu) ; rédigé par un assistant IA (tutoiement, ton de réponse) · élevée</li>
+    <li><code>Sprint[n]/Sprint[0]/</code> : <code>GOAL.md</code> « À la fin du sprint, un tiers doit pouvoir répondre à la question : « Pourquoi Paris est au centre, et par quels axes historiques cela s'est construit ? » Sans narration. Par la structure. » ; <code>Sprint_Backlog.md</code> SB-1 (8 champs fermés) ; <code>SB-2</code> 6 axes, « Pas d'exhaustivité prématurée » ; <code>SB-3.md</code> neutralité ; <code>DoD</code> « DONE si et seulement si […] au moins 4 villes jalons […] Un lecteur externe peut reconstruire mentalement la carte sans image » · certaine</li>
+    <li><code>git show ac67218</code> : 6 axes ; AXE_NORD [Calais, Amiens, Paris], AXE_EST [Aix-la-Chapelle, Reims, Paris], AXE_OUEST [La Rochelle, Orléans, Paris] = 3 villes ; AXE_SEINE <code>direction: "NW-SE"</code> ; champs fonction_historique, periode_dominante, invariant_structurel absents · certaine (diff lu) ; « DoD non vérifiée » = conclusion de Claude · élevée</li>
+    <li><code>a852c07</code> crée <code>Sprint[n]/Sprint[1]</code> (fichier), <code>dd5088b</code> le supprime à 13:46, <code>8488728</code> recrée <code>Sprint[1]/Goal.md</code> avec le même texte ; Goal : « en 3 secondes, un humain doit pouvoir dire “je regarde les couronnes” OU “je regarde les axes” » ; SB-2.1 à SB-2.4, <code>DoD.md</code> · certaine</li>
+    <li><code>12db21a</code> : renommage en « Paris – Carte des axes historiques (v0.0.4) », message « feat: sprint2 visual separation (rings/axes/routes toggles) » ; l.52–53 <code>toggleRings</code>, <code>toggleAxes</code> ; l.603–622 flèches <code>marker</code> par type · certaine</li>
+    <li><code>node --check</code> sur le <code>&lt;script&gt;</code> de chaque version : <code>ad1162d</code>, <code>d1d8f4a</code>, <code>ac67218</code> → OK ; <code>12db21a</code> → « SyntaxError: Invalid or unexpected token » sur <code>\"stroke-width\": 4,</code> (v0.0.4 l.528–531, ajouté par ce commit) · certaine ; « la carte ne s'affiche plus » · élevée (script entier rejeté, non ouvert dans un navigateur)</li>
+    <li>Outil Grep dans <code>G:\Mon Drive\10 - Claude\vault</code> : terme témoin « planning-with-files » trouvé ; « carte des riches|CARTE-des-richesses », « test-ia », « axes historiques|couronnes|Raja » → aucune note (seul un plugin Excalidraw contient « couronnes ») · certaine</li>
+    <li><code>grep -i "riche|richesse|revenu|wealth|prix"</code> dans le repo : seuls le README et le nom de fichier · certaine</li>
+    <li>Fiche J.2 (<code>seances/J-pilotage-vague-4/J.2-memoire-intention-janvier/…html</code>) § 4 A (étapes 0 à 7), § 4 B (difficultés), § 7 question (8) « À quel moment l'outil a-t-il servi un vrai projet extérieur pour la première fois ? » ; Clear Sky et Miro postérieurs au cockpit (témoignage de Yanis, J.2 [25]) · élevée (lue, non revérifiée)</li>
+    <li>Fiche I.1 § 4 (Place dans l'arsenal) : « Cinq repos de janvier le précèdent : test-ia, cockpit-solo, De-l-Intention-a-l-Execution, chaine-intention-artefacts, CARTE-des-richesses. CPE-PWF-Engine clôt cette vague d'hiver » · élevée</li>
+    <li><code>vault/protocole/CPE/sources/clear-sky/</code> (Glob) : <i>080_𝕊₀ — Sprint 0</i>, <i>0140_𝕮₁ — Contrat versionné du sprint 1</i>, <i>0101_𝕡₀ — Artefact publiable</i>, <i>0150_𝕍 — Validateur de contrat (gate)</i>, <i>0160_PASS — Token d'autorisation</i> ; Grep « paris|couronne|axe historique|géograph » → rien · certaine (noms) ; date non établie</li>
+    <li><code>gh api repos/tactacboomboom/&lt;repo&gt;/commits</code> : auteur « Yanis » sur cockpit-solo (08/01) ; « Raja » sur De-l-Intention-a-l-Execution (12–13/01), chaine-intention-artefacts (14–15/01), CPE-PWF-Engine (02/02) · certaine</li>
+    <li><code>~/.claude/skills/cpe-sprint/SKILL.md</code> l.2 « construire et valider un contrat de sprint (Goal + Backlog + DoD + Score μA/μV) » ; l.31 « NON-GOALS » ; l.48 « DoD D | binaires » · certaine</li>
+    <li><code>G:\Mon Drive\10 - Claude\TRANSVERS\gouvernance-regles.md</code> (last_review 2026-05-20) : R3 « Jamais de repo git dans Drive » ; R10 taxonomie « .html dynamique → GitHub » · certaine</li>
+    <li>Constat de séance K.1 (12/11) : session ouverte sur <code>seance/K.1-memoire-janvier-bornes</code>, puis <code>git branch --show-current</code> = <code>seance/K.2-memoire-mai-juin</code> dans le même dossier (un seul worktree) ; <code>git worktree add ../reprise-nov-2026-K1 seance/K.1-memoire-janvier-bornes</code> · certaine</li>
+    <li>Témoignage de Yanis (2026-11-12, séance K.1), sur l'incident de branche · certaine (déclaratif)
+      <blockquote>Bah 1 évidement. Et tu vas noter ce problème, car j'étais en train de parallèliser les séances. Donc tu as bien fait de constater cela. Il ne faut pas que ça se reproduise.</blockquote></li>
+    <li>Témoignage de Yanis (2026-11-12, séance K.1), sur l'usage de son système hors de la méthode · certaine (déclaratif)
+      <blockquote>Ok, donc ce projet comme tu l'a dis est la première fois que ta méthode sert un sujet extérieur. Intéressant, c'est vrai que ce que je construits à pour vocation à être utiliser sur de vrais projets. Et ce projets de carte de richesse en est le premier exemple. Ce qui marrant, c'est que je n'attends pas de terminer mon système avant de l'appliquer sur des projets annexes. J'en ai eu d'autres. Donc ce serait intéressant d'analyser l'utilisation de mon système sur mes projets annexes car c'est également fait en boostrap. Et je sais que j'ai eu d'autres projets, comme la carte de mongolie etc. Donc je suis certain de pouvoir observer une amélioration dans ma manière de travailler.</blockquote></li>
+    <li><code>gh repo list tactacboomboom</code> (19 repos) : aucun nom contenant « mongol », seul « carte » = CARTE-des-richesses ; outil Grep « mongoli » sur <code>G:\Mon Drive\10 - Claude</code> → <code>C1-PERSO\PARIS-MONGOLIE\CLAUDE.md:1</code>, <code>findings.md:1</code> « Findings &amp; Decisions — PARIS-MONGOLIE », <code>docs\specs\2026-06-12-dashboard-design.md:1</code> · certaine (noms et premières lignes) ; contenu non analysé</li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>
