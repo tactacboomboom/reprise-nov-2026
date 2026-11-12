@@ -10,7 +10,7 @@ de ses outils coïncide avec leur intention d'origine, pratique jugée par Claud
 n'en est pas la preuve.
 
 ## 📍 Current Phase
-**Phase 1** : K.3 fait (12/11 : repo git `tactacboomboom/reprise-nov-2026`, rangement par séance) ; prochaine étape : vague 5 (K.1 ∥ K.2), fan-in par le pilote K. K.1 clos (12/11, fiche + kernel de clôture).
+**Phase 1** : vague 5 close (K.1, K.2, K.3, K.4 ; fan-in K, 12/11) ; prochaine étape : vague 6 = L.1 claude-prostheses (kernel écrit par K), fan-in par le pilote L.
 
 ## 🗓 Phases
 
@@ -22,10 +22,12 @@ n'en est pas la preuve.
 - [x] K.3 (seul, AVANT la vague 5, 12/11) : rangement par séance (`seances/<pilote>-<slug>/<Pilote.N>-<slug>/`) + repo git
   public `tactacboomboom/reprise-nov-2026` hors Drive ; Drive figé. 1er essai de la phase 4 : Yanis
   n'a pas pu décrire l'architecture Anthropic d'un dossier → écart total sur le « comment » (findings K.3)
-- [ ] Vague 5 (pilote K, fiche 8 sections) : K.1 test-ia + CARTE-des-richesses (janvier) ∥ K.2 Anthropologie + projet-amelioration-fin-session + voyage_voyage (mai–juin)
-  — K.1 fait (12/11) : test-ia IGNORER, CARTE-des-richesses ARCHIVER (1re application de la méthode à un sujet extérieur)
+- [x] Vague 5 (pilote K, fiche 8 sections, 12/11) : K.1 test-ia (IGNORER) + CARTE-des-richesses (ARCHIVER : 1re application
+  de la méthode à un sujet extérieur) ∥ K.2 Anthropologie (RÉCUPÉRER, décision de Yanis) + projet-amelioration-fin-session
+  (RÉCUPÉRER) + voyage_voyage (ARCHIVER)
   — K.4 fait (12/11, ouvert par K.2) : Anthropologie archivé en témoin documenté (README, CLAUDE.md, LICENSE, docs/ + ADR 0001),
-    PR #1 mergée dans le repo étudié ; σ affichés non calculés (2 axes réels, pas 3) → `docs/limites.md` (findings K.4)
+    PR #1 mergée dans le repo étudié ; σ affichés non calculés (2 axes réels, pas 3) → `docs/limites.md` (findings K.4).
+    RÉCUPÉRER s'y réduit à « récupérer la mémoire », pas reprendre l'étude (F4 de K.4)
 - [ ] Vague 6 (pilote L) : L.1 claude-prostheses SEUL (fin de la lignée, le plus gros morceau ; Yanis, 11/11)
 - `-my-claude-config` : config actuelle, pas étudiée comme souvenir, mais placée sur la carte
 - **Status:** in_progress
@@ -72,7 +74,18 @@ Séances à créer :
   bootstrap, sans attendre qu'il soit fini, et pense y voir s'améliorer sa manière de travailler. Corpus : CARTE-des-richesses
   (01/2026), `G:\Mon Drive\10 - Claude\C1-PERSO\PARIS-MONGOLIE\` (06/2026, PWF), voyage_voyage (K.2), autres projets à lister
   par Yanis. Même grille pour tous : Goal ? backlog ≤ 5 ? DoD binaire VÉRIFIÉE ? juge extérieur ? non-goals ? mémoire sur
-  disque ? livré / abandonné ? Croise la phase 4. Source : fiche K.1 § 8.
+  disque ? livré / abandonné ? Croise la phase 4. Source : fiche K.1 § 8. Ajout K.2 : corpus + Anthropologie ;
+  critère simple = l'évolution de la VÉRIFICATION (10/05 formalisme non vérifié → 04/06 « rien d'asserté » →
+  27/06 3 juges sur les faits). Patron réutilisable : `mongolie-atlas/docs/QUALITY-REPORT.md` (fiche K.2 § 8).
+- [ ] 16. **Phase vault après les repos** (K.2) : superposer, datés, les repos et les conversations découpées par
+  /n1n4 (claude.ai, Meta AI, ChatGPT) ; une partie de la pensée n'est pas dans les repos (conversation SVD du
+  22/04, 18 jours avant Anthropologie). Hypothèse à tester : la superposition rend l'état d'esprit d'avant le départ.
+  Au démarrage : passe heuristiques du modulo « contrats repo » (D à L + convergence ; ledger, findings, KR-MISS).
+- [ ] 17. **Repos du projet « cloner mon cerveau »** (n1n4 automatisé + graphify) : les repérer parmi les 18 (K.2) → convergence.
+- [ ] 18. **fin-session v3** (K.2, exécution, hors reprise) : reprendre le kernel S02 du repo
+  projet-amelioration-fin-session (T1 lexical, A4 dé-hardcodage des chemins `G:\`, E3 `--compress`, E4 decay).
+  Décider d'abord : reprendre E3/E4 ou les abandonner (question ouverte de la fiche K.2).
+  (Le point K.2 (e), ops-ledger ← `metrics/sessions.csv`, est confié à L.1.)
 
 Décisions en attente :
 - [ ] 5. **Les 8 règles Anthropic** (fiche I.2 § 7) : où les ranger, dans la graine de
@@ -116,6 +129,9 @@ Décisions en attente :
 | L'état (en cours / clos) vit dans le README § En cours, jamais dans les chemins ; pas de `_OLD` avant la convergence (Yanis, K.3) | Un chemin qui change à chaque fan-in casse les kernels qui citent les fiches passées |
 | Exception « lecture seule » pour Anthropologie : RÉCUPÉRER = archiver en témoin documenté (mémoire K.2, sources, limites), pas reprendre l'étude ; commit/PR/merge faits dans le repo étudié (Yanis, K.4, 12/11) | « Ce projet est dépassé » ; un repo fini doit expliquer seul sa raison d'être |
 | Contrats parallèles = un worktree git chacun (`../reprise-nov-2026-<code>`), nommé dans le kernel de lancement ; au démarrage, vérifier `git branch --show-current` (Yanis, K.1, 12/11) | K.1 et K.2 partageaient un dossier : le checkout de K.2 a changé la branche de K.1. « Il ne faut pas que ça se reproduise » |
+| Passe heuristiques : pas séance par séance pendant les contrats repo ; UNE passe sur tout le modulo « contrats repo » au passage au vault (tâche 16) : ce qu'on a appris, quelles heuristiques en déduire ; d'ici là `--violations` omis au ledger (Yanis, K, 12/11) | Yanis sait quand la faire : le sujet actuel est sa mémoire des repos, le prochain modulo est le vault |
+| Règle worktree inscrite au CLAUDE.md et au README (§ Lancer une séance) ; le pilote K l'applique lui-même (`../reprise-nov-2026-K`) (K, 12/11) | K.4 a répété l'erreur (ouvert sur la branche de K.2) : le kernel L.1 nomme son worktree |
+| Vague 6 : L.1 en lecture seule sur un clone du scratchpad, jamais sur le clone vivant `00_MES-PROJETS\claude-prostheses` ; repo privé → la fiche (repo public) cite structure et décisions, pas de contenu sensible (K, 12/11) | `ops_ledger.py` y sert encore à chaque clôture ; reprise-nov-2026 est public |
 
 ## 🚨 Errors Encountered
 | Error | Attempt | Resolution |

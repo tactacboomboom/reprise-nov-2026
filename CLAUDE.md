@@ -22,6 +22,9 @@ pilotées par kernels. Index des séances : `README.md`.
 - Ce dossier est le repo git `tactacboomboom/reprise-nov-2026` (public, depuis K.3). Le dossier
   `REPRISE NOV 2026` du Drive est FIGÉ au 12/11. Une séance travaille sur une branche
   `seance/<code>-<slug>` ; commit et PR seulement à la demande de Yanis ; merge = Yanis (ou sur sa demande).
+- Séances en parallèle = UN WORKTREE chacune (`git worktree add ../reprise-nov-2026-<code> -b seance/<code>-<slug> origin/main`),
+  nommé dans le kernel de lancement ; jamais de `git switch` dans un dossier partagé. Au démarrage,
+  vérifier `git branch --show-current` (incident K.1/K.2, 12/11).
 - Un contrat écrit DEUX fichiers dans son dossier `seances/<pilote>-<slug>/<Pilote.N>-<slug>/` : sa fiche mémoire HTML
   et, à la clôture, son kernel /goedel (plus de kernel collé dans le chat). Ne jamais modifier les fichiers d'une
   autre séance, ni le README, ni `task_plan.md`, ni ce CLAUDE.md, ni le gabarit (réservés au pilote).
