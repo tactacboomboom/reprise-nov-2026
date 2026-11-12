@@ -10,7 +10,8 @@ de ses outils coïncide avec leur intention d'origine, pratique jugée par Claud
 n'en est pas la preuve.
 
 ## 📍 Current Phase
-**Phase 1** : vague 5 close (K.1, K.2, K.3, K.4 ; fan-in K, 12/11) ; prochaine étape : vague 6 = L.1 claude-prostheses (kernel écrit par K), fan-in par le pilote L.
+**Phase 1** (modulo « repos ») : vague 6 close (L.1 ; fan-in L, 12/11) ; prochaine étape : vague 7 = M.1 « où j'en étais au 23/06 » ∥ M.2 « chaîne E » (kernels écrits par L), fan-in par le pilote M.
+Ordre du recouvrement de mémoire (Yanis, L, 12/11) : modulo **repos** (phases 1–2) → modulo **vault** → modulo **skills** ; aucune tâche ni projet nouveau avant.
 
 ## 🗓 Phases
 
@@ -28,15 +29,19 @@ n'en est pas la preuve.
   — K.4 fait (12/11, ouvert par K.2) : Anthropologie archivé en témoin documenté (README, CLAUDE.md, LICENSE, docs/ + ADR 0001),
     PR #1 mergée dans le repo étudié ; σ affichés non calculés (2 axes réels, pas 3) → `docs/limites.md` (findings K.4).
     RÉCUPÉRER s'y réduit à « récupérer la mémoire », pas reprendre l'étude (F4 de K.4)
-- [ ] Vague 6 (pilote L) : L.1 claude-prostheses SEUL (fin de la lignée, le plus gros morceau ; Yanis, 11/11)
+- [x] Vague 6 (pilote L) : L.1 claude-prostheses SEUL (fin de la lignée, le plus gros morceau ; Yanis, 11/11)
   — L.1 fait (12/11, partiel, 87 %) : RÉCUPÉRER (ops_ledger.py vivant ; goedel, debut-session, fin-session nés ici).
     Repo « synthèse » de 6 sous-projets ; E (chaîne MRD → Code) a absorbé le reste, structure finie, verrouillage non
-    (arrêt : voyage du 01/07). Contrats proposés : L.2 état au 23/06 ∥ L.3 chaîne E ∥ L.4 rôles + Scrum ∥ L.5 RAG + vision
-    (findings L.1 F9), puis un essai d'usage sur un projet annexe (phase 4)
-- `-my-claude-config` : config actuelle, pas étudiée comme souvenir, mais placée sur la carte
+    (arrêt : voyage du 01/07). 4 contrats proposés (findings L.1 F9) ; fan-in L (12/11) : fiche conforme, Claire = ancien
+    nom de claude-prostheses (DEC-16), ledger ANTÉRIEUR à `metrics/sessions.csv` (findings L)
+- [ ] Vague 7 (pilote M) : M.1 « où j'en étais au 23/06 » (sous-projet E : statut de chaque gabarit, kernel AZ, SRD) ∥
+  M.2 « la chaîne E » (nilpotence, ponçage, forges, R-gate) — kernels écrits par L (12/11)
+- [ ] Vague 8 (pilote N) : N.1 « rôles + Scrum » (sous-projets B, C) ∥ N.2 « RAG + vision » (docs/vision, `7880faf`, `115af31`)
+  — kernels à écrire par M. Les 4 contrats de L.1 AVANT la fin du modulo (Yanis, L)
+- `-my-claude-config` : config actuelle, pas un souvenir → modulo **skills** (Yanis, L, 12/11), pas de contrat dans le modulo repos
 - **Status:** in_progress
 
-### Phase 2: Convergence
+### Phase 2: Convergence (= fin du modulo « repos » : quelques séances de mise au point, conclusion, heuristiques ; à définir après la vague 8)
 - [ ] Lire toutes les fiches et les notes « Pour la convergence » (README)
 - [ ] Cartographier les 18 repos `tactacboomboom` : les liens entre les prothèses (lignée janvier → CPE → Claire → claude-prostheses)
 - [ ] Proposer le tri / classement / rangement / organisation des repos (archived, privé, supprimé…)
@@ -90,6 +95,10 @@ Séances à créer :
   projet-amelioration-fin-session (T1 lexical, A4 dé-hardcodage des chemins `G:\`, E3 `--compress`, E4 decay).
   Décider d'abord : reprendre E3/E4 ou les abandonner (question ouverte de la fiche K.2).
   (Le point K.2 (e), ops-ledger ← `metrics/sessions.csv`, est confié à L.1.)
+- [ ] 19. **Privatiser les repos `tactacboomboom`** (Yanis, L, 12/11) : « ça devient sensible » (la fiche L.1, publique, cite
+  forfait, voyage, coûts, témoignages). À faire à la FIN du modulo (reprise-nov-2026 inclus ?, à confirmer par Yanis).
+- [ ] 20. **Essai d'usage de claude-prostheses sur un projet annexe** (proposé par L.1 F8/F9) : « pas un petit morceau »
+  (Yanis, L) → APRÈS les modulos repos, vault, skills ; c'est un projet, pas un contrat de mémoire.
 
 Décisions en attente :
 - [ ] 5. **Les 8 règles Anthropic** (fiche I.2 § 7) : où les ranger, dans la graine de
@@ -137,6 +146,10 @@ Décisions en attente :
 | Passe heuristiques : pas séance par séance pendant les contrats repo ; UNE passe sur tout le modulo « contrats repo » au passage au vault (tâche 16) : ce qu'on a appris, quelles heuristiques en déduire ; d'ici là `--violations` omis au ledger (Yanis, K, 12/11) | Yanis sait quand la faire : le sujet actuel est sa mémoire des repos, le prochain modulo est le vault |
 | Règle worktree inscrite au CLAUDE.md et au README (§ Lancer une séance) ; le pilote K l'applique lui-même (`../reprise-nov-2026-K`) (K, 12/11) | K.4 a répété l'erreur (ouvert sur la branche de K.2) : le kernel L.1 nomme son worktree |
 | Vague 6 : L.1 en lecture seule sur un clone du scratchpad, jamais sur le clone vivant `00_MES-PROJETS\claude-prostheses` ; repo privé → la fiche (repo public) cite structure et décisions, pas de contenu sensible (K, 12/11) | `ops_ledger.py` y sert encore à chaque clôture ; reprise-nov-2026 est public |
+| Les 4 contrats de L.1 sont faits AVANT la convergence : vague 7 (M.1 ∥ M.2) puis vague 8 (N.1 ∥ N.2) ; remplace D1 du kernel L (« convergence juste après L ») (Yanis, L, 12/11) | « Je veux d'abord terminer mon recouvrement de mémoire » ; repo trop gros pour une séance (findings L.1 F9) |
+| Contrats proposés par L.1 renumérotés : un contrat porte la lettre du pilote qui fait son fan-in (L.2 → M.1, L.3 → M.2, L.4 → N.1, L.5 → N.2) (L, 12/11) | Le pilote L se clôt avant eux ; règle « Parent = la séance qui fait le fan-in » (CLAUDE.md) |
+| Ordre : modulo repos → modulo vault (plusieurs contrats) → modulo skills (dont my-claude-config) ; tâches et projets (essai d'usage compris) seulement après (Yanis, L, 12/11) | Recouvrement de mémoire d'abord ; l'essai d'usage « n'est pas un petit morceau » |
+| Privatiser les repos à la fin du modulo (tâche 19) ; d'ici là la fiche L.1 reste publique telle quelle (Yanis, L, 12/11) | « Ça devient sensible » |
 
 ## 🚨 Errors Encountered
 | Error | Attempt | Resolution |
@@ -151,3 +164,5 @@ Décisions en attente :
 | K.4 ouvert dans le dossier partagé, sur la branche de K.2 (kernel sans worktree nommé) | K.4 | Rien écrit avant `git worktree add ../reprise-nov-2026-K.4` ; le kernel de lancement doit nommer le worktree |
 | `numpy` absent : SVD impossible en une ligne ; contrôle de liens par regex `[^)h#]` qui excluait tout lien contenant « h » (faux négatif silencieux) | K.4 | SVD en Python standard (Jacobi) ; lien vérifié à la main ; tester le filtre sur un cas connu |
 | L.1 : budget dépassé (77 % → 87 %), fiche écrite sans relevé de status bar | L.1 | Fiche `partiel` ; demander la status bar avant la fiche, découper en contrats dès 70 % |
+| PR #8 (L.1) fusionnée AVANT le contrôle « contenu sensible » que le kernel L confiait au pilote (C2) | L | Relu après coup : aucun secret ; éléments personnels acceptés par Yanis → tâche 19. Pour M.1/M.2 : contrôle par le contrat lui-même avant commit |
+| `/debut-session` lancé sur la CLÔTURE de L.1 au lieu du kernel d'ouverture de L : lieu (worktree) et [Fichiers à charger] absents du brief | L | Kernel L trouvé dans `seances/L-pilotage-vague-6/` et appliqué ; ouvrir un pilote avec SON kernel |

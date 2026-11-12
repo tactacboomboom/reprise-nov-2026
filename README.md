@@ -9,8 +9,9 @@ qui fait le fan-in. Détail : `CLAUDE.md` § Nommage des séances.
 
 ## En cours
 <!-- Mis à jour par le pilote à chaque fan-in. L'état vit ici, jamais dans les chemins. -->
-- **Pilote K (vague 5)** : `seances/K-pilotage-vague-5/` — K.3 ✓ · K.1 ✓ · K.2 ✓ · K.4 ✓ (Anthropologie archivé en témoin, ouvert par K.2) · fan-in fait (12/11)
-- **Ensuite** : L.1 claude-prostheses (vague 6, kernel écrit par K) → pilote L → convergence
+- **Pilote L (vague 6)** : `seances/L-pilotage-vague-6/` — L.1 ✓ (partiel) · fan-in fait (12/11)
+- **Pilote M (vague 7)** : `seances/M-pilotage-vague-7/` — M.1 « où j'en étais au 23/06 » ∥ M.2 « chaîne E » : kernels prêts
+- **Ensuite** : vague 8 (N.1 rôles + Scrum ∥ N.2 RAG + vision) → convergence (fin du modulo repos) → modulo vault → modulo skills
 
 ## Lancer une séance
 Une séance = un worktree (séances parallèles : jamais deux séances dans le même dossier) :
@@ -51,8 +52,12 @@ est FIGÉ au 12/11 : on ne travaille plus dedans.
 | K.1 | K | 5 | Lot « janvier, les bornes » : test-ia + CARTE-des-richesses (fiche 8 sections) | `2026-11-11-K.1-memoire-janvier-bornes.md` (lancement) · `2026-11-11-K.1-cloture.md` | `2026-11-11-K.1-memoire-janvier-bornes.html` | fiche écrite (IGNORER, ARCHIVER) |
 | K.2 | K | 5 | Lot « mai–juin » : Anthropologie + projet-amelioration-fin-session + voyage_voyage (fiche 8 sections) | `2026-11-11-K.2-memoire-mai-juin.md` (lancement) · `2026-11-11-K.2-cloture.md` | `2026-11-11-K.2-memoire-mai-juin.html` | fiche écrite (RÉCUPÉRER, ARCHIVER, RÉCUPÉRER) |
 | K.4 | K | 5 (ouvert par K.2) | Exécution : mettre le repo privé Anthropologie aux bonnes pratiques (SVD calculée) | `2026-11-12-K.4-anthropologie-pro.md` (lancement, écrit par K.2) · `2026-11-12-K.4-cloture.md` | `2026-11-12-K.4-anthropologie-pro-findings.md` | fait (repo étudié : PR #1 mergée, archivé en témoin) |
-| L.1 | L | 6 | claude-prostheses seul : fin de la lignée, le plus gros morceau (Yanis, J) | `2026-11-12-L.1-memoire-claude-prostheses.md` (lancement, écrit par K) | — | prêt |
-| — | — | — | Convergence (lettre de pilote, parent = dernier pilote) : lit toutes les fiches, décide quoi réinstaller | après la dernière vague | — | prévu |
+| L | K | pilote 6 | Fan-in de la vague 6 : juge L.1, découpe claude-prostheses en 4 contrats (vagues 7–8), écrit les kernels M.1/M.2 | `2026-11-12-L-pilotage-vague-6.md` (écrit par K à sa clôture) | `2026-11-12-L-pilotage-vague-6-findings.md` | fan-in fait |
+| L.1 | L | 6 | claude-prostheses seul : fin de la lignée, le plus gros morceau (Yanis, J) | `2026-11-12-L.1-memoire-claude-prostheses.md` (lancement, écrit par K) · `2026-11-12-L.1-cloture.md` | `2026-11-12-L.1-memoire-claude-prostheses.html` · `…-findings.md` | fiche écrite (RÉCUPÉRER, partiel) |
+| M | L | pilote 7 | Fan-in de la vague 7 : juge M.1/M.2, écrit les kernels N.1/N.2 | `2026-11-12-M-pilotage-vague-7.md` (écrit par L à sa clôture) | — | prêt |
+| M.1 | M | 7 | claude-prostheses, sous-projet E : « où j'en étais au 23/06 » (statut de chaque gabarit, kernel AZ) | `2026-11-12-M.1-memoire-etat-23-06.md` (lancement, écrit par L) | — | prêt |
+| M.2 | M | 7 | claude-prostheses, sous-projet E : « la chaîne E » (nilpotence, ponçage, forges, R-gate) | `2026-11-12-M.2-memoire-chaine-e.md` (lancement, écrit par L) | — | prêt |
+| — | — | — | Convergence = fin du modulo repos (lettre de pilote, parent = dernier pilote) : lit toutes les fiches, carte + tri des 18 repos, heuristiques | après la vague 8 | — | prévu |
 
 ## Rangement (K.3, 12/11)
 Un dossier par pilote `seances/<pilote>-<slug>/`, et dedans un sous-dossier par contrat
