@@ -99,6 +99,7 @@ Décisions en attente :
 | Repo git créé MAINTENANT (lève D3 de K.3) : `C:\Users\bensa\00_MES-PROJETS\reprise-nov-2026`, public, Drive figé + note (Yanis, K.3, 12/11) | « Quitte à faire le travail, autant bien le faire maintenant » ; `git mv` garde la trace des déplacements |
 | PR faites par Claude à la demande de Yanis ; la première fusion se fait ensemble (Yanis, K.3) | Projet solo : pas de CODEOWNERS, cycle ticket → PR → merge léger |
 | Préparation git : `.gitattributes` (LF) fait ; modèle de PR et convention de commits `<code>: <verbe> …` à décider plus tard (K.3) | Sans sur-ingénierie pour un solo (spécialiste GAFAM) |
+| L'état (en cours / clos) vit dans le README § En cours, jamais dans les chemins ; pas de `_OLD` avant la convergence (Yanis, K.3) | Un chemin qui change à chaque fan-in casse les kernels qui citent les fiches passées |
 
 ## 🚨 Errors Encountered
 | Error | Attempt | Resolution |

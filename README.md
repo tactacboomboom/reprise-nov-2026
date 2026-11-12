@@ -7,6 +7,11 @@ Convention : lettre = pilote (chronologique) ; `Pilote.N` = contrat parallèle d
 fait le fan-in (il peut avoir été écrit par le pilote précédent : H.1 par D) ; colonne Parent =
 qui fait le fan-in. Détail : `CLAUDE.md` § Nommage des séances.
 
+## En cours
+<!-- Mis à jour par le pilote à chaque fan-in. L'état vit ici, jamais dans les chemins. -->
+- **Pilote K (vague 5)** : `seances/K-pilotage-vague-5/` — K.3 ✓ (migration + repo git) · K.1 prêt · K.2 prêt
+- **Ensuite** : fan-in par K → L.1 claude-prostheses (vague 6) → convergence
+
 ## Lancer une séance
 ```
 cd "C:\Users\bensa\00_MES-PROJETS\reprise-nov-2026"
