@@ -17,7 +17,7 @@ Une séance = un worktree (séances parallèles : jamais deux séances dans le m
 ```
 cd "C:\Users\bensa\00_MES-PROJETS\reprise-nov-2026"
 git fetch
-git worktree add ../reprise-nov-2026-<code> -b seance/<code>-<slug> origin/main
+git worktree add ../reprise-nov-2026-<code> -b seance/<code>-<slug> --no-track origin/main
 cd ../reprise-nov-2026-<code>
 claude
 /debut-session seances/<pilote>-<slug>/[<Pilote.N>-<slug>/]<kernel de la séance>.md
