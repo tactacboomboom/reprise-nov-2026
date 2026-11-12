@@ -1,0 +1,17 @@
+date,seance,phase,cost_usd,api_min,wall_min_raw,ctx_pct,ctx_tokens_k,lines_add,lines_del,sub_n,sub_total,pre_hooks,post_hooks,n_fanout,measure_point,end_time,notes,heuristic_violations,ctx_pct_at_close
+2026-11-09,A,reprise,,,,,,,,,,,,,final,,rétro-rempli : seul ctx_close connu (findings B §D « séance précédente (80 %) »),,80
+2026-11-09,B,reprise,4.78,,31,,,,,,,,,,final,,"rétro-rempli depuis findings B §D (31 min · 65 % · 4,78 $) ; status bar non conservée",,65
+2026-11-09,C,reprise,1.89,6,61,56,112,184,1,0,3,21,21,0,avant_queue,,status bar au /goedel ; séance prolongée ensuite (construction du ledger),,56
+2026-11-10,F,reprise,0.76,4,7,42,84,81,0,0,3,11,11,0,avant_queue,,,,42
+2026-11-10,E,reprise,1.03,5,10,44,88,122,0,0,3,17,17,0,avant_queue,,,H7,44
+2026-11-10,D,reprise,2.16,8,52,62,123,430,46,0,3,0,0,0,avant_queue,,,,62
+2026-11-10,G,reprise,0.98,3,10,40,80,197,4,0,3,7,7,0,avant_queue,,,,40
+2026-11-10,H.2,reprise,2.33,5,338,59,118,231,0,0,3,2,2,0,avant_queue,,,0,59
+2026-11-10,H.1,reprise,2.45,6,336,61,123,215,1,0,3,3,3,0,avant_queue,,,,61
+2026-11-10,H,reprise,1.15,3,371,50,100,134,10,0,3,13,13,0,avant_queue,,,0,50
+2026-11-11,I.2,reprise,2.23,7,55,67,134,390,3,0,3,7,7,0,avant_queue,,,H1,67
+2026-11-11,I.1,reprise,1.97,6,55,61,123,350,13,0,4,11,11,0,avant_queue,,,0,61
+2026-11-11,I,reprise,2.07,8,89,65,130,264,22,0,3,5,5,0,avant_queue,,,H1,65
+2026-11-11,J.2,reprise,2.68,7,73,80,160,315,0,0,3,2,2,0,avant_queue,,,,80
+2026-11-11,J.1,reprise,2.35,7,151,65,130,309,19,0,3,4,4,0,avant_queue,,,,65
+2026-11-11,J,reprise,2.24,6,158,67,134,398,28,0,3,11,11,0,avant_queue,,,,67

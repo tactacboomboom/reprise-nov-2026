@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  GABARIT « FICHE MÉMOIRE » — REPRISE NOV 2026 (fixé par D, 10/11/2026)
+  Fiche remplie par la séance H.1 (lot : PLUG-INS + -graphify-transformer, frise à 2 pistes).
+-->
+<title>PLUG-INS + graphify-transformer — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>PLUG-INS + -graphify-transformer</h1>
+  <div class="meta">
+    2026-05-17 → 2026-05-18 · 6 commits (transformer 4, dont 3 sur une branche jamais fusionnée ; PLUG-INS 2) · 35 Ko + 89 Ko hors .git ·
+    abandonnés (figés depuis le 18/05) · séance H.1 ← parent H · 2026-11-10 · statut complet
+  </div>
+  <span class="badge v-archiv">ARCHIVER (les deux)</span>
+</header>
+
+<p class="lead">Une chaîne « mémoire » montée en 48 h : <b>claude-mem</b> se souvient des sessions,
+<b>graphify</b> en fait une carte de concepts, le <b>transformer</b> devait relier les deux, et
+<b>PLUG-INS</b> était le classeur où tu rangeais ces plugins écrits par d'autres devs, avec leur audit.
+<span class="ref">[2][7][8]</span></p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p><b>Transformer</b> : le 17/05, ton graphe graphify avait 52 concepts, 7 communautés et
+    <b>0 lien</b>. Il était nourri seulement à la main, alors que deux grosses sources restaient
+    à l'écart : environ 118 observations claude-mem et 119 conversations du vault. <span class="ref">[8][10]</span><br>
+    <b>PLUG-INS</b> : réinstaller les plugins à la main sur chaque nouvelle machine, et garder une
+    trace de pourquoi tu leur faisais confiance. Ton souvenir est <b>confirmé</b> : c'est un registre
+    de plugins tiers (claude-mem de thedotmack, graphify de safishamsi), avec un audit par plugin.
+    <span class="ref">[2][3][5]</span></p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Une <b>mémoire à deux couches</b> : une mémoire dans le temps (la base SQLite de claude-mem)
+    et une mémoire sous forme de carte (graph.json de graphify). Le bénéfice attendu : « un graphe de
+    connaissances vivant qui grandit avec chaque session ». Il devait servir d'entrée au projet TDA
+    (C3-PRODUIT) et de base à un RAG personnel. <span class="ref">[4][5][9]</span><br>
+    PLUG-INS : savoir quoi réinstaller (la commande est notée dans un tableau) et ne rien installer
+    sans audit préalable. <span class="ref">[2]</span></p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Avant les repos : le graphe existe déjà · 16/05</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-16</td><td>Dossier <span class="chip">vault/2 - CONCEPTS/graphify-out</span> créé (premier graphe)</td><td>Mettre tes concepts sous forme de carte</td><td>52 nœuds, 7 communautés, mais 0 lien <span class="ref">[19][10]</span></td></tr>
+  </table>
+
+  <div class="phase">Piste A — -graphify-transformer · 17/05, 04:37 → 04:42 (session de nuit « Claire »)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-17 04:37</td><td><code>f1a7862</code> init : transformer.py, 3 .bat, contrat de tests (11 vérifications) — sur <code>main</code></td><td>Verser les observations claude-mem dans graph.json sans doublons (id = empreinte MD5 du titre) ; tests écrits avant le code</td><td>Dry-run par défaut, <code>--write</code> pour écrire : on voit avant de toucher <span class="ref">[6][7][20]</span></td></tr>
+    <tr><td class="d">2026-05-17 04:38</td><td><code>30dd2c8</code> .gitignore + retrait de __pycache__ (branche <code>feat/vault-conversations</code>)</td><td>Ménage</td><td>Repo propre — <i>mais seulement sur la branche</i> <span class="ref">[6]</span></td></tr>
+    <tr><td class="d">2026-05-17 04:40</td><td><code>a129079</code> index.html « Comment fonctionne mon Graphify ? » + vercel.json</td><td>T'expliquer le pipeline et lancer les 3 commandes en un clic (copie dans le presse-papiers)</td><td>Mode d'emploi pour débutant, déployé sur graphify-transformer.vercel.app <span class="ref">[10][17]</span></td></tr>
+    <tr><td class="d">2026-05-17 04:42</td><td><code>993df57</code> simplification de vercel.json</td><td>Faire passer le déploiement statique</td><td>Dashboard en ligne <span class="ref">[6]</span></td></tr>
+  </table>
+
+  <div class="phase">Piste B — PLUG-INS · 18/05, 18:29 → 18:39</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-18 18:29</td><td><code>d847b24</code> CLAUDE.md (registre + règle), MEMORY.md, audit claude-mem v13.2.0, index</td><td>Les plugins sont locaux : à réinstaller sur chaque machine. Il faut un audit avant toute installation</td><td>Verdict « Adopter maintenant » (9.1), commande de réinstallation notée <span class="ref">[1][2][4]</span></td></tr>
+    <tr><td class="d">2026-05-18 18:39</td><td><code>eee7327</code> audit graphify v0.1.14 + lien dans l'index</td><td>Auditer le 2ᵉ maillon de la chaîne mémoire</td><td>Verdict « Adopter » (9.4) ; épingler la version (API instable) <span class="ref">[1][5]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">plugin claude-mem</span> source du transformer : il lisait <code>~/.claude-mem/claude-mem.db</code>, table <code>observations</code>. <span class="ref">[7]</span></li>
+    <li><span class="chip">skill /graphify</span> cible : <code>vault/2 - CONCEPTS/graphify-out/graph.json</code>. Le dashboard renvoyait à <code>/graphify --update</code>, <code>--mode deep</code> et <code>query</code>. <span class="ref">[7][10]</span></li>
+    <li><span class="chip">skill /repo-audit</span> appelé par la règle de PLUG-INS : il produisait les 2 audits HTML qui y sont rangés. <span class="ref">[2]</span></li>
+    <li><span class="chip">projet Claire</span> le transformer vivait dans <code>projects\Claire\transformer</code>, et le dossier n'existe plus. <span class="ref">[10][11]</span></li>
+    <li><span class="chip">hook / routine</span> aucun appelant trouvé dans le setup actuel. Le lancement était <b>manuel</b> (les .bat, ou les boutons du dashboard). Le setup a été réinstallé, donc pour mai : à confirmer par Yanis. <span class="ref">[13][10]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>5 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li>Envie d'installer un nouveau plugin → <code>/repo-audit &lt;url&gt;</code> → ranger le HTML dans <code>PLUG-INS/&lt;nom&gt;/</code>. <span class="ref">[2]</span></li>
+      <li>Nouvelle machine → lire le tableau → <code>npx claude-mem install</code>. <span class="ref">[2]</span></li>
+      <li>« J'ai bossé avec Claude aujourd'hui » (fin de session ou une fois par semaine) → dry-run, puis <code>--write</code>. <span class="ref">[10]</span></li>
+      <li>« Je reviens après 2 semaines, est-ce que ça marche encore ? » → <code>3-run-tests.bat</code>. <span class="ref">[10]</span></li>
+      <li><b>Usage réel (témoignage de Yanis + traces)</b> : une session qui crée un skill, ou une conversation
+      Claude app à travailler → <code>/n1n4</code> → concepts rangés dans <code>vault/2 - CONCEPTS</code> →
+      <code>/graphify</code> lit le dossier et trouve seul les nœuds et les communautés. Passages : 16/05 (54 notes,
+      complet), 24/05 (<code>--update</code>, 31 notes, 10 communautés nommées) → publication <code>rag_concepts</code>
+      → requêtes via le MCP. <span class="ref">[21][22][23]</span></li>
+      <li>Le transformer et claude-mem n'ont jamais fait partie de cet usage. <span class="ref">[21][12]</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>6 · Où je me suis arrêté</h2>
+    <p><b>Transformer</b> : en test, le graphe passe de 52 à 243 nœuds (<code>graph.test.json</code>,
+    11/11 tests réussis), mais 191 de ces nœuds n'appartiennent à aucune communauté. L'étape suivante
+    prévue était <code>/graphify --cluster-only</code> puis la fusion dans main, et elle n'a jamais
+    été faite. <span class="ref">[8]</span> La version avec <code>--test</code> et la lecture du vault
+    n'ont <b>jamais été poussées</b> : dans le repo, <code>main()</code> ne lit que claude-mem et la
+    branche n'est pas fusionnée. <span class="ref">[6][7][9]</span> Aujourd'hui, le graphe de prod
+    compte 123 nœuds et 143 liens, régénéré le 25/05 par graphify, avec <b>0 nœud claude-mem</b>.
+    Le chantier « liens » a donc été réglé par graphify, sans le transformer. <span class="ref">[12]</span><br>
+    <b>PLUG-INS</b> : Vercel « à configurer », graphify absent du tableau de réinstallation, figé
+    depuis. Depuis la réinstallation, aucun des deux plugins n'est installé. <span class="ref">[3][14]</span><br>
+    <b>Raison de l'arrêt (Yanis, 10/11)</b> : claude-mem a été désinstallé parce qu'il notait tout de façon
+    passive, sans forcer à produire l'artefact utile de chaque session. <code>/n1n4</code>, puis
+    <code>/debut-session</code> + <code>/goedel</code>, ont pris ce rôle de façon intentionnelle : la source
+    du transformer a disparu avec lui. <span class="ref">[21]</span><br>
+    <b>graphify</b> : le dernier passage (25/05) a été lancé sur <b>1 fichier de C3-PRODUIT</b> mais a écrit
+    dans le dossier de sortie du vault. Le rapport passe de 10 communautés nommées à 96 (dont 92 « fines »).
+    Une vingtaine de concepts (100 notes contre 78 lues) n'ont jamais été intégrés.
+    Étape <b>[M] « RAG pré-prompt »</b> (l'agent lit les concepts utiles avant de répondre) : posée, jamais
+    construite. <span class="ref">[22][24]</span></p>
+  </section>
+</div>
+
+<section>
+  <h2>7 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict :</b> je reprends le tri de E (D.1), sans le refaire : <b>ARCHIVER</b> les deux.
+    PLUG-INS est un doublon exact du dossier Drive, qui reste la maison. Le transformer est un
+    prototype qui dépend d'un claude-mem absent. <span class="ref">[14]</span> Ce que la fiche ajoute
+    au tri de E : le repo transformer n'est <b>pas</b> la version qui a fonctionné (celle des 243 nœuds
+    en test). Le vrai pipeline est resté dans <code>projects\Claire\transformer</code>, aujourd'hui
+    introuvable. <span class="ref">[8][11]</span></li>
+    <li><b>Réutilisable :</b> la règle « /repo-audit avant tout plugin » → candidate pour
+    <code>../gouvernance-regles.md</code> (décision du pilote) · registre + audits → déjà dans
+    <code>G:\Mon Drive\10 - Claude\PLUG-INS\</code>, rien à copier · transformer → rien maintenant.
+    S'il est relancé un jour : chemins dans <code>.env</code>, création de liens, et appel de
+    <code>load_vault_conversations</code>. <span class="ref">[2][14][7]</span><br>
+    <b>Ce qui a vraiment servi</b> : le duo <code>/n1n4</code> → vault → <code>/graphify</code>, à reprendre lors
+    de la réinstallation de graphify prévue par Yanis. Recommandations (rien exécuté) : un passage <b>complet</b>
+    sur <code>2 - CONCEPTS</code> plutôt qu'un <code>--update</code> (graphe abîmé le 25/05), et les pièges
+    d'installation de E (P2). <span class="ref">[21][22][14]</span></li>
+    <li><b>Conflits gouvernance :</b> R10 (iii) → GitHub est réservé au code exécutable, or PLUG-INS
+    ne contient que du HTML et du MD : le repo est en trop · R13 → chemins absolus codés en dur
+    (<code>C:\Users\bensa\…</code>, <code>projects\Claire</code>) qui cassent à chaque réinstallation,
+    et le dossier local a d'ailleurs disparu · R3 respectée (pas de .git dans le Drive) ·
+    R12 respectée (MEMORY.md de PLUG-INS = navigation manuelle). <span class="ref">[15][7][11]</span></li>
+    <li><b>À confirmer par Yanis :</b> (1) La règle « audit avant plugin » date du 18/05, alors que
+    claude-mem tournait déjà le 17/05 (le transformer lisait sa base). Règle a posteriori, ou née
+    d'un incident ? (2) Où est passé <code>projects\Claire\transformer</code>, avec
+    <code>graph.test.json</code> et la version <code>--test</code> ? (3) <i>Réglée</i> : le transformer n'a pas servi en prod, et claude-mem a été
+    désinstallé volontairement (Yanis, 10/11). <span class="ref">[21]</span> (3 bis) Un hook « RAG pré-prompt » a-t-il
+    existé en mai ? Rien dans le setup actuel. (4) D'autres
+    plugins tiers jamais rangés (superpowers, vercel : E Q5) ? (5) Le BILAN du vault parle d'un
+    « package PyPI, serveur MCP en TDD » : était-ce ce lot, ou le serveur MCP maison ? <span class="ref">[16]</span></li>
+    <li><b>Pour la convergence :</b> Q1 → le lien PLUG-INS ↔ audit-repo passe par le skill
+    <code>/repo-audit</code>. Les 2 audits de PLUG-INS ont le même format que les 8 audits
+    d'audit-repo (fmaths + verdict PM) : voir H.2 · le transformer dépend de la décision
+    « réinstaller claude-mem ? » (E Q3) et du MCP graphify (E P1) · lien avec
+    <code>rag_concepts</code> (graphe de 90 concepts / 143 liens) et le projet TDA C3-PRODUIT. <span class="ref">[2][14][16]</span><br>
+    <b><code>rag_concepts</code> (vérifié en lecture seule, hors lot, à la demande de Yanis)</b> : 1 commit (24/05), il ne
+    contient que <code>graph.html</code> publié sur Vercel. <b>Aucun code de RAG</b> : le nom porte l'intention de
+    l'étape [M]. Le serveur MCP maison (description figée à « 90 nœuds, 143 edges ») a été écrit juste après :
+    c'est l'étape C1 de ce plan. Le repo est <b>public</b> alors que le vault est privé (tension notée par Yanis
+    lui-même) → à trancher avant la republication. Il mérite son propre contrat de fiche mémoire. <span class="ref">[23][24][25]</span></li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li><code>git log --all --stat</code> PLUG-INS (clone complet) : <code>d847b24</code> 18/05 18:29, <code>eee7327</code> 18:39 · certaine</li>
+    <li><code>PLUG-INS/CLAUDE.md:3-20</code> (registre, « réinstaller manuellement », règle /repo-audit) · certaine</li>
+    <li><code>PLUG-INS/MEMORY.md:5-14</code> (claude-mem seul dans le tableau, Vercel « à configurer ») · certaine</li>
+    <li><code>claude-mem/claude-mem-analysis.html</code> § « L'équilibre du risque », « Score PM 9.1 », « Recommandation finale » · certaine</li>
+    <li><code>graphify/graphify-analysis.html</code> § « Score PM 9.4 », « Recommandation finale », github.com/safishamsi/graphify · certaine</li>
+    <li><code>git log --all --graph</code> -graphify-transformer : <code>f1a7862</code> sur main, <code>30dd2c8</code>/<code>a129079</code>/<code>993df57</code> sur <code>origin/feat/vault-conversations</code> non fusionnée · certaine</li>
+    <li><code>transformer.py:19-20</code> (chemins en dur), <code>:47-67</code> (dédup), <code>:75-88</code> (fonction vault jamais appelée), <code>:101-125</code> (main) · certaine</li>
+    <li>vault <code>1 - CONVERSATIONS/graphify-transformer-pipeline-tdd/N4.md:19-39</code> (52 → 243 nœuds, 191 non classés, étape suivante) · élevée</li>
+    <li>vault <code>…/N2.md:14-21</code> (<code>--test</code> → graph.test.json) ; <code>2 - CONCEPTS/transformer-mem-graphify.md:15-34</code> · élevée</li>
+    <li><code>git show a129079:index.html</code> (52 nœuds / 0 lien, mode d'emploi, <code>projects\Claire\transformer</code>, « Session Claire ») · certaine</li>
+    <li><code>ls "G:/Mon Drive/10 - Claude/projects/Claire/"</code> → No such file · certaine</li>
+    <li>graph.json actuel (python) : 123 nœuds, 143 liens, 0 id <code>mem-*</code> ; graphify-out daté du 24–25/05, pas de graph.test.json · certaine</li>
+    <li><code>grep -ril</code> transformer / PLUG-INS dans <code>~/.claude/skills</code>, <code>settings.json</code>, <code>10 - Claude/.claude</code> → rien · élevée (aujourd'hui), moyenne (pour mai)</li>
+    <li>Findings E <code>docs/findings/2026-11-10-E-plug-ins-graphify.md</code> §3-5 · certaine</li>
+    <li><code>../gouvernance-regles.md:53,60,62,63</code> (R3, R10, R12, R13) · certaine</li>
+    <li>vault <code>analyses/bilan-retour-2026/lot-4-projets-code.md:27,33,61,99</code> ; <code>BILAN.md:35</code> · moyenne</li>
+    <li><code>gh repo view</code> : les 2 repos publics, non archivés, homepage graphify-transformer.vercel.app · certaine</li>
+    <li><code>ls -la "G:/Mon Drive/10 - Claude/PLUG-INS/"</code> : fichiers 18:26–18:38 · certaine</li>
+    <li><code>ls -la vault/2 - CONCEPTS/graphify-out</code> : dossier créé le 16/05 · élevée</li>
+    <li><code>test_transformer.py</code> : 11 appels à <code>check()</code> (la docstring dit « 4 tests », le dashboard « 8/8 ») · certaine</li>
+    <li>Témoignage de Yanis en séance, 10/11/2026 (désinstallation de claude-mem, pipeline <code>/n1n4</code> → vault → graphify) · certaine (déclaratif)</li>
+    <li><code>graphify-out/cost.json</code> (16/05 : 54 fichiers, 24/05 : 31), <code>.graphify_root</code> + <code>.graphify_detect.json</code> (C3-PRODUIT, 1 fichier), <code>GRAPH_REPORT.md</code> (96 communautés, 92 fines), <code>manifest.json</code> (78) contre 100 notes dans <code>2 - CONCEPTS</code> · certaine</li>
+    <li><code>rag_concepts</code> : <code>git log --all</code> → <code>4365e82</code> 24/05 ; <code>README.md:7-45</code> ; <code>gh repo view</code> → public, rag-concepts-peach.vercel.app · certaine</li>
+    <li>vault <code>1 - CONVERSATIONS/graphify-vercel-knowledge-graph/N4.md</code> (régimes S/SDK/M, backlog C1–C3 « RAG pré-prompt », repo public) · élevée</li>
+    <li><code>G:\Mon Drive\10 - Claude\.claude\graphify-mcp-server.py:3-8</code> (« 90 nœuds, 143 edges » codé en dur) · certaine</li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>

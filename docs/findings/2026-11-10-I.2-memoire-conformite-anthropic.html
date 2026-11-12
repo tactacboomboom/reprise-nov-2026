@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  GABARIT « FICHE MÉMOIRE » — REPRISE NOV 2026 (fixé par D, 10/11/2026)
+  Fiche remplie par la séance I.2 (lot « conformité Anthropic »), 11/11/2026.
+-->
+<title>Conformité Anthropic — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Conformité Anthropic — Architecture-des-skills-Anthropic + les 6 audits</h1>
+  <div class="meta">
+    2026-05-24 → 2026-05-27 · 4 commits (et 6 audits d'avant le repo, 20–23/05) · 113 Ko hors .git ·
+    figé depuis le 27/05 · séance I.2 ← parent I · 2026-11-11 · statut complet
+  </div>
+  <span class="badge v-archiv">ARCHIVER</span>
+</header>
+
+<p class="lead">Ton clone « ingénieur Anthropic ». Tu as d'abord voulu <b>t'aligner</b> sur la norme
+Anthropic (audits du 20/05), puis tu as posé que <b>« eux sont le standard, pas moi »</b> (23/05). Tu as
+ensuite <b>retourné</b> leur taxonomie en grille pour ton propre métier (24/05), et enfin tu l'as branchée
+sur les rôles Scrum de claude-prostheses (27/05) <span class="ref">[2]</span> <span class="ref">[5]</span>
+<span class="ref">[6]</span> <span class="ref">[1]</span>.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>Le 20/05, tu ouvres une session pour construire un skill <code>architecture-anthropic</code>. Il devait
+    cataloguer l'architecture officielle (<code>CLAUDE.md</code>, <code>SKILL.md</code>, hooks,
+    <code>settings.json</code>) et servir de <b>« checklist d'audit du système personnel Yanis »</b>
+    <span class="ref">[2]</span>. C'était un des 4 chantiers lancés en parallèle en mai (norme Anthropic ·
+    Scrum · mémoire · graphe de concepts), reliés seulement dans ta tête <span class="ref">[17]</span>
+    <span class="ref">[19]</span>. Le repo lui-même est né le 24/05, d'une conversation claude.ai (21–23/05).
+    Son point de départ : le <code>NOTES.md</code> de l'audit du cookbook <span class="ref">[6]</span>.</p>
+    <p><b>Ton témoignage (11/11) :</b> « lorsque je construisais des choses, je ne savais ni les nommer, ni
+    organiser l'architecture de manière conforme à ce que Claude allait s'approprier ». Le déclic : le
+    <b>coût de contexte</b> devient déterminant quand on invoque une prothèse mal architecturée et mal
+    définie. Puis la découverte qu'Anthropic avait « déjà défini ce que je n'arrivais pas à définir » :
+    CAPABILITIES (ce que Claude fait) · ENCAPSULATIONS (comment on l'empaquette) · TRANSVERSE
+    <span class="ref">[20]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Deux objectifs à la suite. (a) <b>La conformité</b> : vérifier ton setup contre le standard Anthropic
+    <span class="ref">[2]</span>. (b) <b>La génération</b> : se servir des 11 buckets Anthropic (les 11 « cases »
+    du cookbook) × 3 niveaux d'emballage (S = skill, SDK = agent piloté, M = hébergé) comme d'une grille qui
+    <i>fait apparaître</i> les usages et les angles morts de ton métier. Le bénéfice visé : prédire la bonne
+    forme d'un outil sans refaire la matrice. Il suffit de deux questions : « permanent ou ponctuel ? contrôle
+    requis ou non ? » <span class="ref">[6]</span> <span class="ref">[7]</span>.</p>
+    <p><b>Ton témoignage (11/11) :</b> la conformité est un <b>moyen</b>. Une prothèse conforme permet à
+    Claude de juger vite qu'elle n'est pas la bonne et de s'arrêter, donc on gagne du temps et des tokens.
+    Mécanisme officiel : au démarrage, Claude ne lit que <code>name</code> + <code>description</code> ;
+    le corps n'est lu qu'à l'activation (règle 3, § 7). La <b>vision finale</b> : un arsenal de
+    <b>persona-prothèses</b>, invocables selon le travail, conformes Anthropic, chacune composée de
+    plusieurs éléments (pas seulement d'un skill), donc des <b>plugins</b>, enrichis à l'usage (bootstrap).
+    Les 7 onglets ②–⑧ sont la base, PhD-IA et d'autres devaient suivre <span class="ref">[20]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 0 — Avant le repo : s'aligner sur la norme · 2026-05-20 → 05-23</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-20</td><td>Session PWF <code>architecture-anthropic</code> (7 phases). Audits de
+    claude-code, skills, cookbook et prompt-eng-tutorial (HTML datés du 20/05). Règles de gouvernance R1–R13,
+    « source : Anthropic + décisions Yanis 2026-05-20 ». archi-mao est créé le même jour.</td>
+    <td>Tu cherchais la <b>conformité</b> : ton système est-il fait comme Anthropic le fait ?</td>
+    <td>Le seul morceau vraiment livré du projet : les règles R1–R13 <span class="ref">[2]</span>
+    <span class="ref">[3]</span> <span class="ref">[9]</span> <span class="ref">[11]</span></td></tr>
+    <tr><td class="d">2026-05-21</td><td>Lexique « ingénieur Anthropic », tiré d'une conversation Gemini. Création
+    des 6 dossiers du persona dans le vault.</td>
+    <td>Tu cherchais le <b>vocabulaire</b> du métier.</td>
+    <td>Tu as vite posé un garde-fou : « synthèse pédagogique, pas la structure canonique »
+    <span class="ref">[10]</span> <span class="ref">[5]</span></td></tr>
+    <tr><td class="d">2026-05-23</td><td>Audits de courses et quickstarts (HTML consolidés). Persona
+    <code>ingenieur-anthropic</code> : 6 sous-personas, 1 par repo officiel.</td>
+    <td>Tu cherchais une <b>autorité</b> : « Eux sont le standard, pas moi ». Si un repo bouge, on refait
+    l'audit.</td>
+    <td>6 audits sur 6, avec une méta-règle d'humilité <span class="ref">[3]</span> <span class="ref">[5]</span></td></tr>
+  </table>
+  <div class="phase">Phase 1 — Le miroir : retourner la taxonomie vers ton métier · 2026-05-24</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-24</td><td><code>80c4e93</code> « Architecture des skills Anthropic » :
+    <code>matrice-generative.html</code> (615 lignes). Le même jour, le N4 du vault
+    <code>architecture-skills-anthropic</code>.</td>
+    <td>Tu cherchais à <b>générer</b> au lieu de copier. La forme des exemples Anthropic devient un miroir de
+    ce qu'on attend côté utilisateur.</td>
+    <td>La loi de migration du M, la grammaire S/SDK/M, l'angle mort « Distribution » et le risque
+    « Multi-Agent en Build » <span class="ref">[1]</span> <span class="ref">[6]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — Le rangement : brancher la grille sur claude-prostheses · 2026-05-27</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-27 17:00</td><td><code>35eb9fc</code> README, <code>references/</code> (sources
+    .md) et LINEAGE. La matrice est « récupérée depuis Drive (perdue session C6) » pendant la session C7 de
+    claude-prostheses.</td>
+    <td>Mettre la matière à l'abri, avec une source <code>.md</code> lisible.</td>
+    <td>Une traçabilité des sources (LINEAGE) <span class="ref">[1]</span> <span class="ref">[7]</span></td></tr>
+    <tr><td class="d">2026-05-27 17:13</td><td><code>4c04e3c</code> <code>vercel.json</code> (site statique,
+    racine = la matrice).</td>
+    <td>La lire hors du PC.</td>
+    <td>Déploiement réel : à confirmer par Yanis <span class="ref">[1]</span></td></tr>
+    <tr><td class="d">2026-05-27 17:49</td><td><code>e352ea9</code> restauration de l'onglet ④ « Dev Anthropic »
+    et ajout des onglets ⑤–⑧ (PO, SM, Dev Team, Stakeholder).</td>
+    <td>Tu cherchais à <b>outiller tes rôles Scrum</b>, c'est-à-dire le chantier « Scrum solo ».</td>
+    <td>8 onglets (<code>grep data-p</code>) ; le README en annonce encore 4 <span class="ref">[1]</span>
+    <span class="ref">[8]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">théorie ↔ pratique</span> Trois pièces répondent à trois questions.
+    <b>archi-mao</b> (7 objets : Agent / Contexte / Outil / Mémoire / Trace / Protocole / Politique, 12 papiers)
+    répond à « <i>de quoi est fait</i> un système d'agents ? ». <b>La grille S/SDK/M</b> répond à
+    « <i>comment l'emballer</i> : je rappelle, je pilote, ou ça veille sans moi ? ».
+    <b><code>architecture-anthropic</code></b> devait répondre à « <i>est-ce conforme</i> au standard ? ». Les
+    deux premières existent ; la troisième, le pont vers la pratique, n'a jamais été construite
+    <span class="ref">[9]</span> <span class="ref">[7]</span> <span class="ref">[17]</span>. Lecture de la
+    séance (moyenne) : archi-mao et S/SDK/M sont tes <i>propres</i> synthèses, alors que la méta-règle du
+    persona dit « source canonique = le code Anthropic, jamais ma synthèse ». C'est donc la checklist manquante
+    qui aurait tenu ce rôle d'arbitre.</li>
+    <li><span class="chip">origine des chaînes</span> Les colonnes (11 buckets) viennent d'Anthropic. Les
+    lignes (chaînes de valeur) sont <b>ta moitié</b>. ② Indie dev : découpée par Claude (claude.ai) « en six
+    maillons réels de ton activité ». ③ PM : la chaîne classique d'un PM, posée en tension avec le découpage
+    par capacité d'Anthropic. ⑤–⑧ Scrum : session C7 de claude-prostheses, à partir de
+    <code>phase-spec.md</code>, <code>team-charter.md</code> et <code>alirezarezvani/claude-skills</code>
+    <span class="ref">[21]</span> <span class="ref">[22]</span></li>
+    <li><span class="chip">persona-prothèse = plugin</span> Le terme est le bon, au sens officiel de Claude
+    Code. Un plugin regroupe <code>plugin.json</code> + <code>agents/</code> (le persona = un sous-agent avec son
+    rôle et son modèle) + <code>skills/</code> + <code>commands/</code> + <code>hooks/</code>. Ta vision de
+    juges R-gate tirés de tes persona-prothèses correspond à des <b>sous-agents en fan-out</b>, choisis par
+    leur description (lecture de la séance, élevée) <span class="ref">[4]</span> <span class="ref">[20]</span>.
+    <b>Réserve (H1, relevée à la clôture) :</b> le plugin ne couvre que l'<i>emballage</i>, à un instant
+    donné. L'<i>enrichissement à l'usage</i> (bootstrap), lui, se déroule dans le temps et n'a pas d'équivalent
+    natif dans un plugin. « Persona-prothèse = plugin » est donc vrai pour la forme, pas pour la croissance.
+    C'est un axe à concevoir à part.</li>
+    <li><span class="chip">règles de gouvernance R1–R13</span> Elles sont la partie « conformité » réellement
+    entrée dans ton système. Leur titre l'annonce : « source : Anthropic + décisions Yanis 2026-05-20 »
+    <span class="ref">[11]</span></li>
+    <li><span class="chip">vault — persona</span> <code>3 - SKILLS/persona-ingenieur-anthropic/</code> sert
+    d'index aux 6 audits, et leur contenu vit dans <code>SKILLS\architecture-anthropic\repos\</code>. Le LINEAGE
+    du persona le déclare « consommateur » du futur <code>/architecture-anthropic</code>
+    <span class="ref">[5]</span></li>
+    <li><span class="chip">repo claude-prostheses</span> Le README du repo le présente comme la taxonomie
+    utilisée par les « rôles Scrum invocables ». Le bilan du vault l'appelle « la base théorique qui nourrit
+    claude-prostheses » <span class="ref">[7]</span> <span class="ref">[12]</span></li>
+    <li><span class="chip">grammaire S/SDK/M</span> Elle a servi hors du repo : le N4
+    <code>graphify-vercel-knowledge-graph</code> classe le graphe en [SDK] et pose sa migration vers [M] par
+    MCP (hypothèse du kernel confirmée) <span class="ref">[12]</span></li>
+    <li><span class="chip">paysage des prothèses</span> Dans ton témoignage (« chaque agent est le clone de
+    quelque chose »), ce lot est le clone <b>« conformité Anthropic »</b>. archi-mao porte d'ailleurs cette
+    phrase dans sa description : « Convoque l'ingénieur Anthropic ». Les onglets ⑤–⑧ le relient au clone
+    « scrum solo » <span class="ref">[9]</span> <span class="ref">[19]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>5 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> début d'une session pertinente → consulter <code>architecture-anthropic</code>. Le
+      hook SessionStart devait pointer vers la gouvernance et vers ce skill (phase 6)
+      <span class="ref">[2]</span></li>
+      <li><b>Prévu :</b> une nouvelle intention ou un nouvel outil → « permanent ou ponctuel ? contrôle ? » →
+      sa forme S, SDK ou M, sans rouvrir la matrice <span class="ref">[6]</span></li>
+      <li><b>Réel :</b> analyser un projet. La grammaire S/SDK/M est réutilisée pour graphify
+      <span class="ref">[12]</span>. Décliner les rôles de claude-prostheses : onglets ⑤–⑧
+      <span class="ref">[1]</span></li>
+      <li><b>Réel :</b> le hook SessionStart et la consultation en début de session ont-ils existé ? À
+      confirmer par Yanis (phase 6 restée « not_started ») <span class="ref">[2]</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>6 · Où je me suis arrêté</h2>
+    <p>Dernier commit le 27/05 à 17:49. Les phases 2 à 6 du plan du 20/05 sont restées « not_started » : le
+    skill n'a jamais été construit, et le repo Vercel prévu, <code>anthropic-knowledge-base</code>, n'existe
+    pas (404) <span class="ref">[2]</span> <span class="ref">[15]</span>. La documentation est en retard : le
+    README dit « 4 onglets » (il y en a 8) et « 7 audits » (le persona en compte 6 ; le 7ᵉ est OthmanAdi/pwf,
+    qui n'est pas d'Anthropic) <span class="ref">[7]</span> <span class="ref">[5]</span>. Le N4 laisse aussi
+    une tension ouverte : les 11 buckets mélangent 8 « capacités » et 3 « emballages ». Ce n'est pas une
+    partition propre <span class="ref">[6]</span>. Raison probable de l'arrêt : le passage aux sessions C7+ de
+    claude-prostheses <span class="ref">[7]</span>. À confirmer par Yanis.</p>
+  </section>
+</div>
+
+<section>
+  <h2>7 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict :</b> ARCHIVER, comme C l'a fait pour le repo <span class="ref">[16]</span>. Le tri de C est
+    repris tel quel : rien à copier ; valeur = la grille S/SDK/M + les 5 lois, et l'inventaire des plugins
+    de l'ancien PC (<code>roles-documents-matrix.md:178-188</code>). Doublon C-1 avec
+    <code>vault/matrice-generative.html</code>, doc en retard C-2 <span class="ref">[16]</span>. Ce que
+    l'ensemble apporte en plus : la <b>liste courte ci-dessous</b>. ARCHIVER vaut pour le repo (rien à copier tel quel), pas pour le projet : Q1 = à reprendre sous forme de plugins.</li>
+    <li><b>Réutilisable : les règles Anthropic que tu retenais</b> (tirées des 6 verdicts, état au 11/11) :
+      <ol>
+        <li><b>Frontmatter minimal</b> : <code>name</code> (égal au nom du dossier) + <code>description</code>.
+        Le gabarit officiel ne contient toujours que ces deux champs : <b>vérifié le 11/11</b>
+        <span class="ref">[4]</span> <span class="ref">[14]</span>.</li>
+        <li><b>Description qui déclenche</b> : « &lt;Action&gt;. Use when X, Y, Z. » + « Do NOT trigger
+        when… ». C'est déjà appliqué dans tes skills <code>goedel</code>, <code>debut-session</code>,
+        <code>fin-session</code> <span class="ref">[4]</span> <span class="ref">[18]</span>.</li>
+        <li><b>Chargement progressif</b> : le frontmatter est lu au démarrage, le corps à l'activation,
+        <code>scripts/ references/ assets/</code> à la demande. 1 skill = 1 dossier autonome
+        <span class="ref">[4]</span>.</li>
+        <li><b>Un concept par unité</b>, préfixe numéroté, dossier à plat (cookbook, courses)
+        <span class="ref">[4]</span>.</li>
+        <li><b>Hooks = événement → matcher → commande</b>, chemins via <code>${CLAUDE_PLUGIN_ROOT}</code>. Les
+        hooks d'Anthropic codent <code>/tmp</code> en dur, donc il faut les adapter pour Windows. Un hook sans
+        matcher coûte cher (environ 750k tokens dans pwf, cf. H.2) <span class="ref">[4]</span>
+        <span class="ref">[17]</span>.</li>
+        <li><b>Persistance sur disque</b> : liste de tâches + fichier de passation + git. C'est l'origine
+        officielle du pattern PWF (quickstarts) <span class="ref">[4]</span>.</li>
+        <li><b><code>allowed-tools</code> ne protège rien</b> : ce champ était expérimental, ne pas fonder la
+        sécurité dessus. Statut actuel : à revérifier <span class="ref">[4]</span>.</li>
+        <li><b>Méta-règle</b> : la source canonique est leur code ; si l'upstream bouge, on refait l'audit ; si
+        ta convention diverge, c'est elle qui s'aligne <span class="ref">[5]</span>.</li>
+      </ol>
+      → Destination proposée (à décider par Yanis, rien n'est écrit) : la graine de
+      <code>SKILLS\architecture-anthropic\</code> s'il reprend, ou une annexe de
+      <code>TRANSVERS\gouvernance-regles.md</code> à côté de R1–R13. <b>Contrôle de l'upstream (C3)</b> fait en
+      surface seulement : cookbook renommé <code>claude-cookbooks</code>, quickstarts renommé
+      <code>claude-quickstarts</code>, <code>courses</code> <b>archivé</b>. Commits depuis le 27/05 :
+      skills 26, claude-code 331, cookbooks 75, quickstarts 34. D'après la règle 8, les audits de mai sont
+      périmés ; les règles 3 à 7 sont à revérifier <span class="ref">[13]</span>.
+      <br><b>archi-mao — recommandation :</b> ne pas l'activer tel quel. Son frontmatter porte des champs
+      hors gabarit (<code>type</code>, <code>status</code>, <code>date_creation</code>, <code>sources</code>,
+      <code>governance</code>) et son workflow exige un <code>CLAUDE.md</code> dans le skill, ce que les audits
+      jugeaient non conforme. Le mettre d'abord en conformité avec les règles 1–3 <span class="ref">[9]</span>
+      <span class="ref">[17]</span>.</li>
+    <li><b>Conflits gouvernance</b> (lus dans <code>../gouvernance-regles.md:47-63</code>) :
+    (a) <b>R4</b> « SKILL.md = format officiel » → écart pour archi-mao, comme pour <code>/repo-audit</code>
+    (H.2) <span class="ref">[9]</span> <span class="ref">[11]</span> <span class="ref">[17]</span>.
+    (b) <b>R10</b> « local = copie d'activation » → archi-mao existe sur le Drive mais pas en local, donc il
+    n'est pas invocable. C'est conforme à C2 : on recommande seulement <span class="ref">[11]</span>.
+    (c) Doublon de la matrice (C-1), déjà signalé par C <span class="ref">[16]</span>. Persona du vault ↔
+    <code>SKILLS\…\repos\</code> : pas de doublon, l'un indexe et l'autre stocke <span class="ref">[5]</span>.</li>
+    <li><b>À confirmer par Yanis :</b> <b>(Q1) tranchée le 11/11 : à reprendre, sous forme de plugins
+    persona-prothèses</b> <span class="ref">[20]</span>. Reste ouvert : (2) le hook SessionStart prévu en phase 6 a-t-il existé ? (3) la matrice a-t-elle été déployée et lue sur
+    Vercel ? (4) où ranger la liste courte : graine du skill ou annexe de la gouvernance ? (5) mettre archi-mao
+    en conformité, puis l'activer, ou le laisser dormir ?</li>
+    <li><b>Pour la convergence :</b> H.2 (audit-repo : mêmes audits, versions publiées) · C (même repo, tri
+    repris) · H.1 (S/SDK/M dans le N4 de graphify) · claude-prostheses (onglets ⑤–⑧ = ses rôles)
+    <span class="ref">[16]</span> <span class="ref">[17]</span> <span class="ref">[12]</span>.</li>
+    <li><b>Proposition au pilote :</b> si Q1 = « reprendre », lancer d'abord une séance de <b>re-audit
+    upstream</b> de <code>anthropics/skills</code> et <code>anthropics/claude-code</code> (26 et 331 commits
+    depuis mai). La checklist ne se construit qu'après. Prévoir aussi une séance claude-prostheses, qui
+    consomme la grille <span class="ref">[13]</span>.
+    <br>Suite de ce lot, à la demande de Yanis (« j'ai encore du travail sur ce repo ») <span class="ref">[20]</span> :
+    (a) une séance <b>« le comment d'Anthropic »</b>, pour réapprendre les 11 buckets et l'architecture
+    (chargement progressif, anatomie d'un plugin) jusqu'à les connaître par cœur. Cette fiche couvre le
+    <i>pourquoi</i>, pas le <i>comment</i>.
+    (b) une séance <b>« superpowers à l'aune de la matrice »</b> : projeter le plugin (non installé, cf.
+    H.2) sur la grille 11 buckets × S/SDK/M, comme premier test de la grille pour juger un plugin. Aucune
+    installation (C2).
+    (c) la vision des <b>juges R-gate = persona-prothèses</b> relève du contrat B
+    (<code>debut-session-r-gate</code>), hors périmètre ici.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li><code>git log --reverse --stat</code> sur le clone complet : 4 commits <code>80c4e93</code> (24/05) →
+    <code>e352ea9</code> (27/05) ; <code>du -sh --exclude=.git</code> = 113K. C n'en avait vu qu'un : hypothèse du
+    kernel confirmée · certaine</li>
+    <li><code>vault/sessions/2026-05-20-architecture-anthropic/task_plan.md:1-29</code> · certaine</li>
+    <li><code>ls SKILLS/architecture-anthropic/repos/*/</code> : HTML datés du 20/05 (claude-code, cookbook,
+    skills, prompt-eng) et du 23/05 (courses, quickstarts) · certaine</li>
+    <li>Verdicts : <code>anthropics-skills/verdict.md:10-18, 56-68</code> + <code>recit.md:1-15</code> ;
+    <code>anthropics-quickstarts/VERDICT.md:1-34</code> + <code>NARRATIVE.md:1-8</code> ;
+    <code>anthropics-claude-code/AUDIT.md:143-151, 206-253</code> ; <code>anthropics-cookbook/NOTES.md:13-24, 62-66</code> ;
+    <code>anthropics-courses/AUDIT.md:175-181</code> ; <code>anthropics-prompt-eng-tutorial/NOTES.md:229-240</code>.
+    Seuls 2 audits sur 6 ont des fichiers verdict/récit : pour les 4 autres, la section verdict a été lue
+    (adaptation de D4) · certaine</li>
+    <li><code>vault/3 - SKILLS/persona-ingenieur-anthropic/_index.md:1-38</code> ; <code>LINEAGE.md:10, 52, 64</code> · certaine</li>
+    <li><code>vault/1 - CONVERSATIONS/architecture-skills-anthropic/N4.md:1-73</code> (daté du 24/05 ; source : conversation du 21–23/05) · certaine</li>
+    <li>Repo : <code>README.md:7, 10, 60, 66</code> ; <code>references/LINEAGE.md</code> ;
+    <code>references/matrice-chaine-valeur.md:1-11, 59-68, 140-150</code> · certaine</li>
+    <li><code>grep -o 'data-p=' matrice-generative.html</code> → 8 onglets · certaine</li>
+    <li><code>SKILLS/architecture-multi-agent-orchestration/SKILL.md:1-30</code> · certaine</li>
+    <li><code>vault/2 - CONCEPTS/lexique-ingenieur-anthropic.md:1-20</code> · certaine</li>
+    <li><code>TRANSVERS/gouvernance-regles.md:47-63</code> (R1–R13) · certaine</li>
+    <li><code>vault/1 - CONVERSATIONS/graphify-vercel-knowledge-graph/N4.md:35-36</code> ;
+    <code>vault/analyses/bilan-retour-2026/lot-4-projets-code.md:63-64</code> · certaine</li>
+    <li><code>gh api repos/anthropics/&lt;repo&gt;</code> et <code>…/commits?since=2026-05-27</code> (11/11/2026) :
+    renommages, <code>courses</code> archivé, nombre de commits · certaine</li>
+    <li><code>gh api repos/anthropics/skills/contents/template/SKILL.md</code> → <code>name</code> + <code>description</code> seulement · certaine</li>
+    <li><code>gh api repos/tactacboomboom/anthropic-knowledge-base</code> → 404 ; <code>gh repo list tactacboomboom</code> · certaine</li>
+    <li><code>docs/findings/2026-11-09-C-architecture-des-skills.md</code> § 1–5 · élevée</li>
+    <li><code>docs/findings/2026-11-10-H.2-memoire-audit-repo.html</code> § 4, 6, 7 · élevée</li>
+    <li>Liste des skills chargés dans cette séance : descriptions de goedel, debut-session et fin-session
+    avec « Do NOT trigger » · certaine</li>
+    <li>Témoignage de Yanis (10/11), rapporté dans le kernel I.2 [Contexte] · certaine (déclaratif)</li>
+    <li>Témoignage de Yanis en séance I.2 (11/11), source brute reproduite mot pour mot · certaine (déclaratif)
+      <blockquote style="margin:6px 0;padding-left:10px;border-left:2px solid var(--line)">
+      « Je viens de lire le findings en html. Je me rappelle de ce repo. En fait, je m'étais rendu compte que
+      lorsque je construisais des choses, je ne savais ni les nommer, ni organiser l'archiotecture de manière
+      conforme à ce que claude allait s'approprier. Par exemple, j'ai compris que le coût d'un contexte devenait
+      déterminant lorsque j'invoque un prothèse mal architecturée et défini. Tandis que si cette prothèse est
+      conforme aux standards anthropic, et bien claude code pouvait s'arrêter en plein chemin en disant : "j'ai
+      lu le readme et claude du skill et je n'ai pas envie d'investir plus de tokens car ce skill n'est pas le
+      bon pour ce qu'on veut faire ici". Donc la conformité aux standards anthropic allait in fine me faire
+      gagner du temps et des tokens. Mais j'ai aussi réalisé que Anthropic avait déjà défini ce que je
+      n'arrivais pas à définir c'est-à-dire : "CAPABILITIES — ce que Claude fait ENCAPSULATIONS — comment on
+      l'empaquette TRANSVERSE". C'est là que j'ai eu l'idée de construire une matrice avec en ordonée une chaîne
+      propre à chaque prothèse exemple : "① Théorie — la matrice de référence Chaque cellule décrit, en une
+      phrase, ce que produit le croisement « maillon × bucket ». C'est le gabarit neutre : aucune cellule vide,
+      car en théorie tout croisement a un sens possible." ou autre exemple : "⑤ Product Owner Chaîne : Discovery
+      → Priorisation → Spécification → Delivery → GTM → Rétention. Le PO transforme le besoin business en
+      stories actionnables et pilote la valeur à chaque sprint.". En revanche je ne sais pas comment j'avais
+      défini ces chaînes. Mais en tout cas, plus j'avançais dans mes projets, plus il devenait évident que ce
+      que j'étais en train de construire était ni polus ni moins qu'un arsenal de persona-prothèse que je
+      pouvais invoquer à ma convenance selon mes travaux et qui allait respecter la conformité anthropic. Et
+      chaque prothèse allait finir par être une sorte de "plug-in" (je ne suis pas sûr si ce terme est
+      approprié ici), car un persona-prothèse pouvait être composé d'un skill, mais de plein d'autres éléments,
+      en somme de la matrice. Et que chaque persona-prothèse allait devoir être enrichie au fur et à mesure de
+      leur utilisation donc encore un boostrap ici. Et bien sûr les persona-prothèse de base sont : "② Mon
+      activité — indie dev ③ Product Manager ④ Dev Anthropic ⑤ Product Owner ⑥ Scrum Master ⑦ Dev Team ⑧
+      Stakeholder" mais je voulais ajouter le PhD-Ia et d'autre au fur et à mesure que j'allais construire de
+      plus en plus vite en fonction que je devenais de plus en plus professionnel. Surtout que j'avais la vision
+      de les combiner avec la technique fan-out / R-gate où les juges ne seraient plus des juges proposés par
+      claude mais ceux de mes persona-prothèse les plus pertinent selon une requête. »
+      <br>« Oui je confirme. Il faut aussi ajouter mon témoignage raw comme source brute. PS : pour recouvrer
+      toute ma mémoire, je dois travailler encore plus dur sur ce repo, car les 11 buckets je les ai oublié.
+      J'ai compris le pourquoi ce repo mais pas le comment de anthropic. Même ces notions sémantiques de Claude
+      ne lit QUE name+description. En fait, je dois connaître l'architecture par coeur. Et concernant le
+      plug-in j'en ai un en tête nommé /superpower que je n'ai pas installé. J'aurais aimé l'analyser à l'aûne
+      de cette matrice. Bref, j'ai encore du travail sur ce repo. »
+      </blockquote></li>
+    <li><code>vault/1 - CONVERSATIONS/architecture-skills-anthropic/raw.md:131, 153</code> (origine des chaînes ② et ③) · certaine</li>
+    <li>Repo <code>references/roles-documents-matrix.md:1-15, 119-172</code> (chaînes ④–⑧, session C7, 3 sources) · certaine</li>
+  </ol>
+  Recherche vault (C4) : <code>grep -rli</code> terme par terme. « architecture-anthropic » → persona + session du
+  20/05 ; « S/SDK/M » → N4 architecture-skills-anthropic, N4 graphify, lot-4 ; « matrice-generative » → N3/raw ;
+  « persona-ingenieur-anthropic » → persona, lexique, lot-1. Seuls les passages ont été lus.
+  <b>Écart É-I2-1</b> : <code>grep -ril</code> avec plusieurs <code>-e</code>, ou avec <code>-F</code>, a renvoyé
+  0 résultat sans aucune erreur (faux négatif), alors que les mêmes termes cherchés un par un sont trouvés. Il
+  faut toujours tester un terme connu avant de conclure « rien dans le vault ».
+  <br><b>Métrique de séance</b> : contexte 67 % (134k) à la clôture · 2,23 $ · 55 min (status bar fournie par
+  Yanis). Passe heuristiques (pool H1–H5, H7) : <b>H1</b> violée par l'agent (correspondance un-pour-un
+  « persona-prothèse = plugin = sous-agent » proposée sans tester les axes ; corrigée en § 4 seulement à la
+  clôture). H2, H3, H4, H5, H7 : non déclenchées, ou déclenchées et rattrapées.
+</footer>
+
+</main>
+</body>
+</html>

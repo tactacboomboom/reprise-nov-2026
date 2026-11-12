@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  GABARIT « FICHE MÉMOIRE » — REPRISE NOV 2026 (fixé par D, 10/11/2026)
+  But : rendre à Yanis la MÉMOIRE d'un repo (pourquoi, comment il vivait dans son arsenal),
+  puis le trier. Une page, lisible en ~2 minutes.
+
+  Règles de remplissage :
+  - Remplacer chaque {{…}}. Ne PAS ajouter, retirer ni réordonner de section.
+  - Langage simple, phrases courtes, zéro jargon non expliqué.
+  - Chaque affirmation porte une référence [n] vers la liste « Preuves » en bas.
+  - Rien de trouvé → écrire « à confirmer par Yanis » (et l'ajouter à la section 7). Jamais inventer.
+  - Frise : TOUS les commits (git log complet), regroupés en 2 à 5 phases.
+    Plus de ~25 commits → une ligne par groupe de commits proches, dates de début–fin.
+  - Badge verdict : classe v-recup / v-archiv / v-ignor.
+  - Ce que Yanis dit en séance = preuve de type « témoignage de Yanis (date) · certaine (déclaratif) ».
+  - Section 5 : distinguer l'usage PRÉVU (README, docs) de l'usage RÉEL (traces, témoignage).
+  - Hors périmètre (autre repo, séance à créer) → puce « Proposition au pilote » de la section 7,
+    jamais dans « Pour la convergence ». (Corrections de H, 10/11, après la vague 2.)
+-->
+<title>CPE-PWF-Engine — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>CPE-PWF-Engine</h1>
+  <div class="meta">
+    2026-02-02 → 2026-02-02 · 31 commits (16:38 → 17:01) · 75 Ko, 28 fichiers markdown, public ·
+    abandonné (aucun commit après le 02/02) · séance I.1 ← parent I · 2026-11-11 · statut complet
+  </div>
+  <span class="badge v-archiv">ARCHIVER</span>
+</header>
+
+<p class="lead">Une vitrine de 23 minutes. Le 02/02/2026, Yanis a réuni sur GitHub deux chantiers
+déjà écrits ailleurs : son ontologie CPE (« Clear Sky ») et ses gabarits planning-with-files
+(« SaaS-Traduction »). Il les a liés par un glossaire. C'est la photo d'une méthode : ni un outil,
+ni du code. C'est l'ancêtre de claude-prostheses : le moment où Yanis cherche ce que veut dire
+« une intention claire ». <span class="ref">[3]</span> <span class="ref">[6]</span> <span class="ref">[7]</span>
+<span class="ref">[22]</span></p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>C'est le tout début de sa formation dev avec l'IA. Yanis veut appliquer ce qu'il apprend
+    en livrant du concret, et se trouve brouillon d'un projet à l'autre : son intention n'est pas
+    claire. Il décide alors de théoriser ce qu'est « une intention claire ». Pour ne pas rester seul
+    avec ses biais, il prend les mathématiques et le Coran comme profs de remplacement. Il écrit une
+    quinzaine de fiches et les relie pour que la chaîne soit « nilpotente », un mot qu'il ne
+    définira que plus tard, dans claude-prostheses <span class="ref">[22]</span>. La question de
+    départ, notée dans le vault, est « qu'est-ce qu'un Product Owner ? » : il voulait un pilotage
+    humain → agent qu'il puisse nommer et typer <span class="ref">[6]</span> <span class="ref">[8]</span>. Avant le 02/02, deux
+    dossiers existaient déjà : « Clear Sky », l'ontologie en fiches numérotées, et
+    « SaaS-Traduction », les gabarits de sprint <span class="ref">[7]</span>. Le repo a d'abord
+    été créé sous le nom « PE-PWF-Engine », puis renommé « CPE » 12 minutes plus tard
+    <span class="ref">[17]</span>. Pourquoi publier ce jour-là : à confirmer par Yanis.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Construire un <b>« compilateur d'intention »</b>. En entrée, une intention brute ; on la
+    clarifie en contrat de sprint (Goal + Backlog + DoD) ; un score d'ambiguïté (μA) et de
+    validabilité (μV) décide si on peut lancer. En sortie, un <code>task_plan.md</code> exécutable,
+    puis les fichiers findings / progress et une « Sprint Memory » de 15 lignes maximum pour le
+    sprint suivant <span class="ref">[10]</span>. Le bénéfice visé, dans les mots du repo : « un autre
+    humain ou un autre LLM peut exécuter le sprint, sans explication orale »
+    <span class="ref">[10]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <p>Réponse à la question 1 du kernel : <b>c'est un import, pas une écriture.</b> Tous les commits
+  sont faits depuis l'interface web de GitHub (« Create … ») <span class="ref">[2]</span>. Exemples :
+  205 lignes ajoutées en 21 secondes, 255 lignes en 33 secondes <span class="ref">[3]</span>.
+  Des restes de réponses de chatbot sont visibles dans les fichiers collés
+  <span class="ref">[4]</span>, et les noms de fichiers sont ceux du vault <span class="ref">[7]</span>.
+  · confiance certaine</p>
+
+  <div class="phase">Phase 1 — Ontologie (les « objets ») · 02/02, 16:38 → 16:40 · 6 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-02-02</td><td><code>23882de</code> README d'une ligne ;
+    <code>2765ed1</code> équation canonique (130 l.) ; <code>0c7f1b4</code> 𝕽 référentiel ;
+    <code>cfea17b</code> 𝕀 intention brute ; <code>9ebc62a</code> 𝕋ᴳ attracteur global ;
+    <code>161d9c4</code> Δ₀ capteurs de dérive</td><td>Poser d'abord le vocabulaire : chaque objet est
+    une fiche [IDENTITÉ / FINALITÉ / ENTRÉES / SORTIES / INVARIANTS…]. Le champ [POSITION] (x, y)
+    montre que les fiches viennent d'un tableau Miro <span class="ref">[4]</span></td><td>Un socle
+    fermé de 11 objets, repris tel quel dans le vault le 30/04 <span class="ref">[6]</span>
+    <span class="ref">[3]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 2 — Opérateurs (les « flèches ») · 16:46 → 16:49 · 7 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-02-02</td><td><code>7839ccc</code> φ₀ clarification ; <code>cc377b4</code>
+    μ₀ instanciation ; <code>f142914</code> ε₀ exécution ; <code>394ccd0</code> τ₀ distillation ;
+    <code>66e690a</code> κ₀ évolution du contrat ; <code>8706c55</code> mapping contrat →
+    <code>task_plan.md</code> (132 l.) ; <code>381681a</code> Signature et Clôture</td><td>Décrire
+    comment on passe d'un objet à l'autre : intention → contrat → sprint → archive → mémoire →
+    contrat suivant</td><td>La règle clé de la méthode : ce qui est produit en cours de sprint ne
+    modifie jamais le contrat (« non-rétroaction ») <span class="ref">[10]</span>
+    <span class="ref">[3]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 3 — Gabarits PWF · 16:50 → 16:53 · 9 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-02-02</td><td><code>8aa64bc</code> renommage PE → CPE ;
+    <code>74db48b</code> 01_INTENTION_BRUTE ; <code>d901bf1</code> 02_CONTRAT_DE_SPRINT ;
+    <code>1fee3df</code> 03_TASK_PLAN ; <code>67c96d9</code> 04_FINDINGS ; <code>46227b8</code>
+    05_PROGRESS ; <code>659c03d</code> <code>a71b3cc</code> <code>17d65ed</code> ITEM 1-3 (Goal,
+    Backlog, DoD)</td><td>Donner à chaque objet son fichier concret, sur le modèle
+    planning-with-files (task_plan / findings / progress)</td><td>Le côté « PWF » du nom : la théorie
+    devient des fichiers à remplir <span class="ref">[3]</span> <span class="ref">[17]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 4 — Validation et guides · 16:53 → 16:55 · 5 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-02-02</td><td><code>3e10003</code> 𝕍 validateur ; <code>745a433</code>
+    PASS (le feu vert) ; <code>0fea42d</code> algorithme de scoring μA / μV (206 l.) ;
+    <code>48c48e9</code> quickstart (162 l.) ; <code>1df887b</code> « artefact maître » (255 l.)</td>
+    <td>Un verrou : pas d'exécution sans score ni PASS. Le quickstart est la documentation de
+    planning-with-files copiée telle quelle, liens morts compris <span class="ref">[9]</span></td>
+    <td>Le scoring μA / μV : c'est l'ancêtre direct de <code>/cpe-sprint</code>
+    <span class="ref">[11]</span> <span class="ref">[3]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 5 — Mémoire et glossaire · 16:58 → 17:01 · 4 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-02-02</td><td><code>9a540bb</code> 06_SPRINT_MEMORY (fichier vide) ;
+    <code>601cc0f</code> GLOSSAIRE_UNIFIE ; <code>cdc9fff</code> + <code>c3b8854</code> remplissage
+    de la Sprint Memory (+42 l.)</td><td>Le seul vrai apport du jour : un tableau qui relie chaque
+    symbole CPE à un fichier PWF. Il cite des sources [2, 4] absentes du repo, à la manière
+    de NotebookLM <span class="ref">[5]</span></td><td>La « fusion » CPE ↔ PWF, écrite pour la
+    première fois. C'est aussi le seul fichier retouché <span class="ref">[20]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">lignée des prothèses</span> Réponse à la question 3 : <b>ce n'est pas la
+    première prothèse.</b> Cinq repos de janvier le précèdent : test-ia, cockpit-solo,
+    De-l-Intention-a-l-Execution, chaine-intention-artefacts, CARTE-des-richesses. CPE-PWF-Engine
+    clôt cette vague d'hiver. Ensuite, aucun repo jusqu'au 04/05 (Claire, claire-app)
+    <span class="ref">[14]</span>. Yanis le confirme : CPE n'est pas né dans ce repo, cinq repos le
+    précèdent <span class="ref">[22]</span>. Dans le paysage qu'il décrit, c'est la prothèse
+    « méthode / équipe scrum pour dev solo » : un PO formel qui pilote un agent
+    <span class="ref">[6]</span> <span class="ref">[21]</span></li>
+    <li><span class="chip">lignée des idées</span> CPE (une intention claire, sans dérive) → découverte
+    que les humains ont déjà Scrum et une chaîne de documents (MRD → Code), et que c'est ce duo qui
+    fait avancer les projets → mais Scrum réunit plusieurs consciences, et plusieurs avis valent
+    mieux qu'un seul car les biais s'annulent → claude-prostheses <span class="ref">[22]</span>. La
+    « revue par binômes de rôles opposés » de <code>/cpe-sprint</code> (QA + Frontend, Architect +
+    PM…) semble recréer ce principe pour quelqu'un qui travaille seul <span class="ref">[11]</span>.
+    Ce lien est une interprétation de Claude, non confirmée : à confirmer par Yanis</li>
+    <li><span class="chip">vault</span> Le 30/04, <code>vault/protocole/CPE/cpe.md</code> le cite
+    comme l'une de ses trois sources. Le vault est plus complet : Clear Sky y a 21 fiches, le repo
+    11 seulement <span class="ref">[6]</span> <span class="ref">[7]</span>. Les gabarits officiels du
+    protocole sont ceux de <code>sources/saas-traduction</code>, pas ceux du repo
+    <span class="ref">[19]</span></li>
+    <li><span class="chip">skill /cpe-sprint</span> Il garde le contrat (Goal / Backlog / DoD), le
+    score μA / μV et l'attracteur 𝕋ᴳ. Il ne renvoie jamais au repo. La règle de non-rétroaction n'y
+    figure pas sous ce nom <span class="ref">[11]</span></li>
+    <li><span class="chip">skill /pwf</span> Il garde le cœur planning-with-files : 3 fichiers,
+    règle des 2 actions, 3-strikes, et l'image « contexte = RAM, disque = mémoire ». Il ne renvoie
+    pas au repo <span class="ref">[12]</span>. Les hooks que le quickstart supposait (PreToolUse,
+    Stop) ont été retirés en mai, car trop coûteux <span class="ref">[9]</span>
+    <span class="ref">[13]</span></li>
+    <li><span class="chip">claire-app</span> En mai, la méthode devient un outil : une interface
+    transforme une intention brute en contrat CPE scoré par un LLM <span class="ref">[16]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>5 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> une intention de projet → la clarifier avec 5 questions, la contracter, la
+      scorer, puis la compiler en <code>task_plan.md</code>. Le repo, lui, ne fait que consulter ce
+      flux : il n'a aucun script <span class="ref">[10]</span> <span class="ref">[9]</span></li>
+      <li><b>Réel :</b> le protocole a été « théorisé et appliqué à la main ». L'automatisation par
+      hooks est restée une cible <span class="ref">[15]</span>. Le frein, selon Yanis : « c'était lourd,
+      une semaine sans travailler dessus suffisait pour tout oublier » <span class="ref">[22]</span>.
+      L'essentiel restait pourtant là : clarifier une intention jusqu'à dissiper le brouillard, puis
+      livrer un maximum sans dériver <span class="ref">[22]</span>. Une application réelle est tracée
+      sur le projet Antigravity (TEMPORAL_REFORM_ENGINE) <span class="ref">[8]</span>. Le repo
+      lui-même a-t-il été rouvert après le 02/02 ? Aucune trace : à confirmer par Yanis
+      <span class="ref">[2]</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>6 · Où je me suis arrêté</h2>
+    <p>Le repo s'arrête le soir même, après le glossaire. Le README ne dépasse jamais une ligne et
+    il n'y a aucune description <span class="ref">[1]</span> <span class="ref">[17]</span>. Il manque
+    des fichiers que le glossaire nomme (<code>00_REFERENTIEL_R.md</code>, <code>042_𝕋ᴳ_VISION_GLOBALE.md</code>…) et ceux
+    du quickstart (<code>scripts/</code>, <code>examples/</code>) <span class="ref">[5]</span>
+    <span class="ref">[9]</span>. Raison de l'arrêt, donnée par Yanis : la méthode était trop lourde,
+    et une semaine sans y toucher suffisait pour tout oublier <span class="ref">[22]</span>. Le travail
+    vivant a continué dans le vault, dans les skills, puis dans Scrum + la chaîne de documents
+    <span class="ref">[6]</span> <span class="ref">[11]</span> <span class="ref">[22]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>7 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict :</b> ARCHIVER. Tout son contenu existe en plus complet dans
+    <code>vault/protocole/CPE/</code>, et la partie vivante est dans <code>/cpe-sprint</code> et
+    <code>/pwf</code>. Il garde une valeur de date : c'est la première fusion CPE ↔ PWF écrite
+    (02/02) <span class="ref">[7]</span> <span class="ref">[5]</span></li>
+    <li><b>Réutilisable :</b> (a) la règle de non-rétroaction (« ce que produit le sprint ne
+    réécrit jamais le contrat ; seul point de retour : renégocier au 3e échec ») → candidate pour
+    <code>G:\Mon Drive\10 - Claude\SKILLS\cpe-sprint\SKILL.md</code>, puis copie dans
+    <code>~/.claude/skills/</code>, selon R10 <span class="ref">[10]</span>
+    <span class="ref">[18]</span> ; (b) le glossaire CPE ↔ PWF → déjà couvert par le tableau
+    d'ontologie de <code>vault/protocole/CPE/cpe.md</code>, donc rien à ajouter
+    <span class="ref">[6]</span>. Recommandation seulement, rien n'a été installé.</li>
+    <li><b>Conflits gouvernance :</b> R10 : un contenu 100 % markdown vit dans le Drive et dans le
+    dossier local, pas sur GitHub. Ce repo public double donc le vault <span class="ref">[18]</span>.
+    Écart mineur, sans risque : <code>git grep -i "api_key|password|token|secret"</code> = 0 résultat</li>
+    <li><b>À confirmer par Yanis :</b> (1) pourquoi le publier le 02/02 : partage, portfolio ou
+    sauvegarde ? (2) Le glossaire vient-il de NotebookLM ? (3) Les dates de Clear Sky et de
+    SaaS-Traduction, qui sont antérieurs au repo. (4) As-tu rouvert le repo après le 02/02 ?
+    (5) Faut-il le passer en privé ou en « archived » sur GitHub ? (7) La revue par binômes de
+    <code>/cpe-sprint</code> vient-elle de ton principe « plusieurs avis → les biais s'annulent » ? (6) Qui est « Raja », le nom
+    d'auteur du compte ?</li>
+    <li><b>Pour la convergence :</b> Q1 du kernel, ancêtre de <code>claude-prostheses</code> ?
+    <b>Oui</b>, selon Yanis <span class="ref">[22]</span>. Deux fils relient les deux projets : la
+    chaîne « nilpotente », esquissée dans CPE et définie dans claude-prostheses, et le principe
+    « plusieurs avis → les biais s'annulent ». Claire / claire-app (mai) est une étape intermédiaire
+    possible <span class="ref">[16]</span>. claude-prostheses reprend le kernel formel et les gates
+    <span class="ref">[21]</span>. À croiser avec la fiche de claude-prostheses</li>
+    <li><b>Proposition au pilote :</b> (a) une séance sur les repos de janvier
+    De-l-Intention-a-l-Execution, chaine-intention-artefacts et cockpit-solo : leurs noms suggèrent
+    les vrais ancêtres du « compilateur d'intention » <span class="ref">[14]</span> ; (b) une séance
+    Claire + claire-app, les descendants de mai <span class="ref">[16]</span> ; (c) les dossiers
+    Clear Sky et SaaS-Traduction du vault, sources primaires de la méthode, non analysés ici
+    <span class="ref">[7]</span></li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li><code>gh repo view tactacboomboom/CPE-PWF-Engine</code> → PUBLIC, diskUsage 75, createdAt 2026-02-02T15:38:19Z, pushedAt 16:01:40Z, description vide · certaine</li>
+    <li><code>git log --reverse</code> (clone complet, scratchpad) → 31 commits, 16:38:20 → 17:01:39 +0100, auteur « Raja » &lt;…tactacboomboom@users.noreply.github.com&gt;, committer « GitHub » (édition web) · certaine</li>
+    <li><code>git log --numstat</code> → <code>a71b3cc</code> +205 l. 21 s après le commit précédent ; <code>17d65ed</code> +199 l. en 18 s ; <code>1df887b</code> +255 l. en 33 s · certaine</li>
+    <li><code>000_CANONICAL_PIPELINE_EQUATION.md:130</code> « Si tu veux que je te le rende […] pour ton README / Miro » ; <code>ALGORITHME DE SCORING.md:1-4</code> « Je respecte strictement ta méthode » ; <code>0160_PASS…md</code> « [POSITION] (x=13, y=0) » · élevée</li>
+    <li><code>GLOSSAIRE_UNIFIE.md:7-16</code> citations [2, 4]…[2, 12] ; fichiers nommés absents du repo (<code>00_REFERENTIEL_R.md</code>, <code>042_𝕋ᴳ_VISION_GLOBALE.md</code>, <code>043_Δ₀_CAPTEURS.md</code>) · certaine (absence) / moyenne (NotebookLM)</li>
+    <li><code>vault/protocole/CPE/cpe.md:1-13</code> (date 2026-04-30) « sources: Clear Sky + SaaS-Traduction + CPE-PWF-Engine (GitHub) » ; Origine : comprendre ce qu'est un PO · certaine</li>
+    <li><code>ls vault/protocole/CPE/sources/</code> → clear-sky : 21 fichiers (mêmes noms : 000_, 010_𝕽, 030_φ₀, 0160_PASS…) ; saas-traduction : 15 fichiers (00_REFERENTIEL_R, ITEM 1-3, quickstart, artefact maître…) · certaine</li>
+    <li><code>vault/1 - CONVERSATIONS/cpe-fmaths-analyse/N4.md</code> (30/04), § Introduction et § Méthode : sources Clear Sky (21), SaaS-Traduction (16), CPE-PWF-Engine (31 commits), instanciation Antigravity (TEMPORAL_REFORM_ENGINE) · certaine</li>
+    <li><code>04_GUIDES/quickstart.md</code> : « planning-with-files pattern », <code>./scripts/init-session.sh</code>, hooks PreToolUse / Stop, liens <code>examples/README.md</code>, <code>workflow.md</code> absents du repo → copie de la doc planning-with-files (OthmanAdi) · certaine (liens morts) / élevée (origine)</li>
+    <li><code>04_GUIDES/artefact maître.md</code> § 0-8 ; <code>ENRICHISSEMENT DU MAPPING…md:16, 41, 103, 121-126</code> (non-rétroaction, « compilateur d'intention ») · certaine</li>
+    <li><code>~/.claude/skills/cpe-sprint/SKILL.md</code> : contrat G/B/D, μA &lt; 0.5, μV ≥ 0.4, 𝕋ᴳ ; grep « PWF-Engine » = 0, « rétroaction » = 0 · certaine</li>
+    <li><code>~/.claude/skills/pwf/SKILL.md:13-40</code> : RAM / disque, 2 actions, 3-strikes ; grep « PWF-Engine », « planning-with-files » = 0 · certaine</li>
+    <li><code>2026-11-10-H.2-memoire-audit-repo.html</code> § 4, puce /pwf : ~890k tokens par session dus aux hooks ; /pwf actuel sans hook · élevée (repris de H.2)</li>
+    <li><code>gh repo list tactacboomboom</code> trié par date : 07/01 test-ia, 08/01 cockpit-solo, 12/01 De-l-Intention-a-l-Execution, 14/01 chaine-intention-artefacts, 18/01 CARTE-des-richesses, 02/02 CPE-PWF-Engine, puis 04/05 Claire et claire-app · certaine</li>
+    <li><code>vault/analyses/bilan-retour-2026/lot-1-competences-claude-code.md:61, 90</code> « Théorisé + appliqué (manuel), automatisation cible » ; « Automatisation CPE+PWF par hooks : reste une vision cible » · certaine</li>
+    <li><code>vault/analyses/bilan-retour-2026/lot-4-projets-code.md:25</code> claire-app : intention brute → sprint contract CPE scoré (μA / μV) via LLM · certaine</li>
+    <li><code>git show 8aa64bc</code> → README « # PE-PWF-Engine » → « # CPE-PWF-Engine » (16:50:17), le seul contenu du README · certaine</li>
+    <li><code>../gouvernance-regles.md:47-63</code> R10 (skill 100 % markdown → drive + local, pas GitHub) · certaine</li>
+    <li><code>vault/protocole/CPE/CLAUDE.md:9-11</code> : templates officiels = <code>sources/saas-traduction/…</code> · certaine</li>
+    <li><code>git log --numstat</code> : <code>02_TEMPLATES/06_SPRINT_MEMORY.md</code> touché 3 fois (<code>9a540bb</code> +1, <code>cdc9fff</code> +40, <code>c3b8854</code> +2), seul fichier modifié après création · certaine</li>
+    <li>Kernel I.1 [Contexte] : témoignage de Yanis (10/11) sur les « prothèses agentiques » ; <code>vault/analyses/bilan-retour-2026/FINDINGS.md:16</code> (claude-prostheses : gates mécaniques, kernel formel) · certaine (déclaratif) / élevée</li>
+    <li>Témoignage de Yanis (2026-11-11, séance I.1) · certaine (déclaratif). Source brute, verbatim :
+    <blockquote style="margin:6px 0 0;padding-left:10px;border-left:2px solid var(--line);font-style:italic">Il est vrai que CPE PWF engine est l'ancêtre de claude-prothèse. D'ailleurs, ce projet n'a pas été initié ici. 5 repo le précèdent. C'était le tout début de ma formation dev avec l'ia. Je cherchais à appliquer mes connaissances via du shipping concret. Et j'ai réalisé que j'étais très brouillon avec mes différents projets car mon intention n'était pas clair. Ca m'a conduit à théoriser ce que voulait dire "une intention claire". J'ai donc comme à mon habitude utilisé les mathématiques et le coran comme prothèse de remplaçement de professeurs exterieurs à moi afin de réduire les biais de travailler en solo. J'avais élaborer une quinzaine de fiches. J'avais essayé de toutes les reliées de sorte à rendre la chaîne nilpotente (un concept que je n'avais pas encore défini et qui viendra plus tard dans claude-prothèse). Le problème avec CPE, c'est que c'était lourd et une semaine sans travailler dessus était suffisant pour tout oublier. En revanche, l'essentiel était là : Comment clairifier une intention jusqu'à dissipi tout le brouillard et passer à l'action afin de shipper un maximum sans dériver de l'intention originelle. C'est là que j'ai compris que les humains avaient conçu une méthode qui s'est propagée à la terre entière : Scrum. Et plus tard, j'ai compris que les humains avaient créé une chaîne de document MRD-&gt;Code. Et que c'était le combo chaîne de doc + scrum qui faisait avancer des projets. Sauf que dans scrum il y a plusieurs humains différents avec des consciences et des visions différentes. J'avais aussi réalisée que le fait d'avoir le même avis ou d'être seul était finalement moins bénéfique que d'avoir plusieurs avis, car les biais s'annulaient.</blockquote></li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>

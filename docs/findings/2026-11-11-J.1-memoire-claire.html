@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fiche mémoire J.1 — copiée depuis docs/gabarits/fiche-memoire.html (gabarit de D, corrigé par H et I). -->
+<title>Claire + claire-app — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Claire + claire-app</h1>
+  <div class="meta">
+    2026-05-04 → 2026-05-16 · 75 commits (Claire : 41 sur main + 34 sur branches) + 6 commits (claire-app : 1 sur main + 5 sur branche) ·
+    ~1,4 Mo + 89 Ko · abandonnés (dernier push 16/05 et 06/05) · séance J.1 ← parent J · 2026-11-11 · statut complet
+  </div>
+  <span class="badge v-archiv">ARCHIVER</span>
+</header>
+
+<p class="lead">Le chantier de mai où la méthode CPE a été mise en forme pour être partagée (Claire),
+puis transformée en vraie application (claire-app). Ensuite, le dépôt Claire a glissé jusqu'à devenir
+le tableau de bord de tout l'environnement Claude de Yanis.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>Le 04/05 au matin, Yanis rouvre CPE après trois mois sans nouveau repo. Il veut en faire une
+    méthode présentable : README en anglais, slogan « Clarity for every project », et ce problème
+    posé : « trois sprints plus tard, on a perdu l'intention de départ ». Le même jour, quatre heures
+    plus tard, il crée claire-app <span class="ref">[1]</span> <span class="ref">[2]</span>
+    <span class="ref">[18]</span>. Le premier plan de travail lit les sources CPE du vault
+    (Clear Sky, SaaS-Traduction) et prend <code>planning-with-files</code> comme modèle de style
+    <span class="ref">[5]</span>. Yanis le confirme : claire-app prolonge ses travaux sur la
+    clarification de l'intention, et Claire devait ranger les specs de chaque fiche dans un endroit
+    lisible et accessible <span class="ref">[22]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p><b>Claire</b> : documenter la méthode CPE pour qu'une nouvelle session, ou une autre personne,
+    puisse l'appliquer sans son auteur. Le pipeline va de l'intention brute 𝕀₀ au contrat de sprint
+    𝕮ₙ, puis à la mémoire 𝕄ₙ, qui alimente le contrat suivant <span class="ref">[1]</span>
+    <span class="ref">[5]</span>. <b>claire-app</b> : une page web. On tape une intention, on clique
+    sur « Générer », et l'app renvoie un contrat (Goal + Backlog + DoD) avec ses scores μA / μV et
+    un verdict PASS / FAIL <span class="ref">[2]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Schéma A — La lignée, de janvier à juin 2026</div>
+<pre style="font:12.5px/1.45 ui-monospace,Consolas,monospace;background:var(--chip);border-radius:8px;padding:10px 12px;margin:4px 0 10px;white-space:pre">
+ JANVIER                 FÉVRIER           MARS–AVRIL        MAI                                   JUIN
+ ───────                 ───────           ──────────        ───                                   ────
+ 5 repos d'hiver  ──▶  CPE-PWF-Engine  ──▶  (silence,   ──▶  Claire (04/05)  ──▶  claire-app   ──▶  claude-prostheses
+ (J.2 : intention        02/02 : 1re       vault seul :      méthode CPE         (04/05 14:42)      BRD sprint 15 (01/06)
+  → exécution)           fusion CPE+PWF    Clear Sky,        packagée            1er vrai produit   « Claire purgée,
+                                           SaaS-Traduction)  pour autrui         logiciel           projet externe »
+                                                                  │
+                                                                  ▼
+                                                    ecosystem.html (06/05 → 16/05)
+                                                    carte → encyclopédie IT → tableau de bord de tout le setup
+                                                                  │
+                                                                  ▼
+                                                    16/05 : Drive C1/C2/C3 · /recall · /geo · /router · claude-mem
+                                                    (des pièces encore vivantes en novembre)            [1][9][14][15][18]
+</pre>
+  <div class="phase">Schéma B — La spirale de mai : chaque blocage fait naître un instrument</div>
+<pre style="font:12.5px/1.45 ui-monospace,Consolas,monospace;background:var(--chip);border-radius:8px;padding:10px 12px;margin:4px 0 10px;white-space:pre">
+  INTENTION : « clarifier une intention puis shipper sans dériver »
+      │
+      ▼
+  ① Méthode illisible pour un tiers ──────────▶ Claire : README + docs + schéma        04/05 matin
+      │
+      ▼
+  ② Méthode sans produit ─────────────────────▶ claire-app (spec avant code)          04/05 après-midi
+      │
+      ▼
+  ③ « Je ne comprends pas encore toute la méthode » ▶ Sprint 2 = 0 code, rétro-ingénierie   05/05
+      │
+      ▼
+  ④ 36 fiches dispersées ─────────────────────▶ visionneuse de specs (Vercel)         06/05
+      │
+      ▼
+  ⑤ Projet trop grand pour une seule personne ▶ ecosystem.html : tout voir d'un coup  06/05 soir
+      │
+      ▼
+  ⑥ « Je ne connais rien à l'IT » ─────────────▶ conversations claude.ai → onglets       07/05 → 10/05
+      │                                          SOLID · Nature · Métiers · Préfecture
+      │                                          Théorèmes · Rôles IT
+      ▼
+  ⑦ Constat de la cathédrale : un SaaS = des dizaines de métiers
+      │
+      ├──▶ chaîne de documents des équipes (MRD → BRD → PRD → SRD → Code)       13/05 → 16/05
+      │
+      ├──▶ 11 projets, Drive en désordre, mémoire perdue entre les sessions
+      │       ──▶ Drive C1/C2/C3 · claude-mem · /recall · /geo · /router         16/05
+      │
+      └──▶ idée des personas-prothèses : une équipe IT virtuelle pour un indie-dev solo
+              ──▶ claude-prostheses (juin)                                 [2][5][7][8][9][22]
+
+  Pendant ce temps : claire-app est figée le 06/05 et sort du tableau de bord le 10/05 [10]
+</pre>
+  <div class="phase">Schéma C — Le zoom arrière : de quoi parle le dépôt, jour après jour</div>
+<pre style="font:12.5px/1.45 ui-monospace,Consolas,monospace;background:var(--chip);border-radius:8px;padding:10px 12px;margin:4px 0 10px;white-space:pre">
+  04/05  ┃ une méthode (CPE)                         ▏ produit visé : claire-app
+  06/05  ┃ ├─ ses 36 fiches sources                  ▏
+  07/05  ┃ ├─ l'écosystème de 3 dépôts               ▏ claire-app auditée (SOLID)
+  09/05  ┃ ├─ la structure de n'importe quel projet  ▏
+  10/05  ┃ ├─ tout l'univers des métiers de l'IT      ▏ claire-app retirée ✗
+  14/05  ┃ ├─ la chaîne documentaire des entreprises ▏
+  16/05  ┃ └─ tout l'environnement Claude de Yanis   ▏ 11 projets, Drive, skills, mémoire
+         ┃
+         ┗━▶ à chaque étape, le sujet s'élargit d'un cran ; le produit de départ s'éloigne   [3][9][10]
+</pre>
+  <div class="phase">Schéma D — Main contre branches : où le travail a vraiment eu lieu</div>
+<pre style="font:12.5px/1.45 ui-monospace,Consolas,monospace;background:var(--chip);border-radius:8px;padding:10px 12px;margin:4px 0 10px;white-space:pre">
+  Claire     main  ●━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━● b14e3a4 (10/05)  ← 41 commits, s'arrête ici
+                                                            ┃
+             branches                                       ┗━● ecosystem-standalone ━● solid-clean
+                                                               ━━● atlas-concepts (→ 16/05 17:31)
+                                                               ━━━━● c9-doc-spec (→ 16/05 22:17)  ← +34 commits
+                                                                                      jamais fusionnés
+  claire-app main  ● fd7ae3e (04/05)                          ← 1 commit = le seul code
+             branche ┗━● sprint2-governance (05/05 → 06/05)   ← +5 commits, markdown seulement   [3][4]
+</pre>
+  <div class="phase">Phase 1 — La méthode et l'app naissent le même jour · 04/05 (Claire ×4, claire-app ×1)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">04/05 10:01–10:45</td><td>Claire : repo créé, schéma CPE (Mermaid), README complet, docs/ (méthode, objets, opérateurs, scoring), modèles de fichiers, un exemple SaaS (475c8f9 → 78d046a)</td><td>Rendre CPE lisible sans son auteur</td><td>CPE + PWF réunis en un seul paquet partageable <span class="ref">[1]</span> <span class="ref">[3]</span></td></tr>
+    <tr><td class="d">04/05 14:42</td><td>claire-app : app Next.js complète en un seul commit, intention → contrat CPE scoré (fd7ae3e)</td><td>Passer de la méthode à un outil utilisable</td><td>MVP qui fonctionne, avec un périmètre volontairement réduit (pas de compte, pas de base de données, pas d'enchaînement de sprints) <span class="ref">[2]</span> <span class="ref">[4]</span> <span class="ref">[6]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — Comprendre avant de recoder · 05/05 → 06/05 (claire-app ×5 sur branche, Claire ×3)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">05/05 → 06/05</td><td>claire-app, branche <code>feat/sprint2-governance</code> : plan « Sprint 2 », contradictions C2 et C4 tranchées dans CONTRACTS.md, décisions d'architecture (dca9fdc → 9e954cd). Aucune ligne de code</td><td>« Comprendre la méthode CPE en entier avant de coder quoi que ce soit »</td><td>Feuille de route : table CPE ↔ Scrum officiel, 5 personas PSPO, boucle de raffinement, écriture automatique des fichiers PWF <span class="ref">[4]</span> <span class="ref">[7]</span></td></tr>
+    <tr><td class="d">06/05</td><td>Claire : visionneuse des 36 fiches CPE en HTML, déployée sur Vercel, et analyse de la fiche cs-000 (1c3dea3, dbf2100, 92a8824)</td><td>Avoir les fiches sources sous les yeux</td><td>Première fiche analysée. Les autres (cs-010 → cs-200) ne l'ont jamais été <span class="ref">[5]</span></td></tr>
+  </table>
+  <div class="phase">Phase 3 — ecosystem.html : de la carte des repos aux ontologies · 06/05 → 10/05 (Claire ×34, sur main)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">06/05 22:23 → 07/05</td><td>Carte 3D des 3 dépôts (Claire, claire-app, vault), suivi des commits via l'API GitHub, coûts Vercel, onglet SOLID, POO, 14 design patterns (e333dc5 → 9775f10)</td><td>Le projet était trop grand pour une seule personne : Yanis voulait le voir en entier d'un coup d'œil, au lieu d'une arborescence dans l'explorateur de fichiers <span class="ref">[22]</span>. Sert aussi à auditer claire-app (« route.ts viole S et D »)</td><td>Un plan de refactor SOLID de claire-app, resté sans suite <span class="ref">[5]</span></td></tr>
+    <tr><td class="d">08/05 → 09/05 14:30</td><td>Concepts DDD, « zones orthogonales », onglet Nature (questionnaire de structure de projet, 22 commits de mise au point en 5 h) (63f54be → 68dba2b)</td><td>Trouver une structure de dossiers universelle</td><td>Grille DDD × SOLID × paradigme × patterns pour chaque dossier <span class="ref">[3]</span></td></tr>
+    <tr><td class="d">09/05 15:48 → 10/05</td><td>Onglets Métiers, Préfecture, Théorèmes, Rôles IT, taxonomie F1–F6 (0db7574 → b14e3a4 = dernier commit de main)</td><td>Les onglets SOLID, Nature, Métiers, Préfecture, Théorèmes et Rôles IT viennent de ses conversations claude.ai pour apprendre l'IT, une fois décomposées. Il y rangeait tout ce qui devait lui servir à construire le SaaS <span class="ref">[22]</span></td><td>Atlas de concepts : la méthode devient une encyclopédie <span class="ref">[3]</span></td></tr>
+  </table>
+  <div class="phase">Phase 4 — Branche Atlas : la chaîne de documents · 10/05 → 14/05 (Claire ×15, jamais fusionnés)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">10/05 → 12/05</td><td>Version d'ecosystem sans la visionneuse, onglet SOLID nettoyé (sections claire-app retirées), Atlas de 154 concepts, sprints C5 → C7 (73ca61e → 3d75e83)</td><td>Rendre l'atlas lisible</td><td>claire-app disparaît du tableau de bord le 10/05 <span class="ref">[3]</span> <span class="ref">[10]</span></td></tr>
+    <tr><td class="d">13/05 → 14/05</td><td>« Chaîne nilpotente documentaire », Team Charter, sous-onglet Documents (811a52b → bea198a)</td><td>Formaliser la chaîne de documents des équipes (MRD → BRD → PRD → SRD → Code)</td><td>Trace écrite de l'idée « Scrum + chaîne de documents » <span class="ref">[8]</span> <span class="ref">[18]</span></td></tr>
+  </table>
+  <div class="phase">Phase 5 — Claire héberge tout l'environnement · 16/05, 03:35 → 22:17 (Claire ×19, jamais fusionnés)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">16/05 matin</td><td>Onglet Projets (11 projets C1/C2/C3), « Architecture Claude » (DAG × hooks × skills), /router, renommage geo-bp → geo, PM Dashboard μA/μV (1be02f2 → 90363b3)</td><td>Piloter tous les projets depuis un seul écran</td><td>Ecosystem cesse de décrire Claire : il décrit tout le setup <span class="ref">[9]</span></td></tr>
+    <tr><td class="d">16/05 après-midi</td><td>Sprints S7 → S11 : Drive restructuré en C1/C2/C3, onglet Env (pyramide N4 → N1), skills cliquables, vault graphifié (a6613b3 → 7bc260e)</td><td>Ranger le Drive et cartographier l'outillage</td><td>L'arborescence C1/C2/C3 qui existe encore aujourd'hui <span class="ref">[9]</span> <span class="ref">[13]</span></td></tr>
+    <tr><td class="d">16/05 soir</td><td>Opérateurs doc-spec, 22 fiches (BRD, PRD, SRD, R1–R4 : JTBD, OKR, Sprint Planning, DoD…), puis pipeline claude-mem complet : hooks, synchronisation Drive, pont vers graphify, skill /recall (3b01e72 → 035abaa, dernier commit)</td><td>Chaîne de documents outillée et mémoire inter-session</td><td>Plusieurs briques encore présentes dans le setup actuel <span class="ref">[8]</span> <span class="ref">[9]</span> <span class="ref">[12]</span></td></tr>
+  </table>
+  <div class="phase">Obstacles, bifurcations et réponses de Yanis (seul, sans professeur)</div>
+  <table>
+    <tr><th>Moment</th><th>Obstacle rencontré</th><th>Réponse de Yanis</th><th>Ce qu'il a appris / ce que ça révèle</th></tr>
+    <tr><td class="d">04/05</td><td>CPE tient dans sa tête et dans des symboles (𝕀₀, φ₀, 𝕮ₙ…) : personne d'autre ne peut l'appliquer</td><td>Il la réécrit en anglais : README, objets, opérateurs, scoring, un exemple complet</td><td>Le besoin d'externaliser sa pensée pour qu'elle survive à une session, ou à lui-même <span class="ref">[1]</span> <span class="ref">[5]</span></td></tr>
+    <tr><td class="d">04/05</td><td>Une méthode reste théorique tant qu'elle ne produit rien</td><td>claire-app en une après-midi, avec INTENTION.md et CONTRACTS.md écrits AVANT le code</td><td>Le réflexe « spec avant code » est déjà là. Le vault juge claire-app « le seul vrai produit logiciel déployable » <span class="ref">[2]</span> <span class="ref">[14]</span></td></tr>
+    <tr><td class="d">05/05</td><td>Au moment de coder le Sprint 2, il découvre des contradictions (C1 à C5) dans ses propres fiches sources</td><td>Il arrête le code : « comprendre la méthode CPE en entier avant de coder quoi que ce soit »</td><td>Rigueur, mais c'est aussi le premier moment où le produit passe derrière la compréhension <span class="ref">[7]</span></td></tr>
+    <tr><td class="d">06/05</td><td>36 fiches éparpillées entre deux dossiers du vault</td><td>Une visionneuse HTML déployée : les specs deviennent lisibles et accessibles</td><td>Sa manière de penser est visuelle : il comprend en voyant <span class="ref">[5]</span> <span class="ref">[22]</span></td></tr>
+    <tr><td class="d">06–07/05</td><td>L'audit de claire-app (« route.ts viole S et D ») lui révèle qu'il ne connaît pas SOLID, la POO ni les design patterns</td><td>Conversations claude.ai, puis rangement des réponses dans des onglets vérifiés avec fmath</td><td>Prise de conscience : « je ne connaissais rien de l'univers IT ». Claude devient son professeur de remplacement <span class="ref">[5]</span> <span class="ref">[22]</span></td></tr>
+    <tr><td class="d">08–09/05</td><td>Où ranger quoi dans un projet ? Aucune structure ne lui paraît universelle</td><td>Onglet Nature : 22 commits en 5 heures pour croiser DDD, SOLID, paradigmes et patterns dans chaque dossier</td><td>Une itération très rapide, et la recherche d'une forme qui soit définitive <span class="ref">[3]</span></td></tr>
+    <tr><td class="d">09–10/05</td><td>L'IT apparaît comme un univers de métiers, de théorèmes et de rôles</td><td>Onglets Métiers, Préfecture, Théorèmes, Rôles IT ; taxonomie F1–F6</td><td>Le constat de la cathédrale : un SaaS demande des dizaines d'expertises. C'est la naissance de l'idée des personas-prothèses <span class="ref">[22]</span></td></tr>
+    <tr><td class="d">10/05</td><td>La branche principale devient trop lourde ; claire-app ne trouve plus sa place dans le tableau de bord</td><td>Le travail passe sur des branches ; les sections claire-app sont retirées</td><td>Le produit de départ sort du champ de vision <span class="ref">[3]</span> <span class="ref">[10]</span></td></tr>
+    <tr><td class="d">13–14/05</td><td>Comment une équipe passe-t-elle d'une idée au code sans perdre le fil ?</td><td>La « chaîne nilpotente documentaire » (MRD → BRD → PRD → SRD → Code) et les fiches R1–R4</td><td>Il redécouvre ce qu'ont les équipes humaines : Scrum et une chaîne de documents <span class="ref">[8]</span> <span class="ref">[18]</span></td></tr>
+    <tr><td class="d">16/05</td><td>11 projets, un Drive en désordre, un contexte perdu à chaque nouvelle session</td><td>Une journée de 19 commits : Drive C1/C2/C3, Architecture Claude, /router, /geo, claude-mem, /recall</td><td>L'outillage devient le projet : il construit l'atelier avant la cathédrale <span class="ref">[9]</span></td></tr>
+    <tr><td class="d">20/05 → 01/06</td><td>Il faut des règles de rangement, puis un cadre unique pour piloter l'ensemble</td><td>Règles de gouvernance R1–R13 ; claude-prostheses, dont le BRD « purge » Claire</td><td>Le passage de relais : la méthode Claire se dissout dans un framework de prothèses <span class="ref">[15]</span> <span class="ref">[17]</span></td></tr>
+  </table>
+  <p style="font-size:13.5px;margin:8px 0 0"><b>Motif récurrent</b> (interprétation de Claude, à
+  confirmer par Yanis). Face à chaque difficulté, Yanis construit un instrument qui sert à
+  <i>voir</i> ou à <i>formaliser</i> (visionneuse, carte, encyclopédie, tableau de bord, prothèse),
+  au lieu de pousser le produit plus loin. Ensuite, l'instrument devient lui-même le projet. On
+  retrouve ce mouvement trois fois. La chaîne Claire a été appliquée à elle-même faute d'autre
+  projet <span class="ref">[23]</span>. ecosystem.html a fini par décrire tout le setup
+  <span class="ref">[9]</span>. Et en novembre, <code>REPRISE NOV 2026</code> devient à son tour un
+  projet piloté par sa propre méthode <span class="ref">[23]</span>. C'est une force pour apprendre
+  seul : chaque outil garde la trace de ce qu'il a compris. Le risque est que la ligne d'arrivée
+  recule sans cesse : claire-app, le produit qui devait être livré, n'a plus avancé après le 06/05
+  <span class="ref">[4]</span>.</p>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">lignée des prothèses</span> Claire et claire-app sont les héritiers de
+    CPE-PWF-Engine. Après trois mois sans nouveau repo, la méthode est mise en forme et la même
+    journée voit naître une app <span class="ref">[18]</span>. Le vault place cette lignée sur l'axe
+    « Discipliner le travail » : Claire (méthode) → claude-prostheses (framework Scrum exécutable)
+    <span class="ref">[14]</span></li>
+    <li><span class="chip">lignée des idées</span> Les trois idées racontées par Yanis <span class="ref">[21]</span>
+    apparaissent ici dans l'ordre. (1) Clarifier une intention puis livrer sans dériver : le pipeline 𝕀₀ → 𝕮ₙ et
+    le seuil d'ambiguïté (04/05) <span class="ref">[1]</span>. (2) Scrum et la chaîne de documents :
+    la table CPE ↔ Scrum officiel (05/05) <span class="ref">[7]</span>, puis la chaîne MRD → Code et
+    les fiches R1–R4 (13–16/05) <span class="ref">[8]</span>. (3) Plusieurs avis : les « 5 personas
+    PSPO » prévus pour claire-app, jamais codés <span class="ref">[7]</span>. Yanis confirme l'intention :
+    en rangeant les métiers de l'IT, il comprend qu'un SaaS utilisé par des millions de personnes se
+    construit comme une cathédrale, avec beaucoup de corps de métier. Les grandes entreprises y
+    mettent des équipes de 50 personnes. Il veut donc faire de chaque rôle une persona-prothèse,
+    pour l'aider à construire claire-app seul et en partant de zéro : zéro budget, zéro connaissance,
+    zéro équipe <span class="ref">[22]</span></li>
+    <li><span class="chip">skill (projet)</span> <code>.claude/skills/ecosystem-sprint</code> (branche
+    Atlas) : il chargeait la structure d'ecosystem.html sans relire ses ~3 700 lignes
+    <span class="ref">[11]</span>. Il n'est pas dans le setup actuel <span class="ref">[12]</span></li>
+    <li><span class="chip">skills actuels</span> /recall, /geo, /router, /doc-spec et /graphify existent
+    aujourd'hui. Le 16/05, Claire est le dépôt où ils sont créés, renommés ou inventoriés
+    <span class="ref">[9]</span> <span class="ref">[12]</span>. Que les skills actuels descendent
+    directement de ces commits n'est pas vérifié (confiance moyenne)</li>
+    <li><span class="chip">vault</span> Le vault juge claire-app « le seul vrai produit logiciel
+    déployable », écrit en partant du contrat (spec d'invariants rédigée avant le code)
+    <span class="ref">[14]</span>. Une note du vault prévoit de redéfinir μV « dans CONTRACTS.md de
+    Claire » <span class="ref">[16]</span></li>
+    <li><span class="chip">Drive</span> La copie de travail
+    <code>C3-PRODUIT\Claire</code> existe encore. Elle contient un <code>.git</code> et des fichiers
+    absents du repo GitHub (<code>app</code>, <code>transformer</code>, <code>topic-intelligence</code>…)
+    <span class="ref">[13]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>5 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> début d'un projet → écrire l'intention, la faire clarifier par une IA (φ₀),
+      la scorer (refaire si μA ≥ 0,5), exécuter, puis générer le contrat suivant (κₙ). Dans
+      claire-app, ces étapes se résument à un formulaire et un bouton <span class="ref">[1]</span>
+      <span class="ref">[2]</span></li>
+      <li><b>Réel :</b> dans claire-app, le LLM (<code>claude-opus-4-7</code>) écrit seulement le
+      contrat. Le score μA / μV est calculé par des règles fixes (expressions régulières), sans LLM :
+      la note du vault qui parle de « scoré par un LLM » est donc inexacte <span class="ref">[6]</span>.
+      Côté Claire, ecosystem.html a servi de carte visuelle de tout le projet et de rangement pour les
+      connaissances IT que Yanis acquérait <span class="ref">[22]</span>. Aucune trace ne montre la
+      méthode appliquée à un projet extérieur. Usage de l'app une fois en ligne : à
+      confirmer par Yanis</li>
+    </ul>
+  </section>
+  <section>
+    <h2>6 · Où je me suis arrêté</h2>
+    <p><b>claire-app</b> s'arrête le 06/05 : le Sprint 2 est planifié, mais aucun code n'est écrit.
+    Elle sort du tableau de bord le 10/05 <span class="ref">[4]</span> <span class="ref">[10]</span>
+    <span class="ref">[19]</span>.
+    <b>Claire</b> : main s'arrête le 10/05. Les 34 derniers commits restent sur des branches jamais
+    fusionnées, jusqu'au 16/05 à 22:17 <span class="ref">[3]</span>. Ce jour-là, le dépôt ne parle
+    plus de Claire : il installe l'environnement (Drive C1/C2/C3, skills, claude-mem)
+    <span class="ref">[9]</span>. La rétro-ingénierie des fiches (1 fiche sur 21) et le refactor de
+    claire-app n'ont jamais été faits <span class="ref">[5]</span>. Raisons : en cours de route, Yanis
+    réalise qu'il ne connaît rien à l'univers IT. L'apprentissage devient « une porte que j'ai mis
+    du temps à fermer » <span class="ref">[22]</span>. Ensuite, l'outillage de l'environnement prend
+    le pas, puis claude-prostheses prend le relais (raison probable). Le 01/06, la rédaction du
+    BRD de claude-prostheses « purge » Claire, jugée « projet externe » <span class="ref">[15]</span>.
+    Le lien direct avec claude-prostheses est à confirmer par Yanis.</p>
+  </section>
+</div>
+
+<section>
+  <h2>7 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur le repo) :</b> ARCHIVER les deux. Claire : son contenu de méthode est déjà
+    dans le vault, et ecosystem.html est une photo de l'environnement au 16/05 (valeur historique,
+    pas d'usage actuel). claire-app : MVP propre et daté, mais figé depuis le 06/05 sur un modèle et
+    des versions de mai <span class="ref">[3]</span> <span class="ref">[6]</span>
+    <span class="ref">[14]</span></li>
+    <li><b>Réutilisable :</b> (a) les règles de scoring fixes de <code>claire-app/lib/scoring.ts</code>
+    (contrôles A1–A3 / V1–V3 pour le Goal, le Backlog et la DoD ; PASS si μA &lt; 0,5 et μV ≥ 0,4) →
+    à intégrer comme grille dans
+    <code>G:\Mon Drive\10 - Claude\SKILLS\cpe-sprint\SKILL.md</code>, puis à copier dans
+    <code>~/.claude/skills/</code> (R10) <span class="ref">[6]</span> <span class="ref">[17]</span> ;
+    (b) la méthode « INTENTION.md + CONTRACTS.md écrits avant le code » → modèle possible pour
+    <code>/project-spec</code> (à comparer) <span class="ref">[2]</span> ; (c) les fiches R1–R4 et
+    MRD/BRD/PRD/SRD de la branche <code>feat/c9-doc-spec</code> → à comparer avec le skill
+    <code>/doc-spec</code> actuel avant de reprendre quoi que ce soit <span class="ref">[8]</span>.
+    Ce sont des recommandations : rien n'a été installé.</li>
+    <li><b>Conflits gouvernance :</b> R3 (« Jamais de repo git dans Drive ») : la copie
+    <code>C3-PRODUIT\Claire</code> contient un <code>.git</code>. Ce dépôt date d'avant la règle
+    (20/05) <span class="ref">[13]</span> <span class="ref">[17]</span>. R10 : Claire est un repo
+    public surtout en markdown et HTML, qui double le vault (même écart mineur que CPE-PWF-Engine).
+    Secrets : 0 résultat sur toutes les branches <span class="ref">[20]</span></li>
+    <li><b>À confirmer par Yanis :</b> (1) claire-app a-t-elle été déployée et utilisée sur de vrais
+    projets ? (2) Pourquoi les branches Atlas et doc-spec n'ont-elles jamais été fusionnées dans
+    main ? (3) La copie Drive <code>C3-PRODUIT\Claire</code> a-t-elle continué après le 16/05
+    (<code>app</code>, <code>transformer</code>…) ? (4) Que voulait dire « Claire purgée, projet externe » le
+    01/06 ?</li>
+    <li><b>Pour la convergence :</b> Claire est-elle le chaînon entre CPE et claude-prostheses ?
+    Oui, avec une confiance élevée (déclarative). Selon Yanis, les onglets Métiers et Rôles IT
+    d'ecosystem.html ont fait naître l'idée de personas-prothèses : une équipe IT virtuelle pour un
+    indie-dev solo <span class="ref">[22]</span>. Les faits le confirment : le même jour (16/05),
+    Claire construit des pièces qui existent encore aujourd'hui (Drive C1/C2/C3, /recall, /geo,
+    /router, pont claude-mem → graphify), et le vault range « Claire → claude-prostheses » sur le même
+    axe <span class="ref">[9]</span> <span class="ref">[12]</span> <span class="ref">[14]</span>. Dépendance
+    à noter : le pont claude-mem → graphify (035abaa) recoupe <code>-graphify-transformer</code>
+    <span class="ref">[14]</span></li>
+    <li><b>Proposition au pilote :</b> (a) vérifier dans claude-prostheses (premier commit, BRD du
+    sprint 15) le passage de relais avec Claire ; (b) traiter à part la copie Drive
+    <code>C3-PRODUIT\Claire</code> (contenu hors git, <code>.git</code> à sortir du Drive selon R3) ;
+    (c) les repos de janvier relèvent de J.2. Yanis se souvient d'un
+    « premier tour » de la chaîne Claire avec la prothèse planning-with-files : faute d'autre projet,
+    il l'avait appliquée à elle-même et rangée dans un repo. Ce tour n'est pas dans ce lot (recherche
+    « bootstrap / elle-même / itself / sprint 0 / méta » sur toutes les branches = rien). Seule trace :
+    l'exemple d'intention du README, « I want to build a tool that turns raw intentions into sprint
+    contracts » <span class="ref">[1]</span> <span class="ref">[23]</span>. Pistes à vérifier par J.2 :
+    <code>De-l-Intention-a-l-Execution</code>, <code>chaine-intention-artefacts</code>,
+    CPE-PWF-Engine (02/02) <span class="ref">[18]</span> ; (d) Yanis veut que le fan-in applique
+    planning-with-files et son protocole de chefferie de projet à
+    <code>REPRISE NOV 2026</code>, qui devient un projet de récupération de sa mémoire. État au 11/11 :
+    <code>task_plan.md</code> existe déjà, mais il n'y a ni <code>findings.md</code> ni
+    <code>progress.md</code> à la racine (les findings sont par séance dans
+    <code>docs/findings/</code>). Les skills <code>/pwf</code> et <code>/cpe-sprint</code> sont
+    installés. Les skills qui restent à installer sont à lister par Yanis <span class="ref">[12]</span>
+    <span class="ref">[23]</span></li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li>Claire <code>git log --reverse main</code> : 475c8f9, 6962d07, 4c0588b, 78d046a (04/05 10:01–10:45) ; <code>README.md</code> l. 3–11 · certaine</li>
+    <li>claire-app <code>INTENTION.md</code> (flux φ₀, ce qu'elle ne fait pas), <code>CONTRACTS.md</code> (types, PASS ⟺ μA &lt; 0,5 et μV ≥ 0,4) · certaine</li>
+    <li>Claire <code>git rev-list --count main</code> = 41 ; <code>git log --all</code> = 75 ; branches <code>feat/c9-doc-spec</code> ⊃ <code>feat/atlas-concepts</code> ⊃ <code>feat/solid-clean</code> ⊃ <code>ecosystem-standalone</code>, base commune b14e3a4 (10/05) · certaine</li>
+    <li>claire-app <code>git log --all</code> = 6 : fd7ae3e (main) + dca9fdc, 2c0e554, 9f04437, 232eb68, 9e954cd (<code>feat/sprint2-governance</code>, 4 fichiers markdown seulement) · certaine</li>
+    <li>Claire <code>task_plan.md</code> (Phases 1–6 ; Phase 4 : 1 fiche sur 21 faite ; Phase 5 refactor claire-app « pending ») et <code>progress.md</code> (sessions 04/05 et 06/05) · certaine</li>
+    <li>claire-app <code>lib/scoring.ts</code> l. 2–4 et 164–175 (scoring fixe, côté serveur) ; <code>lib/prompts.ts</code> (« Tu ne calcules pas les scores ») ; <code>app/api/generate/route.ts</code> l. 27 (<code>claude-opus-4-7</code>) · certaine</li>
+    <li>claire-app <code>origin/feat/sprint2-governance:task_plan.md</code> (Goal « comprendre avant de coder », table CPE ↔ Scrum PSPO, personas, PWF auto) · certaine</li>
+    <li>Claire 811a52b, 74bf172, baa483f, bea198a (chaîne nilpotente documentaire, 13–14/05) ; 3b01e72, 6b7d9e9, f8ad36a, 1708883 (doc-spec, 22 fiches, 16/05) ; <code>git diff --stat main origin/feat/c9-doc-spec</code> · certaine</li>
+    <li>Claire 0dc67cb → 035abaa (16/05) ; message de 035abaa : hooks claude-mem, synchronisation Drive, <code>claude-mem-to-graphify.py</code>, skill /recall · certaine</li>
+    <li>Claire 6c4be46 (10/05) « remove claire-app sections » · certaine</li>
+    <li>Claire <code>origin/feat/c9-doc-spec:.claude/skills/ecosystem-sprint/SKILL.md</code> l. 1–20 · certaine</li>
+    <li><code>ls ~/.claude/skills</code> (11/11) : recall, geo, router, doc-spec, graphify, lineage présents ; ecosystem-sprint absent · certaine (filiation : moyenne)</li>
+    <li><code>ls -a "G:\Mon Drive\10 - Claude\C3-PRODUIT\Claire"</code> : <code>.git</code>, <code>.claude</code>, plus <code>app</code>, <code>transformer</code>, <code>topic-intelligence</code>, <code>pipeline-devops.html</code>… (absents du repo) · certaine (contenu non analysé)</li>
+    <li><code>vault/analyses/bilan-retour-2026/lot-4-projets-code.md</code> l. 25–26, 51–58, 100–101 · certaine</li>
+    <li><code>vault/sessions/2026-06-01-sprint15-brd-heuristics.md</code> l. 3 et 10 (« Claire purgée », « erreur de fondation (Claire = projet externe) ») · certaine (sens : moyenne)</li>
+    <li><code>vault/BACKLOG.md</code> l. 10–20 (μA = « densité d'incompressibilité résiduelle » ; « à développer dans CONTRACTS.md de Claire ») · certaine</li>
+    <li><code>../gouvernance-regles.md</code> l. 53 (R3), l. 60 (R10), règles fixées le 2026-05-20 · certaine</li>
+    <li>Fiche I.1 (<code>2026-11-10-I.1-memoire-cpe-pwf-engine.html</code>) § 4 : lignée des prothèses et des idées, preuves [14], [16], [22] · élevée</li>
+    <li><code>gh repo view</code> (11/11) : Claire PUBLIC, 1 397 Ko, push 16/05 ; claire-app PUBLIC, 89 Ko, push 06/05 · certaine</li>
+    <li><code>git grep -iE "sk-ant-|api_key *=|password *="</code> sur toutes les branches des deux repos = 0 résultat · certaine</li>
+    <li>Témoignage de Yanis (10–11/11, séances I et I.1) · certaine (déclaratif)
+      <blockquote>Verbatim non disponible dans cette séance : il est cité mot pour mot dans la fiche I.1, preuve [22]. Le kernel J.1 le reformule ainsi : des « prothèses agentiques », chacune clone de quelque chose, tenues par sa seule tête ; « clarifier une intention puis shipper sans dériver », puis Scrum + chaîne de documents, puis « plusieurs avis → les biais s'annulent ».</blockquote></li>
+    <li>Témoignage de Yanis (2026-11-11, séance J.1) · certaine (déclaratif)
+      <blockquote>Ok, donc Claire-app est la continuité des travaux précédent sur la clarification de l'intention. Ici, j'ai voulu cosntruire un html qui range les specs de chaque fiche dans un endroit lisible et accessible. Sauf que j'ai dû réaliser en cours de route que je ne connaissais rien de l'univers IT. En tout cas, ce projet était tellement énorme pour un seul homme que j'ai construit la page ecosystem de manière à pouvoir visualiser immédiatement tout le projet. Au lieu d'avoir une arborescence classique dans l'explorateur de fichier. Je voulais avoir un visuel direct via html. Et puis en parallèle je me souviens avoir beaucoup eu de conversation avec claude.ai car je voulais progresser en IT. Et j'ai ouvert une porte que j'ai mis du temps à fermer. Mes conversation claude.ia une fois décomposée ont donné lieu aux onglets : "SOLID &amp; Pipeline · 🧬 Nature · 👔 Métiers · 🏛️ Préfecture · 🔬 Théorèmes · 🧑‍💻 Rôles IT". Ici, j'ai rangé toutes les connaissances que j'avais acquises et qui allait me servir pour construire ce saas. C'est là que j'ai réalisé pourquoi les grandes entreprises du CAC40 avait des équipes IT de 50 personnes. Malgré un investissement de plusieurs milions d'€ annuel. C'était nécessaire, car construire un saas utilisés par des milions de personnes c'est comme construire une énorme cathédrale. Plusieurs corps de métiers, plusieurs expertises et spécialisation. Plusieurs services etc. D'où ma volonté in-fine de vouloir construire tous ces personnage comme des persona-prothèses de manière à m'aider moi un indie-dev solo qui voulait développer Claire-App en partant de zéro : zéro budget, zéro connaissance, zéro membre d'équipe autre que moi et mes prothèses.</blockquote></li>
+    <li>Témoignage de Yanis (2026-11-11, séance J.1, suite) · certaine (déclaratif) ; vérification : <code>git grep -iE "bootstrap|elle-même|itself|self-host|sprint 0|méta"</code> sur toutes les branches des deux repos = aucun tour appliqué à lui-même ; <code>ls REPRISE NOV 2026/</code> = CLAUDE.md, README.md, data, docs, task_plan.md
+      <blockquote>Est-ce que dans ce repo il y a une première instance de claire app en boostrap ? Car j'ai souvenir d'avoir conçu la chaîne "claire" avec une prothèse nommée planning-with-files. Et j'ai voulu l'appliquer à un projet mais je n'en n'avais pas. Donc je l'ai appliqué à elle même. C'était très fastidieux et théorique. Mais je sais que j'avais ranger ce premier tour dans un repo.</blockquote>
+      <blockquote>Oui, car j'aimerais réutiliser planning-with-files avec l'instance claude qui va servir de fan-in. En effet, le folder "G:\Mon Drive\10 - Claude\TRANSVERS\REPRISE NOV 2026" est en train de devenir un projet en lui-même de recouvrement de ma mémoire. Et donc je dois appliquer un protocole de chefferie de projet comme j'en avais l'habitude auparavant. Il me reste encore des skills à installer. Et je sais que ce projet peut déjà faire l'objet de l'application des skills / prothèses que j'étais déjà en train de construire.</blockquote></li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intention, janvier — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Intention, janvier : cockpit-solo · De-l-Intention-a-l-Execution · chaine-intention-artefacts</h1>
+  <div class="meta">
+    2026-01-08 → 2026-01-15 · 161 commits (2 + 109 sur main + 23 sur une branche jamais fusionnée + 27) ·
+    dossiers de travail sans .git : 32 Ko / 119 Ko / 67 Ko · abandonnés · tous publics ·
+    séance J.2 ← parent J · 2026-11-11 · statut complet (clôture à 80 % du contexte, au-delà du
+    seuil de 70 %, après les ajouts demandés par Yanis)
+  </div>
+  <span class="badge v-archiv">ARCHIVER</span>
+</header>
+
+<p class="lead">Une semaine de janvier où Yanis passe d'un formulaire HTML à une méthode formelle.
+Le 08/01, il fait un « cockpit » de deux pages qui transforme l'intention du jour en contrat de
+sprint validé ✅/⛔. Le 12–13/01, il en tire une théorie : l'intention se « compile » en plan
+(I → C → F → E). Le 14/01, il applique cette méthode à un second repo, qui généralise la chaîne
+(intention → contrainte → IA → artefact → test PASS/FAIL). Ce sont les premières prothèses
+agentiques de Yanis, trois semaines avant CPE-PWF-Engine. Surtout, ces repos gardent la trace de
+la façon dont Yanis a pensé, seul et sans professeur : la section 4 retrace cette évolution en
+schéma, avec les difficultés rencontrées et ce qu'il en a fait. <span class="ref">[1]</span>
+<span class="ref">[8]</span> <span class="ref">[14]</span> <span class="ref">[16]</span>
+<span class="ref">[21]</span></p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>C'est le tout début de la formation dev de Yanis avec l'IA. Il se trouve brouillon parce
+    que son intention n'est pas claire <span class="ref">[21]</span>. Son point de départ, dans ses
+    mots : ce qu'il veut « n'est pas facilement définissable ». Il a de grands projets mais aucune
+    expérience, donc il doit passer à l'action en livrant vite. Mais livrer vite sans « enveloppe
+    structurelle de chefferie de projet » n'a aucun sens. Il décide donc que son premier projet
+    sera la prothèse qui servira à tous les autres : « l'outil de chefferie de projet ». Il ne sait
+    encore ni le nommer, ni à quoi il ressemblera. Il découvre en même temps GitHub, Claude Code et
+    les plugins de la communauté, sans savoir encore « ce qu'est un dev, ni un plug-in ». Il veut
+    « déconstruire ses peurs » en livrant vite <span class="ref">[24]</span>. Les traces nuancent un
+    point : le 08/01, l'IA utilisée est ChatGPT (« Prompt (coller dans ChatGPT) »). Claude Code
+    n'apparaît que le 12–13/01, dans un texte venu de planning-with-files <span class="ref">[2]</span>
+    <span class="ref">[28]</span>. Le tout premier commit le
+    montre : une page « Ça marche. Si tu vois ce texte dans ton navigateur, ton monde local est
+    prêt » <span class="ref">[1]</span>. Ses premiers fichiers servent donc aussi à apprendre à
+    faire tourner une page en local. La réponse de Yanis au flou : un cockpit qui « force la
+    cohérence » et « bloque » si l'intention est floue (« Si c'est flou ici, tu vas souffrir plus
+    tard ») <span class="ref">[2]</span>. Quatre jours plus tard, le premier README de
+    De-l-Intention résume des « sources » et commence par : « Votre cockpit est devenu un système
+    d'exploitation pour l'action » <span class="ref">[6]</span>. Le second repo est donc né
+    directement du premier.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Répondre à une question : « À quelles conditions une intention humaine peut-elle être
+    considérée comme exécutable, puis exécutée sans perte de sens ? » <span class="ref">[8]</span>
+    L'outil prend une intention floue et en fait un <b>Contrat de Sprint</b> (GOAL + BACKLOG +
+    DoD). Deux scores filtrent ce contrat : l'ambiguïté (μ ≥ 0,5 → on ne lance pas) et la
+    validabilité (μ ≥ 0,7 → validation robuste). Le contrat est ensuite <b>compilé</b> en
+    <code>task_plan.md</code> (une phase par item de backlog), puis exécuté avec planning-with-files
+    <span class="ref">[8]</span> <span class="ref">[10]</span> <span class="ref">[11]</span>. Le bénéfice
+    attendu est déjà celui de CPE : qu'un tiers puisse tout reconstruire « sans explication
+    orale » <span class="ref">[8]</span> <span class="ref">[9]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 1 — Le cockpit (cockpit-solo, 2 commits, git en local) · 08/01, 11:00–11:40</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-01-08 11:00</td><td>« premier commit » : une page de test (« Ça marche. »)</td><td>Vérifier que l'environnement local fonctionne</td><td>Premier pas en local <span class="ref">[1]</span></td></tr>
+    <tr><td class="d">2026-01-08 11:40</td><td>« ajout cockpit page A et page B ». Page A : hier / aujourd'hui (intention + Done) / soir (review, rétro, conseil pour demain), plus un prompt « à coller dans ChatGPT ». Page B : « Audit Scrum » en 6 épisodes (Vision → Product Goal → Backlog → Sprint Planning → ΣK → contrat SPRINT copiable)</td><td>Faire de chaque journée un mini-sprint, avec une mémoire d'un jour sur l'autre (stockée dans le navigateur)</td><td>Un contrat marqué ✅/⛔ selon deux règles : 5 items de backlog maximum, 10 savoir-faire (ΣK) maximum <span class="ref">[2]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 2 — Le déversement de la méthode (De-l-Intention, 29 commits, éditeur web) · 12/01, 15:22–16:21</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-01-12 15:22–15:37</td><td>README : un résumé collé (« vos sources », « Votre cockpit… le Mapping est le compilateur »), puis <code>task_plan</code>, <code>findings.md</code>, <code>progress.md</code></td><td>Mettre au même endroit ce qui avait été produit avec des assistants IA</td><td>Première trace des 3 fichiers planning-with-files <span class="ref">[6]</span> <span class="ref">[11]</span></td></tr>
+    <tr><td class="d">2026-01-12 15:39–15:47</td><td>Le contrat (GOAL, SPRINT BACKLOG, DoD, de 120 à 205 lignes chacun), ALGORITHME DE SCORING, ENRICHISSEMENT DU MAPPING, artefact maître, quickstart, règles du jeu : une dizaine de gros fichiers en 8 minutes</td><td>Coller la théorie produite ailleurs (une réponse commence par « Je respecte strictement ta méthode »)</td><td>La matière brute de la méthode est en ligne <span class="ref">[5]</span> <span class="ref">[7]</span></td></tr>
+    <tr><td class="d">2026-01-12 15:55–16:21</td><td>ARCHITECTURE (φ, κ, ε), REFERENCES (planning-with-files d'Othman Adi), exemple 01. Puis le contrat et le plan sont vidés (−120, −204, −197, −100 lignes)</td><td>Séparer la théorie de l'instance : le contrat redevient un vrai contrat court</td><td>Une architecture lisible <span class="ref">[9]</span> <span class="ref">[11]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 3 — Premier sprint sur soi-même : « franciser le dépôt » (51 commits, dont la PR #1) · 13/01, 10:53–13:26</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-01-13 10:53–11:57</td><td>findings / progress / task_plan remplis phase par phase. La théorie brute passe dans <code>theory/</code> et les fichiers du contrat prennent l'extension .md</td><td>Tester la méthode sur le repo lui-même (« la méthode doit pouvoir s'appliquer à son propre dépôt »)</td><td>Un test de reprise « en 5 questions » réussi <span class="ref">[13]</span></td></tr>
+    <tr><td class="d">2026-01-13 12:00–13:12</td><td>Contrat du sprint : GOAL « Franciser intégralement le dépôt dans la branche <code>sprint-langue-fr</code> ». Un lexique, puis la réécriture du README, de l'ARCHITECTURE et du quickstart</td><td>Un sprint court, avec une preuve binaire : aucun mot anglais hors citations</td><td>Le premier contrat réellement exécuté <span class="ref">[12]</span></td></tr>
+    <tr><td class="d">2026-01-13 13:26</td><td>Fusion de la PR #1 <code>sprint-langue-fr</code> dans <code>main</code></td><td>Clore le sprint selon le contrat (« main n'a pas été modifiée pendant le sprint »)</td><td>Le sprint est clos et figé <span class="ref">[12]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 4 — La théorie canonique (29 commits) · 13/01, 15:18–19:05</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-01-13 15:18–15:30</td><td><code>theory/00_definitions</code>, <code>01_axiomes</code> (A1–A7), <code>02_regles</code>, <code>03_seuils_et_mesures</code></td><td>Une théorie « invariante », indépendante de tout sprint</td><td>Les axiomes de non-rétroaction (A3) et de bijection backlog ↔ phases (A4) sont posés <span class="ref">[9]</span> <span class="ref">[10]</span></td></tr>
+    <tr><td class="d">2026-01-13 15:34–15:58</td><td>Les sources brutes passent dans <code>archive_raw/</code> (« plus normatifs »). Le lexique est supprimé</td><td>Garder l'historique sans le confondre avec les règles</td><td>Le repo est rangé en 4 couches (théorie, architecture, exécution, instance) <span class="ref">[8]</span></td></tr>
+    <tr><td class="d">2026-01-13 16:16–19:05</td><td><code>README_AI.md</code> (« généré automatiquement ») créé, puis supprimé 2 h 30 plus tard. README final (+183 / −108)</td><td>Essai d'un générateur de README, puis abandon</td><td>Le README tel qu'il est aujourd'hui <span class="ref">[23]</span></td></tr>
+  </table>
+
+  <div class="phase">Phase 5 — Le repo M pilote le repo S (23 commits sur la branche <code>mission-S-instantiation</code> + 27 commits de chaine-intention-artefacts) · 14/01, 14:13 → 15/01, 09:21</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-01-14 14:13–14:32</td><td>Sur la branche de De-l-Intention, nouveau contrat : publier un « Repo S » sur le sujet « chaîne de transformation de l'intention humaine en artefacts transmissibles », structuré selon « Faire un REPO GitHub Optimal.md ». 6 items, 7 critères de DoD</td><td>Utiliser la méthode (repo M) pour produire un autre repo (S)</td><td>La méthode pilote un vrai livrable <span class="ref">[14]</span></td></tr>
+    <tr><td class="d">2026-01-14 14:46–15:57</td><td>chaine-intention-artefacts : README, glossaire, objets, relations, invariants, axes de variation, logique opératoire</td><td>Items 1 à 3 du contrat (ontologie, logique, invariants)</td><td>La chaîne I → C → O → A → T <span class="ref">[15]</span> <span class="ref">[16]</span></td></tr>
+    <tr><td class="d">2026-01-14 16:02–17:21</td><td><code>00_START_HERE</code> (carte + 2 quickstarts), 3 chemins de lecture (débutant, praticien, expert), exemple E01, test T01 PASS/FAIL, README. En parallèle, sur la branche du repo M : findings / progress / task_plan à chaque pas</td><td>Items 4 à 6 : rendre le repo testable par un tiers. Le journal note « avance non tracée dans Repo S → arrêt + synchronisation »</td><td>Les 6 phases sont marquées complete dans le repo M <span class="ref">[14]</span> <span class="ref">[16]</span></td></tr>
+    <tr><td class="d">2026-01-15 09:19–09:21</td><td>2 retouches d'une ligne (E01, carte)</td><td>Finition</td><td>Dernier commit du lot <span class="ref">[15]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Place dans l'arsenal</h2>
+  <div class="phase">A. L'évolution de la pensée de Yanis, en schéma (du constat de départ à claude-prostheses)</div>
+  <div class="scroll"><pre style="font:12.5px/1.45 ui-monospace,Consolas,monospace;background:var(--chip);padding:10px 12px;border-radius:8px;margin:6px 0 12px;white-space:pre">
+ÉTAPE 0 · avant le 08/01 — LE CONSTAT                                    [24]
+  « ce que je veux n'est pas facilement définissable »
+  « de grands projets, aucune expérience »   →  il faut livrer vite
+  … mais livrer sans cadre de chefferie de projet n'a aucun sens
+  ⇒ projet n° 1 = la prothèse qui servira à TOUS les projets
+     (pas encore de nom, pas de forme, ne pas réinventer la roue)
+        │
+        ▼
+ÉTAPE 1 · 08/01 — COCKPIT-SOLO  · un OUTIL, inventé par Yanis, sans PWF     [1][2][3]
+  difficulté : le flou, la peur, zéro expérience
+  réponse    : 1 journée = 1 sprint · intention + « Done » binaire
+               ChatGPT écrit, le code valide : ✅/⛔ (backlog ≤ 5, ΣK ≤ 10)
+               boucle soir → lendemain (« la reco alimente Hier demain »)
+  garde-fou  : « si tu mets 25 items ici, tu fais une école, pas un sprint »
+  limite     : mémoire dans le navigateur · lien Page B → Page A cassé
+        │
+        │   entre le 08 et le 12/01 : en s'inscrivant sur GitHub,
+        │   il tombe sur planning-with-files (Othman Adi)
+        ▼
+ÉTAPE 2 · ~09–11/01 — LA DÉCOUVERTE DE PWF  · « je venais d'ouvrir les yeux »  [11][24]
+  « ce que je voulais, d'autres aussi le voulaient »
+  apport : la mémoire SUR DISQUE (task_plan · findings · progress)
+  ⇒ axiome A1 (13/01) : « la mémoire humaine n'est jamais une source de vérité »
+        │
+        ▼
+ÉTAPE 3 · 12–13/01 — DE L'INTENTION À L'EXÉCUTION  · une MÉTHODE       [6][8][9][10]
+       I ──φ──▶ C ──κ──▶ F ──ε──▶ E
+          clarifier   compiler    exécuter  (= PWF : 1 étape sur 3, dès le 1er jour)
+  « rendre l'action humaine compilable » · μA ≥ 0,5 ⇒ on ne lance pas
+  « ne réimplémente pas PWF, s'y compose »  (= ne pas réinventer la roue)
+  test : la méthode appliquée à elle-même (sprint « franciser le dépôt »)
+        │
+        ▼
+ÉTAPE 4 · 14–15/01 — CHAÎNE INTENTION → ARTEFACTS  · une CHAÎNE        [14][16]
+       I → C → O → A → T     (O = l'IA · T = transmissible, test PASS/FAIL)
+  le constat de l'étape 0 devient une loi :
+  « l'intention humaine n'est jamais directement observable »
+  « l'IA n'est ni source de l'intention ni juge de la vérité »
+        │
+        │   ensuite : Clear Sky (ontologie en fiches) + tableau Miro de la chaîne  [25][27]
+        ▼
+ÉTAPE 5 · 02/02 — CPE-PWF-Engine  · un MOTEUR, « compilateur d'intention » (ré-écriture)  [18]
+  PWF n'est plus qu'un maillon d'une chaîne plus large : la clarification de l'intention
+        │
+        ▼
+ÉTAPE 6 · 04–16/05 — Claire + claire-app  · une PERSONNE ; la méthode redevient outil  [26]
+  claire-app = le cockpit qui renaît : l'IA écrit, des règles fixes notent
+  (« Tu ne calcules pas les scores » = l'invariant du 14/01 appliqué)
+  piège : l'apprentissage de l'IT, « une porte mis du temps à fermer »
+        │
+        ▼
+ÉTAPE 7 · mai → — claude-prostheses  · des PROTHÈSES (Scrum à plusieurs rôles)  [18][26]
+</pre></div>
+
+  <div class="phase">B. Les difficultés rencontrées seul, et ce que Yanis en a fait</div>
+  <table>
+    <tr><th>Difficulté</th><th>Première réponse (janvier)</th><th>Ce qu'elle est devenue ensuite</th></tr>
+    <tr><td>Ne pas savoir définir ce qu'il veut</td><td>Un formulaire qui force une phrase d'intention et un « Done » binaire (08/01) <span class="ref">[2]</span></td><td>Une théorie : l'intention est « ambiguë, instable, sujette à dérive » (12/01), puis « jamais directement observable » (14/01) <span class="ref">[8]</span> <span class="ref">[16]</span></td></tr>
+    <tr><td>Aucune expérience, et la peur</td><td>Livrer petit, tous les jours : 1 journée = 1 sprint de 5 items au plus. Premier commit : vérifier que « ton monde local est prêt » <span class="ref">[1]</span> <span class="ref">[2]</span></td><td>Le sprint court reste au cœur de CPE, de Claire et de claude-prostheses <span class="ref">[18]</span></td></tr>
+    <tr><td>Apprendre ou livrer</td><td>ΣK ≤ 10 : « tu es en formation, pas en sprint » (08/01) <span class="ref">[2]</span></td><td>Le piège revient en mai : Claire devient une encyclopédie de l'IT <span class="ref">[26]</span></td></tr>
+    <tr><td>La mémoire qui s'efface</td><td>Le navigateur (08/01), puis les fichiers sur disque de PWF (12/01), puis l'axiome A1 (13/01) <span class="ref">[2]</span> <span class="ref">[9]</span></td><td>Le test de reprise en 5 questions (13/01) ; plus tard, les kernels de transfert entre sessions (lien interprété par Claude) <span class="ref">[13]</span></td></tr>
+    <tr><td>Ne pas réinventer la roue</td><td>Composer PWF au lieu de le refaire (12/01) <span class="ref">[11]</span></td><td>Reprendre Scrum, puis la chaîne de documents MRD → Code (mai) <span class="ref">[26]</span></td></tr>
+    <tr><td>Ne pas avoir de professeur</td><td>Un juge extérieur : « un tiers, sans explication orale » (A6, test T01, preuve de type « Humain ») <span class="ref">[9]</span> <span class="ref">[16]</span></td><td>« Plusieurs avis → les biais s'annulent », puis les personas-prothèses (lien interprété par Claude, à confirmer par Yanis) <span class="ref">[26]</span></td></tr>
+    <tr><td>La dérive d'objectif</td><td>A3 : l'exécution ne réécrit jamais le contrat ; relire le plan avant chaque décision (13/01) <span class="ref">[9]</span></td><td>Reprise dans CPE (02/02) <span class="ref">[18]</span></td></tr>
+    <tr><td>La lourdeur de la méthode</td><td>4 couches, 7 axiomes, des seuils : rien d'outillé (« non implémenté ») <span class="ref">[8]</span></td><td>Pour CPE : « trop lourde, une semaine sans y toucher suffit pour tout oublier » ; puis claire-app outille enfin le scoring <span class="ref">[18]</span> <span class="ref">[26]</span></td></tr>
+  </table>
+
+  <div class="phase">C. Les noms successifs racontent la même évolution</div>
+  <p>cockpit-solo (un <b>outil</b>, 08/01) → De l'Intention à l'Exécution (un <b>trajet</b>, 12/01) →
+  chaîne intention → artefacts (une <b>chaîne</b>, 14/01) → PE-PWF-Engine puis CPE (un <b>moteur</b>,
+  02/02) → Claire (une <b>personne</b>, 04/05) → claude-prostheses (des <b>prothèses</b>). Yanis ne
+  savait pas nommer son outil : chaque nouveau nom marque un pas dans sa compréhension de ce qu'il
+  construisait <span class="ref">[1]</span> <span class="ref">[8]</span> <span class="ref">[16]</span>
+  <span class="ref">[18]</span> <span class="ref">[26]</span></p>
+
+  <div class="phase">D. Ce que les traces ajoutent au souvenir de Yanis</div>
+  <ul>
+    <li><b>Le cockpit existait avant PWF, et c'est son invention.</b> Le 08/01, sans PWF, il a déjà
+    l'intention du jour, le « Done » binaire, le contrat validé et la boucle soir → lendemain. PWF ne
+    lui a pas donné l'idée : il lui a montré que d'autres la partageaient. Il lui a aussi apporté la
+    pièce qui manquait, la mémoire sur disque <span class="ref">[2]</span> <span class="ref">[11]</span></li>
+    <li><b>PWF a été mis à sa juste place dès le premier jour.</b> Yanis se souvient d'une remise en
+    cause tardive. Dans les traces, dès le 12/01, PWF n'est que la 3ᵉ étape (ε) sur trois. Une décision
+    écrite le dit : « dépendance localisée dans ε ». Les étapes 1 et 2 (clarifier, compiler) sont de
+    lui. Ce qui est venu plus tard, c'est l'abandon des outils de PWF (hooks retirés en mai)
+    <span class="ref">[11]</span> <span class="ref">[18]</span></li>
+    <li><b>Il avait écrit l'avertissement contre son propre piège.</b> Le cockpit du 08/01 refuse les
+    sprints qui deviennent « une école ». En mai, l'apprentissage de l'IT devient « une porte » longue
+    à refermer, et Claire se change en encyclopédie <span class="ref">[2]</span> <span class="ref">[26]</span></li>
+  </ul>
+
+  <div class="phase">E. Deux tensions qui traversent toute la période</div>
+  <ul>
+    <li><b>L'outil avant les projets.</b> C'était un choix assumé : la prothèse d'abord. Mais en
+    janvier comme en mai, la méthode ne s'applique qu'à elle-même : « franciser le dépôt », un repo
+    qui explique la méthode, puis aucun projet extérieur dans Claire. Le README le reconnaissait :
+    « non encore testée sur des projets SaaS complexes » <span class="ref">[8]</span>
+    <span class="ref">[12]</span> <span class="ref">[14]</span> <span class="ref">[26]</span></li>
+    <li><b>« Les plus grands raisonnent comme moi. »</b> Yanis voit dans PWF la preuve que son
+    raisonnement rejoint celui des grandes entreprises <span class="ref">[24]</span>. La seule preuve
+    externe de janvier est PWF lui-même : un autre développeur voulait la même chose, indépendamment.
+    Aller plus loin demande des sources publiques datées. Une note de son vault le met d'ailleurs en
+    garde : un raisonnement peut être parfaitement cohérent sans toucher le réel
+    <span class="ref">[30]</span></li>
+  </ul>
+
+  <div class="phase">F. Place dans l'arsenal</div>
+  <ul>
+    <li><span class="chip">lignée des prothèses</span> <b>Qu'est-ce qui passe d'un repo à l'autre,
+    en une semaine ?</b> Toujours la même forme : une entrée floue, un contrat, une validation
+    binaire. Le cockpit fait un contrat Scrum validé ✅/⛔ par deux compteurs. De-l-Intention garde le
+    contrat, mais en 3 objets (GOAL, BACKLOG, DoD) ; il remplace les compteurs par les scores μ et
+    ajoute l'exécution par fichiers. chaine-intention-artefacts généralise : le contrat devient une
+    « contrainte », l'IA un « opérateur », et ✅/⛔ devient un test PASS/FAIL de transmissibilité.
+    Un critère traverse les trois repos : « sans explication orale » <span class="ref">[2]</span>
+    <span class="ref">[8]</span> <span class="ref">[16]</span></li>
+    <li><span class="chip">compilateur d'intention</span> <b>Existait-il avant CPE ?</b> Oui. Le mot
+    apparaît le 12/01 à 15:29 dans le premier README : « le Mapping est le compilateur qui génère
+    le Plan », et le scoring « refuse de lancer le programme si les instructions sont trop floues »
+    <span class="ref">[6]</span>. Le README final en fait le but du repo : « une méthode formelle
+    pour rendre l'action humaine compilable ». Le compilateur, c'est κ, avec un invariant vérifiable
+    : nombre d'items du backlog = nombre de phases <span class="ref">[8]</span>
+    <span class="ref">[9]</span>. Mais c'est une méthode écrite, pas un outil : « Outil automatisant φ
+    non implémenté », « scoring μ formalisé mais non outillé » <span class="ref">[8]</span>. Le
+    cockpit en était l'ébauche outillée : un formulaire, un prompt et un validateur
+    <span class="ref">[2]</span></li>
+    <li><span class="chip">CPE-PWF-Engine</span> Presque tout ce que la fiche CPE présente comme
+    nouveau le 02/02 existe ici dès le 12–13/01 : contrat GOAL / BACKLOG / DoD, μA ≥ 0,5 et μV ≥ 0,7,
+    3 fichiers planning-with-files, 2 actions, 3 échecs, non-rétroaction (axiome A3)
+    <span class="ref">[9]</span> <span class="ref">[10]</span> <span class="ref">[18]</span>. CPE
+    est donc une ré-écriture, pas une naissance</li>
+    <li><span class="chip">skills /cpe-sprint, /pwf</span> Ils héritent de la méthode, mais aucun ne
+    nomme ces repos <span class="ref">[17]</span></li>
+    <li><span class="chip">vault</span> Le vault ne nomme aucun des trois repos (« cockpit » : 0
+    résultat). Il garde seulement l'axe : « tous orientés vers un seul axe : de l'intention à
+    l'exécution » <span class="ref">[17]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>5 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> chaque matin, Yanis écrit l'intention du jour dans le cockpit, la passe
+      dans ChatGPT, valide le contrat ✅/⛔ ; chaque soir, il fait review et rétro
+      <span class="ref">[2]</span>. Pour un projet, il écrit le contrat dans <code>contrat/</code>, le
+      compile en <code>task_plan.md</code>, puis l'exécute avec les 3 fichiers
+      <span class="ref">[8]</span></li>
+      <li><b>Réel :</b> la méthode a servi au moins deux fois, sur elle-même : le sprint
+      « franciser le dépôt » (13/01), puis la mission « Repo S » (14/01), avec un journal d'erreurs
+      daté <span class="ref">[12]</span> <span class="ref">[14]</span>. Pour le cockpit, aucune
+      trace d'usage : les données restaient dans le navigateur, et le bouton « Retour Page A »
+      renvoie vers <code>cockpit-action.html</code>, qui n'existe pas <span class="ref">[3]</span>.
+      Usage quotidien du cockpit : à confirmer par Yanis</li>
+    </ul>
+  </section>
+  <section>
+    <h2>6 · Où je me suis arrêté</h2>
+    <p>Le cockpit s'arrête 40 minutes après son premier commit <span class="ref">[1]</span>.
+    De-l-Intention s'arrête le 13/01 au soir sur son README final ; la branche de la mission Repo S
+    n'a jamais été fusionnée <span class="ref">[4]</span>. chaine-intention-artefacts s'arrête le
+    15/01 à 09:21, toutes ses phases marquées complete <span class="ref">[14]</span>
+    <span class="ref">[15]</span>. Il manquait l'outil qui automatise la clarification et le
+    calcul de μ, ainsi qu'un essai sur un vrai projet (« non encore testée sur des projets SaaS
+    complexes ») <span class="ref">[8]</span>. Raison de l'arrêt : à confirmer par Yanis. Pour
+    CPE, trois semaines plus tard, il dira que la méthode était trop lourde et qu'une semaine sans
+    y toucher suffisait pour tout oublier <span class="ref">[18]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>7 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur le repo) :</b> ARCHIVER les trois. Le contenu vivant existe ailleurs en plus
+    mûr (<code>/cpe-sprint</code>, <code>/pwf</code>, claude-prostheses) <span class="ref">[18]</span>.
+    Le lot garde une valeur de preuve et de date : c'est l'acte de naissance du « compilateur
+    d'intention » (12/01) et du premier sprint mené avec planning-with-files (13/01)
+    <span class="ref">[6]</span> <span class="ref">[12]</span></li>
+    <li><b>Réutilisable :</b> (a) le test T01 « transmissibilité » en 3 questions (comprendre,
+    réutiliser sans poser de question, vérifier seul) → c'est déjà la règle « la fiche se lit
+    seule » du gabarit, donc rien à ajouter <span class="ref">[16]</span> ; (b) l'axiome A3
+    (non-rétroaction) → c'est la source la plus ancienne de la règle que la fiche CPE propose
+    d'ajouter à <code>G:\Mon Drive\10 - Claude\SKILLS\cpe-sprint\SKILL.md</code> : à citer comme
+    origine si cet ajout se fait <span class="ref">[9]</span> <span class="ref">[18]</span>. Ce
+    sont des recommandations : rien n'a été installé.</li>
+    <li><b>Conflits gouvernance :</b> R3 (jamais de repo git dans le Drive) : respecté, les clones
+    sont dans le scratchpad <span class="ref">[19]</span>. R10 ne parle que des skills ; ces repos
+    n'en sont pas, donc aucun conflit direct <span class="ref">[19]</span>. Aucun secret dans
+    l'historique complet des 3 repos <span class="ref">[20]</span>. Point de vie privée, hors
+    règles : les commits publics de cockpit-solo portent le prénom et l'adresse e-mail personnelle
+    de Yanis <span class="ref">[22]</span></li>
+    <li><b>À confirmer par Yanis :</b> (1) Le cockpit a-t-il servi chaque jour, et combien de
+    temps ? (2) D'où viennent les textes collés le 12/01 : ChatGPT, NotebookLM, autre chose ?
+    (3) Où est « Faire un REPO GitHub Optimal.md », le modèle de structure du Repo S ? (Absent du
+    vault.) (4) Pourquoi tout s'arrête-t-il le 15/01 ? (5) Faut-il passer les 3 repos en privé ou
+    en « archived », vu l'adresse e-mail visible ? (6) À quelle date exacte Claude Code a-t-il été
+    utilisé pour la première fois, puisque le cockpit du 08/01 passe par ChatGPT ? (7) Le tableau Miro
+    de la chaîne existe-t-il encore ? Clear Sky et Miro sont postérieurs au cockpit (réponse de Yanis
+    <span class="ref">[25]</span>). (8) À quel moment l'outil a-t-il servi un vrai projet extérieur
+    pour la première fois ?</li>
+    <li><b>Pour la convergence :</b> ces repos sont-ils l'origine de la chaîne « intention →
+    artefacts » reprise plus tard (Scrum + chaîne MRD → Code, claude-prostheses) ? <b>Pour le nom
+    et la forme, oui</b> : « chaîne de transformation de l'intention humaine en artefacts
+    transmissibles, avec l'IA comme opérateur intermédiaire sous contrainte » date du 14/01
+    <span class="ref">[14]</span> <span class="ref">[16]</span>. Les invariants « l'IA n'est ni
+    source de l'intention ni juge » et « toute transformation perd de l'information » y sont déjà
+    écrits <span class="ref">[16]</span>. En revanche, on n'y trouve ni Scrum à plusieurs rôles ni
+    chaîne de documents MRD → Code : le lien avec claude-prostheses est une continuité d'idée, à
+    confirmer par Yanis. Ordre établi : cockpit-solo (08/01) → De-l-Intention (12–13/01) → Repo S
+    (14–15/01) → Clear Sky et Miro → CPE-PWF-Engine (02/02) → Claire / claire-app (mai)
+    <span class="ref">[18]</span> <span class="ref">[25]</span> <span class="ref">[26]</span>. Liens avec
+    Claire / claire-app (fiche J.1) : (a) claire-app est l'outil qui manquait en janvier
+    (« outil automatisant φ non implémenté ») <span class="ref">[8]</span> ; (b) elle répartit le
+    travail comme le cockpit : l'IA écrit, des règles fixes notent <span class="ref">[2]</span>
+    <span class="ref">[26]</span> ; (c) son prompt « Tu ne calcules pas les scores » applique
+    l'invariant 3 du 14/01 <span class="ref">[16]</span> ; (d) « INTENTION.md + CONTRACTS.md avant le
+    code » applique l'axiome A2 du 13/01 <span class="ref">[9]</span> ; (e) la boucle de contrat en
+    contrat (𝕀₀ → 𝕮ₙ → 𝕄ₙ) a pour ancêtre la boucle soir → lendemain du cockpit
+    <span class="ref">[2]</span>.</li>
+    <li><b>Proposition au pilote :</b> test-ia et CARTE-des-richesses (janvier) ne sont pas
+    analysés ici, ils restent à couvrir s'ils ne le sont pas déjà. Claire relève de J.1. Pour la
+    fiche CPE (I.1) : sa règle de non-rétroaction a une origine plus ancienne, l'axiome A3 du 13/01
+    <span class="ref">[9]</span>. Pour la fiche Claire (J.1), quatre précisions au fan-in : (a) le
+    seuil μA ≥ 0,5 date du 12/01, pas du 04/05 <span class="ref">[10]</span> ; (b) le cadre Scrum
+    (Vision, Product Goal, Sprint Planning, rôles « PO + DEV + SM ») est là dès le 08/01. Ce qui est
+    nouveau en mai, c'est Scrum vu comme une équipe de rôles <span class="ref">[2]</span> ; (c) le
+    seuil μV passe de 0,7 (« validation robuste », sans blocage, janvier) à 0,4, devenu condition de
+    PASS (claire-app) <span class="ref">[10]</span> <span class="ref">[26]</span> ; (d) son réutilisable
+    (a) est déjà en partie dans <code>/cpe-sprint</code>, qui a les seuils μA &lt; 0,5 et μV ≥ 0,4 et une
+    grille A/V. Il reste seulement à comparer les contrôles A1–A3 / V1–V3 <span class="ref">[29]</span>.
+    Enfin, un même schéma revient dans les deux lots, à quatre mois d'écart : la méthode ne s'applique
+    qu'à elle-même <span class="ref">[12]</span> <span class="ref">[26]</span>. Il est à suivre dans
+    les autres fiches de la reprise.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li><code>git -C cockpit-solo log --stat</code> : 60ddafe (08/01 11:00, « premier commit », index.html de 12 lignes « Ça marche. ») et f41a544 (11:40, « ajout cockpit page A et page B », +663 lignes) · certaine</li>
+    <li>cockpit-solo <code>index.html</code> (Page A : prompt « coller dans ChatGPT », clés <code>cockpit:day:DATE</code>, « Si c'est flou ici, tu vas souffrir plus tard. Donc on bloque. ») et <code>cockpit-scrum.html</code> (<code>computeValidation</code> : backlog ≤ 5, ΣK ≤ 10 ; « Cette page force la cohérence ») · certaine</li>
+    <li><code>cockpit-scrum.html</code>, bouton <code>backToA</code> → <code>cockpit-action.html</code> ; <code>git ls-files</code> ne contient que <code>index.html</code> et <code>cockpit-scrum.html</code> · certaine</li>
+    <li><code>git log main</code> = 109 commits (12/01 15:22 → 13/01 19:05) ; <code>git log main..origin/mission-S-instantiation</code> = 23 commits (14/01 14:13 → 17:09), branche jamais fusionnée (0 commit de main absent d'elle) · certaine</li>
+    <li>De-l-Intention et chaine-intention : les 159 commits ont pour committer <code>GitHub &lt;noreply@github.com&gt;</code> et pour auteur « Raja » ; messages par défaut « Create X » / « Update X », un fichier par commit ; des fichiers de 118 à 255 lignes créés en une minute (15:43–15:47) → édition web, texte collé · élevée</li>
+    <li><code>git show 52a84cb:README.md</code> (12/01 15:29), l.43 : « Analogie : Votre cockpit est devenu un système d'exploitation pour l'action. Le Contrat est le code source (le "quoi"), le Mapping est le compilateur qui génère le Plan (le binaire exécutable), et l'Algorithme de Scoring est le vérificateur de syntaxe qui refuse de lancer le programme si les instructions sont trop floues » ; le texte parle de « vos sources » · certaine (citation) ; outil d'origine (style NotebookLM) · moyenne</li>
+    <li><code>archive_raw/ALGORITHME DE SCROING.md</code> l.3 : « Je respecte strictement ta méthode : pipeline → concret → mesurable → humain-compréhensible » → réponse d'un assistant IA, collée · élevée</li>
+    <li>De-l-Intention <code>README.md</code> (version finale 07598e7) : question centrale, I ──φ──▶ C ──κ──▶ F ──ε──▶ E, M = ε ∘ κ ∘ φ, seuils μ, « État du projet », « méthode formelle pour rendre l'action humaine compilable » · certaine</li>
+    <li><code>ARCHITECTURE.md</code> (φ, κ, ε ; « ε n'a pas le droit de rétroagir sur C » ; preuve <code>count(backlog_items) == count(phases)</code>) et <code>theory/01_axiomes.md</code> (A3 non-rétroaction, A4 bijection, A6 validation externe) · certaine</li>
+    <li><code>theory/03_seuils_et_mesures.md</code> : M1 μ(ambiguïté) ≥ 0,5 → non compilable ; M2 μ(validation) ≥ 0,7 → robuste ; M3 > 50 micro-actions → relecture du plan · certaine</li>
+    <li><code>REFERENCES.md</code> et <code>ARCHITECTURE.md</code> : ε repose sur planning-with-files (github.com/OthmanAdi/planning-with-files), « ne réimplémente pas » ; <code>task_plan</code>, <code>findings.md</code> et <code>progress.md</code> créés à 15:34–15:37 le 12/01 · certaine</li>
+    <li><code>contrat/GOAL.md</code>, <code>SPRINT BACKLOG.md</code>, <code>DEFINITION OF DONE.md</code> sur main (sprint « franciser… branche <code>sprint-langue-fr</code> ») ; commit de fusion bf99fbd (13/01 13:26, « Merge pull request #1 from tactacboomboom/sprint-langue-fr ») · certaine</li>
+    <li><code>findings.md</code> (« La méthode doit pouvoir s'appliquer à son propre dépôt sans contradiction ») et <code>progress.md</code> (session 2026-01-13, « Simulation d'une interruption », test de redémarrage en 5 questions, « Sprint terminé avec succès ») · certaine</li>
+    <li><code>git show origin/mission-S-instantiation:contrat/GOAL.md</code> (Repo S, sujet, « Faire un REPO GitHub Optimal.md »), <code>:task_plan.md</code> (6 phases complete), <code>:findings.md</code> (séparation Repo S / Repo M ; journal d'erreurs 13:10 → 14:40 dont « Avance non tracée dans Repo S → Arrêt + synchronisation via progress.md ») · certaine</li>
+    <li><code>git -C chaine-intention-artefacts log</code> : 27 commits, 14/01 14:46 → 15/01 09:21, entremêlés avec ceux de la branche mission-S (14:13 → 17:09) · certaine</li>
+    <li>chaine-intention-artefacts : <code>01_ONTOLOGY/relations.md</code> (chaîne canonique I → C → O → A → T), <code>01_ONTOLOGY/invariants.md</code> (invariants 3 « L'IA n'est ni source de l'intention ni juge de la vérité » et 4 « perte informationnelle »), <code>04_TESTS/T01_pass_fail.md</code> (3 tests PASS/FAIL), <code>README.md</code> · certaine</li>
+    <li>Recherche dans le vault (<code>grep -ril</code>, terme témoin « CPE » = 35 fichiers) : « cockpit » 0, « De-l-Intention » 0, « chaine-intention » 0, « REPO GitHub Optimal » 0 ; <code>analyses/bilan-retour-2026/BILAN.md:30</code> « tous orientés vers un seul axe : « de l'intention à l'exécution » ». Recherche dans <code>~/.claude/skills</code> et <code>SKILLS/</code> : aucun renvoi aux 3 repos · certaine</li>
+    <li>Fiche <code>docs/findings/2026-11-10-I.1-memoire-cpe-pwf-engine.html</code>, § 1 (objectif « compilateur d'intention », 02/02), § 4 (cinq repos de janvier le précèdent), § 6 (raison de l'arrêt donnée par Yanis), § 7 (non-rétroaction proposée pour <code>/cpe-sprint</code>) · certaine</li>
+    <li><code>../gouvernance-regles.md</code> l.53 (R3) et l.60 (R10) · certaine</li>
+    <li><code>git grep -i -E 'api_key|password|token|secret' $(git rev-list --all)</code> sur les 3 repos = 0 résultat · certaine</li>
+    <li>Témoignage de Yanis (10–11/11, rapporté par le kernel de lancement J.2 et la fiche I.1) · certaine (déclaratif)
+      <blockquote>« prothèses agentiques » ; « le tout début de ma formation dev avec l'IA »</blockquote>
+      Seuls ces fragments sont cités mot pour mot dans les sources lues. Le reste (brouillon parce que son intention n'était pas claire, d'où la théorie de « l'intention claire ») est une reformulation.</li>
+    <li><code>git -C cockpit-solo log --format='%an &lt;%ae&gt;'</code> : auteur « Yanis » avec son adresse personnelle, commits faits avec git en local (messages écrits à la main), alors que les deux autres repos passent par l'éditeur web sous le nom « Raja » · certaine</li>
+    <li>58b5a5b (13/01 16:16, création de <code>README_AI.md</code> : « README généré (ReadmeAI) … non normatif ») et f77bf2c (18:52, suppression) · certaine</li>
+    <li>Témoignage de Yanis (2026-11-11, séance J.2) · certaine (déclaratif)
+      <blockquote>J'aimerais que l'on analyse l'évolution dans mes réflexions. C'est de la matière brutes inestimable. Au commençement, je me rends compte que ce que je veux n'est pas facilement définissable. Je me rends compte que j'ai de grands projets mais aucune expérience. Donc je dois passer à l'action en shippant vite. Sauf que shipper vite mes projets sans une enveloppe structurelle de chefferie de projet n'a aucun sens. Je décide donc de construire comme premier projet la prothèse qui me servira pour tous mes projets : "l'outil de chefferie de projet". Mais je ne sais pas encore le nommer ni à quoi ça va ressembler ni comment je vais à l'avenir ne pas avoir besoin de réinventer la roue. En tout cas, tout démarre, je me souviens, de mes premiers pas sur claude code et github. Je m'apperçois que la commu construit des plug-in sensé améliorer la vie des dev. Je ne sais ni ce qu'est un dev, ni un plug-in. J'avais besoin de déconstruire mes peurs en shippant des projets rapidement. Par hasard, en m'inscrivant sur github, je suis tombé sur une méthode créé par othman qui venait de faire le buzz nommée planning-with-files. Je venais d'ouvrir les yeux ! Ce que je voulais, d'autres aussi le voulais, et s'inspiraient déjà de ce que les GAFAM étaient entrain de construire. En d'autres termes, ma nia pure et mon attachement à la recherche de la vérité m'ont conduit à avoir des raisonnement logique et des déductions que les plus grands sont en train d'avoir en même temps mais avec un budget infi et de nombreux talents. Bref, la méthode planning-with-files nommée PWF est une méthode que j'ai fini par remettre en cause, car elle ne servait pas la cause générale de la clarification de l'intention. Elle servait une étape précise d'une chaîne méthodologique que j'ai construis avec CPE, Claire etc. J'avais même utiliser Miro, une plate-forme en ligne de tableau blancs pour construire la chaîne avec un visuelle.</blockquote></li>
+    <li>Témoignage de Yanis (2026-11-11, séance J.2), sur Clear Sky et le tableau Miro par rapport au cockpit du 08/01 · certaine (déclaratif)
+      <blockquote>Ils existaient après évidemment.</blockquote></li>
+    <li>Fiche <code>docs/findings/2026-11-11-J.1-memoire-claire.html</code> : § 3 et § 5 (claire-app : le LLM écrit, <code>lib/scoring.ts</code> note par règles fixes ; <code>lib/prompts.ts</code> « Tu ne calcules pas les scores » ; PASS ⟺ μA &lt; 0,5 et μV ≥ 0,4), § 4 (table CPE ↔ Scrum du 05/05, personas), § 6 (« une porte que j'ai mis du temps à fermer »), § 7 · élevée (lue, non revérifiée dans les repos)</li>
+    <li><code>vault/protocole/CPE/sources/clear-sky/000_CANONICAL_PIPELINE_EQUATION.md:130</code> : « … copiable … pour ton README / Miro » (réponse d'IA) · certaine (trace) ; date : non établie</li>
+    <li>De-l-Intention <code>quickstart.md:73</code> : « (automatique avec les hooks dans Claude Code) », seule mention de Claude dans les 3 repos (<code>git grep -i claude</code> sur toutes les révisions) · certaine</li>
+    <li><code>~/.claude/skills/cpe-sprint/SKILL.md</code> l.52, 66–85 : PASS si μA &lt; 0,5 et μV ≥ 0,4 ; grille A_i / V_i · certaine</li>
+    <li><code>vault/2 - CONCEPTS/intention-claire-extinction-review.md</code> l.23–27 (« un délire cohérent se transfère parfaitement ») · certaine</li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>

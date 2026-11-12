@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  FICHE MÉMOIRE — séance H.2 (vague 2), copiée depuis docs/gabarits/fiche-memoire.html.
+-->
+<title>audit-repo — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>tactacboomboom/audit-repo</h1>
+  <div class="meta">
+    2026-05-20 → 2026-05-26 · 9 commits · 878 Ko hors .git · abandonné (figé depuis le 26/05) ·
+    séance H.2 ← parent H · 2026-11-10 · statut complet
+  </div>
+  <span class="badge v-archiv">ARCHIVER</span>
+</header>
+
+<p class="lead">La bibliothèque de lecture de Yanis : 10 repos « traduits » par son skill
+<code>/repo-audit</code> (analyse fmaths → récit sans jargon → verdict → page HTML), mise en ligne
+pour être lue sur le téléphone, et conçue au départ comme la matière d'un skill
+<code>architecture-anthropic</code> qui n'a jamais été construit.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>Le 20/05/2026, la séance « architecture-anthropic » lance 7 sous-agents <code>/repo-audit</code>
+    en parallèle : 6 repos officiels Anthropic plus planning-with-files <span class="ref">[3]</span>.
+    Le parent attend que tous aient fini : son flux reste muet, l'API le coupe (« Stream idle
+    timeout »), environ 600k tokens et 30 min partent en fumée. Les audits, eux, sont bien sur le Drive
+    <span class="ref">[4]</span>. Yanis demande alors : « Y'a pas moyen de créer un repo audit-repo et
+    d'y ranger mes analyses […] les ship sur vercel comme ça je les ai en ligne », puis « Je veux les
+    html dans un repo […] les consulter sur mon tel » <span class="ref">[5]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Dans l'immédiat : lire les audits déjà payés, sur mobile, via une URL Vercel
+    <span class="ref">[5]</span>. Sur le fond : servir de base au skill <code>architecture-anthropic</code>,
+    qui devait être une « checklist d'audit du système personnel Yanis », calée sur les conventions
+    officielles d'Anthropic <span class="ref">[3]</span>. Ton souvenir est <b>confirmé</b> : le
+    décodeur du skill interdit « variables, symboles logiques, notations d'ensembles » et vise un récit
+    « lisible par un décideur » <span class="ref">[2]</span>. Le but : comprendre un repo sans entrer
+    dans la technique.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 1 — Le lot Anthropic (7 audits) · 2026-05-20</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-20</td><td><code>e59e02a</code> 56 fichiers : 6 audits Anthropic (claude-code, skills, cookbook, courses, quickstarts, prompt-eng-tutorial) + planning-with-files (hooks, scripts et templates extraits) + <code>index.html</code></td><td>Question du jour : « à quoi ressemble l'architecture officielle, et mon système y est-il conforme ? » pwf est ajouté en 7<sup>e</sup> parce qu'il coûtait cher pendant la séance <span class="ref">[3]</span></td><td>Une base de référence. Constat au passage : 3 audits sur 7 n'ont que du markdown, car le skill n'était pas visible des sous-agents <span class="ref">[4]</span> <span class="ref">[6]</span></td></tr>
+    <tr><td class="d">2026-05-20</td><td><code>4fcb789</code> ajoute la note « fin de session 20 05… (a supr quand lu) »</td><td>Garder la trace du timeout et la réponse sur le bon schéma de fan-out (<code>run_in_background</code>)</td><td>Leçon de méthode écrite noir sur blanc <span class="ref">[5]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — Combler la dette HTML · 2026-05-23</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-23</td><td><code>7b7000a</code> HTML 4 onglets pour courses et quickstarts, faits à partir des .md existants</td><td>« Dette D1 » : les 7 audits devaient être lisibles de la même façon sur téléphone</td><td>6/6 audits Anthropic en HTML. Le même jour naît le persona vault « ingénieur Anthropic », avec un sous-persona par repo <span class="ref">[7]</span></td></tr>
+  </table>
+  <div class="phase">Phase 3 — Les outils communautaires · 2026-05-25</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-25</td><td><code>963be2e</code> audit #8 obra/superpowers (8,3/10)</td><td>Évaluer un framework de méthode en 7 étapes (Brainstorm → … → Finish). Ce que tu cherchais ce jour-là : à confirmer par Yanis</td><td>Un verdict d'adoption ; superpowers tournait sur l'ancien PC <span class="ref">[8]</span></td></tr>
+    <tr><td class="d">2026-05-25</td><td><code>f089f09</code> frontmatter <code>name</code>/<code>description</code> sur les 5 fichiers, fmaths et récit compressés</td><td>Appliquer à ses propres audits la leçon tirée d'anthropics/skills (chargement sélectif)</td><td>Des audits chargeables morceau par morceau par Claude <span class="ref">[1]</span></td></tr>
+    <tr><td class="d">2026-05-25</td><td><code>6df3225</code> audit #9 claude-mem (8,6/10), « prothèse mnésique » + scripts de compression de contexte (superpowers, <code>pm/</code>, <code>indie-dev/</code>)</td><td>Résoudre l'oubli d'une séance à l'autre ; préparer des contextes de personas</td><td>Fondement de <code>/recall</code> et <code>/session-restore</code> <span class="ref">[9]</span></td></tr>
+    <tr><td class="d">2026-05-25</td><td><code>c1e6561</code> carte #9 dans l'index · <code>ae2133c</code> HTML régénéré en Python (<code>build_html.py</code>)</td><td>Le HTML était vide : un here-string PowerShell interprétait les <code>$</code> du markdown</td><td>Une génération HTML fiable, et l'origine probable de la règle « pas de PowerShell pour écrire » <span class="ref">[1]</span></td></tr>
+  </table>
+  <div class="phase">Phase 4 — Dernier audit, angle produit · 2026-05-26</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-26</td><td><code>3b38dc0</code> audit #10 alirezarezvani/claude-skills (329 skills)</td><td>Angle « dreamteam solo » : « quels skills de ce repo dois-je greffer sur quels personnages de ma matrice ? »</td><td>Une piste de greffe vers <code>claude-prostheses</code>. Le repo s'arrête là <span class="ref">[10]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">skill /repo-audit</span> Il produisait le contenu. 6 étapes :
+    collecte (5 fetches en parallèle) → <b>fmaths</b> en 8 couches (L0 ontologie → L8 probabilités, plus un
+    bilan du « vecteur cognitif ») → <b>décodeur narratif</b> (« le décor », « les règles du jeu »,
+    « les points de rupture »…, sur un ton d'« essai ou script podcast ») → installation Windows →
+    <b>verdict PM</b> (3 scores sur 10, matrice ✅/❌) → <b>HTML 4 onglets</b> au thème VSCode sombre.
+    C'est ta façon d'apprendre : on formalise d'abord, puis on <i>retraduit</i> en récit et en décision
+    <span class="ref">[2]</span>. Le skill assemble trois briques que tu as toujours :
+    <code>/fmath</code>, <code>/decodeur-narratif</code> et <code>/pwf</code> (sa « règle 2-actions »
+    impose un <code>findings.md</code>) <span class="ref">[2]</span> <span class="ref">[11]</span></li>
+    <li><span class="chip">skill /pwf</span> L'audit d'OthmanAdi a mesuré environ 890k tokens par
+    session, dus aux hooks (dont environ 750k pour un seul <code>preToolUse</code> sans matcher). Le
+    <code>/pwf</code> actuel en garde le cœur, sans aucun hook <span class="ref">[5]</span>
+    <span class="ref">[8]</span>. Date de sa réécriture : à confirmer par Yanis</li>
+    <li><span class="chip">plugins claude-mem, superpowers</span> Les deux audits ont mené à leur
+    installation sur l'ancien PC. <code>/recall</code> et <code>/session-restore</code> dépendent de
+    claude-mem <span class="ref">[8]</span></li>
+    <li><span class="chip">règle de méthode</span> La leçon du timeout (fan-out
+    <code>run_in_background</code>, jamais d'attente bloquante) a mené aux séances parallèles pilotées
+    par kernel, celles de cette reprise <span class="ref">[5]</span> <span class="ref">[8]</span></li>
+    <li><span class="chip">vault</span> <code>3 - SKILLS/persona-ingenieur-anthropic/</code> (23/05) :
+    « Eux sont le standard, pas moi », et « mis à jour upstream → re-audit » <span class="ref">[7]</span></li>
+    <li><span class="chip">PLUG-INS</span> La règle « Avant d'installer un nouveau plugin → lancer
+    <code>/repo-audit</code> » fait de l'audit une porte d'entrée obligatoire <span class="ref">[12]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>5 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li>Vouloir aligner son système sur la norme Anthropic → audit des 6 repos officiels, puis
+      contrôle de conformité. Exemple : <code>architecture-mao</code> jugé non conforme (champ
+      <code>type:</code>, <code>CLAUDE.md</code> dans un skill) <span class="ref">[4]</span></li>
+      <li>Un outil qui coûte ou qui manque (pwf trop cher, mémoire absente) → audit avant de décider
+      <span class="ref">[3]</span> <span class="ref">[9]</span></li>
+      <li>Envie d'installer un plugin → <code>/repo-audit</code> d'abord <span class="ref">[12]</span></li>
+      <li>Temps mort (métro, sortie) → lecture des HTML sur le téléphone <span class="ref">[5]</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>6 · Où je me suis arrêté</h2>
+    <p>Dernier commit le 26/05 (audit #10). Le README annonce encore « 8 audits ». La phase 2, le skill
+    <code>architecture-anthropic</code>, n'a jamais été construite : <code>SKILLS\architecture-anthropic\</code>
+    ne contient que <code>repos/</code>, et le <code>task_plan.md</code> du 20/05 n'a plus été mis à jour
+    (phases 2 à 6 restées « not_started ») <span class="ref">[3]</span> <span class="ref">[13]</span>.
+    Raison probable : on est passé aux personas et à <code>claude-prostheses</code> (sprints de fin mai
+    et juin). À confirmer par Yanis. Déploiement Vercel effectif : à confirmer.</p>
+  </section>
+</div>
+
+<section>
+  <h2>7 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict :</b> ARCHIVER, comme F <span class="ref">[8]</span>. C'est une archive de lecture,
+    sans code à exécuter. Le tri par outil vient de F, sans refaire l'analyse : RÉCUPÉRER claude-mem
+    (priorité 1), puis superpowers en sélection ; IGNORER le plugin pwf (couvert par <code>/pwf</code>)
+    et alirezarezvani pour le setup. <b>Correction de F :</b> <code>~/.claude/plugins</code> n'est pas
+    un dossier vide, c'est une <b>jonction vers un dossier Drive absent</b> (vérifié par D) <span class="ref">[14]</span>.</li>
+    <li><b>Réutilisable :</b> le skill <code>/repo-audit</code> est déjà actif
+    (<code>~/.claude/skills/repo-audit/</code>, avec sa source sur le Drive dans <code>SKILLS\repo-audit\</code>)
+    → rien à rapatrier. Les audits superpowers et claude-mem serviront de dossier d'installation
+    (versions à revérifier) <span class="ref">[2]</span> <span class="ref">[13]</span>.</li>
+    <li><b>Conflits gouvernance :</b> (a) <b>R13</b> (« drive canonique ») : <code>architecture-anthropic\repos\</code>
+    ne compte que les 6 audits Anthropic. Sur les 4 audits communautaires, 2 sont rangés ailleurs sur le
+    Drive : pwf dans <code>SKILLS\pwf\audit-othmanadi\</code>, en version plus complète que dans le repo
+    (HTML + fmaths, récit et verdict) ; claude-mem dans <code>PLUG-INS\claude-mem\</code> (v13.0.0) et
+    <code>C3-PRODUIT\Claire\</code> (v13.2.0). Ces deux-là sont des audits différents de celui du repo
+    (v13.3.0), pas des copies. Les 2 autres (<b>superpowers, alirezarezvani</b>) n'existent <b>que sur
+    GitHub</b>. Le message du commit initial (« copie GitHub = artefact régénérable, R13 ») n'est donc plus
+    vrai <span class="ref">[1]</span> <span class="ref">[13]</span> <span class="ref">[15]</span>
+    <span class="ref">[16]</span>.
+    (b) Ironie à noter : le frontmatter de <code>/repo-audit</code> porte <code>type:</code>,
+    <code>tags:</code>, <code>input:</code>… Or c'est exactement le hors-standard que ses propres audits
+    reprochaient à <code>architecture-mao</code> <span class="ref">[2]</span> <span class="ref">[4]</span>.</li>
+    <li><b>À confirmer par Yanis :</b> (1) ce que tu cherchais le 25/05 avec superpowers ;
+    (2) quand <code>/pwf</code> a été réécrit sans hooks ; (3) si <code>audit-repo.vercel.app</code> a
+    réellement été déployé et consulté ; (4) si le skill <code>architecture-anthropic</code> est abandonné
+    ou seulement mis en pause ; (5) le rapatriement des 4 audits communautaires vers le Drive (Q4 de F) ;
+    (6) la suppression de la note « a supr quand lu », qui demande un push (Q1 de F).</li>
+    <li><b>Pour la convergence :</b> Q1 du kernel, à traiter par <b>H.1</b> : <code>PLUG-INS/CLAUDE.md:20</code>
+    impose « /repo-audit avant tout plugin » et range le HTML dans <code>PLUG-INS/&lt;nom&gt;/</code>. Les
+    audits claude-mem et superpowers d'audit-repo sont donc les dossiers « pré-installation » attendus par
+    cette règle, et <code>PLUG-INS/claude-mem/</code> existe déjà sur le Drive <span class="ref">[12]</span>.
+    Dépendance supplémentaire : alirezarezvani, <code>pm/</code> et <code>indie-dev/</code> concernent
+    <code>claude-prostheses</code>. Le Drive contient aussi 2 audits absents du repo :
+    <code>PLUG-INS\graphify\graphify-analysis.html</code> et <code>C3-PRODUIT\Claire\idun-analysis.html</code>
+    <span class="ref">[16]</span>.
+    <br><b>État vérifié sur ce PC :</b> superpowers n'est <b>pas installé</b> (absent de
+    <code>settings.json</code>, aucun de ses skills dans <code>~/.claude/skills/</code>). Le skill
+    <code>architecture-anthropic</code> n'a <b>jamais été développé</b>. <b>archi-mao</b>
+    (<code>SKILLS\architecture-multi-agent-orchestration\</code>, construit par Yanis le 20/05 à partir de sa
+    conversation du 19/05 : grille des 7 objets Agent / Contexte / Outil / Mémoire / Trace / Protocole /
+    Politique, plus 12 papiers fondateurs) existe sur le Drive mais <b>n'est pas activé</b> en local. C'était
+    la « théorie » dont <code>architecture-anthropic</code> devait être le miroir pratique
+    <span class="ref">[3]</span> <span class="ref">[17]</span>.
+    <br><b>Proposition pour le pilote H :</b> une séance dédiée « vision Anthropic », qui relirait les 6
+    audits, en tirerait une fiche courte des règles à retenir, et vérifierait qu'elles sont toujours
+    valables upstream (audits de mai). Ce serait la première pierre d'<code>architecture-anthropic</code>.
+    Contexte apporté par Yanis en séance : en mai, 4 chantiers démarraient en parallèle (norme Anthropic ·
+    méthode Scrum · mémoire · graphe de concepts), et tout le lien entre eux était dans sa tête. Il y a aussi
+    une précision à reporter : le repo rangeait 6 audits de référence et 4 audits d'outils communautaires,
+    et le circuit « audit → push → Vercel » n'a jamais été automatisé.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li><code>git log --reverse --stat</code> sur le clone complet (9 commits, <code>e59e02a</code> → <code>3b38dc0</code>), <code>du -sh</code> = 878K · certaine</li>
+    <li><code>~/.claude/skills/repo-audit/SKILL.md:1-19</code> et <code>process.md:5-19, 41, 45-99, 148-160</code> · certaine</li>
+    <li><code>vault/sessions/2026-05-20-architecture-anthropic/task_plan.md:8-29, 38, 43</code> · certaine</li>
+    <li>Note « fin de session 20 05… » (repo), l. 1-58 (timeout, 518k tokens des sous-agents, non-conformité d'architecture-mao, 3/7 sans <code>/repo-audit</code>) · certaine</li>
+    <li>Même note, l. 60-200 (demande du repo et de Vercel, « consulter sur mon tel », schéma <code>run_in_background</code>) · certaine</li>
+    <li>Même note, l. 225-265 (citations des sous-agents : skill non visible) · élevée</li>
+    <li><code>vault/3 - SKILLS/persona-ingenieur-anthropic/_index.md:2, 10, 18-38</code> · certaine</li>
+    <li><code>docs/findings/2026-11-10-F-audit-repo.md</code> § 2, 4, 5 (verdicts, outils sur l'ancien PC, Q1/Q2/Q4) · élevée</li>
+    <li><code>thedotmack-claude-mem/verdict.md:1-30</code>, message du commit <code>6df3225</code> · certaine</li>
+    <li><code>alirezarezvani-claude-skills/recit.md:89-91</code>, message du commit <code>3b38dc0</code> · certaine</li>
+    <li><code>ls G:\Mon Drive\10 - Claude\SKILLS</code> → <code>fmath</code>, <code>decodeur-narratif</code>, <code>pwf</code>, <code>repo-audit</code> présents · certaine</li>
+    <li><code>G:\Mon Drive\10 - Claude\PLUG-INS\CLAUDE.md:20</code> + <code>ls PLUG-INS</code> · certaine</li>
+    <li><code>ls SKILLS/architecture-anthropic/</code> → <code>repos/</code> seul ; <code>ls …/repos/</code> → les 6 dossiers anthropics-* · certaine</li>
+    <li>Kernel H.2, décision D3 (vérification faite par D, non refaite ici) · élevée</li>
+    <li><code>TRANSVERS/gouvernance-regles.md:60, 63</code> (R10, R13) · certaine</li>
+    <li><code>find "G:\Mon Drive\10 - Claude"</code> (hors vault) sur les noms des outils et <code>*-analysis.html</code> ; <code>md5sum</code> + <code>wc -c</code> des 3 <code>claude-mem-analysis.html</code> (37 Ko, 18 Ko, 77 Ko, tous différents) · certaine</li>
+    <li><code>SKILLS/architecture-multi-agent-orchestration/SKILL.md:1-30</code> ; <code>vault/1 - CONVERSATIONS/architecture-multi-agent-orchestration/N4.md:1-25</code> ; <code>ls ~/.claude/skills</code> + <code>grep superpowers settings.json</code> (0) · certaine</li>
+  </ol>
+  Recherche vault (C3) : <code>grep -ril</code> « repo-audit / audit-repo / superpowers / claude-mem » → 0 note ;
+  « fmath » → persona-ingenieur-anthropic, MEMORY.md, repo-intention.md (passages lus seulement). Le skill
+  <code>/repo-audit</code> a été lu, pas lancé (C2). Exemples d'audits lus (C4) : claude-mem (verdict) et
+  superpowers (début du récit).
+</footer>
+
+</main>
+</body>
+</html>
