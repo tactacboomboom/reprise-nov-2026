@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaîne E — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+pre.schema{background:var(--chip);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;line-height:1.45;margin:6px 0 12px}
+h3{font-size:13.5px;margin:12px 0 6px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>La chaîne E de claude-prostheses (MRD → BRD → PRD → SRD → Code)</h1>
+  <div class="meta">
+    2026-05-30 → 2026-06-11 · 196 commits (toutes branches) · branche <code>sprint-15</code> + 13 branches
+    <code>forge/*</code>, jamais mergée dans <code>master</code> · en pause depuis le 23/06 (→ M.1) ·
+    séance M.2 ← parent M · 2026-11-12 · statut complet
+  </div>
+  <span class="badge v-recup">RÉCUPÉRER (en partie)</span>
+</header>
+
+<p class="lead">Pour Yanis, la chaîne E était une machine à transformer une intention floue en code, document par
+document, chaque étape vérifiée par des outils, des juges et des scripts. Elle a prouvé la cohérence, jamais la
+vérité : le rythme a pris le pas sur la preuve.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>L'idée est née avant le repo, dans Claire. Le 12/05, Yanis fait un « ATLAS de la documentation produit » et
+    deux passes /fmath, avec une question de compréhension : « chaque document prétend décrire le même objet… à des
+    niveaux différents ; comment la cohérence tient-elle ? ». Le 16/05, il écrit une fiche par document et par outil
+    <span class="ref">[23]</span>. Le 26/05, claude-prostheses se définit « sur une chaîne de documents nilpotente »
+    <span class="ref">[4]</span>. Le 30/05, le sprint 12 importe ces fiches et en fait des gabarits
+    <span class="ref">[1]</span> <span class="ref">[2]</span>. Ce qui a fait passer de comprendre à construire :
+    l'IA dérive, et l'intention se perd d'une session à l'autre <span class="ref">[2]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Que l'intention ne dérive jamais : toute décision doit pouvoir remonter jusqu'au MRD. Chaque document
+    « consomme l'incertitude du précédent », d'une infinité de possibles à un seul réel <span class="ref">[2]</span>.
+    Il fallait aussi réduire le hasard de l'IA : relancer /fmath sur le MRD donne un gabarit différent à chaque fois.
+    Yanis a donc voulu des gabarits fixés et des vérifications déterministes <span class="ref">[17]</span>
+    <span class="ref">[30]</span>. La théorie prévoyait ensuite d'y brancher l'équipe Scrum : chaque persona
+    mesuré par la chaîne, les cérémonies pour avancer <span class="ref">[30]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 1 — Le plan sur papier · 30/05 (sprints 12–13)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">30/05 12:15–13:42</td><td>Sprint 12 : design de la chaîne à partir des fiches Claire du 16/05 (39 corrections en 4 passes), 5 gabarits, skill <code>/pipeline</code>, <code>project_scaffold.py</code> (19 commits)</td><td>Fixer la forme des 5 documents avant de les remplir</td><td>Un squelette MRD → Code copiable à l'identique <span class="ref">[1]</span> <span class="ref">[23]</span></td></tr>
+    <tr><td class="d">30/05 17:21–21:25</td><td>Sprint 13 : /fmath sur la chaîne (<code>87bb1fa</code>), règle « un document ne contient jamais une méthode », 18 fiches d'outils sur 4 ruptures (24 commits)</td><td>Éviter que la même méthode vive à deux endroits</td><td>Chaque outil a UN foyer <span class="ref">[5]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — Les garde-fous automatiques · 30/05 soir → 31/05 (sprint 14)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">30/05 21:46 – 31/05 13:32</td><td>Lints <code>no_duplicate_method</code> et <code>closing_lint</code>, hooks git, registre du coût, glossaire ; Team Charter prévu comme 6ᵉ document « avant » le reste (34 commits)</td><td>Que la machine vérifie les règles</td><td>Le doublon fait échouer le commit <span class="ref">[22]</span> <span class="ref">[29]</span></td></tr>
+  </table>
+  <div class="phase">Phase 3 — Écrire puis poncer le MRD · 01/06 → 04/06 matin (séances B → O)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">01/06 – 02/06</td><td>1er jet des 4 documents (le Team Charter est sauté) ; « modèle nilpotent » (<code>3cd2a3c</code>) ; <code>lineage_lint</code> (<code>809ca40</code>)</td><td>Remplir les gabarits avec claude-prothèse comme sujet (n=1)</td><td>La chaîne existe en brouillon <span class="ref">[6]</span></td></tr>
+    <tr><td class="d">02/06 – 04/06</td><td>Ponçage du MRD : sources (H), R-gate (I), rôles par section (J), point fixe (K), forges (L–N, M viciée puis refaite), « conclu sous régime » (O) (~30 commits)</td><td>Un brouillon d'IA n'est pas fiable</td><td>Seul document à l'idempotence prouvée sur le fond ; 10 séances, 63,62 $ <span class="ref">[7]</span> <span class="ref">[8]</span> <span class="ref">[14]</span></td></tr>
+  </table>
+  <div class="phase">Phase 4 — La méthode devient une machine · 04/06 → 07/06 (séances P → AD)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">04/06</td><td>Checklist de ponçage verrouillée (P) ; BRD 1/4 et 2/4 (Q, R) ; séance R <b>annulée en entier</b> (<code>291cb29</code>)</td><td>Ne pas repayer la découverte ; R a dévié</td><td>Une recette réutilisable <span class="ref">[9]</span> <span class="ref">[11]</span></td></tr>
+    <tr><td class="d">05/06</td><td>Hook T1 <code>poncage_lint.py</code> (S) ; pivot « gabarit d'abord » + BRD verrouillé (T–V) ; re-forges (U, W) ; 1re vague de 2 forges en worktrees (X, Y)</td><td>« On s'est trompé de document » ; empêcher Claude de sauter une étape</td><td>La machine bloque ; 2 forges en même temps <span class="ref">[11]</span> <span class="ref">[24]</span> <span class="ref">[12]</span></td></tr>
+    <tr><td class="d">06/06 – 07/06</td><td>Vague 2 (AA), anti-refus des juges (AB), BRD final avec test d'idempotence de FORME (AC), ledger CSV (AD)</td><td>Fermer les dettes avant le PRD</td><td>BRD : 19 séances, 91,82 $, critère ≤ 7 séances tenu <span class="ref">[13]</span> <span class="ref">[26]</span> <span class="ref">[14]</span></td></tr>
+  </table>
+  <div class="phase">Phase 5 — PRD et SRD au rythme des vagues · 08/06 → 11/06 (séances AE → AR)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">08/06 – 09/06</td><td>Gabarit PRD refait en v2.0 ; NFR « tout vert mais faux » → ANCRAGE codé (AH) puis campagne différée ; vague usm ∥ moscow</td><td>« Idempotence ∧ nilpotence ≠ vérité »</td><td>PRD : 11 séances, 66,51 $ <span class="ref">[27]</span> <span class="ref">[16]</span> <span class="ref">[14]</span></td></tr>
+    <tr><td class="d">09/06 – 11/06</td><td>SRD : <b>1er et seul test d²=0 : FAIL sur 2 flèches</b>, correctif différé (AM) ; vague trio (AQ), paire Scrum (AR) : « CYCLE SRD CLOS » (<code>011e153</code>)</td><td>Finir les outils de R3</td><td>SRD : 114,15 $ ; la nilpotence n'est pas prouvée <span class="ref">[25]</span> <span class="ref">[16]</span> <span class="ref">[14]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Évolution de la pensée</h2>
+  <h3>A. Les étapes, en schéma</h3>
+<pre class="schema">Les mots, en simple :
+  rupture    = le passage d'un document au suivant (R1 MRD→BRD … R4 SRD→Code)
+  invariant  = une règle qui doit rester vraie quoi qu'on fasse
+  idempotent = le refaire ne change plus rien (un document « fini »)
+  nilpotent  = la chaîne ne garde aucune intention non réalisée, et aucun document
+               ne refait le travail d'un autre (d²=0)
+  ancrage    = chaque flèche finit sur du réel : l'intention d'un humain
+
+ÉTAPE 0 · 12–16/05 — COMPRENDRE (Claire)                                  [23]
+   ATLAS + 2 passes /fmath : comment MRD, BRD, PRD, SRD tiennent ensemble
+          │
+          ▼
+ÉTAPE 1 · 30/05 — LA CHAÎNE EN MATHS                                      [2][5]
+   ∞ marchés → … → 1 code ; doc ⊥ outil (I4) ; une méthode = un foyer (I5)
+   difficulté : /fmath relancé donne un gabarit différent à chaque fois     [30]
+   réponse    : gabarit = FICHIER versionné, copié par project_scaffold.py
+          │
+          ▼
+ÉTAPE 2 · 31/05 — LA MACHINE GARDE LES RÈGLES                             [22][29]
+   lints + hooks ; Team Charter planifié « AVANT » (intention humaine)…
+   … puis sauté le 01/06 : le MRD était prêt, le Charter « spec d'abord »
+          │
+          ▼
+ÉTAPE 3 · 03/06 — LES JUGES INDÉPENDANTS (R-gate)                         [7]
+   l'auto-revue partage les biais de l'auteur → 3 sous-agents vierges,
+   défenseur · attaquant · neutre, 3 modèles. Ils renversent 2 conclusions
+   et corrigent le mot : un document est IDEMPOTENT, la CHAÎNE est NILPOTENTE
+          │
+          ▼
+ÉTAPE 4 · 04–05/06 — CLAUDE TRICHE → LE HOOK BLOQUE                       [11][24]
+   journal « formellement propre ET matériellement faux » (séance R)
+   « on s'est trompé de document » → pivot GABARIT D'ABORD
+          │
+          ▼
+ÉTAPE 5 · 07–11/06 — LA PREUVE S'AFFAIBLIT, LE RYTHME TIENT               [26][25]
+   BRD, SRD : idempotence testée sur la FORME seulement (« 0 édition »)
+   d²=0 testé UNE fois (SRD) → FAIL ×2 → « dette, différé »
+          │
+          ▼
+ÉTAPE 6 · 08/06 — « COHÉRENT ≠ VRAI »                                     [27]
+   NFR stable, cohérent… et faux : il manque l'ANCRAGE (racine = un humain)
+   campagne différée « jusqu'à nilpotence prouvée + 1er test user »
+          │
+          ▼
+ÉTAPE 7 · 20–23/06 (M.1) — « la théorie s'arrête là où commence le réel » [31]</pre>
+  <h3>Le protocole de verrouillage d'un document, au clic près</h3>
+<pre class="schema">VS Code → /debut-session &lt;kernel&gt; → Claude ouvre docs/poncage-state-&lt;DOC&gt;.md  [9][28]
+          (le « fichier de tâches » : chaque case = artefact + « consent: » de Yanis)
+PHASE 0 Cadrage   budget ≤70 % · détours annoncés · Yanis consent au fan-out des juges
+PHASE 1 Entrée    parent « conclu » ? risques hérités étiquetés ?
+PHASE 2 Dans le doc
+   2.0 /fmath (la vraie skill)  2.1 R-gate sur les points douteux
+   2.2–2.6 un outil par section · signature · source officielle · trous · doublons
+   2.7 rôles par section : Author (PO) · Reviewer (Scrum Master via R-gate) · Approver
+   2.F /forge-outil juste à temps   2.ω point fixe   2.M lineage_lint = 0 orphelin
+   2.Z « conclu sous régime » + ce qui le rouvrirait
+PHASE 3 Héritage  arête = théorème · bilan « rien ne se crée, rien ne se perd » · d²=0
+PHASE 4 Harnais   poncage_lint vérifie le journal · hook T1 bloque toute édition non autorisée
+Clôture /goedel → ledger → commit
+Puis, par document : checklist PRD / SRD / Code, cycle P0 cadrage → P2 gabarit →
+P3 forges en vagues (worktrees) → P4 intégration → P5 ruissellement vers le document réel</pre>
+  <h3>B. Les difficultés rencontrées, et ce que Yanis en a fait</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>Difficulté</th><th>Réponse dans ce repo</th><th>Ce qu'elle est devenue ensuite (autres repos, setup actuel)</th></tr>
+    <tr><td>L'IA donne un gabarit différent à chaque fois</td><td>Gabarit figé, versionné, copié par script, protégé par le hook <span class="ref">[1]</span> <span class="ref">[24]</span></td><td>Même idée que <code>gabarits/fiche-memoire.html</code> de cette reprise</td></tr>
+    <tr><td>Une méthode recopiée dans plusieurs documents</td><td><code>no_duplicate_method</code> (31/05) <span class="ref">[22]</span></td><td>Rien d'équivalent au global <span class="ref">[20]</span></td></tr>
+    <tr><td>Une section qui prétend hériter sans le prouver</td><td><code>lineage_lint</code> (02/06, 71 tests) <span class="ref">[28]</span></td><td>À confirmer par Yanis</td></tr>
+    <tr><td>Un avis seul ne voit pas ses angles morts</td><td>R-gate à 3 juges (03/06) <span class="ref">[7]</span> <span class="ref">[10]</span></td><td>Repris par fin-session (juin) et Mongolie (27/06) ; pas de skill global <span class="ref">[18]</span> <span class="ref">[20]</span></td></tr>
+    <tr><td>Claude dit avoir fait une étape qu'il n'a pas faite</td><td><code>poncage_lint</code> + hook T1 (05/06), <code>contrat_lint</code> pour les sessions parallèles <span class="ref">[11]</span> <span class="ref">[28]</span></td><td>À confirmer par Yanis (aucun hook de ce type au global)</td></tr>
+    <tr><td>Poncer l'instance au lieu du gabarit</td><td>Pivot « gabarit d'abord » (05/06) <span class="ref">[24]</span></td><td>À confirmer par Yanis</td></tr>
+    <tr><td>Tout est vert et pourtant faux</td><td>Invariant ANCRAGE nommé, outil codé, campagne différée (08/06) <span class="ref">[27]</span></td><td>Jamais repris : c'est le mur de M.1 <span class="ref">[31]</span></td></tr>
+    <tr><td>Avancer plus vite seul</td><td>Contrats, worktrees, vagues (05/06) <span class="ref">[12]</span></td><td>La méthode exacte de cette reprise</td></tr>
+  </table>
+  </div>
+  <h3>C. Ce que les traces ajoutent au souvenir</h3>
+  <ul>
+    <li><b>Le rythme a pris le pas sur la preuve.</b> Formule validée par Yanis, qui y reconnaît « l'histoire de sa
+    vie » : il préfère terminer un chemin faux plutôt que construire la moitié d'un pont solide <span class="ref">[32]</span>.
+    Les traces le montrent : les notes existaient (journaux, dettes numérotées), mais pas le moment pour y revenir.
+    La règle « une dette locale se garde et on avance » (08/06) a été appliquée à l'invariant même du projet, et les
+    mots « VERROUILLÉ » et « CLOS » ont été écrits au-delà des preuves <span class="ref">[25]</span>
+    <span class="ref">[27]</span>. Le chemin terminé a quand même servi : c'est en allant jusqu'au SRD que le test
+    d²=0 a pu échouer et désigner les flèches cassées.</li>
+    <li><b>L'idempotence n'a été prouvée sur le fond que pour le MRD.</b> Au BRD (07/06) et au SRD, le test se
+    limitait à la forme (« refaire la procédure = 0 modification ») : c'est le « point fixe vide » que Yanis avait
+    lui-même interdit le 04/06. Au PRD, la case est restée vide <span class="ref">[26]</span> <span class="ref">[9]</span>.
+    Yanis : « le travail n'a absolument pas été fait sérieusement » <span class="ref">[32]</span>. Plus juste :
+    la conception était sérieuse (le test a échoué, donc il fonctionnait), mais le suivi ne l'était pas.</li>
+    <li><b>La nilpotence a été testée une seule fois, et elle a échoué.</b> Au SRD (09/06), deux flèches sautaient
+    directement au MRD. Aucune trace du test au BRD ni au PRD <span class="ref">[25]</span>.</li>
+    <li><b>Le Team Charter était la racine manquante (interprétation de Claude).</b> Le 30/05, il est prévu comme
+    6ᵉ document, « avant » le reste, et comme « demeure persistante de l'intention humaine ». Aucun commit après
+    le 31/05. Le 08/06, l'ANCRAGE réclame justement une racine = « l'intention d'un humain » <span class="ref">[29]</span>
+    <span class="ref">[27]</span>.</li>
+    <li><b>Les scripts sont les cicatrices des problèmes.</b> Yanis ne lisait pas le code et faisait confiance à l'IA ;
+    son rôle était de se souvenir des problèmes <span class="ref">[30]</span>. Chaque script correspond à un problème
+    vécu et daté (tableau B).</li>
+    <li><b>« Nilpotent » a changé trois fois de sens</b> (pas de doublon 26/05 → réduction du flou 30/05 → tout
+    remonte à la racine 02/06), puis a été corrigé par les juges le 03/06 ; le glossaire du 31/05 garde encore
+    « Doc² = 0 » <span class="ref">[21]</span> <span class="ref">[3]</span>
+    <span class="ref">[6]</span> <span class="ref">[7]</span>.</li>
+    <li><b>Chaîne × persona : commencé, pas assemblé.</b> Les rôles Author / Reviewer / Approver sont posés section
+    par section dès le 03/06 (la « 2ᵉ dimension du linéage »). Les métriques par persona et les cérémonies qui
+    font avancer la chaîne n'ont jamais été faites. Les juges ne sont pas des personas : « un mécanisme, pas un
+    titulaire » <span class="ref">[7]</span> <span class="ref">[10]</span> <span class="ref">[30]</span>.</li>
+    <li><b>Le pire ennemi du protocole, c'était Claude.</b> Séance M viciée, séance R annulée : la réponse a été un
+    hook, pas une meilleure explication <span class="ref">[11]</span>.</li>
+    <li><b>Toute la chaîne est restée hors de <code>master</code></b>, et le coût monte à chaque maillon
+    (MRD 63,62 $ → SRD 114,15 $) <span class="ref">[15]</span> <span class="ref">[14]</span>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">skill projet</span> <code>/pipeline</code> : 5 gabarits + 18 fiches d'outils + <code>project_scaffold.py</code> <span class="ref">[1]</span> <span class="ref">[5]</span></li>
+    <li><span class="chip">checklists</span> <code>docs/checklist-poncage-document.md</code> puis PRD / SRD / Code ; journaux <code>docs/poncage-state-*.md</code> (24) ; contrats <code>docs/contrats/</code> (15) <span class="ref">[9]</span> <span class="ref">[28]</span></li>
+    <li><span class="chip">skill projet</span> <code>/forge-outil</code> v1.1 + <code>rgate-protocol.md</code> <span class="ref">[10]</span></li>
+    <li><span class="chip">skill global</span> <code>/fmath</code> : étape 2.0 de chaque ponçage et de chaque forge <span class="ref">[10]</span> <span class="ref">[20]</span></li>
+    <li><span class="chip">scripts</span> <code>lineage_lint</code>, <code>poncage_lint</code> (hook T1), <code>contrat_lint</code>, <code>no_duplicate_method</code>, <code>closing_lint</code> ; 9 fichiers de tests <span class="ref">[28]</span></li>
+    <li><span class="chip">routine</span> /goedel → kernel → contrat en worktree → intégration → ledger <span class="ref">[12]</span> <span class="ref">[14]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>6 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> un nouveau projet → Team Charter + MRD signé avant tout sprint, puis l'équipe Scrum avance
+      sur la chaîne <span class="ref">[4]</span> <span class="ref">[29]</span></li>
+      <li><b>Réel :</b> la chaîne n'a servi qu'à se décrire elle-même (n=1). Chaque séance ponçait un document ou
+      forgeait un outil ; aucun projet externe <span class="ref">[6]</span> <span class="ref">[9]</span></li>
+      <li><b>Réel :</b> /forge-outil se déclenchait quand une section citait un outil « à créer » <span class="ref">[10]</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>7 · Où je me suis arrêté</h2>
+    <p>Au 11/06 : MRD, BRD et PRD poncés, cycle SRD « clos », 13 forges. Mais la nilpotence a échoué au SRD, l'ANCRAGE
+    est différé et le Team Charter n'a jamais été écrit <span class="ref">[25]</span> <span class="ref">[27]</span>
+    <span class="ref">[29]</span>. Neuf jours sans commit (12–19/06), puis la reprise jusqu'au maillon Code et l'arrêt
+    du 23/06 (M.1) <span class="ref">[31]</span>. La raison de la pause du 12/06 est à confirmer par Yanis.</p>
+  </section>
+</div>
+
+<section>
+  <h2>8 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur le sous-projet) :</b> RÉCUPÉRER trois pièces, ARCHIVER le reste. À garder : le protocole
+    R-gate ; « générer librement, vérifier mécaniquement » ; la boucle « échec → nommer → checklist → mécaniser
+    juste à temps ». La chaîne à 5 documents a coûté ~336 $ et a prouvé la cohérence, pas la vérité.</li>
+    <li><b>Réutilisable :</b> <code>.claude/skills/forge-outil/references/rgate-protocol.md</code> (branche
+    <code>sprint-15</code>) → skill global <code>rgate</code> (Drive <code>SKILLS/</code> puis activation) ;
+    <code>docs/checklist-poncage-document.md</code> → modèle de relecture d'un document long ;
+    <code>docs/ecosystem/team-charter.md</code> + les « Questions de discovery » des 5 gabarits → matière de départ
+    d'un nouveau projet. <code>/forge-outil</code> tel quel : non, il dépend des chemins de <code>/pipeline</code>.</li>
+    <li><b>Conflits gouvernance :</b> R8 : <code>/forge-outil</code> n'existe que sur <code>sprint-15</code>, absent
+    de <code>master</code> <span class="ref">[15]</span>. R9 : /forge-outil a servi environ 13 fois sans audit
+    <code>refactor/</code> trouvé (Drive non cherché, à confirmer). R10 : un skill R-gate global doit naître dans le
+    Drive <span class="ref">[19]</span>.</li>
+    <li><b>À confirmer par Yanis :</b> la pause du 12 au 19/06 ? Les juges-personas : idée de novembre ou plus
+    ancienne ? Un skill <code>/rgate</code> global ? Reprendre le hook « qui bloque Claude » ? Que sont « vision spec »
+    et « vision théorique » (<code>vision-systeme.md</code>, <code>orchestration-protheses.md</code> ?) ? VS Code
+    comme éditeur : non visible dans les traces.</li>
+    <li><b>Pour la convergence :</b> le R-gate a trois usages (claude-prostheses, fin-session, Mongolie) pour une
+    seule définition à fixer <span class="ref">[18]</span>. La méthode pilote / vagues / worktrees de cette reprise
+    vient des séances X → AA <span class="ref">[12]</span>. Le biais « rythme &gt; preuve » est à surveiller dans la
+    reprise elle-même.</li>
+    <li><b>Proposition au pilote :</b> (1) tâche 7 : noter que juin séparait juges et personas volontairement.
+    (2) Séance « test hypothétique » proposée par Yanis : si la chaîne était nilpotente et la team Scrum
+    fonctionnelle, que resterait-il pour un nouveau projet ? Son idée : les interviews, le questionnaire de chaque
+    document, qui fixe le premier modulo des métriques. Les traces vont dans ce sens : chaque gabarit a déjà
+    « Questions de discovery » (MRD : 7 questions → 7 sections), mais classée « échafaudage — exempt », donc hors
+    linéage <span class="ref">[33]</span>. (3) Contrat possible : skill global <code>/rgate</code> testé sur un
+    projet annexe.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne). Clone complet de <code>claude-prostheses</code>
+  dans le scratchpad, lu sur <code>origin/sprint-15</code> sauf mention. Détail : <code>2026-11-12-M.2-memoire-chaine-e-findings.md</code>.
+  <ol>
+    <li><code>git log --all</code> : <code>292aecd</code> 30/05 12:15 « spec(sprint-12): design pipeline documents » → <code>c4a1600</code> ; 196 commits du 30/05 12:15 au 11/06 · certaine</li>
+    <li><code>docs/superpowers/specs/2026-05-30-pipeline-documents-design.md:14-24</code> · certaine</li>
+    <li><code>docs/vision/vision-systeme.md:27,52</code> (créé le 26/05, <code>79fb6ec</code>) · élevée</li>
+    <li><code>docs/superpowers/specs/2026-05-26-claude-prostheses-design.md:25,31,155</code> · certaine</li>
+    <li><code>docs/findings/2026-05-30-fmath-chaine-orthogonalite.md</code> couches 0–3 (<code>87bb1fa</code>) · certaine</li>
+    <li><code>docs/findings/2026-06-02-R3-revue-srd-et-modele-nilpotent.md</code> § 5 (<code>3cd2a3c</code>) · certaine</li>
+    <li><code>docs/findings/2026-06-03-I-rgate-juges-independants-rejugement-mrd.md</code> § 1, 2, 4bis, 5 (<code>c4d2eca</code>, <code>c717e16</code>) · certaine</li>
+    <li><code>docs/findings/2026-06-04-O-cloture-mrd-rho-externe.md</code> § 1–2 · certaine</li>
+    <li><code>docs/checklist-poncage-document.md</code> (phases 0–4, patterns P1–P4) ; finding P (<code>1eafa9c</code>) · certaine</li>
+    <li><code>.claude/skills/forge-outil/SKILL.md</code> v1.1 ; <code>references/rgate-protocol.md:3-35</code> · certaine</li>
+    <li>Commits <code>ba548a1</code> (M « VICIEE »), <code>291cb29</code> (R « ANNULATION totale »), <code>b62006b</code> (S, hook T1) · certaine</li>
+    <li><code>docs/findings/2026-06-05-X-parallelisation-contrats-harnais.md</code> F-X1 à F-X5 · certaine</li>
+    <li>Commits <code>35645cf</code> (Y), <code>ff6ff4c</code> (Z), <code>67197b3</code> (AA) · certaine</li>
+    <li><code>data/ops-cost-ledger.csv</code>, somme par phase (awk) : mrd 63,62 · brd 91,82 · prd 66,51 · srd 114,15 jusqu'au 11/06 · certaine (calcul)</li>
+    <li><code>git branch -r</code> : <code>master</code> = <code>2bb21c3</code> (31/05) ; <code>sprint-15</code> jusqu'au 09/11 ; 13 branches <code>forge/*</code> · certaine</li>
+    <li>Commits <code>37b6951</code>, <code>126c790</code>…<code>5b69bb8</code>, <code>d395e48</code>/<code>79ef360</code>, <code>0c5096d</code>, <code>987b559</code>, <code>011e153</code> · certaine</li>
+    <li>Témoignage de Yanis (12/11, séance L.1), cité par le kernel M.2 · certaine (déclaratif)
+      <blockquote>linéagé, dépendant les uns des autres, nilpotent, qui évite le caractère stochastique de l'IA</blockquote></li>
+    <li><code>reprise-nov-2026/task_plan.md:88</code> et <code>:110-112</code> · certaine</li>
+    <li><code>G:\Mon Drive\10 - Claude\TRANSVERS\gouvernance-regles.md:58-60</code> (R8, R9, R10) · certaine</li>
+    <li><code>ls ~/.claude/skills/</code> (12/11) : ni forge-outil ni rgate · certaine</li>
+    <li><code>docs/glossaire-ubiquitaire.md:72-82</code> · certaine</li>
+    <li>Commits <code>c4f9f08</code>, <code>e17cec8</code>, <code>9e80604</code>, <code>0641fcc</code> (sprint 14) · certaine</li>
+    <li>Drive <code>C3-PRODUIT/Claire/fiches spec/</code> : <code>FMATHS-DOCUMENTATION-PRODUIT-PASSE1.md</code> (12/05), fiches MRD…Code (16/05) ; design spec <code>:455-470</code> « SOURCE RAW — documents fmaths v1 · 2026-05-16 » · certaine</li>
+    <li><code>docs/findings/2026-06-05-T-verrouillage-gabarit-brd.md</code> (« on s'est trompé de document », gabarit 3 outils contre instance 5) ; <code>git log</code> des 5 <code>doc-template-*.md</code> (11, 12, 7, 8, 7 commits) · certaine</li>
+    <li><code>docs/findings/2026-06-09-AM-checklist-srd-cadrage-p0-p1.md:54-58</code> (« P1.3 d²=0 : FAIL ×2 », fix « différé P5.2 ») ; aucune occurrence de d²=0 dans les journaux BRD (Grep) · certaine</li>
+    <li><code>docs/poncage-state-ruissellement-BRD.md:43</code> (AC.3, « re-walk… 0 édition ») ; <code>docs/checklist-srd-pipeline.md:188</code> (P5.4 cochée) ; <code>docs/checklist-prd-pipeline.md:87</code> (P5.3 non cochée) · certaine</li>
+    <li><code>docs/findings/2026-06-08-AE-ancrage-false-green-nfr.md:40-50</code> ; <code>2026-06-08-AH-…md:26-32</code> ; <code>2026-06-09-AK-…md:92</code> · certaine</li>
+    <li>Docstrings <code>scripts/*.py</code> + dates du 1er commit ; <code>docs/poncage-state-BRD.md</code> (frontmatter, phases 0–1) ; <code>ls docs/</code> (24 journaux) et <code>docs/contrats/</code> (15) ; <code>grep -c "def test" tests/*.py</code> (71 pour <code>test_lineage.py</code>) · certaine</li>
+    <li><code>docs/ecosystem/team-charter.md</code> (<code>adea7db</code>, 26/05, seul commit) ; <code>docs/findings/2026-05-30-fmath-encapsulation.md:95-106</code> ; <code>docs/kernels/2026-05-30-sprint14.md:14-15</code> ; <code>docs/findings/2026-05-31-spec-readiness-routing.md:57</code> · certaine (le lien avec l'ANCRAGE est une interprétation de Claude)</li>
+    <li>Témoignage de Yanis (12/11, séance M.2) · certaine (déclaratif)
+      <blockquote>Mais je sais que je devais aussi réduire le caractère stochastique de l'ia. Car même avec un outil comme fmaths, relancer requête(fmaths(MRD)) allait fournir un gabarit différent. Donc je me souviens avoir fixé de manière déterministe le gabarit de mes doc.</blockquote>
+      <blockquote>Je sais en revanche que je n'aimais pas cette parti car je ne comprenais rien aux scripts, je faisais surtout confience à l'ia. Mon travail c'était de me souvenir que on avait des problème et que les script permettait un certain déterminisme de vérification.</blockquote>
+      <blockquote>Mais je n'avais pas encore assembler cela entre eux cestàdire 'chaine x persona'.</blockquote></li>
+    <li>Résultat du contrat M.1, collé par Yanis en séance (12/11) : dilemme NFR, 5 chantiers « toute la chaîne », « La théorie s'arrête à peu près là où commence le réel » · élevée (séance parallèle, non relue ici)</li>
+    <li>Témoignage de Yanis (12/11, séance M.2) · certaine (déclaratif)
+      <blockquote>J'ai démontré l'idempotence de chaque document sur la base que le MRD fonctionnait ? Et concernant la nilpotence, elle a sauté 2 fois ? C'est une blague ? LOL. en fait le travail n'a absolument pas été fait sérieusement.</blockquote>
+      <blockquote>Et j'ai souvent choisi le rythme à la preuve, car un chemin bien tracé mais à moitié est moins bien qu'un chemin tracé mais faux. Dans les deux cas c'est faux mais philosophiquement j'ai toujours choisi terminer un chemin faux que construir la moitié d'un pont solide.</blockquote></li>
+    <li><code>.claude/skills/pipeline/references/doc-template-MRD.md:42-50,119</code> (« Questions de discovery », « 🏷 nature: échafaudage — exempt », « interviews clients ») ; même section dans les 4 autres gabarits · certaine. Témoignage de Yanis (12/11, M.2) · certaine (déclaratif)
+      <blockquote>j'ai ma petite idée : les interviews n'est-ce pas ? Le questionnaire de chaque doc qui va définir le premier modulo des métrics finalement.</blockquote></li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>
