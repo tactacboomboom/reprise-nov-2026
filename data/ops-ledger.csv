@@ -15,3 +15,4 @@ date,seance,phase,cost_usd,api_min,wall_min_raw,ctx_pct,ctx_tokens_k,lines_add,l
 2026-11-11,J.2,reprise,2.68,7,73,80,160,315,0,0,3,2,2,0,avant_queue,,,,80
 2026-11-11,J.1,reprise,2.35,7,151,65,130,309,19,0,3,4,4,0,avant_queue,,,,65
 2026-11-11,J,reprise,2.24,6,158,67,134,398,28,0,3,11,11,0,avant_queue,,,,67
+2026-11-12,K.3,reprise,6.19,16,61,97,195,168,24,0,10,0,0,0,avant_queue,,,,97
