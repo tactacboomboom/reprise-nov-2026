@@ -9,15 +9,16 @@ qui fait le fan-in. Détail : `CLAUDE.md` § Nommage des séances.
 
 ## En cours
 <!-- Mis à jour par le pilote à chaque fan-in. L'état vit ici, jamais dans les chemins. -->
-- **Pilote K (vague 5)** : `seances/K-pilotage-vague-5/` — K.3 ✓ (migration + repo git) · K.1 prêt · K.2 prêt
-- **Ensuite** : fan-in par K → L.1 claude-prostheses (vague 6) → convergence
+- **Pilote K (vague 5)** : `seances/K-pilotage-vague-5/` — K.3 ✓ · K.1 ✓ · K.2 ✓ · K.4 ✓ (Anthropologie archivé en témoin, ouvert par K.2) · fan-in fait (12/11)
+- **Ensuite** : L.1 claude-prostheses (vague 6, kernel écrit par K) → pilote L → convergence
 
 ## Lancer une séance
+Une séance = un worktree (séances parallèles : jamais deux séances dans le même dossier) :
 ```
 cd "C:\Users\bensa\00_MES-PROJETS\reprise-nov-2026"
-git switch main
-git pull
-git switch -c seance/<code>-<slug>
+git fetch
+git worktree add ../reprise-nov-2026-<code> -b seance/<code>-<slug> origin/main
+cd ../reprise-nov-2026-<code>
 claude
 /debut-session seances/<pilote>-<slug>/[<Pilote.N>-<slug>/]<kernel de la séance>.md
 ```
@@ -45,11 +46,12 @@ est FIGÉ au 12/11 : on ne travaille plus dedans.
 | J | I | pilote 4 | Fan-in de la vague 4 : juge J.1/J.2, gabarit à 8 sections, écrit les kernels K.1/K.2 | `2026-11-11-J-pilotage-vague-4.md` (écrit par I à sa clôture) | `2026-11-11-J-pilotage-vague-4.md` | clos |
 | J.1 | J | 4 | Lot Claire + claire-app (mai, descendants de CPE) en fiche mémoire | `2026-11-11-J.1-memoire-claire.md` (lancement) · `2026-11-11-J.1-cloture.md` | `2026-11-11-J.1-memoire-claire.html` | fiche écrite (ARCHIVER ×2) |
 | J.2 | J | 4 | Lot « intention, janvier » : cockpit-solo + De-l-Intention-a-l-Execution + chaine-intention-artefacts (ancêtres de CPE) | `2026-11-11-J.2-memoire-intention-janvier.md` (lancement) · `2026-11-11-J.2-cloture.md` | `2026-11-11-J.2-memoire-intention-janvier.html` | fiche écrite (ARCHIVER ×3) |
-| K | J | pilote 5 | Fan-in de la vague 5 : juge K.1/K.2, écrit le kernel L.1 (claude-prostheses) | `2026-11-11-K-pilotage-vague-5.md` (écrit par J à sa clôture) | — | prévu |
-| K.3 | K | 5 (seul, avant K.1 ∥ K.2) | Revue d'architecture + migration du dossier : méthodes GAFAM, conformité Architecture-des-skills-Anthropic (dérogation : fichiers du pilote) | `2026-11-11-K.3-architecture-migration.md` (lancement) | `2026-11-12-K.3-architecture-migration-findings.md` | migration faite (repo git), clôture en cours |
-| K.1 | K | 5 | Lot « janvier, les bornes » : test-ia + CARTE-des-richesses (fiche 8 sections) | `2026-11-11-K.1-memoire-janvier-bornes.md` (lancement) | à produire (`.html`) | prêt |
-| K.2 | K | 5 | Lot « mai–juin » : Anthropologie + projet-amelioration-fin-session + voyage_voyage (fiche 8 sections) | `2026-11-11-K.2-memoire-mai-juin.md` (lancement) | à produire (`.html`) | prêt |
-| L.1 | L | 6 | claude-prostheses seul : fin de la lignée, le plus gros morceau (Yanis, J) | à écrire par K | — | prévu |
+| K | J | pilote 5 | Fan-in de la vague 5 : juge K.3/K.1/K.2, écrit le kernel L.1 (claude-prostheses) | `2026-11-11-K-pilotage-vague-5.md` (écrit par J à sa clôture) | `2026-11-12-K-pilotage-vague-5-findings.md` | fan-in fait |
+| K.3 | K | 5 (seul, avant K.1 ∥ K.2) | Revue d'architecture + migration du dossier : méthodes GAFAM, conformité Architecture-des-skills-Anthropic (dérogation : fichiers du pilote) | `2026-11-11-K.3-architecture-migration.md` (lancement) · `2026-11-12-K.3-cloture.md` | `2026-11-12-K.3-architecture-migration-findings.md` | migration faite (repo git, 0 chemin mort) |
+| K.1 | K | 5 | Lot « janvier, les bornes » : test-ia + CARTE-des-richesses (fiche 8 sections) | `2026-11-11-K.1-memoire-janvier-bornes.md` (lancement) · `2026-11-11-K.1-cloture.md` | `2026-11-11-K.1-memoire-janvier-bornes.html` | fiche écrite (IGNORER, ARCHIVER) |
+| K.2 | K | 5 | Lot « mai–juin » : Anthropologie + projet-amelioration-fin-session + voyage_voyage (fiche 8 sections) | `2026-11-11-K.2-memoire-mai-juin.md` (lancement) · `2026-11-11-K.2-cloture.md` | `2026-11-11-K.2-memoire-mai-juin.html` | fiche écrite (RÉCUPÉRER, ARCHIVER, RÉCUPÉRER) |
+| K.4 | K | 5 (ouvert par K.2) | Exécution : mettre le repo privé Anthropologie aux bonnes pratiques (SVD calculée) | `2026-11-12-K.4-anthropologie-pro.md` (lancement, écrit par K.2) · `2026-11-12-K.4-cloture.md` | `2026-11-12-K.4-anthropologie-pro-findings.md` | fait (repo étudié : PR #1 mergée, archivé en témoin) |
+| L.1 | L | 6 | claude-prostheses seul : fin de la lignée, le plus gros morceau (Yanis, J) | `2026-11-12-L.1-memoire-claude-prostheses.md` (lancement, écrit par K) | — | prêt |
 | — | — | — | Convergence (lettre de pilote, parent = dernier pilote) : lit toutes les fiches, décide quoi réinstaller | après la dernière vague | — | prévu |
 
 ## Rangement (K.3, 12/11)
@@ -159,5 +161,14 @@ séance ; le kernel du pilote les liste dans [Fichiers à charger], donc plus de
   qu'à elle-même. Deux dates de J.1 à rectifier (μA ≥ 0,5 et Scrum datent de janvier) : findings J § 2.
 - **Carte et rangement des 18 repos** (Yanis, J) : la convergence propose le tri / classement /
   rangement de tous les repos `tactacboomboom` (`-my-claude-config` inclus sur la carte).
+- **La méthode sort de l'IT tôt** (K.1, K.2) : la note « la méthode ne s'applique qu'à elle-même »
+  ci-dessus est contredite par les traces : CARTE-des-richesses (18/01, 6 jours après la méthode),
+  Anthropologie (10/05), voyage_voyage (04/06, une décision de vie). Applications ponctuelles, non
+  outillées par claude-prostheses. Lignée de janvier = 3 étapes + 1 application (CARTE) + 1 borne vide (test-ia).
+  Signe d'amélioration : la VÉRIFICATION progresse (formalisme non vérifié 10/05 → « rien d'asserté »
+  04/06 → 3 juges sur les faits 27/06). Une partie de la pensée vit dans les conversations, pas les repos.
+- **Piège du nom ornemental** (H2 de /fin-session) : Anthropologie (σ écrits à la main ; K.4 recalcule :
+  2 axes réels, σ₁ ≈ 92 %, pas 3 ; 6 dimensions chiffrées sur 8), fin-session
+  (troncateur « d'Eckart-Young » réfuté), peut-être Claire → à suivre sur la carte.
 - **Circuit des audits** : `PLUG-INS/<nom>/` sur le Drive = seule maison (R13) ; vitrine
   audit-repo/Vercel redondante (H.1 Q4 + H.2 Q1, recommandation de H).
