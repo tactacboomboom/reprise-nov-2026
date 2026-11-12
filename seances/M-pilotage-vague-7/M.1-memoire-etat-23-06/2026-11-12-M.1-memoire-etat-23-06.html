@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  Fiche mémoire M.1 — gabarit `gabarits/fiche-memoire.html` (8 sections, ordre inchangé).
+  Périmètre : le sous-projet E de claude-prostheses (chaîne MRD → BRD → PRD → SRD → Code) vu depuis sa fin.
+-->
+<title>État au 23/06 — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+pre.schema{background:var(--chip);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;line-height:1.45;margin:6px 0 12px}
+h3{font-size:13.5px;margin:12px 0 6px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>claude-prostheses — la chaîne de documents au 23/06</h1>
+  <div class="meta">
+    2026-06-20 → 2026-11-09 · 24 commits dans la fenêtre (369 dans le repo) · branche <code>sprint-15</code>,
+    jamais fusionnée dans <code>master</code> · en sommeil · séance M.1 ← parent M · 2026-11-12 · statut complet
+  </div>
+  <span class="badge v-recup">RÉCUPÉRER</span>
+</header>
+
+<p class="lead">Au 23/06, la chaîne MRD → BRD → PRD → SRD → Code de Yanis était construite de bout en bout,
+mais seul le BRD était verrouillé : ses dettes s'étaient empilées à partir du NFR du PRD, à l'endroit
+où la théorie de la chaîne touche le réel.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>Le 20/06, la séance d'amendement prévue après les 11 séances du SRD est remplacée. Yanis lit deux notes
+    du vault et en tire ce constat : le pipeline ne peut pas valider sa propre valeur, seul un chiffre extérieur
+    le peut. Il instrumente donc le ledger (AS), puis l'analyse (AT) : une séance SRD coûte 2,2 fois une séance
+    BRD <span class="ref">[12]</span> <span class="ref">[13]</span>. Il ouvre ensuite le dernier maillon, le Code,
+    pour finir la chaîne avant un voyage le 01/07 <span class="ref">[2]</span> <span class="ref">[22]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Fermer le terminus de la chaîne. Le gabarit Code devait porter les cérémonies Scrum (Sprint Planning,
+    Gate DoD, Sprint Review, Retrospective) et renvoyer vers le haut ce que le réel révèle :
+    « Bugs et révélateurs d'implicites → corrections SRD → précisions PRD → révisions BRD »
+    <span class="ref">[16]</span>. Bénéfice attendu : une chaîne complète, où chaque document est stable en
+    lui-même, ne déborde pas sur ses voisins et descend d'un parent réel <span class="ref">[4]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 1 — La mesure avant la méthode · 20–21/06</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-06-20</td><td>Séance AS : 2 colonnes de pilotage au ledger (<code>ctx_pct_at_close</code>, <code>heuristic_violations</code>) · <code>309162a</code></td><td>« Le pipeline est le coureur » : il ne peut pas juger sa propre valeur ; la sortie doit être « un chiffre que ni Yanis ni l'agent ne génère »</td><td>Un instrument extérieur à la boucle, au lieu de poncer encore la checklist <span class="ref">[12]</span></td></tr>
+    <tr><td class="d">2026-06-21</td><td>Séance AT : analyse comparative du ledger, fix de clôture, violation H2 rattrapée · <code>3bdad1d</code> <code>513e250</code></td><td>Comparer le coût de chaque maillon</td><td>Constat chiffré : BRD 4,87 $/séance → SRD 10,62 $ ; 395 $ sur 57 lignes <span class="ref">[13]</span></td></tr>
+    <tr><td class="d">2026-06-21</td><td>/goedel durci sous la gouvernance du repo · <code>08ba23f</code></td><td>Mettre l'étape « ledger » dans la clôture</td><td>La clôture écrit sa ligne de coût <span class="ref">[2]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — Ouverture du terminus Code · 22/06 (9 commits)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-06-22</td><td>AU : ouverture du cycle Code (checklist P0 → P6, /fmath du gabarit) · <code>97a3264</code> <code>c97249e</code></td><td>Dernier maillon de la chaîne</td><td>Plan du cycle Code <span class="ref">[2]</span></td></tr>
+    <tr><td class="d">2026-06-22</td><td>AV : héritage SRD → Code (2 arêtes ⮌ + 1 arête ↗) et R-gate · <code>ac7a716</code></td><td>Vérifier que le parent SRD suffit</td><td>Le « plafond de lock hérité » est écrit : le Code ne peut pas être plus verrouillé que le SRD <span class="ref">[14]</span></td></tr>
+    <tr><td class="d">2026-06-22</td><td>AW, AX, AY : clôture P0, contrats du quatuor, R-gate du gabarit PASS, gel du quatuor, 5 kernels de lancement, antisèche du fan-out, ledger AY · <code>f1a74cb</code> <code>08b0e86</code> <code>2979925</code> <code>70b6458</code> <code>4c863dc</code> <code>fff75b5</code></td><td>Préparer 4 forges parallèles sans conflit</td><td>Le quatuor peut se forger en même temps, chacun dans son worktree <span class="ref">[2]</span> <span class="ref">[17]</span></td></tr>
+  </table>
+  <div class="phase">Phase 3 — Les 4 forges du quatuor, en parallèle · 23/06 (7 commits)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-06-23</td><td>sprint-review, gate-dod, retrospective, sprint-planning passent de v1.0 à v2.0 (étapes 1–4 de /forge-outil, R-gate) · <code>ee6f3e9</code> <code>4e109e0</code> <code>c7c62d0</code> <code>a3fd1a2</code> + 3 commits de câblage ledger <code>ebc9f00</code> <code>991a5d2</code> <code>70224ee</code></td><td>Les cérémonies sont les outils du Code</td><td>4 outils en v2.0 ; leurs 4 lignes de ledger restent « différées » <span class="ref">[2]</span> <span class="ref">[15]</span></td></tr>
+  </table>
+  <div class="phase">Phase 4 — Intégration au terminus · 23/06 (5 commits)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-06-23</td><td>4 merges <code>forge/*</code> → <code>sprint-15</code> · <code>8ed0cc0</code> <code>70c2534</code> <code>63eba80</code> <code>8c7fdb9</code></td><td>Assembler seulement après 4 PASS</td><td>0 conflit, <code>contrat_lint</code> 4/4 <span class="ref">[15]</span></td></tr>
+    <tr><td class="d">2026-06-23</td><td>AZ : quatuor câblé au gabarit Code v1.2, MoSCoW retiré du Code · <code>f8353e4</code></td><td>Fermer le terminus</td><td>Substance finie ; <code>verrouille</code> reporté (plafonné par le SRD) ; 8,68 $, contexte à 92 % <span class="ref">[1]</span></td></tr>
+  </table>
+  <div class="phase">Phase 5 — Après l'arrêt · 09/11</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-11-09</td><td>Retrait de goedel et fin-session du projet · <code>70d3ebe</code></td><td>Ils sont montés au global</td><td>Seul commit après le 23/06 : la chaîne elle-même n'a pas bougé <span class="ref">[19]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Évolution de la pensée</h2>
+  <h3>A. Les étapes, en schéma</h3>
+<pre class="schema">ÉTAPE 0 · 30/05 → 05/06 — LA CHAÎNE COMME THÉORIE                               [4][22]
+   5 documents, chacun réduit un « monde » au suivant :
+   MRD  marché → opportunité        BRD  opportunité → objectifs (9–12 mois)
+   PRD  objectifs → comportements    SRD  comportements → tâches techniques
+   Code tâches → le réel
+   + chaque section descend d'un parent (⮌, le linéage) · BRD verrouillé le 05/06
+          │
+          ▼
+ÉTAPE 1 · 08/06 — LE NFR SANS PARENT (séance AE)                                 [6]
+   difficulté : le NFR du PRD « héritait » d'un outil du BRD qui ne contient aucun NFR ;
+                les 3 garde-fous (R-gate, linter, tests) l'avaient laissé passer
+   réponse    : verrou du PRD retiré · « cohérent ≠ vrai » · l'ANCRAGE est nommé
+          │
+          ▼
+ÉTAPE 2 · 08/06 — LA DETTE DE DÉCISION (séance AF)                               [7][8]
+   4 places possibles pour le NFR : A au SRD · B racine grand-parent (MRD) ·
+   C coupé en deux, conformité / performance · D orphelin honnête
+   règle D5 : dette locale → avancer ; changement chaîne-entière → séance dédiée
+   choix : D · 5 chantiers « chaîne-entière » parqués
+          │
+          ▼
+ÉTAPE 3 · 09/06 — « CONCEVOIR LES DIMENSIONS NFR AVANT HÉRITAGE » (séance AK)    [9]
+   le NFR mélange plusieurs natures ; le corriger = refactor de 2 docs verrouillés
+   réponse : parqué ; « SRD + Code entrent dans Scrum / salle-virtuelle »
+          │
+          ▼
+ÉTAPE 4 · 09–11/06 — LE MÊME TROU AU SRD (séances AN → AR)                       [10][11]
+   la pile technique n'a pas de parent honnête (son vrai moteur : le budget du MRD)
+   décision du 11/06 : NFR et pile technique réglés « d'un seul geste »,
+   dans le chantier ANCRAGE ⇒ le SRD attend le PRD
+          │
+          ▼
+ÉTAPE 5 · 20/06 — LE DOUTE MESURÉ (séances AS, AT)                               [12][13]
+   « le pipeline ne peut pas valider sa propre valeur » · coût/séance en hausse
+          │
+          ▼
+ÉTAPE 6 · 22–23/06 — LE TERMINUS PLAFONNÉ (séances AU → AZ)                      [1][14][15]
+   Code fini sur le fond, mais pas plus verrouillé que son parent SRD
+   kernel AZ : « qu'est-ce qu'on fout là » · 2 options laissées · voyage le 01/07
+          │
+          ▼
+ÉTAPE 7 · 12/11 — LA RELECTURE                                                  [23][24]
+   « La théorie s'arrête à peu près là où commence le réel » : SRD et Code sont la
+   frontière vers le réel ; même un PRD résolu aurait buté là</pre>
+  <h3>B. Les difficultés rencontrées, et ce que Yanis en a fait</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>Difficulté</th><th>Réponse dans ce repo</th><th>Ce qu'elle est devenue ensuite (autres repos, setup actuel)</th></tr>
+    <tr><td>Un NFR sans parent : la définition change d'un document à l'autre</td><td>Orphelin honnête, verrou du PRD différé, 4 options écrites (A–D), « dimensions NFR avant héritage » <span class="ref">[6]</span> <span class="ref">[8]</span> <span class="ref">[9]</span></td><td>Séance dédiée jamais tenue ; Yanis s'en souvient le 12/11 <span class="ref">[26]</span></td></tr>
+    <tr><td>Des garde-fous qui valident la logique, pas le terrain</td><td>« Le R-gate valide la logique, jamais le terrain » ; c'est Yanis, en lisant l'outil, qui a vu la fausse arête <span class="ref">[6]</span></td><td>À confirmer par Yanis</td></tr>
+    <tr><td>Une dette locale qui devient une dette de chaîne</td><td>Règle D5 et 5 chantiers parqués : sous-sections, ANCRAGE, statut d'arête a/b/c, racine grand-parent, questionnaire d'interview <span class="ref">[7]</span></td><td>Aucun des 5 n'a été ouvert <span class="ref">[2]</span></td></tr>
+    <tr><td>Un maillon qui ne peut pas être plus sûr que son parent</td><td>« Plafond de lock hérité » : Code en ponçage tant que le SRD l'est <span class="ref">[14]</span> <span class="ref">[15]</span></td><td>Heuristique écrite : « mesurer le statut du parent avant toute bascule de lock » <span class="ref">[15]</span></td></tr>
+    <tr><td>Le coût qui monte en descendant la chaîne</td><td>Ledger instrumenté (AS) et analysé (AT) <span class="ref">[12]</span> <span class="ref">[13]</span></td><td><code>ops_ledger.py</code> écrit une ligne à chaque clôture de cette reprise <span class="ref">[22]</span></td></tr>
+    <tr><td>Scrum mal maîtrisé, appliqué à une chaîne elle-même en construction</td><td>Les sprints s'arrêtent : tout le travail de juin vit dans un seul « sprint 15 » <span class="ref">[3]</span> <span class="ref">[23]</span></td><td>Rôles et Scrum : vague 8 de cette reprise</td></tr>
+  </table>
+  </div>
+  <h3>C. Ce que les traces ajoutent au souvenir</h3>
+  <ul>
+    <li><b>Le lien SRD ↔ PRD était connu dès le 11/06.</b> Yanis se souvient de l'avoir découvert en avançant
+    vers le Code. La décision « traiter NFR et pile technique d'un seul geste » date du 11/06, onze jours
+    avant d'ouvrir le Code (22/06) <span class="ref">[11]</span> <span class="ref">[23]</span>.</li>
+    <li><b>Les « plusieurs candidats » du NFR existent bien : 4 options écrites (A–D).</b> Aucune n'a été écartée
+    faute de document qui convienne. B touchait une règle de toute la chaîne (« le noyau reste ici, l'image
+    descend »), C touchait deux documents déjà verrouillés ; A n'a pas de raison écrite trouvée. D a été choisie
+    par la règle D5 <span class="ref">[7]</span> <span class="ref">[8]</span> <span class="ref">[9]</span>. Lecture de
+    Claude (moyenne) : le verrou précoce du BRD (05/06) a rendu chaque déplacement coûteux.</li>
+    <li><b>Le NFR est un carrefour.</b> Il descend vers le SRD (« Deployment Constraints ⮌ PRD#NFR »), qui hérite
+    donc de son trou, et il est vérifié par le Code (« Métriques runtime ↗ vérifie PRD#NFR »)
+    <span class="ref">[10]</span> <span class="ref">[16]</span>.</li>
+    <li><b>La frontière avec le réel se voit dans les gabarits.</b> La seule arête ↗ de la chaîne est dans le Code
+    (0, 0, 0, 0, 1). L'instance SRD est « un document vivant qui croît d'une User Story par sprint ». Il n'existe
+    pas de <code>spec/Code.md</code> : les ancres Implementation et Tests sont « reportées à l'instance
+    inexistante » <span class="ref">[18]</span> <span class="ref">[20]</span> <span class="ref">[14]</span>. Personne n'a
+    vérifié qu'aucune autre section ne tient sa vérité du bas : le contrôle d'AV porte sur ce qui est écrit, et
+    le 08/06 Yanis notait déjà que 4 autres arêtes du PRD n'étaient « pas vérifiées contre le contenu »
+    <span class="ref">[8]</span> <span class="ref">[25]</span>.</li>
+    <li><b>Le retour Code → SRD → PRD → BRD est décrit, pas câblé.</b> Il est écrit en texte dans le gabarit Code ;
+    seule l'arête vers le NFR est formalisée <span class="ref">[16]</span>.</li>
+    <li><b>Le travail de juin n'a jamais été fusionné.</b> <code>master</code> s'arrête au 31/05 ; 138 commits vivent
+    seulement sur <code>sprint-15</code> <span class="ref">[3]</span>.</li>
+    <li><b>Le ledger a des trous.</b> Les 4 lignes des forges n'ont jamais été ajoutées ; AW est étiquetée « prd »
+    et AX « brd », alors qu'elles relèvent du cycle Code. Le cycle Code (AU → AZ) coûte 30,41 $ sur 6 lignes
+    <span class="ref">[15]</span> <span class="ref">[17]</span>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">skill</span> <code>.claude/skills/pipeline/</code> : les 5 gabarits de documents et 24 gabarits
+    d'outils, locaux au repo et présents seulement sur <code>sprint-15</code> <span class="ref">[3]</span> <span class="ref">[4]</span></li>
+    <li><span class="chip">skill</span> <code>/forge-outil</code> : forge les outils en 4 étapes ; le quatuor du 23/06 y est passé <span class="ref">[2]</span></li>
+    <li><span class="chip">routine</span> R-gate (3 juges isolés) avant tout assemblage ; forges parallèles en worktree <span class="ref">[15]</span></li>
+    <li><span class="chip">script</span> <code>ops_ledger.py</code> et le ledger, durcis les 20–21/06 ; aujourd'hui en service dans cette reprise <span class="ref">[12]</span> <span class="ref">[22]</span></li>
+    <li><span class="chip">skill</span> /goedel, durci le 21/06, sorti du repo le 09/11 pour le global <span class="ref">[19]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>6 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> un projet entre par le MRD et descend jusqu'au Code ; les cérémonies du Code renvoient
+      les bugs et les implicites vers le SRD, le PRD et le BRD <span class="ref">[16]</span>.</li>
+      <li><b>Réel :</b> la chaîne n'a servi qu'à se décrire elle-même (les instances <code>spec/</code> parlent de
+      claude-prostheses ; la seule story SRD est le linter du projet) ; pas de <code>spec/Code.md</code>
+      <span class="ref">[20]</span>. Yanis jouait aussi Scrum sans le maîtriser, sur une chaîne qu'il développait en
+      même temps : « un vrai bazarre » <span class="ref">[23]</span>.</li>
+    </ul>
+  </section>
+  <section>
+    <h2>7 · Où je me suis arrêté</h2>
+    <p>Gabarits au 23/06 <span class="ref">[4]</span> <span class="ref">[5]</span> :</p>
+    <table>
+      <tr><th>Doc</th><th>Gabarit</th><th>Instance <code>spec/</code></th></tr>
+      <tr><td>MRD</td><td>v1.2, pas de statut</td><td>conclu (04/06)</td></tr>
+      <tr><td>BRD</td><td><b>verrouillé</b> (05/06)</td><td>à relire</td></tr>
+      <tr><td>PRD</td><td>en ponçage (NFR)</td><td>à relire</td></tr>
+      <tr><td>SRD</td><td>en ponçage (pile tech.)</td><td>à relire</td></tr>
+      <tr><td>Code</td><td>en ponçage, plafonné</td><td>aucune</td></tr>
+    </table>
+    <p>Le kernel AZ laisse deux options : (a) verrouiller le SRD pour lever le plafond du Code, ou (b) ajouter
+    les 4 lignes de ledger des forges <span class="ref">[1]</span>. Or (a) suppose le chantier « chaîne-entière »
+    sur le NFR <span class="ref">[11]</span>. Le quatuor est fini sur le fond (4 PASS, v2.0) ; seul le gabarit qui
+    le porte reste en ponçage <span class="ref">[15]</span>. Combien de séances restaient ? Yanis ne sait pas : ses
+    estimations ont toujours été fausses <span class="ref">[23]</span>. Arrêt : voyage du 01/07
+    <span class="ref">[22]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>8 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur le sous-projet) :</b> RÉCUPÉRER, comme <i>carte</i> et non comme chantier à finir. L'état
+    au 23/06 garde les définitions des 5 documents (oubliées par Yanis), les invariants, les 4 options NFR et les
+    5 chantiers parqués : c'est le point de départ exact si la chaîne reprend. Les verrous, eux, ne valent rien
+    sans un vrai projet.</li>
+    <li><b>Réutilisable :</b> les 5 gabarits <code>doc-template-*.md</code> et le quatuor v2.0 → lecture depuis la branche
+    <code>sprint-15</code> (destination dans le setup : à confirmer par Yanis) · la liste des dettes (§ 4 A, étapes 2–4)
+    → entrée d'une éventuelle séance « dimensions NFR » · l'heuristique « un lock ne dépasse pas son parent » ·
+    le comptage ⮌/↗ comme test de frontière avec le réel.</li>
+    <li><b>Conflits gouvernance :</b> aucun écart. R8 (« skills/ projet → .claude/skills/ commité ») est respectée,
+    mais seulement sur <code>sprint-15</code> : un clone de la branche par défaut voit l'état du 31/05. R13
+    (« local volatile ») : rien ne dort en local, tout est sur GitHub <span class="ref">[21]</span>.</li>
+    <li><b>À confirmer par Yanis :</b> le SRD est-il verrouillable aujourd'hui, ou le moule est-il périmé ?
+    (réponse du 12/11 : « pas la moindre idée ») · pourquoi l'option A (NFR au SRD) a-t-elle été écartée ? · faut-il
+    fusionner <code>sprint-15</code> dans <code>master</code> ? · d'autres sections que le NFR et la pile technique
+    tiennent-elles leur vérité du bas ? · où ranger les gabarits dans le setup actuel ?</li>
+    <li><b>Pour la convergence :</b> M.2 (comment la chaîne a été construite : nilpotence, forges, R-gate) éclaire les
+    étapes 0–2 · vague 8 (rôles, Scrum, RAG) : les personas des cérémonies du Code · phase 4 : le seul test qui
+    tranche la frontière SRD/Code est un vrai projet.</li>
+    <li><b>Proposition au pilote :</b> si la chaîne reprend, une séance dédiée « dimensions du NFR » (/fmath +
+    R-gate, comme le prévoyait D5), à tenir <i>après</i> un essai sur un vrai projet annexe plutôt qu'avant ;
+    sinon, figer <code>sprint-15</code> comme archive de référence.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne) — clone complet en lecture seule,
+  branche <code>origin/sprint-15</code> sauf mention
+  <ol>
+    <li><code>docs/kernels/2026-06-23-AZ-cloture-cycle-code.md</code>, lu en entier ([Décisions] D3, [Action] a/b, [Ouvert] Q2) · certaine</li>
+    <li><code>git log --since=2026-06-19 origin/sprint-15</code> : 24 commits, du 20/06 au 09/11 ; <code>.claude/skills/forge-outil/SKILL.md</code> · certaine</li>
+    <li><code>git branch -a</code>, <code>git merge-base --is-ancestor</code>, <code>git rev-list --count origin/master..origin/sprint-15</code> = 138 ; <code>master</code> s'arrête à <code>2bb21c3</code> (31/05) · certaine</li>
+    <li>Frontmatter de <code>.claude/skills/pipeline/references/doc-template-{MRD,BRD,PRD,SRD,Code}.md</code> (version, status, domaine, codomaine) · certaine</li>
+    <li>Frontmatter de <code>spec/{MRD,BRD,PRD,SRD}.md</code> : <code>conclu-sous-regime</code>, puis 3 × <code>draft-a-relire</code> · certaine</li>
+    <li><code>docs/findings/2026-06-08-AE-ancrage-false-green-nfr.md</code> § 2–3 · certaine</li>
+    <li><code>docs/kernels/2026-06-08-AF-cloture-audit-ancrage-dette-nfr.md</code> (D5, D-NFR, [Ouvert] : 5 chantiers) · certaine</li>
+    <li><code>docs/journal-cycle-PRD.md</code>:148–151 (options A–D, « Humilité »), :209, :265 (racine grand-parent) · certaine</li>
+    <li><code>docs/findings/2026-06-09-AK-recap-cycle-prd-pre-srd.md</code>:66, :80–82 · certaine</li>
+    <li><code>docs/findings/2026-06-09-AN-fmath-gabarit-srd.md</code>:270–279 ; <code>doc-template-SRD.md</code>:5, :57, :89 · certaine</li>
+    <li><code>docs/checklist-srd-pipeline.md</code>:130–135 (B1 tranché le 11/06, « d'un seul geste ») · certaine</li>
+    <li><code>docs/findings/2026-06-20-AS-reframe-coureur-descente-ledger-pilotage.md</code> · certaine</li>
+    <li><code>docs/findings/2026-06-21-AT-analyse-comparative-ledger.md</code> (tableau du coût par document) · certaine</li>
+    <li><code>docs/findings/2026-06-22-AV-P1-heritage-srd-code.md</code>:50, :83, :117 · certaine</li>
+    <li><code>docs/findings/2026-06-23-AZ-integration-quatuor-code.md</code> (résultat machine, enseignement 3, trou résiduel) · certaine</li>
+    <li><code>doc-template-Code.md</code>:25–27 (outils), :59–66 (révélateurs, métriques runtime), :76 (feedback upstream) · certaine</li>
+    <li><code>data/ops-cost-ledger.csv</code>, lignes AS → AZ (somme AU → AZ = 30,41 $) · certaine</li>
+    <li>Comptage <code>grep -c '⮌'</code> / <code>'↗'</code> sur les 5 gabarits : ↗ = 0, 0, 0, 0, 1 · certaine</li>
+    <li>Commit <code>70d3ebe</code> (2026-11-09), 4 fichiers, 490 suppressions · certaine</li>
+    <li><code>spec/SRD.md</code>:9–13 (volatilité, Just-In-Time) ; <code>git ls-tree origin/sprint-15 spec/</code> : pas de <code>Code.md</code> · certaine</li>
+    <li><code>G:\Mon Drive\10 - Claude\TRANSVERS\gouvernance-regles.md</code>:58 (R8), :63 (R13) · certaine</li>
+    <li>Fiche et findings L.1 (F4 : état et voyage du 01/07 ; F8 : coût et piège « l'outil devient le projet ») · élevée</li>
+    <li>Témoignage de Yanis (2026-11-12, séance M.1) · certaine (déclaratif)
+      <blockquote>Remarque : Je me souviens que je n'avais pas terminé PRD car la métric NFR apparaissait dans plusieurs doc et comme chaque doc à une dimension spécifique un NFR dans plusieurs doc n'a pas la même image (la définition ou son interprétation diffère). Je devais donc choisir si NFR apparaissait dans PRD ou ailleurs. Et cette réflexion m'avait pousser à créer une dette de décision. Je suis donc passé au SRD puis au code. Jusqu'à me rendre compte que le SRD ne pouvait se fermer que si PRD était fermé. Bref, mes dettes s'accumulaient. Concernant le nombre de séance qu'il restait je ne suis pas sûr qu'il restait 1 ou 2 séances. Car chaque fois que j'ai estimé le nombre de séances je me suis foiré. Je penses aussi que bien que les gabari eut été finalisé partout avec un protocole bien spécifique voir même des skills conçu rien que pour ça. Il manquait énormément de chose afin de rendre la chaîne nilpotente comme le lien de parenté. Et également le fait que chaque doc avait son lot de persona scrum. Et que justement, l'imbrication chaine de doc x invocation des persona scrum je savais que j'allais m'attaquer à un gros chantier. Je sais que j'avais travaillé uniquement sur sprint-15 car je crois que j'avais arrêter de travailler avec la façon scrum et les sprints. C'était coûteux, mal défini, pas maîtrisé par moi. Mais c'était l'objectif justement, je ne pouvais le faire qu'en boostrap. En gros je devais utiliser la mécanique scrum que je ne maîtrise pas et que je n'ai pas consolidée sur la conception d'une chaîne de document que j'étais aussi en train de dev. bref, un vrai bazarre. Pour répondre à 3. franchement j'en ai pas la mondre idée. Je sais que j'avais démontré avec un seuil de confiance élevé la nilpotence théorique de la chaîne ou en tout cas que c'était une hypothèse nécessaire mais pas suffisante pour rendre la chaîne utilisable et efficace. Donc tous les documents servent quelque part. D'autant que j'avais linéagé ces docuements et leur métrics via des ouvrages officielles. J'avais même fait des projection d'im et de Kernel entre document pour vraiment réduire la dimension de chaque document sans que l'un empiète sur le suivant ou le précédent. Donc je crois que sur ça ne n'avais pas vraiment besoin d'approfondir. En gros, je m'étais arrêté à la réflexion du NFR de PRD. Et que SRD et Code était comme par hasard des documents avec des métrics ou des mécaniques dynamique spécifiques à un projet et sa stack technologique. Donc tu vois, finalement, la théorie complète de la chaîne n'était pas terminée. Sachant que 4 mois plus tard j'en ai même oublié les métrics, et les définition des documents les périmètres, dimensions etc.</blockquote></li>
+    <li>Témoignage de Yanis (2026-11-12, séance M.1) · certaine (déclaratif)
+      <blockquote>La phrase la plus intéressante à mon sens est la suivante : " La théorie s'arrête à peu près là où commence le réel". Et effectivement, je ne pouvais le savoir qu'une fois arrivé ici. C'estàdire que même si j'avais résolu PRD, j'aurais eu ce problème à SRD et code. Car ils sont la frontière topologique vers le réel. Mais je ne me souviens pas comment ça se matérialise concrètement vis à vis des autres documents ou vraisemblablement je n'ai pas eu de difficulté à les concevoir avec un process assez similaire d'un doc à l'autre modolu spécificités.</blockquote>
+      <blockquote>D'ailleurs, de mémoire, le doc Code devait être (pas sûr) la conversation/cérémonie scrum des persona et les artefacts qui en découlent allaient réalimenter les document volatiles du haut.</blockquote></li>
+    <li>Témoignage de Yanis (2026-11-12, séance M.1) · certaine (déclaratif)
+      <blockquote>Attends qui nous dis que y'a pas d'autres métrics similaire au NFR du SRD qui devrait déscendre plutôt que monter ? De plus, je me souviens que NFR avait plusieurs candidat de document. Pourquoi ne pas avoir mis NFR dans un autre document pourrvu qu'il remplissait le caractère d'être relié au document ancêtre ?</blockquote></li>
+    <li>Témoignage de Yanis (2026-11-12, séance M.1) · certaine (déclaratif)
+      <blockquote>" concevoir les dimensions NFR AVANT héritage », puisque le NFR mélangeait plusieurs natures (conformité, performance). Cette séance dédiée n'a jamais eu lieu." -&gt; Exact je m'en souviens !  Oui, on va TOUT inscrire car TOUT était intéresant.</blockquote></li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>
