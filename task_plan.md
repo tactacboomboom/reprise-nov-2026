@@ -10,7 +10,7 @@ de ses outils coïncide avec leur intention d'origine, pratique jugée par Claud
 n'en est pas la preuve.
 
 ## 📍 Current Phase
-**Phase 1** : K.3 fait (12/11 : repo git `tactacboomboom/reprise-nov-2026`, rangement par séance) ; prochaine étape : vague 5 (K.1 ∥ K.2), fan-in par le pilote K.
+**Phase 1** : K.3 fait (12/11 : repo git `tactacboomboom/reprise-nov-2026`, rangement par séance) ; prochaine étape : vague 5 (K.1 ∥ K.2), fan-in par le pilote K. K.1 clos (12/11, fiche + kernel de clôture).
 
 ## 🗓 Phases
 
@@ -23,6 +23,7 @@ n'en est pas la preuve.
   public `tactacboomboom/reprise-nov-2026` hors Drive ; Drive figé. 1er essai de la phase 4 : Yanis
   n'a pas pu décrire l'architecture Anthropic d'un dossier → écart total sur le « comment » (findings K.3)
 - [ ] Vague 5 (pilote K, fiche 8 sections) : K.1 test-ia + CARTE-des-richesses (janvier) ∥ K.2 Anthropologie + projet-amelioration-fin-session + voyage_voyage (mai–juin)
+  — K.1 fait (12/11) : test-ia IGNORER, CARTE-des-richesses ARCHIVER (1re application de la méthode à un sujet extérieur)
 - [ ] Vague 6 (pilote L) : L.1 claude-prostheses SEUL (fin de la lignée, le plus gros morceau ; Yanis, 11/11)
 - `-my-claude-config` : config actuelle, pas étudiée comme souvenir, mais placée sur la carte
 - **Status:** in_progress
@@ -65,6 +66,11 @@ Séances à créer :
   valeurs (coût, contexte, durée) dans un fichier lu par `/cloture` ; plus de copier-coller. Modifie le setup → séance dédiée.
 - [ ] 13. **`progress.md` par séance** (K.3, Yanis) : le fil écrit PENDANT la séance (blocages en cours, essais
   ratés, signaux d'heuristique) ; survit à une coupure, nourrit /fin-session et les findings. Seul fichier écrit en cours de séance.
+- [ ] 15. **« Le système appliqué aux projets annexes »** (Yanis, K.1, 12/11) : Yanis applique son système en
+  bootstrap, sans attendre qu'il soit fini, et pense y voir s'améliorer sa manière de travailler. Corpus : CARTE-des-richesses
+  (01/2026), `G:\Mon Drive\10 - Claude\C1-PERSO\PARIS-MONGOLIE\` (06/2026, PWF), voyage_voyage (K.2), autres projets à lister
+  par Yanis. Même grille pour tous : Goal ? backlog ≤ 5 ? DoD binaire VÉRIFIÉE ? juge extérieur ? non-goals ? mémoire sur
+  disque ? livré / abandonné ? Croise la phase 4. Source : fiche K.1 § 8.
 
 Décisions en attente :
 - [ ] 5. **Les 8 règles Anthropic** (fiche I.2 § 7) : où les ranger, dans la graine de
@@ -106,6 +112,7 @@ Décisions en attente :
 | PR faites par Claude à la demande de Yanis ; la première fusion se fait ensemble (Yanis, K.3) | Projet solo : pas de CODEOWNERS, cycle ticket → PR → merge léger |
 | Préparation git : `.gitattributes` (LF) fait ; modèle de PR et convention de commits `<code>: <verbe> …` à décider plus tard (K.3) | Sans sur-ingénierie pour un solo (spécialiste GAFAM) |
 | L'état (en cours / clos) vit dans le README § En cours, jamais dans les chemins ; pas de `_OLD` avant la convergence (Yanis, K.3) | Un chemin qui change à chaque fan-in casse les kernels qui citent les fiches passées |
+| Contrats parallèles = un worktree git chacun (`../reprise-nov-2026-<code>`), nommé dans le kernel de lancement ; au démarrage, vérifier `git branch --show-current` (Yanis, K.1, 12/11) | K.1 et K.2 partageaient un dossier : le checkout de K.2 a changé la branche de K.1. « Il ne faut pas que ça se reproduise » |
 
 ## 🚨 Errors Encountered
 | Error | Attempt | Resolution |
@@ -116,3 +123,4 @@ Décisions en attente :
 | Clôture J.2 à 80 % du contexte (KR-MISS) : lot de 3 repos + schéma riche | J.2 | Lots plus petits ; vague 5 : ≤ 3 petits repos par contrat |
 | `git mv` : « destination exists » pour G et J (kernel et findings de même nom) | K.3 | Findings suffixés `-findings` ; règle ajoutée au CLAUDE.md |
 | `sed` + chemins Windows (`\U`, `\0` interprétés) : 3 remplacements refusés ; `python -I` ignore `PYTHONIOENCODING` | K.3 | Remplacements par script Python (`str.replace`) lancé avec `-X utf8` |
+| K.1 ouvert sur sa branche, mais `git branch --show-current` = `seance/K.2-…` : K.2 a fait un checkout dans le même dossier | K.1 | Détecté par /debut-session avant toute écriture ; `git worktree add ../reprise-nov-2026-K1` ; mémoire projet + décision ci-dessus |
