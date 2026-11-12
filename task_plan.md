@@ -24,6 +24,8 @@ n'en est pas la preuve.
   n'a pas pu décrire l'architecture Anthropic d'un dossier → écart total sur le « comment » (findings K.3)
 - [ ] Vague 5 (pilote K, fiche 8 sections) : K.1 test-ia + CARTE-des-richesses (janvier) ∥ K.2 Anthropologie + projet-amelioration-fin-session + voyage_voyage (mai–juin)
   — K.1 fait (12/11) : test-ia IGNORER, CARTE-des-richesses ARCHIVER (1re application de la méthode à un sujet extérieur)
+  — K.4 fait (12/11, ouvert par K.2) : Anthropologie archivé en témoin documenté (README, CLAUDE.md, LICENSE, docs/ + ADR 0001),
+    PR #1 mergée dans le repo étudié ; σ affichés non calculés (2 axes réels, pas 3) → `docs/limites.md` (findings K.4)
 - [ ] Vague 6 (pilote L) : L.1 claude-prostheses SEUL (fin de la lignée, le plus gros morceau ; Yanis, 11/11)
 - `-my-claude-config` : config actuelle, pas étudiée comme souvenir, mais placée sur la carte
 - **Status:** in_progress
@@ -112,6 +114,7 @@ Décisions en attente :
 | PR faites par Claude à la demande de Yanis ; la première fusion se fait ensemble (Yanis, K.3) | Projet solo : pas de CODEOWNERS, cycle ticket → PR → merge léger |
 | Préparation git : `.gitattributes` (LF) fait ; modèle de PR et convention de commits `<code>: <verbe> …` à décider plus tard (K.3) | Sans sur-ingénierie pour un solo (spécialiste GAFAM) |
 | L'état (en cours / clos) vit dans le README § En cours, jamais dans les chemins ; pas de `_OLD` avant la convergence (Yanis, K.3) | Un chemin qui change à chaque fan-in casse les kernels qui citent les fiches passées |
+| Exception « lecture seule » pour Anthropologie : RÉCUPÉRER = archiver en témoin documenté (mémoire K.2, sources, limites), pas reprendre l'étude ; commit/PR/merge faits dans le repo étudié (Yanis, K.4, 12/11) | « Ce projet est dépassé » ; un repo fini doit expliquer seul sa raison d'être |
 | Contrats parallèles = un worktree git chacun (`../reprise-nov-2026-<code>`), nommé dans le kernel de lancement ; au démarrage, vérifier `git branch --show-current` (Yanis, K.1, 12/11) | K.1 et K.2 partageaient un dossier : le checkout de K.2 a changé la branche de K.1. « Il ne faut pas que ça se reproduise » |
 
 ## 🚨 Errors Encountered
@@ -124,3 +127,5 @@ Décisions en attente :
 | `git mv` : « destination exists » pour G et J (kernel et findings de même nom) | K.3 | Findings suffixés `-findings` ; règle ajoutée au CLAUDE.md |
 | `sed` + chemins Windows (`\U`, `\0` interprétés) : 3 remplacements refusés ; `python -I` ignore `PYTHONIOENCODING` | K.3 | Remplacements par script Python (`str.replace`) lancé avec `-X utf8` |
 | K.1 ouvert sur sa branche, mais `git branch --show-current` = `seance/K.2-…` : K.2 a fait un checkout dans le même dossier | K.1 | Détecté par /debut-session avant toute écriture ; `git worktree add ../reprise-nov-2026-K1` ; mémoire projet + décision ci-dessus |
+| K.4 ouvert dans le dossier partagé, sur la branche de K.2 (kernel sans worktree nommé) | K.4 | Rien écrit avant `git worktree add ../reprise-nov-2026-K.4` ; le kernel de lancement doit nommer le worktree |
+| `numpy` absent : SVD impossible en une ligne ; contrôle de liens par regex `[^)h#]` qui excluait tout lien contenant « h » (faux négatif silencieux) | K.4 | SVD en Python standard (Jacobi) ; lien vérifié à la main ; tester le filtre sur un cas connu |
