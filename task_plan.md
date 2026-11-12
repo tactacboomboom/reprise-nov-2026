@@ -59,6 +59,12 @@ Séances à créer :
 - [ ] 10. **Chargement progressif de ce projet** (K.3, reporté par Yanis) : sortir de CLAUDE.md la
   convention fiche (l. 27-46) et le ledger vers `.claude/rules/` avec `paths: seances/**/*.html`
   (un `@import` ne réduit pas le coût). Après le point 2.
+- [ ] 11. **Skill de projet `/cloture`** (K.3) : `.claude/skills/cloture/SKILL.md` dans le repo ; enchaîne
+  findings → task_plan/README → /goedel → ledger → commit → push → PR. Le merge reste à Yanis (= validation).
+- [ ] 12. **Status bar lue par Claude** (K.3) : le script `statusLine` de `settings.json` écrit aussi ses
+  valeurs (coût, contexte, durée) dans un fichier lu par `/cloture` ; plus de copier-coller. Modifie le setup → séance dédiée.
+- [ ] 13. **`progress.md` par séance** (K.3, Yanis) : le fil écrit PENDANT la séance (blocages en cours, essais
+  ratés, signaux d'heuristique) ; survit à une coupure, nourrit /fin-session et les findings. Seul fichier écrit en cours de séance.
 
 Décisions en attente :
 - [ ] 5. **Les 8 règles Anthropic** (fiche I.2 § 7) : où les ranger, dans la graine de
