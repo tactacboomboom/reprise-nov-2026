@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>claude-prostheses — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+pre.schema{background:var(--chip);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;line-height:1.45;margin:6px 0 12px}
+h3{font-size:13.5px;margin:12px 0 6px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>claude-prostheses</h1>
+  <div class="meta">
+    2026-05-25 → 2026-11-09 · 369 commits (231 sur <code>master</code> + 138 sur <code>sprint-15</code>, 16 branches) · 2,3 Mo, 612 fichiers ·
+    vivant (un script sert encore à chaque clôture) · séance L.1 ← parent L · 2026-11-12 · statut partiel
+    (budget dépassé : 77 % ; <code>sprints/</code>, <code>spec/</code>, les SKILL.md et la plupart des kernels et findings non lus ;
+    sprints lus par leurs commits)
+  </div>
+  <span class="badge v-recup">RÉCUPÉRER</span>
+</header>
+
+<p class="lead">Le dernier maillon de la lignée : Claire renommée, devenue une « salle virtuelle » de
+collègues IA (des prothèses) où Yanis joue tous les rôles de Scrum, puis une usine à documents MRD → Code
+poncée séance après séance. C'est là que sont nés les outils et la méthode de pilotage qu'il utilise encore.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>Le 25/05, Yanis veut que chaque session Claude démarre avec le bon contexte, sans tout recharger.
+    Le premier commit crée 3 « agents » (indie-dev, pm, dev-anthropic). Chacun a un script qui compresse ses
+    sources en ~3 000 tokens : l'écosystème de Claire, le vault, les audits des repos Anthropic
+    <span class="ref">[1]</span> <span class="ref">[2]</span>. Ce n'est pas un nouveau projet : le 01/06, Yanis
+    écrit que « Claire » est l'<b>ancien nom</b> de claude-prothèse <span class="ref">[3]</span>. L'hypothèse
+    d'un départ inspiré d'alirezarezvani ne tient pas : ce repo n'apparaît que le lendemain, comme un audit
+    qui « valide » la vision <span class="ref">[5]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Une vision dictée le 26/05 : un tableau de bord par projet avec tous les documents qui mènent de
+    l'intention au logiciel, reliés par un « linéage » où chaque document part du précédent. Chaque document
+    porte sa « volatilité » : quand le relire, quand le réécrire. Une « spec day » par projet remplit tous ces
+    documents. Une « simulation de collègues IA (prothèses) » complète le tout, mais « c'est moi qui joue
+    chacun des rôles ». Bénéfice attendu : « n'avoir que des choses claires et simples à faire chaque jour »,
+    pour du logiciel comme pour un pâtissier <span class="ref">[4]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 1 — Des agents aux prothèses-rôles · 25–26/05 · 49 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">25/05</td><td>3 agents de compression de contexte, le guide Superpowers, puis le PWF du projet (14 commits)</td><td>Recharger le contexte coûte cher à chaque session</td><td>Un contexte de ~3K tokens par type de session <span class="ref">[1]</span></td></tr>
+    <tr><td class="d">26/05 matin</td><td>Session « C7 » : vision écrite mot pour mot, matrice chaîne de valeur × 11 buckets, audit d'alirezarezvani, design du méta-projet</td><td>« hier ma session a sauté » : fixer la vision avant de la perdre</td><td>Un cap écrit dans <code>docs/vision/</code> <span class="ref">[4]</span> <span class="ref">[5]</span></td></tr>
+    <tr><td class="d">26/05 après-midi</td><td>Sprints 1 → 4 : un skill par rôle Scrum (Product Owner, Scrum Master, Dev Team, Stakeholder), chacun avec frameworks, LINEAGE et tests d'acceptation</td><td>Greffer des rôles avec traçabilité, ce qui manque à alirezarezvani</td><td>4 prothèses-rôles livrées en ~1 h 30 <span class="ref">[7]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — La salle virtuelle et le cycle de session · 27–29/05 · 89 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">27/05</td><td>Dispatcher (routage vers un skill), salle virtuelle : modèles de « PoW » (preuve de travail) par rôle, dashboard HTML sur Vercel, cérémonies des sprints 2 à 4</td><td>Faire « se réunir » les prothèses</td><td>Chaque cérémonie laisse un fichier par rôle <span class="ref">[8]</span></td></tr>
+    <tr><td class="d">28/05</td><td>Sprint 5 : /fin-session · Sprint 6 : /goedel, /debut-session, architecture de session · Sprint 7 : pipeline Superpowers × Scrum</td><td>Perte de mémoire entre sessions ; « le kernel est un système formel, pas un résumé »</td><td>Le trio de clôture/reprise utilisé encore aujourd'hui <span class="ref">[8]</span> <span class="ref">[9]</span></td></tr>
+    <tr><td class="d">29/05</td><td>Sprint 8 : skills rangés dans <code>.claude/skills/</code> · Sprint 9 : squelette de 24 fichiers par sprint, lint, hook pre-commit · Sprint 10 : « gate mécanique » (hook PreToolUse)</td><td>Le Sprint Planning était sauté (« encore ») avant l'exécution</td><td>Le process imposé par la machine, pas par la volonté <span class="ref">[8]</span> <span class="ref">[9]</span></td></tr>
+  </table>
+  <div class="phase">Phase 3 — La chaîne de documents · 30–31/05 · 94 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">30/05</td><td>Sprint 11 : 13 modèles de PoW par cérémonie · Sprint 12 : pipeline MRD → BRD → PRD → SRD → Code · Sprint 13 : 18 outils posés sur 4 ruptures R1–R4, verrou « doc ⊥ outil » démontré avec /fmath</td><td>Rendre la vision (des documents reliés, sans doublon) concrète</td><td>Gabarits + <code>tool-template</code> sourcés, 64 tests verts <span class="ref">[10]</span></td></tr>
+    <tr><td class="d">30–31/05</td><td>Sprint 14 : lints de clôture, registre du coût Ops, protocole d'ouverture/clôture, kernels datés par séance ; vision « orchestration de prothèses »</td><td>Les story points ne disent pas ce que coûte un sprint</td><td>Le coût réel noté à chaque clôture <span class="ref">[11]</span></td></tr>
+  </table>
+  <div class="phase">Phase 4 — Sprint 15 : poncer chaque document · 31/05–11/06 · 111 commits, séances B → AR</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">01–04/06</td><td>MRD, BRD, PRD, SRD de claude-prothèse lui-même ; R-gate par juges indépendants (03/06) ; skill /forge-outil ; une séance entière annulée (R)</td><td>Un document doit être jugé par d'autres que son auteur</td><td>Des conclusions renversées par les juges <span class="ref">[12]</span> <span class="ref">[13]</span></td></tr>
+    <tr><td class="d">05–11/06</td><td>Forges d'outils en parallèle, une par worktree, par « vagues » intégrées ensuite ; ledger Ops en CSV + parseur de status bar (07/06) ; outil ANCRAGE (08/06)</td><td>Aller plus vite sans perdre la traçabilité</td><td>Cycles BRD, PRD, SRD clos <span class="ref">[14]</span> <span class="ref">[11]</span></td></tr>
+  </table>
+  <div class="phase">Phase 5 — Mesurer, fermer la chaîne, ranger · 20/06–09/11 · 26 commits</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">20–21/06</td><td>Ledger « pilotage » (AS), analyse comparative des coûts (AT), /goedel durci</td><td>Deux notes du vault (« coureur vs course », « clôture stateless ») retournent la séance prévue</td><td>Preuve chiffrée : le coût par séance monte le long de la chaîne <span class="ref">[15]</span></td></tr>
+    <tr><td class="d">22–23/06</td><td>Cycle Code : 4 forges de cérémonies en parallèle (le « quatuor »), intégration AZ</td><td>Fermer le dernier maillon</td><td>Les 5 gabarits de la chaîne existent <span class="ref">[16]</span></td></tr>
+    <tr><td class="d">09/11</td><td>Retrait de /goedel et /fin-session du projet</td><td>Montés au global : éviter deux versions concurrentes</td><td>Une seule source pour ces skills <span class="ref">[17]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Évolution de la pensée</h2>
+  <h3>A. Les étapes, en schéma</h3>
+<pre class="schema">ÉTAPE 0 · 25/05 — LE CONSTAT : chaque session repart de zéro           [1][2][3]
+   « Claire » (ancien nom) a ses sources (ecosystem, vault, audits Anthropic)
+   → 3 agents qui compressent le contexte en ~3K tokens
+          │
+          ▼
+ÉTAPE 1 · 26/05 — LES PROTHÈSES · des RÔLES                                [4][5][7]
+   vision : « une simulation de collègues IA… c'est moi qui joue chacun des rôles »
+   audit alirezarezvani : « 329 skills sans gouvernance = bruit »
+   réponse : 4 rôles Scrum (PO · SM · Dev Team · Stakeholder), chacun tracé (LINEAGE)
+          │
+          ▼
+ÉTAPE 2 · 27–28/05 — LA SALLE VIRTUELLE · des CÉRÉMONIES                   [8][9]
+   difficulté : les rôles n'existent que s'ils se réunissent ; la mémoire s'efface
+   réponse    : PoW par rôle + dashboard ; /fin-session, /goedel, /debut-session
+          │
+          ▼
+ÉTAPE 3 · 29/05 — LA MACHINE GARDE LE PROCESS · des GATES                  [8][9]
+   difficulté : Sprint Planning sauté deux fois, cérémonies S6 jamais écrites
+   réponse    : squelette 24 fichiers + lint + pre-commit + hook PreToolUse
+          │
+          ▼
+ÉTAPE 4 · 30–31/05 — LA CHAÎNE DE DOCUMENTS · un PIPELINE                  [10][11]
+   MRD → BRD → PRD → SRD → Code · 18 outils sur 4 ruptures
+   invariants /fmath : doc ⊥ outil (I4) · une méthode = un seul foyer (I5)
+   + le coût réel compte : registre Ops (les SP ne mesurent pas le coût)
+          │
+          ▼
+ÉTAPE 5 · 01–11/06 — LE PONÇAGE · des JUGES et des VAGUES                  [12][13][14]
+   difficulté : l'auto-revue « adversariale » partage les biais de l'auteur
+   réponse    : R-gate = 3 sous-agents à contexte vierge (défenseur · attaquant ·
+                neutre) sur 3 modèles ; /forge-outil ; forges parallèles en worktrees
+          │
+          ▼
+ÉTAPE 6 · 20–23/06 — LA MESURE RATTRAPE LA MÉTHODE                         [15][16]
+   SRD : 10,62 $/séance contre 4,87 $ pour le BRD · total 395 $ sur 57 lignes
+   séance AZ : « qu'est-ce qu'on fout là » → arrêt après le maillon Code
+          │
+          ▼
+ÉTAPE 7 · 09/11 → — CE QUI SURVIT                                          [17][19][20]
+   goedel · debut-session · fin-session au global · ops_ledger.py à chaque clôture
+   la méthode « pilote → vagues → contrats en worktree » pilote CETTE reprise</pre>
+  <h3>B. Les difficultés rencontrées, et ce que Yanis en a fait</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>Difficulté</th><th>Réponse dans ce repo</th><th>Ce qu'elle est devenue ensuite (autres repos, setup actuel)</th></tr>
+    <tr><td>Le contexte à recharger à chaque session</td><td>Scripts de compression (25/05), puis kernel /goedel + /debut-session (28/05) <span class="ref">[1]</span> <span class="ref">[8]</span></td><td>/goedel et /debut-session sont au global et ouvrent chaque séance de cette reprise <span class="ref">[17]</span> <span class="ref">[19]</span></td></tr>
+    <tr><td>Travailler seul, sans collègues</td><td>4 prothèses-rôles Scrum et une salle virtuelle (26–27/05) <span class="ref">[7]</span> <span class="ref">[8]</span></td><td>Les skills de rôle sont restés locaux au repo et dorment <span class="ref">[19]</span></td></tr>
+    <tr><td>Le process sauté quand on est pressé</td><td>Gates mécaniques : lint, pre-commit, hook PreToolUse (29/05) <span class="ref">[8]</span> <span class="ref">[9]</span></td><td>Pas de hook de ce type dans le setup actuel : à confirmer par Yanis</td></tr>
+    <tr><td>Un avis seul ne se voit pas lui-même</td><td>R-gate à 3 juges indépendants, cadrage équilibré, modèles variés (03/06) <span class="ref">[12]</span></td><td>Reprise dans le repo fin-session (R-gate à 3 juges, juin) : claude-prostheses l'a eu en premier <span class="ref">[22]</span></td></tr>
+    <tr><td>Aller vite sans tout mélanger</td><td>Forges parallèles, 1 worktree par outil, kernel de lancement, intégration par vague (05/06) <span class="ref">[14]</span></td><td>C'est la règle de cette reprise : « un worktree par séance », pilotes et contrats en vagues <span class="ref">[20]</span></td></tr>
+    <tr><td>Ne pas savoir ce que coûte une séance</td><td>Registre Ops (30/05) → CSV + parseur de status bar (07/06) → colonnes de pilotage (20/06) <span class="ref">[11]</span></td><td><code>scripts/ops_ledger.py</code> écrit une ligne à chaque clôture de cette reprise <span class="ref">[20]</span></td></tr>
+    <tr><td>La méthode qui s'applique à elle-même</td><td>Le MRD prend claude-prothèse comme sujet (« n=1 dogfooding ») ; le test T1, un projet vraiment externe, reste à faire <span class="ref">[18]</span></td><td>Même tension qu'en janvier (fiche J.2) : à confirmer par Yanis <span class="ref">[22]</span></td></tr>
+  </table>
+  </div>
+  <h3>C. Ce que les traces ajoutent au souvenir</h3>
+  <ul>
+    <li><b>Claire et claude-prostheses ne font qu'un.</b> Les fiches précédentes les présentent comme deux
+    étapes. Yanis l'a corrigé lui-même le 01/06, dans une décision écrite (DEC-16) : Claire est l'ancien nom,
+    « avant que Yanis sache nommer les choses ». Elle n'est pas un projet sur lequel tester l'outil
+    <span class="ref">[3]</span>.</li>
+    <li><b>Le ledger est plus ancien que <code>metrics/sessions.csv</code>.</b> Le registre Ops naît le 30/05,
+    passe en CSV le 07/06, et c'est lui que sert <code>ops_ledger.py</code>. Le <code>sessions.csv</code> de
+    fin-session date du 09/06. L'hypothèse de K.2 est donc inversée : si l'un descend de l'autre, c'est
+    sessions.csv qui suit le ledger (interprétation de Claude, confiance moyenne) <span class="ref">[11]</span>
+    <span class="ref">[22]</span>.</li>
+    <li><b>Les juges R-gate sont nés ici, le 03/06, et ce ne sont pas les personas.</b> Les personas sont les
+    4 rôles du 26/05 : ils produisent. Les juges du 03/06 sont des sous-agents anonymes (défenseur,
+    attaquant, neutre) : ils évaluent. L'idée « plusieurs avis » de la lignée a donc deux branches dans ce
+    repo <span class="ref">[7]</span> <span class="ref">[12]</span>.</li>
+    <li><b>La méthode de cette reprise vient de juin.</b> Séances nommées par lettres (B → AZ), kernels de
+    lancement, contrats parallèles en worktree, intégration par vagues, ledger avec <code>ctx_close</code> et
+    <code>violations</code> : tout cela existe dès le sprint 15. La reprise de novembre le réapplique, elle
+    ne l'invente pas <span class="ref">[14]</span> <span class="ref">[16]</span> <span class="ref">[20]</span>.</li>
+    <li><b>Deux « Sprint 4 » : deux numérotations successives.</b> Le 26/05, les sprints 1 → 4 sont un
+    sprint par rôle. Le 27/05, la « spirale Scrum » repart à 1 (« Sprint 1 Dispatcher ») et continue jusqu'au
+    sprint 15 ; le dossier <code>sprints/</code> ne suit que cette 2ᵉ série. Yanis ne s'en souvenait pas
+    <span class="ref">[7]</span> <span class="ref">[24]</span> <span class="ref">[23]</span>.</li>
+    <li><b>Le plugin aux hooks coûteux, c'était planning-with-files.</b> Yanis se souvient d'un plugin qui
+    consommait beaucoup de tokens sans qu'il le sache. <code>pwf/findings.md</code> le chiffre : ~890 000
+    tokens par session avec les hooks par défaut, ~7 000 avec le seul hook Stop. D'où la règle « /debut-session
+    = skill manuel, pas un hook ». Son propre hook PreToolUse (29/05) vérifiait, avant chaque skill, que la
+    cérémonie précédente était faite <span class="ref">[8]</span> <span class="ref">[9]</span>
+    <span class="ref">[23]</span>.</li>
+    <li><b>E a absorbé le projet, par choix.</b> À partir du 01/06, les rôles et les cérémonies deviennent
+    des outils forgés dans la chaîne (le « quatuor » du 23/06 : sprint-planning, sprint-review, retrospective,
+    gate-dod). Yanis le confirme : la mécanique Scrum a été mise de côté pour se concentrer sur E, sous un
+    forfait à 90 € « juste juste ». Le README, lui, décrit encore la salle virtuelle de fin mai
+    <span class="ref">[16]</span> <span class="ref">[23]</span>.</li>
+    <li><b>Un mois très dense.</b> 369 commits, environ 70 séances, dont 68 commits le seul 30/05 ; puis un seul
+    commit entre le 24/06 et le 12/11 <span class="ref">[6]</span>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">skills /goedel, /debut-session, /fin-session</span> Nés ici (sprints 5–6, 28/05),
+    versionnés dans le repo, puis retirés le 09/11 parce qu'ils sont montés au global <span class="ref">[8]</span>
+    <span class="ref">[17]</span> <span class="ref">[19]</span></li>
+    <li><span class="chip">script ops_ledger.py</span> Vivant : la clôture de chaque séance de cette reprise
+    l'appelle dans le clone de claude-prostheses <span class="ref">[11]</span> <span class="ref">[20]</span></li>
+    <li><span class="chip">skill /fmath</span> Le repo s'en sert pour démontrer ses invariants (I4, I5) et pour
+    chaque forge. Le 03/06, une forge faite avec un « fmath inline » est déclarée viciée et refaite avec le
+    vrai skill <span class="ref">[10]</span> <span class="ref">[13]</span></li>
+    <li><span class="chip">plugin Superpowers</span> Squelette du pipeline : /brainstorm → /writing-plans →
+    exécution → vérification, posé sur les cérémonies Scrum <span class="ref">[8]</span></li>
+    <li><span class="chip">skills locaux qui dorment</span> 12 skills dans <code>.claude/skills/</code> :
+    rôles Scrum, salle-virtuelle, dispatcher, pipeline, forge-outil, etc. Aucun n'est au global
+    <span class="ref">[19]</span></li>
+    <li><span class="chip">vault</span> Le repo lit des notes de concepts du vault (leviers du juge, coureur vs
+    course, clôture stateless) et cite ses chemins dans le linéage de ses findings <span class="ref">[12]</span>
+    <span class="ref">[15]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>6 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> Un nouveau projet démarre → une « spec day » remplit tous les documents ; les
+      prothèses-rôles tiennent les cérémonies ; le framework est copié dans chaque projet
+      (<code>project_scaffold.py</code>) <span class="ref">[4]</span> <span class="ref">[9]</span></li>
+      <li><b>Réel :</b> Le seul projet traité est claude-prothèse lui-même (MRD « racine », n=1). Le premier
+      usage sur un projet externe reste un objectif (T1) <span class="ref">[18]</span>. C'était voulu : Yanis
+      construisait l'outil et voulait le terminer avant de l'utiliser sur un projet annexe (app, site, création
+      de contenu) <span class="ref">[23]</span>. Une séance démarrait
+      par /debut-session sur le dernier kernel et finissait par /goedel et une ligne au ledger
+      <span class="ref">[11]</span> <span class="ref">[16]</span></li>
+      <li><b>Réel aujourd'hui :</b> Clôture d'une séance de reprise → <code>ops_ledger.py append</code>.
+      Ouverture → /debut-session. Le reste ne sert plus <span class="ref">[19]</span>
+      <span class="ref">[20]</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>7 · Où je me suis arrêté</h2>
+    <p>Le 23/06, la séance AZ ferme le dernier maillon : les gabarits MRD → Code existent tous. Le gabarit
+    Code reste « en ponçage » tant que le SRD parent n'est pas verrouillé. Le kernel AZ laisse deux options :
+    verrouiller le SRD ou compléter le ledger <span class="ref">[16]</span>. Ce même kernel note un
+    sur-investissement : contexte à 92 %, 8,68 $, interrompu par « qu'est-ce qu'on fout là »
+    <span class="ref">[16]</span>. La raison de l'arrêt est un voyage : Yanis partait le 01/07, une semaine
+    plus tard, et voulait terminer la chaîne avant <span class="ref">[23]</span>. Bilan : la structure est
+    terminée (les 5 gabarits existent), le verrouillage ne l'est pas (SRD non verrouillé, donc Code « en
+    ponçage ») ; il restait une ou deux séances. Le statut exact de chaque gabarit n'a pas été lu
+    <span class="ref">[16]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>8 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur le repo) :</b> RÉCUPÉRER. Le repo est vivant : le script de ledger qu'il héberge sert à
+    chaque clôture, et les trois skills de session en sont issus. La plus grande partie (rôles, salle
+    virtuelle, gabarits poncés) dort, mais elle documente la méthode encore utilisée.</li>
+    <li><b>Réutilisable :</b> <code>scripts/ops_ledger.py</code> + <code>tests/test_ops_ledger.py</code> → déjà
+    utilisés depuis le clone vivant. Protocole R-gate (<code>docs/findings/2026-06-03-I-…</code>) → candidat à
+    un skill global. Runbook de parallélisation (<code>docs/findings/2026-06-05-X-…</code>) → déjà repris de
+    fait dans le CLAUDE.md de la reprise. <code>.claude/skills/forge-outil</code> et
+    <code>pipeline</code> (gabarits MRD → Code) → à décider par Yanis.</li>
+    <li><b>Conflits gouvernance :</b> R10 (Drive = source de vérité des skills, GitHub seulement pour du code
+    exécutable) : le repo décidait au contraire « claude-prostheses = source canonique unique,
+    ~/.claude/skills/ est un target » ; et le 09/11, /goedel et /fin-session sont versionnés sur GitHub
+    (my-claude-config) alors qu'ils sont surtout du markdown <span class="ref">[9]</span>
+    <span class="ref">[17]</span> <span class="ref">[21]</span>. R8 (skills projet dans
+    <code>.claude/skills/</code>) : respectée depuis le sprint 8. R3 (pas de git dans le Drive) : respectée.</li>
+    <li><b>À confirmer par Yanis :</b> le statut de verrouillage de chaque gabarit au 23/06 (à lire, pas à
+    se rappeler). Le RAG sur les conversations du vault, central dans la vision du 26/05, n'a aucun commit
+    après cette date : abandonné, reporté, ou fait ailleurs ? Où vit la version de référence de /goedel :
+    Yanis ne le sait pas ; la séance my-claude-config ou vault le dira.</li>
+    <li><b>Pour la convergence :</b> le CLAUDE.md de la reprise appelle <code>ops_ledger.py</code> par un chemin
+    absolu vers ce clone, et <code>--mirror ""</code> évite d'écraser le CSV miroir du Drive. Le ledger et
+    <code>metrics/sessions.csv</code> (fin-session) sont deux journaux du même geste. /goedel et /fin-session
+    vivent maintenant dans my-claude-config <span class="ref">[17]</span> <span class="ref">[20]</span>
+    <span class="ref">[22]</span>.</li>
+    <li><b>Proposition au pilote :</b> repo trop gros pour une séance ; découper en contrats indépendants par
+    sous-projet : L.2 « où j'en étais au 23/06 » (kernel AZ, <code>spec/SRD.md</code>, gabarits
+    <code>pipeline/</code>, findings AU → AZ) · L.3 « la chaîne E » (nilpotence, ponçage, forges, R-gate :
+    findings H, I, P, X, <code>/forge-outil</code>) · L.4 « rôles et Scrum » (SKILL.md des rôles, un sprint
+    type, <code>sprint_gate.py</code>) · L.5 « RAG et vision » (<code>docs/vision/</code>, <code>7880faf</code>,
+    <code>115af31</code>), éventuellement avec la séance vault. Puis un essai d'usage : un petit projet annexe
+    passé par la chaîne, coût au ledger (phase 4). Aussi : une séance my-claude-config ; alirezarezvani n'a
+    servi ici qu'à un audit (26/05) et à un script de frontmatter.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li><code>fe98d86</code> (25/05 11:04, « 3 Claude agent skills ») · <code>git show 44bf6c7:task_plan.md</code> (Goal : « scripts de compression de contexte (~3K tokens) ») · certaine</li>
+    <li><code>.env.example:4</code> et <code>.claude/skills/pm/references/LINEAGE.md:6</code> : source = <code>ecosystem.html</code> du dossier Claire du Drive · certaine</li>
+    <li><code>docs/glossaire-ubiquitaire.md:138-143</code> (DEC-16, séance B, 01/06) ; <code>spec/MRD.md:191</code> · certaine</li>
+    <li><code>docs/vision/vision-systeme.md</code> (<code>79fb6ec</code>, 26/05, monologue de Yanis capturé mot pour mot) · certaine</li>
+    <li><code>fec9769</code> (26/05 15:04) : section « Apprentissages — Audit alirezarezvani » de <code>vision-systeme.md</code> ; <code>4ffbf72</code> (script de frontmatter) · certaine</li>
+    <li><code>git log --all --format=%ad | sort | uniq -c</code> : 232 en mai, 136 en juin, 1 le 09/11 ; <code>git rev-list --all --count</code> = 369 ; <code>git ls-tree -r origin/sprint-15</code> = 612 fichiers · certaine</li>
+    <li><code>4c8a09e</code> → <code>691d474</code> (26/05 16:48–17:57) : sprints 1–4 PO, SM, Dev Team, Stakeholder · certaine</li>
+    <li><code>2b56d59</code> dispatcher, <code>aa3128e</code> salle-virtuelle, <code>19b3c8e</code> fin-session, <code>853069b</code> goedel, <code>pwf/progress.md</code> (debut-session, Sprint 6), <code>221dcac</code>/<code>8da74ef</code> scaffold + pre-commit, <code>75a8c73</code>/<code>b15261b</code> gate PreToolUse · certaine</li>
+    <li><code>pwf/task_plan.md</code> (Decisions Made, Errors Encountered) et <code>pwf/findings.md</code> (Gödel, hook toxicity, décisions techniques) · certaine</li>
+    <li><code>292aecd</code> (pipeline documents), <code>87bb1fa</code> (fmath I4/I5), <code>e84d114</code>/<code>ce02ca4</code> (18 tool-templates), <code>a7ba53e</code> (<code>docs/vision/orchestration-protheses.md</code>) · certaine</li>
+    <li><code>0641fcc</code> (30/05, <code>docs/ops-cost-ledger.md</code>), <code>cce8213</code> (07/06, ETL → <code>data/ops-cost-ledger.csv</code> + <code>scripts/ops_ledger.py</code>), <code>309162a</code> (20/06, colonnes pilotage) · certaine</li>
+    <li><code>c4d2eca</code> et <code>docs/findings/2026-06-03-I-rgate-juges-independants-rejugement-mrd.md</code> (en-tête et § 1) · certaine</li>
+    <li><code>ba548a1</code> (forge « VICIÉE »), <code>4c41a16</code> (« durcit /forge-outil »), <code>291cb29</code> (séance R : « ANNULATION totale ») · certaine</li>
+    <li><code>9e93ca9</code> et <code>docs/findings/2026-06-05-X-parallelisation-contrats-harnais.md:23-48</code> (1 worktree par forge, kernel de lancement) ; <code>35645cf</code> (intégration vague 1) · certaine</li>
+    <li><code>docs/findings/2026-06-21-AT-analyse-comparative-ledger.md</code> (tableau du coût par document) ; <code>docs/findings/2026-06-20-AS-…</code> (sources vault) · certaine</li>
+    <li><code>docs/kernels/2026-06-23-AZ-cloture-cycle-code.md:26-38</code> ([Action], [Ouvert], « qu'est-ce qu'on fout là ») · certaine</li>
+    <li><code>70d3ebe</code> (09/11, retrait de goedel et fin-session, « montés au global », my-claude-config) · certaine</li>
+    <li><code>spec/MRD.md:113</code> (« armurerie sans gouvernance ») et <code>:191</code> (T1, projet vraiment externe) ; <code>9166771</code> (« MRD racine… n=1 dogfooding ») · certaine</li>
+    <li><code>ls .claude/skills</code> du clone (12 skills) et <code>ls ~/.claude/skills</code> (12/11 : goedel, debut-session, fin-session, fmath présents ; forge-outil, pipeline, rôles absents) · certaine</li>
+    <li>CLAUDE.md de reprise-nov-2026, § Outils (appel de <code>ops_ledger.py</code>, <code>--mirror ""</code>) et § Règles (worktrees) · certaine</li>
+    <li><code>gouvernance-regles.md:58-63</code> (R8, R10, R13), lu le 12/11 · certaine</li>
+    <li>Fiches J.2 § 4 et K.2 § 4 B (sessions.csv du 09/06, R-gate de fin-session, personas) · élevée (source secondaire)</li>
+    <li>Témoignage de Yanis (2026-11-12, séance L.1) · certaine (déclaratif)
+      <blockquote>« Car je devais partir en voyage le 01/07. Donc une semaine après. Le framework n'avait pas encore servi, car j'étais en train de le construire. Tout mon temps y était dédié. J'étais sur le point de construire un outil linéagé, dépendant les uns des autres, nilpotent, qui évite le caractère stochastique de l'ia. Je voulais donc absolument le temriner avant de pouvoir l'utiliser sur un projet annexe. »</blockquote>
+      <blockquote>« Je sais juste que j'avais utilisé un plug-in installé qui faisait des hooks automatiques qui me coutait énormément de tokens sans le savoir. »</blockquote>
+      <blockquote>« Pourquoi il y a 2 sprints 4 ? Et bien je n'en sais rien. »</blockquote>
+      <blockquote>« C'est vrai, E a absorbé le projet. Mais c'était nécessaire. Sauf que je voulais le temriner avant mon départ. Et je ne sais pas si je l'ai temriné. […] ça ne signifie pas que la mécanique scrum ne servait pas. Au contraire, elle a été mise de côté pour un focus total sur E. Dis toi que pour faire E j'avais souscris au forfait 90 € et franchement j'étais juste juste. »</blockquote></li>
+    <li><code>bb01581</code> (27/05 14:44, « bootstrap-scrum-spiral — vision A→B + Sprint 1 Dispatcher ») · élevée (titre de commit)</li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>

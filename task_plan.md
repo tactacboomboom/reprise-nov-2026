@@ -29,6 +29,10 @@ n'en est pas la preuve.
     PR #1 mergée dans le repo étudié ; σ affichés non calculés (2 axes réels, pas 3) → `docs/limites.md` (findings K.4).
     RÉCUPÉRER s'y réduit à « récupérer la mémoire », pas reprendre l'étude (F4 de K.4)
 - [ ] Vague 6 (pilote L) : L.1 claude-prostheses SEUL (fin de la lignée, le plus gros morceau ; Yanis, 11/11)
+  — L.1 fait (12/11, partiel, 87 %) : RÉCUPÉRER (ops_ledger.py vivant ; goedel, debut-session, fin-session nés ici).
+    Repo « synthèse » de 6 sous-projets ; E (chaîne MRD → Code) a absorbé le reste, structure finie, verrouillage non
+    (arrêt : voyage du 01/07). Contrats proposés : L.2 état au 23/06 ∥ L.3 chaîne E ∥ L.4 rôles + Scrum ∥ L.5 RAG + vision
+    (findings L.1 F9), puis un essai d'usage sur un projet annexe (phase 4)
 - `-my-claude-config` : config actuelle, pas étudiée comme souvenir, mais placée sur la carte
 - **Status:** in_progress
 
@@ -96,6 +100,7 @@ Décisions en attente :
   (R4), absent du local (R10). Le mettre en conformité puis l'activer, ou le laisser dormir ?
 - [ ] 7. **Juges R-gate = persona-prothèses** : la vision de Yanis relève du travail de la séance B
   (`seances/B-debut-session/2026-11-09-B-debut-session-r-gate.md`), à y rattacher.
+  L.1 : R-gate né dans claude-prostheses le 03/06 ; `c717e16` « Reviewer = Scrum Master via R-gate » (findings L.1 F6).
 - [ ] 8. **Dossiers du vault Clear Sky et SaaS-Traduction** (`vault/protocole/CPE/sources/`, 21 et 15
   fichiers) : les sources primaires de CPE, plus complètes que le repo. Faut-il les lire ?
 - **Status:** pending
@@ -145,3 +150,4 @@ Décisions en attente :
 | K.1 ouvert sur sa branche, mais `git branch --show-current` = `seance/K.2-…` : K.2 a fait un checkout dans le même dossier | K.1 | Détecté par /debut-session avant toute écriture ; `git worktree add ../reprise-nov-2026-K1` ; mémoire projet + décision ci-dessus |
 | K.4 ouvert dans le dossier partagé, sur la branche de K.2 (kernel sans worktree nommé) | K.4 | Rien écrit avant `git worktree add ../reprise-nov-2026-K.4` ; le kernel de lancement doit nommer le worktree |
 | `numpy` absent : SVD impossible en une ligne ; contrôle de liens par regex `[^)h#]` qui excluait tout lien contenant « h » (faux négatif silencieux) | K.4 | SVD en Python standard (Jacobi) ; lien vérifié à la main ; tester le filtre sur un cas connu |
+| L.1 : budget dépassé (77 % → 87 %), fiche écrite sans relevé de status bar | L.1 | Fiche `partiel` ; demander la status bar avant la fiche, découper en contrats dès 70 % |
