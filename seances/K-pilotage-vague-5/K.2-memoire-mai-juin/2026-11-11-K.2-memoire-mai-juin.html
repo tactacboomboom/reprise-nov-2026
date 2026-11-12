@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fiche mémoire K.2 — copiée depuis gabarits/fiche-memoire.html (8 sections). Lot de 3 repos
+     (D1 du kernel K.2) : frise et § 4 découpés par repo, en ordre chronologique.
+     C3 : Anthropologie est PRIVÉ → la fiche décrit sa forme et sa méthode, sans en citer le contenu. -->
+<title>Lot mai–juin — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+pre.schema{background:var(--chip);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;line-height:1.45;margin:6px 0 12px}
+h3{font-size:13.5px;margin:12px 0 6px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Lot mai–juin : Anthropologie · voyage_voyage · projet-amelioration-fin-session</h1>
+  <div class="meta">
+    2026-05-10 → 2026-06-27 · 12 commits (4 + 5 + 3) · 30 Ko · 2,6 Mo · 20 Ko (gh diskUsage) ·
+    tous les trois arrêtés · séance K.2 ← parent K · 2026-11-12 · statut complet
+  </div>
+  <span class="badge v-recup">Anthropologie : RÉCUPÉRER (décision de Yanis)</span>
+  <span class="badge v-archiv">voyage_voyage : ARCHIVER</span>
+  <span class="badge v-recup">projet-amelioration-fin-session : RÉCUPÉRER</span>
+</header>
+
+<p class="lead">Trois sorties de la méthode hors de Claire. Le même outil (fmath, puis le
+décodeur narratif) sert d'abord une curiosité d'anthropologie (10/05), puis une vraie décision de
+vie (l'été 2026, 04/06). Enfin, la méthode se retourne sur elle-même pour réparer son propre outil
+de clôture (09/06).</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p><b>Anthropologie (10/05)</b> : une page HTML déjà prête est déposée par l'interface web de
+    GitHub. C'est un « tenseur culturel » qui compare trois sociétés sur 8 dimensions. Le repo naît
+    pour la publier sur Vercel <span class="ref">[1]</span>. Selon Yanis, il étudiait alors 3 pays
+    sur claude.ai (avec Emmanuel Todd notamment) et voulait exposer ses conclusions en ligne avec un
+    visuel. C'était aussi le premier essai d'une intention plus large : présenter des travaux de
+    recherche sous forme visuelle, en faisant des ponts entre maths, informatique et sciences
+    humaines <span class="ref">[17]</span>. Le même jour, Claire s'enrichit des onglets Métiers,
+    Préfecture, Théorèmes et Rôles IT <span class="ref">[13]</span>.</p>
+    <p><b>voyage_voyage (04/06)</b> : il faut décider à deux de deux mois de voyage (juillet–août).
+    Le visa algérien est refusé, et c'est le dernier grand voyage avant une reprise de travail
+    en septembre <span class="ref">[3]</span>.</p>
+    <p><b>projet-amelioration-fin-session (09/06)</b> : /fin-session coûte cher (1,5 à 2 $ par
+    lancement) et son pool d'heuristiques sature (~50 pour un plafond de 40)
+    <span class="ref">[7]</span> <span class="ref">[8]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p><b>Anthropologie</b> : réduire 8 dimensions culturelles à 3 axes dominants, puis les
+    raconter en 7 chapitres « sans symbolisme mathématique » <span class="ref">[2]</span>.</p>
+    <p><b>voyage_voyage</b> : un site de décision. Il contient un jeu mobile pour choisir le
+    scénario, le plan de réunion, un récit à lire à voix haute et un essai sur les manières de
+    voyager <span class="ref">[3]</span> <span class="ref">[4]</span>. Ensuite, un atlas 3D
+    hors-ligne de la Mongolie <span class="ref">[5]</span>.</p>
+    <p><b>projet-amelioration-fin-session</b> : faire de /fin-session une « mémoire
+    d'apprentissage bon marché et qui ne fossilise pas ». Trois résultats sont visés : un coût de
+    0,40 $ au plus, un pool qui se compresse seul, et deux pipes (sessions et corrections)
+    <span class="ref">[7]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 1 — Anthropologie : publier une analyse · 2026-05-10 (13:32 → 14:04)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">05-10 13:32</td><td>Initial commit, puis dépôt de <code>tenseur-culturel-3pays.html</code> par l'interface web (130d7c8, c51f336)</td><td>Mettre en ligne une page faite dans une conversation</td><td>La page existe sur GitHub <span class="ref">[1]</span></td></tr>
+    <tr><td class="d">05-10 13:41</td><td>Ajout d'<code>index.html</code> (8be5c75)</td><td>Vercel renvoyait une 404 : pas d'index à la racine</td><td>Le site s'affiche <span class="ref">[1]</span></td></tr>
+    <tr><td class="d">05-10 14:04</td><td>Onglet 2 « Décodeur » : 7 chapitres de récit et une infographie SVG (746337d)</td><td>« Passe 2 fmaths » : rendre l'analyse lisible sans les maths</td><td>Analyse et récit sont réunis dans une seule page <span class="ref">[2]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — voyage_voyage : décider de l'été · 2026-06-04 (12:16 → 12:24)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">06-04 12:16</td><td>Initial commit, puis dépôt de <code>notre-ete-2026.html</code> (le jeu) par l'interface web (c80e5a2, 8465696)</td><td>Partager le jeu de décision</td><td>Une page mobile « Choisis ton été » <span class="ref">[4]</span></td></tr>
+    <tr><td class="d">06-04 12:24</td><td>« Fix 404 + site complet » : <code>index.html</code>, <code>docs.html</code> (onglets Markdown), plan de réunion, récit, essai (b7ad33e)</td><td>Même 404 Vercel que le 10/05 ; regrouper les 3 documents</td><td>Un site complet : le jeu pour elle, les docs « pour le chef de projet » <span class="ref">[3]</span> <span class="ref">[4]</span></td></tr>
+  </table>
+  <div class="phase">Phase 3 — projet-amelioration-fin-session : réparer l'outil de clôture · 2026-06-09 (18:11 → 22:15)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">06-09 18:11</td><td>Cadrage S01 : n1n4 de la session, findings F1–F8, kernel, heuristiques, CSV de métriques (ff600f8)</td><td>Le troncateur « d'Eckart-Young » est conçu puis passé à 3 juges indépendants</td><td>/fin-session v2 livrée (coût mesuré : 0,34 $) ; le troncateur est réfuté avant d'être codé <span class="ref">[7]</span> <span class="ref">[8]</span></td></tr>
+    <tr><td class="d">06-09 18:17</td><td>Clôture S01 : dernière ligne du ledger (8ced5b3)</td><td>Mesurer la séance</td><td>S01 a coûté 12,59 $ et atteint 160 % de contexte <span class="ref">[9]</span></td></tr>
+    <tr><td class="d">06-09 22:15</td><td>S02 : audit de claude-mem et de graphify par 4 juges, décision T1 « lexical » (e7b95e9)</td><td>Auditer des outils existants avant de concevoir</td><td>Un plan prêt : porter <code>graphify/dedup.py</code>, aucun embedding <span class="ref">[8]</span></td></tr>
+  </table>
+  <div class="phase">Phase 4 — voyage_voyage : l'atlas avant le départ · 2026-06-27 (19:40 → 19:49)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">06-27 19:40</td><td>Atlas 3D de la Mongolie : page autonome de 6,5 Mo et sources Vite + Three.js + D3, données OSM et Natural Earth (d8be9cc)</td><td>Préparer le terrain du voyage, hors-ligne</td><td>Une carte qui marche sans réseau ; faits vérifiés par 3 juges <span class="ref">[5]</span> <span class="ref">[6]</span></td></tr>
+    <tr><td class="d">06-27 19:49</td><td>Rendu mobile : légendes en tiroir, bouton « Recentrer » (c2b34bd)</td><td>L'utiliser au téléphone, sur place</td><td>Atlas utilisable sur mobile <span class="ref">[5]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Évolution de la pensée</h2>
+  <h3>A. Les étapes, en schéma</h3>
+<pre class="schema">ÉTAPE 0 · 22/04 — UNE CONVERSATION (Meta AI, découpée par /n1n4)           [18]
+   SVD / Eckart-Young appliqués aux bases de données et aux marchés,
+   « tenseur social » ; thème classé SociologieEtAnthropologie
+   début mai : fmath et le décodeur rangent l'univers IT dans Claire        [13]
+          │
+          ▼
+ÉTAPE 1 · 10/05 — Anthropologie · fmath (SVD) → décodeur, HORS de l'IT [1][2][17]
+   pont : maths + sciences humaines + IT (publication en ligne)
+   difficulté : Vercel renvoie une 404 (pas d'index.html)
+   réponse    : ajouter index.html, puis l'onglet « Décodeur » le même jour
+   en creux   : σ₁…σ₃ écrits en dur, « nilpotence », « Eckart-Young »      [12]
+          │      (aucun calcul dans la page)
+          ▼
+ÉTAPE 2 · 04/06 — voyage_voyage · la méthode sert une DÉCISION DE VIE       [3][4]
+   plan (scénarios, tableau, « éléphants ») + récit + essai fmath → décodeur
+   difficulté : la même 404 Vercel qu'au 10/05
+   réponse    : même correctif, et cette fois noté dans le README
+          │
+          ▼
+ÉTAPE 3 · 09/06 — projet-amelioration-fin-session · la méthode se RÉPARE    [7][8]
+   difficulté : /fin-session coûte cher, le pool sature et fossilise
+   réponse    : un troncateur « d'Eckart-Young »… que 3 juges réfutent :
+                « la SVD était ornementale » → couverture + decay (F4, H2)
+   puis       : auditer claude-mem et graphify avant de coder (H5)
+          │
+          ▼
+ÉTAPE 4 · 27/06 — voyage_voyage · atlas 3D, juste avant le départ du 01/07 [5][6][14]
+   les « 3 juges indépendants » vérifient des FAITS (ethnies, routes)
+   convergence → fiable · divergence → atténuer</pre>
+  <h3>B. Les difficultés rencontrées, et ce que Yanis en a fait</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>Difficulté</th><th>Réponse dans ce repo</th><th>Ce qu'elle est devenue ensuite (autres repos, setup actuel)</th></tr>
+    <tr><td>Relier des savoirs étudiés séparément (maths, informatique, sciences humaines)</td><td>Anthropologie combine un outil mathématique (SVD), un sujet anthropologique et une page web avec infographie SVG <span class="ref">[2]</span> <span class="ref">[17]</span></td><td>Le pont est daté : la SVD apparaît dans une conversation du 22/04, puis elle est appliquée le 10/05 (lien interprété par Claude, confiance élevée). Ces ponts devaient être retrouvés en masse par le projet « cloner mon cerveau » (n1n4 automatisé + graphify) <span class="ref">[18]</span> <span class="ref">[17]</span></td></tr>
+    <tr><td>Le site Vercel renvoie une 404</td><td>Ajouter <code>index.html</code>, deux fois : le 10/05, puis le 04/06 <span class="ref">[1]</span> <span class="ref">[3]</span></td><td>L'erreur est enfin écrite dans le README de voyage_voyage (« Note Vercel »). Aucune heuristique n'en a été tirée : à confirmer par Yanis <span class="ref">[3]</span></td></tr>
+    <tr><td>Un nom de théorème prestigieux donne une crédibilité qu'il ne prouve pas</td><td>Anthropologie : valeurs singulières écrites en dur, sur des scores ordinaux 0–10 (ce n'est pas réfuté sur place) <span class="ref">[12]</span>. fin-session : réfuté par les juges (F4), puis heuristique H2 <span class="ref">[8]</span> <span class="ref">[10]</span></td><td>H2 nomme les mêmes mots : « SVD, Eckart-Young, nilpotence ». Le lien entre la page du 10/05 et H2 est une interprétation de Claude (confiance élevée) <span class="ref">[10]</span> <span class="ref">[12]</span></td></tr>
+    <tr><td>Un avis seul ne se voit pas lui-même</td><td>fin-session : R-gate à 3 juges, puis audit par 4 juges (H1) <span class="ref">[8]</span> ; atlas : 3 juges sur les faits <span class="ref">[6]</span></td><td>C'est l'idée « plusieurs avis » de la lignée (personas, fiche J.1). La convergence des juges est appliquée ici pour de vrai, mais à des faits et à un design. Ce ne sont pas des personas métier <span class="ref">[13]</span></td></tr>
+    <tr><td>Coût et saturation de /fin-session</td><td>v2 : découplage du transcript, routage de modèle, sortie bornée ; mode <code>corrections</code> (E1, E2) <span class="ref">[7]</span></td><td>La v2 est le skill actuel. E3 (<code>--compress</code>), E4 (decay) et le dé-hardcodage A4 n'y figurent pas <span class="ref">[11]</span></td></tr>
+    <tr><td>Mesurer chaque séance</td><td><code>metrics/sessions.csv</code> : une ligne par séance, avec la status bar brute <span class="ref">[9]</span></td><td>Même geste que <code>data/ops-ledger.csv</code> de ce repo (status bar collée, coût, contexte). Que ce soit l'ancêtre direct est une interprétation (confiance moyenne) <span class="ref">[15]</span></td></tr>
+  </table>
+  </div>
+  <h3>C. Ce que les traces ajoutent au souvenir</h3>
+  <p>Quatre écarts. (1) La méthode est sortie de l'IT <b>dès le 10/05</b> avec Anthropologie, et
+  elle a servi une vraie décision le 04/06. Yanis n'attendait pas que son système soit fini pour
+  l'appliquer à des projets annexes <span class="ref">[1]</span> <span class="ref">[3]</span>
+  <span class="ref">[19]</span>. (2) Ce qu'un repo montre ne suffit pas : une partie de la pensée
+  vivait dans des conversations (claude.ai, Meta AI, ChatGPT) en même temps. La conversation du
+  22/04 précède Anthropologie de 18 jours <span class="ref">[17]</span> <span class="ref">[18]</span>. (3) Le
+  voyage décidé et le voyage fait diffèrent. Le plan du 04/06 recommandait Kirghizistan,
+  Kazakhstan puis l'Altaï, en avion. Le vault décrit un départ le 01/07 en auto-stop puis en
+  Transsibérien vers Oulan-Bator <span class="ref">[3]</span> <span class="ref">[14]</span>.
+  Seule la Mongolie reste. (4) Le piège « nom ornemental » que Yanis découvre le 09/06 était déjà
+  dans sa page du 10/05 <span class="ref">[12]</span>. Yanis reconnaît avoir construit ce repo
+  vite, pour un affichage immédiat, et devoir réétudier ces notions <span class="ref">[17]</span>.</p>
+</section>
+
+<section>
+  <h2>5 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">skills fmath + decodeur-narratif</span> Anthropologie (« Passe 2
+    fmaths ») et l'essai de voyage_voyage (« Sortie du pipeline Fmath → Décodeur Narratif ») sont
+    deux usages datés de ce couple de skills, toujours présents aujourd'hui
+    <span class="ref">[2]</span> <span class="ref">[4]</span> <span class="ref">[11]</span></li>
+    <li><span class="chip">skill /fin-session</span> projet-amelioration-fin-session est le
+    chantier qui a produit la v2 actuelle : le titre dit « (v2) », le protocole de coût vient de
+    F1 et le mode <code>corrections</code> de E2 <span class="ref">[7]</span> <span class="ref">[11]</span>.
+    La copie Drive et la copie locale du skill sont identiques <span class="ref">[11]</span></li>
+    <li><span class="chip">skills /goedel, /n1n4, R-gate</span> Le projet fin-session les enchaîne
+    tous en une journée : n1n4 de la séance, kernel /goedel, juges indépendants et heuristiques
+    <span class="ref">[7]</span> <span class="ref">[8]</span></li>
+    <li><span class="chip">outils audités</span> claude-mem (contre-exemple : sélection par simple
+    récence) et graphify (<code>dedup.py</code>, modèle à porter). Les deux sont dans le setup
+    actuel (/recall, /graphify) <span class="ref">[8]</span></li>
+    <li><span class="chip">Drive</span> <code>SKILLS\projet-amelioration-fin-session\</code> est
+    un miroir sans <code>.git</code>, qui va jusqu'à S02. Les 4 tools n'ont jamais été construits,
+    ni sur le Drive ni dans le repo <span class="ref">[16]</span></li>
+    <li><span class="chip">vault</span> Le bilan de juin classe voyage_voyage sur l'axe « Appliquer
+    au réel » et fin-session comme « raffinement du cycle » après Claire et claude-prostheses
+    <span class="ref">[14]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>6 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu (voyage_voyage) :</b> une réunion de décision → jouer au jeu, lire le récit à
+      voix haute, suivre l'ordre du jour de 50 minutes <span class="ref">[3]</span></li>
+      <li><b>Réel :</b> l'itinéraire final n'est pas celui que le plan recommandait. Le site
+      a-t-il servi pendant la réunion ? L'atlas a-t-il servi sur place ? À confirmer par Yanis
+      <span class="ref">[14]</span></li>
+      <li><b>Prévu (fin-session) :</b> fin de séance → <code>/fin-session</code>, avec
+      <code>--compress</code> au plafond du pool <span class="ref">[7]</span></li>
+      <li><b>Réel :</b> la v2 est utilisée (le vault a des lots d'heuristiques du 09/06) ; le
+      <code>--compress</code> n'a jamais existé <span class="ref">[10]</span> <span class="ref">[11]</span></li>
+      <li><b>Anthropologie :</b> page à consulter une fois, sans usage récurrent prévu
+      <span class="ref">[1]</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>7 · Où je me suis arrêté</h2>
+    <p><b>Anthropologie</b> : fini le jour même, en une seule fois. De l'aveu de Yanis, le repo a
+    été construit vite, sans sérieux, pour un affichage immédiat <span class="ref">[1]</span>
+    <span class="ref">[17]</span>.
+    <b>voyage_voyage</b> : dernier commit le 27/06, quatre jours avant le départ ; le voyage
+    a ensuite pris le relais <span class="ref">[5]</span> <span class="ref">[14]</span>.
+    <b>projet-amelioration-fin-session</b> : arrêté le 09/06 à 22:15, sur un kernel prêt
+    (« Construire T1 en worktree isolé » et A4). La séance suivante n'a jamais eu lieu.
+    Raison probable : le départ en voyage trois semaines plus tard, ce qui reste à confirmer par
+    Yanis <span class="ref">[8]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>8 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur le repo) :</b> Anthropologie : ARCHIVER selon Claude (page finie en une
+    seule fois), changé en RÉCUPÉRER par Yanis le 12/11. Le repo sera mis aux bonnes pratiques par
+    le contrat K.4, rapidement et à faible coût <span class="ref">[20]</span>. voyage_voyage : ARCHIVER, outil ponctuel abouti et voyage passé. Le patron
+    « QUALITY-REPORT à 3 juges » mérite d'être gardé. projet-amelioration-fin-session : RÉCUPÉRER.
+    Son backlog E3/E4 et l'A4 bloquant ne sont toujours pas faits dans le skill actuel, et les
+    findings F1–F13 et les heuristiques H1–H7 restent valides.</li>
+    <li><b>Réutilisable :</b> le backlog US1–US4 et le kernel S02 vont vers une future
+    évolution de <code>G:\Mon Drive\10 - Claude\SKILLS\fin-session\</code> (R10 : on développe sur le Drive). L'A4 enlèverait les chemins
+    <code>G:\…</code> écrits en dur aux lignes 96–97 du SKILL.md. Le patron
+    <code>mongolie-atlas/docs/QUALITY-REPORT.md</code> (convergence → fiable, divergence →
+    atténuer) peut servir de grille aux fiches de cette reprise.</li>
+    <li><b>Conflits gouvernance :</b> R3 est respecté par fin-session : le git est hors du Drive,
+    décision F8. R10 est respecté : le Drive reste canonique et le local identique. Pour R10 (iii),
+    GitHub sert « seulement si code exécutable » : le repo fin-session ne contient que du Markdown,
+    car les tools prévus n'ont jamais été écrits. L'écart est mineur. Aucun conflit pour les deux
+    sites statiques.</li>
+    <li><b>À confirmer par Yanis :</b> (1) Le site voyage_voyage a-t-il servi pendant la réunion,
+    et l'atlas pendant le voyage ? (2) Pourquoi le plan recommandé n'a-t-il pas été suivi ?
+    (3) fin-session s'est-il arrêté à cause du départ ? (4) Faut-il reprendre E3/E4 ou les
+    abandonner ? (L'origine d'Anthropologie est désormais connue : témoignage [17].)</li>
+    <li><b>Pour la convergence :</b> la méthode a-t-elle enfin servi un vrai projet ? Oui, et plus tôt
+    que prévu. Anthropologie (10/05) la sort de l'IT, puis voyage_voyage (04/06) l'applique à une
+    décision de vie réelle : fmath → décodeur, un plan à scénarios et un tableau de décision. Le
+    vault y voit un projet « exécuté et bouclé ». Ce sont des applications ponctuelles, faites en
+    même temps que le système se construisait, et non outillées par claude-prostheses
+    <span class="ref">[3]</span> <span class="ref">[14]</span> <span class="ref">[19]</span>.
+    Ces trois projets annexes montrent un premier signe d'amélioration de la façon de
+    travailler : la vérification progresse. Le 10/05, Anthropologie affiche un formalisme sans rien
+    vérifier. Le 04/06, le plan de voyage porte la liste « rien d'asserté, tout à confirmer ». Le
+    27/06, l'atlas fait vérifier ses faits par 3 juges <span class="ref">[12]</span>
+    <span class="ref">[3]</span> <span class="ref">[6]</span>. Un geste revient aussi : « publier
+    visuellement ce que j'ai compris », avec Anthropologie, le site du voyage, l'atlas et les fiches
+    HTML de cette reprise (interprétation de Claude) <span class="ref">[17]</span>. Le piège du nom
+    ornemental (H2) traverse Anthropologie, fin-session et peut-être la lignée Claire. Enfin,
+    <code>metrics/sessions.csv</code> semble précéder l'ops-ledger.</li>
+    <li><b>Proposition au pilote :</b> une séance « fin-session v3 » qui reprend le kernel S02 (T1
+    lexical et A4), hors reprise, en exécution. Vérifier dans la fiche claude-prostheses (vague 6)
+    si l'ops-ledger descend de <code>metrics/sessions.csv</code>. Le bilan du vault cite pour
+    Paris → Mongolie un « LINEAGE sourcé, 3 revues adversariales, dashboard » : ces traces ne sont
+    pas dans voyage_voyage, et leur repo est à identifier.
+    <b>Séance transversale « le système appliqué aux projets annexes »</b> : partir de ce lot, de la
+    carte de richesse et de la carte de Mongolie, avec un critère simple, l'évolution de la
+    vérification d'un projet à l'autre <span class="ref">[19]</span>.
+    <b>Phase vault, après l'examen de tous les repos</b> : superposer par date les repos et les
+    conversations (claude.ai, Meta AI, ChatGPT, découpées par /n1n4) pour retrouver l'état d'esprit
+    de Yanis avant le départ du 01/07. Que cette superposition « équivaille » à cet état d'esprit
+    est une hypothèse porteuse, non démontrée : la phase devra dire quelle observation la
+    confirmerait. Exemple de départ : 22/04 → 10/05 <span class="ref">[17]</span>
+    <span class="ref">[18]</span>. Le projet « cloner mon cerveau » (n1n4 automatisé + graphify +
+    visualisation des clusters, pour en tirer prothèses et RAG) n'est pas étudié ici : ses repos
+    sont à identifier par le pilote <span class="ref">[17]</span>.
+    <b>Contrat K.4 (ouvert par K.2 à la demande de Yanis, avant la reprise du pilote)</b> :
+    mettre Anthropologie aux bonnes pratiques (README avec raison d'être, licence, données en CSV,
+    vrai calcul de la SVD, sources, CI). C'est une exception, décidée par Yanis, à la règle « repos
+    étudiés en lecture seule » <span class="ref">[20]</span>.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li>Anthropologie : <code>git log --all --stat</code> → 130d7c8, c51f336 (« Raja », upload web), 8be5c75 (message : « Vercel returned 404 »), README d'une ligne ; <code>gh repo view</code> : PRIVATE, 30 Ko · certaine</li>
+    <li>Anthropologie : message de 746337d (« Passe 2 fmaths : narration en 7 chapitres sans symbolisme mathématique ») ; titres h2/h3 d'<code>index.html</code> · certaine</li>
+    <li>voyage_voyage : <code>reunion-voyage-ete-2026.md</code> (§ 1 cadre, § 4 scénarios, B « recommandé », § 6 ordre du jour) ; README, « Note Vercel » ; b7ad33e « Fix 404 » · certaine</li>
+    <li>voyage_voyage : <code>index.html</code> (titre « Notre été 2026 », h2 « Choisis ton été ») ; <code>echelle-princesse-aventurier.md:3</code> « Sortie du pipeline Fmath → Décodeur Narratif (2026-06-04) » ; 8465696 · certaine</li>
+    <li>voyage_voyage : d8be9cc et c2b34bd (messages et <code>--stat</code>) ; <code>mongolie-atlas/README.md</code> · certaine</li>
+    <li>voyage_voyage : <code>mongolie-atlas/docs/QUALITY-REPORT.md</code> (« Réconciliation des 3 juges indépendants », 2026-06-27) · certaine</li>
+    <li>projet-amelioration-fin-session : <code>README.md:7-27</code> (OKR, KR1 0,34 $, E1–E4, US1–US4) ; ff600f8 · certaine</li>
+    <li>projet-amelioration-fin-session : <code>sprint/findings.md</code> (F1–F13 ; F4 « La SVD était ornementale » ; F8 versioning) ; <code>sprint/kernel-goedel.md</code> ([Action] T1 + A4) ; e7b95e9 · certaine</li>
+    <li>projet-amelioration-fin-session : <code>metrics/sessions.csv</code> (S01-final : 160 %, 12,59 $ ; colonne <code>status_bar_raw</code>) ; 8ced5b3 · certaine</li>
+    <li>projet-amelioration-fin-session : <code>sprint/heuristics-cloture.md</code> H2 (« SVD, Eckart-Young, nilpotence… »), H1, H5 ; vault <code>sessions/2026-06-09-vault-fin-session-v2-heuristics.md</code> · certaine</li>
+    <li><code>~/.claude/skills/fin-session/SKILL.md</code> : titre « (v2) », l. 14-20 (protocole de coût), l. 26-28 (modes), l. 90 (plafond = simple alerte), l. 96-97 (chemins <code>G:\</code> en dur) ; <code>grep</code> sans résultat pour « compress » ou « decay » ; <code>diff -q</code> local / Drive : identiques ; <code>ls ~/.claude/skills</code> (fmath, decodeur-narratif présents) · certaine</li>
+    <li>Anthropologie : <code>tenseur-culturel-3pays.html</code> ~l. 640-670 (σ₁ 4.83, σ₂ 2.91, σ₃ 1.74 écrits en HTML ; « La nilpotence s'observe ici » ; « résiduel inférieur à 12 % ») et l. 760 « scores ordinals [0–10] » ; aucun <code>&lt;script&gt;</code> de calcul (le seul script d'<code>index.html</code> change d'onglet). Remarque de Claude : avec 3 sociétés, la matrice a au plus 3 valeurs singulières, donc 3 axes expliquent 100 % · élevée (lecture du code) ; le lien avec H2 est une interprétation · élevée</li>
+    <li>Fiche J.1 (<code>seances/J-pilotage-vague-4/J.1-memoire-claire/…html</code>) : l. 127-128, 204-206 (onglets Nature = structure de projet DDD ; Métiers, Préfecture, Théorèmes, Rôles IT les 09–10/05), § 4 (idée « plusieurs avis », personas) · élevée (source secondaire)</li>
+    <li>Vault <code>analyses/bilan-retour-2026/lot-5-trajectoire-perso.md:5,129</code> (départ le 01/07, auto-stop puis Transsibérien, « entièrement exécuté et bouclé ») ; <code>lot-4-projets-code.md:32-35,100-102</code> (axes « Discipliner le travail » et « Appliquer au réel ») · élevée (synthèse du vault, écrite le 29/06)</li>
+    <li>En-tête de <code>data/ops-ledger.csv</code> (ce repo) comparé à celui de <code>metrics/sessions.csv</code> : status bar, coût, contexte, hooks, sous-agents en commun · moyenne (filiation non prouvée)</li>
+    <li><code>ls -la "G:\Mon Drive\10 - Claude\SKILLS\projet-amelioration-fin-session"</code> : pas de <code>.git</code> ; findings F1–F13 et ligne S02 présents ; rien après le 09/06 · certaine</li>
+    <li>Témoignage de Yanis (2026-11-12, séance K.2) · certaine (déclaratif)
+      <blockquote>Je m'en souviens partiellement, mais me connaissant je peux en déduire la chose suivante : J'étais en train d'étudier 3 pays via claude.ai et j'ai voulu exposé mes conclusions en ligne avec un visuel. J'ai passé mes connaissances via le pipeline. J'ai utilisé des connaissances comme Emanuel Todd etc. J'ai fais des graphique etc. Je sais que j'ai aussui l'intention de présenter des travaux de recherches avec un aspect visuel. Donc j'ai sûrement voulu l'appliquer de suite à ce moment là. Mais hélas je n'ai pas été sérieux dans la construction du repo. Je l'ai fait en rapide pour un affichage imémdiat.</blockquote>
+      <blockquote>Exactement je voulais aussi faire de la SVG. En fait je commence à me souvenir de plein de choses. Lorsque je ne travail pas sur un PC via claude code je suis sur claude.ia. Il s'agit de conversation diverses mais toujours axée sur certain sujets comme l'IT, les mathématiques, les sciences sociales et humaines. Et par fois, mes travaux se rejoignent et j'ai envie de fusionner plusieurs connaiances entre elles pour faire des ponts. Exemple : La SVG + un sujet anthropologique + l'IT avec l'affichage en ligne = le repo anthreopologie. Donc, ce dont je dois me souvenir en plus de mes travaux, c'est aussi de mes sujets de conversation claude.ia que j'avais en même temps. Ceci est pour un prochain modulo (après avoir osculter tous mes repo). On passera à l'analyse de mon vault car en générale mes conversation ia je les découpais via /n1n4. Et c'est la superposition datée de mes repo + de mes conversations qui équivaut à mon état de conscience avant mon départ en voyage.</blockquote>
+      <blockquote>On s'en fou des termes. J'ai étudié SVD et SVG. Si je me suis mélangé tout de suite ça n'a pas d'importance. Déjà parceque je dois réétudier ces concepts afin de me rafraichir la mémoire. Mais l'idée sous jacente c'était que mes connaissance en maths + informatique + autres j'essayais de construire des artefacts combinés afin d'appliquer mes connaissances. Bref. Sinon oui tu as raison j'ai des conv claude.ai meta.ai chatgpt.ai. Et justement, j'avais un énorme projet de décomposition automatisée de mes conversations via /n1n4 et de combiner cela avec grafify + visuel graphique des clusters. C'était l'énorme projet de cloner mon cerveau (mes conv ia) en local et de pouvoir jouir de ces décomposition comme bon me semble : construire des prothèses, des rag etc.</blockquote></li>
+    <li>Vault <code>1 - CONVERSATIONS/algebre-db-marche/algebre-db-marche-N4.md:2-6</code> (date 2026-04-22, source meta-ai, SVD / Eckart-Young, « tenseur social », sidrat SociologieEtAnthropologie) · certaine pour le contenu ; le lien avec Anthropologie est une interprétation · élevée</li>
+    <li>Témoignage de Yanis (2026-11-12, donné dans une séance parallèle et recopié par lui en séance K.2) · certaine (déclaratif)
+      <blockquote>Ok, donc ce projet comme tu l'a dis est la première fois que ta méthode sert un sujet extérieur. Intéressant, c'est vrai que ce que je construits à pour vocation à être utiliser sur de vrais projets. Et ce projets de carte de richesse en est le premier exemple. Ce qui marrant, c'est que je n'attends pas de terminer mon système avant de l'appliquer sur des projets annexes. J'en ai eu d'autres. Donc ce serait intéressant d'analyser l'utilisation de mon système sur mes projets annexes car c'est également fait en boostrap. Et je sais que j'ai eu d'autres projets, comme la carte de mongolie etc. Donc je suis certain de pouvoir observer une amélioration dans ma manière de travailler.</blockquote></li>
+    <li>Décisions de Yanis (2026-11-12, séance K.2) · certaine (déclaratif)
+      <blockquote>Avant de clôturer. Tant qu'on y est. J'aimerais que tu construise une architecture anthropic + GAFAM IT conformant du repo "Anthropologie". Car on a pu via cette conversation reconstituer pas mal d'éléments de ce repo. Donc autant que ce repo soit professionnel jusqu'au bout et qu'on lui construise sa raison d'être etc.</blockquote>
+      <blockquote>Je penses aux bonnes pratiques. Mais bref tu as raison. C'est juste que j'ai envie de faire ça rapidement sans trop de coût. Donc tu sais quoi on va clôturer. [...] Mais fais en sorte que avant que je ne reprenne la séance pilote j'aimerais terminer cette mise à jour du repo anthropologie. Donc récupère tout ce dont tu as besoin depuis cette session.</blockquote></li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>
