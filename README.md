@@ -14,7 +14,7 @@ git switch main
 git pull
 git switch -c seance/<code>-<slug>
 claude
-/debut-session seances/<code>-<slug>/<kernel de la séance>.md
+/debut-session seances/<pilote>-<slug>/[<Pilote.N>-<slug>/]<kernel de la séance>.md
 ```
 Toujours donner le chemin du kernel : `/debut-session` sans argument cherche encore l'ancien
 dossier des kernels (diff du skill recommandé, non appliqué). Le dossier `REPRISE NOV 2026` du Drive
@@ -48,7 +48,8 @@ est FIGÉ au 12/11 : on ne travaille plus dedans.
 | — | — | — | Convergence (lettre de pilote, parent = dernier pilote) : lit toutes les fiches, décide quoi réinstaller | après la dernière vague | — | prévu |
 
 ## Rangement (K.3, 12/11)
-Un dossier par séance : `seances/<code>-<slug>/` (kernel de lancement + livrable + clôture). Les
+Un dossier par pilote `seances/<pilote>-<slug>/`, et dedans un sous-dossier par contrat
+`<Pilote.N>-<slug>/` (kernel de lancement + livrable + clôture ; 1 niveau, pas de D.1.1). Les
 noms de fichiers sont inchangés (sauf 2 doublons suffixés `-findings`). La note d'un pilote est
 rangée dans le dossier de celui qui l'ÉCRIT, pas dans celui de la vague qu'elle juge
 (ex. `H-pilotage-vague-2/…-H-pilotage-vague-2.md` = le fan-in de la vague de D).
@@ -58,7 +59,7 @@ Correspondance avec les méthodes des équipes dev (spécialiste GAFAM, K.3) :
 | Méthode dev | Ici | Juste ou forcé |
 |---|---|---|
 | Ticket / issue | kernel de lancement | juste |
-| Package / dossier `OWNERS` (Google, Bazel) | `seances/<code>-<slug>/` (permanent) | juste |
+| Package / dossier `OWNERS` (Google, Bazel) | `seances/<pilote>-<slug>/` et ses contrats (permanent) | juste |
 | Branche (temporaire, supprimée après merge) | `seance/<code>-<slug>` dans git | juste depuis git |
 | Pull request (+ description) | fiche + kernel de clôture | juste |
 | Revue + merge | fan-in du pilote | juste |
@@ -72,40 +73,40 @@ Correspondance avec les méthodes des équipes dev (spécialiste GAFAM, K.3) :
 | `docs/kernels/2026-11-09-A-reinstallation-custom-pc.md` | `seances/A-reinstallation-custom-pc/2026-11-09-A-reinstallation-custom-pc.md` |
 | `docs/kernels/2026-11-09-B-debut-session-preparation-repos.md` | `seances/B-debut-session/2026-11-09-B-debut-session-preparation-repos.md` |
 | `docs/kernels/2026-11-09-C-pilotage-vague-1.md` | `seances/C-architecture-des-skills/2026-11-09-C-pilotage-vague-1.md` |
-| `docs/kernels/2026-11-09-E-analyse-plug-ins-graphify.md` | `seances/D.1-plug-ins-graphify/2026-11-09-E-analyse-plug-ins-graphify.md` |
-| `docs/kernels/2026-11-09-F-analyse-audit-repo.md` | `seances/D.2-audit-repo/2026-11-09-F-analyse-audit-repo.md` |
+| `docs/kernels/2026-11-09-E-analyse-plug-ins-graphify.md` | `seances/D-pilotage-vague-1/D.1-plug-ins-graphify/2026-11-09-E-analyse-plug-ins-graphify.md` |
+| `docs/kernels/2026-11-09-F-analyse-audit-repo.md` | `seances/D-pilotage-vague-1/D.2-audit-repo/2026-11-09-F-analyse-audit-repo.md` |
 | `docs/kernels/2026-11-10-D-pilotage-vague-2.md` | `seances/D-pilotage-vague-1/2026-11-10-D-pilotage-vague-2.md` |
-| `docs/kernels/2026-11-10-G-convention-nommage.md` | `seances/D.3-convention-nommage/2026-11-10-G-convention-nommage.md` |
+| `docs/kernels/2026-11-10-G-convention-nommage.md` | `seances/D-pilotage-vague-1/D.3-convention-nommage/2026-11-10-G-convention-nommage.md` |
 | `docs/kernels/2026-11-10-H-pilotage-vague-3.md` | `seances/H-pilotage-vague-2/2026-11-10-H-pilotage-vague-3.md` |
-| `docs/kernels/2026-11-10-H.1-memoire-plug-ins-graphify.md` | `seances/H.1-memoire-plug-ins-graphify/2026-11-10-H.1-memoire-plug-ins-graphify.md` |
-| `docs/kernels/2026-11-10-H.2-memoire-audit-repo.md` | `seances/H.2-memoire-audit-repo/2026-11-10-H.2-memoire-audit-repo.md` |
-| `docs/kernels/2026-11-10-I.1-memoire-cpe-pwf-engine.md` | `seances/I.1-memoire-cpe-pwf-engine/2026-11-10-I.1-memoire-cpe-pwf-engine.md` |
-| `docs/kernels/2026-11-10-I.2-memoire-conformite-anthropic.md` | `seances/I.2-memoire-conformite-anthropic/2026-11-10-I.2-memoire-conformite-anthropic.md` |
+| `docs/kernels/2026-11-10-H.1-memoire-plug-ins-graphify.md` | `seances/H-pilotage-vague-2/H.1-memoire-plug-ins-graphify/2026-11-10-H.1-memoire-plug-ins-graphify.md` |
+| `docs/kernels/2026-11-10-H.2-memoire-audit-repo.md` | `seances/H-pilotage-vague-2/H.2-memoire-audit-repo/2026-11-10-H.2-memoire-audit-repo.md` |
+| `docs/kernels/2026-11-10-I.1-memoire-cpe-pwf-engine.md` | `seances/I-pilotage-vague-3/I.1-memoire-cpe-pwf-engine/2026-11-10-I.1-memoire-cpe-pwf-engine.md` |
+| `docs/kernels/2026-11-10-I.2-memoire-conformite-anthropic.md` | `seances/I-pilotage-vague-3/I.2-memoire-conformite-anthropic/2026-11-10-I.2-memoire-conformite-anthropic.md` |
 | `docs/kernels/2026-11-11-J-pilotage-vague-4.md` | `seances/J-pilotage-vague-4/2026-11-11-J-pilotage-vague-4.md` |
-| `docs/kernels/2026-11-11-J.1-memoire-claire.md` | `seances/J.1-memoire-claire/2026-11-11-J.1-memoire-claire.md` |
-| `docs/kernels/2026-11-11-J.2-memoire-intention-janvier.md` | `seances/J.2-memoire-intention-janvier/2026-11-11-J.2-memoire-intention-janvier.md` |
+| `docs/kernels/2026-11-11-J.1-memoire-claire.md` | `seances/J-pilotage-vague-4/J.1-memoire-claire/2026-11-11-J.1-memoire-claire.md` |
+| `docs/kernels/2026-11-11-J.2-memoire-intention-janvier.md` | `seances/J-pilotage-vague-4/J.2-memoire-intention-janvier/2026-11-11-J.2-memoire-intention-janvier.md` |
 | `docs/kernels/2026-11-11-K-pilotage-vague-5.md` | `seances/K-pilotage-vague-5/2026-11-11-K-pilotage-vague-5.md` |
-| `docs/kernels/2026-11-11-K.1-memoire-janvier-bornes.md` | `seances/K.1-memoire-janvier-bornes/2026-11-11-K.1-memoire-janvier-bornes.md` |
-| `docs/kernels/2026-11-11-K.2-memoire-mai-juin.md` | `seances/K.2-memoire-mai-juin/2026-11-11-K.2-memoire-mai-juin.md` |
-| `docs/kernels/2026-11-11-K.3-architecture-migration.md` | `seances/K.3-architecture-migration/2026-11-11-K.3-architecture-migration.md` |
-| `docs/kernels/contrats/2026-11-11-I.1-cloture.md` | `seances/I.1-memoire-cpe-pwf-engine/2026-11-11-I.1-cloture.md` |
-| `docs/kernels/contrats/2026-11-11-I.2-cloture.md` | `seances/I.2-memoire-conformite-anthropic/2026-11-11-I.2-cloture.md` |
-| `docs/kernels/contrats/2026-11-11-J.1-cloture.md` | `seances/J.1-memoire-claire/2026-11-11-J.1-cloture.md` |
-| `docs/kernels/contrats/2026-11-11-J.2-cloture.md` | `seances/J.2-memoire-intention-janvier/2026-11-11-J.2-cloture.md` |
+| `docs/kernels/2026-11-11-K.1-memoire-janvier-bornes.md` | `seances/K-pilotage-vague-5/K.1-memoire-janvier-bornes/2026-11-11-K.1-memoire-janvier-bornes.md` |
+| `docs/kernels/2026-11-11-K.2-memoire-mai-juin.md` | `seances/K-pilotage-vague-5/K.2-memoire-mai-juin/2026-11-11-K.2-memoire-mai-juin.md` |
+| `docs/kernels/2026-11-11-K.3-architecture-migration.md` | `seances/K-pilotage-vague-5/K.3-architecture-migration/2026-11-11-K.3-architecture-migration.md` |
+| `docs/kernels/contrats/2026-11-11-I.1-cloture.md` | `seances/I-pilotage-vague-3/I.1-memoire-cpe-pwf-engine/2026-11-11-I.1-cloture.md` |
+| `docs/kernels/contrats/2026-11-11-I.2-cloture.md` | `seances/I-pilotage-vague-3/I.2-memoire-conformite-anthropic/2026-11-11-I.2-cloture.md` |
+| `docs/kernels/contrats/2026-11-11-J.1-cloture.md` | `seances/J-pilotage-vague-4/J.1-memoire-claire/2026-11-11-J.1-cloture.md` |
+| `docs/kernels/contrats/2026-11-11-J.2-cloture.md` | `seances/J-pilotage-vague-4/J.2-memoire-intention-janvier/2026-11-11-J.2-cloture.md` |
 | `docs/findings/2026-11-09-B-debut-session-r-gate.md` | `seances/B-debut-session/2026-11-09-B-debut-session-r-gate.md` |
 | `docs/findings/2026-11-09-C-architecture-des-skills.md` | `seances/C-architecture-des-skills/2026-11-09-C-architecture-des-skills.md` |
-| `docs/findings/2026-11-10-E-plug-ins-graphify.md` | `seances/D.1-plug-ins-graphify/2026-11-10-E-plug-ins-graphify.md` |
-| `docs/findings/2026-11-10-F-audit-repo.md` | `seances/D.2-audit-repo/2026-11-10-F-audit-repo.md` |
-| `docs/findings/2026-11-10-G-convention-nommage.md` | `seances/D.3-convention-nommage/2026-11-10-G-convention-nommage-findings.md` |
+| `docs/findings/2026-11-10-E-plug-ins-graphify.md` | `seances/D-pilotage-vague-1/D.1-plug-ins-graphify/2026-11-10-E-plug-ins-graphify.md` |
+| `docs/findings/2026-11-10-F-audit-repo.md` | `seances/D-pilotage-vague-1/D.2-audit-repo/2026-11-10-F-audit-repo.md` |
+| `docs/findings/2026-11-10-G-convention-nommage.md` | `seances/D-pilotage-vague-1/D.3-convention-nommage/2026-11-10-G-convention-nommage-findings.md` |
 | `docs/findings/2026-11-10-H-pilotage-vague-2.md` | `seances/H-pilotage-vague-2/2026-11-10-H-pilotage-vague-2.md` |
-| `docs/findings/2026-11-10-H.1-memoire-plug-ins-graphify.html` | `seances/H.1-memoire-plug-ins-graphify/2026-11-10-H.1-memoire-plug-ins-graphify.html` |
-| `docs/findings/2026-11-10-H.2-memoire-audit-repo.html` | `seances/H.2-memoire-audit-repo/2026-11-10-H.2-memoire-audit-repo.html` |
-| `docs/findings/2026-11-10-I.1-memoire-cpe-pwf-engine.html` | `seances/I.1-memoire-cpe-pwf-engine/2026-11-10-I.1-memoire-cpe-pwf-engine.html` |
-| `docs/findings/2026-11-10-I.2-memoire-conformite-anthropic.html` | `seances/I.2-memoire-conformite-anthropic/2026-11-10-I.2-memoire-conformite-anthropic.html` |
+| `docs/findings/2026-11-10-H.1-memoire-plug-ins-graphify.html` | `seances/H-pilotage-vague-2/H.1-memoire-plug-ins-graphify/2026-11-10-H.1-memoire-plug-ins-graphify.html` |
+| `docs/findings/2026-11-10-H.2-memoire-audit-repo.html` | `seances/H-pilotage-vague-2/H.2-memoire-audit-repo/2026-11-10-H.2-memoire-audit-repo.html` |
+| `docs/findings/2026-11-10-I.1-memoire-cpe-pwf-engine.html` | `seances/I-pilotage-vague-3/I.1-memoire-cpe-pwf-engine/2026-11-10-I.1-memoire-cpe-pwf-engine.html` |
+| `docs/findings/2026-11-10-I.2-memoire-conformite-anthropic.html` | `seances/I-pilotage-vague-3/I.2-memoire-conformite-anthropic/2026-11-10-I.2-memoire-conformite-anthropic.html` |
 | `docs/findings/2026-11-11-I-pilotage-vague-3.md` | `seances/I-pilotage-vague-3/2026-11-11-I-pilotage-vague-3.md` |
 | `docs/findings/2026-11-11-J-pilotage-vague-4.md` | `seances/J-pilotage-vague-4/2026-11-11-J-pilotage-vague-4-findings.md` |
-| `docs/findings/2026-11-11-J.1-memoire-claire.html` | `seances/J.1-memoire-claire/2026-11-11-J.1-memoire-claire.html` |
-| `docs/findings/2026-11-11-J.2-memoire-intention-janvier.html` | `seances/J.2-memoire-intention-janvier/2026-11-11-J.2-memoire-intention-janvier.html` |
+| `docs/findings/2026-11-11-J.1-memoire-claire.html` | `seances/J-pilotage-vague-4/J.1-memoire-claire/2026-11-11-J.1-memoire-claire.html` |
+| `docs/findings/2026-11-11-J.2-memoire-intention-janvier.html` | `seances/J-pilotage-vague-4/J.2-memoire-intention-janvier/2026-11-11-J.2-memoire-intention-janvier.html` |
 | `docs/gabarits/fiche-memoire.html` | `gabarits/fiche-memoire.html` |
 
 </details>

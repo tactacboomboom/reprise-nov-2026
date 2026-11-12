@@ -23,15 +23,15 @@ C2 : `grep` de Git Bash plante sur le Drive → outil Grep intégré.
 [Fichiers à charger]
 - `task_plan.md`
 - `gabarits/fiche-memoire.html`
-- clôtures de K.3, K.1, K.2 (`seances/K.N-<slug>/2026-11-11-K.N-cloture.md` ; absentes → attendre)
+- clôtures de K.3, K.1, K.2 (`seances/K-pilotage-vague-5/K.N-<slug>/2026-11-11-K.N-cloture.md` ; absentes → attendre)
 - livrables de K.3 (findings + nouvelle arborescence)
-- `seances/K.1-memoire-janvier-bornes/…-K.1-…html` et `seances/K.2-memoire-mai-juin/…-K.2-…html` (§ 4 et § 8)
+- `seances/K-pilotage-vague-5/K.1-memoire-janvier-bornes/…-K.1-…html` et `seances/K-pilotage-vague-5/K.2-memoire-mai-juin/…-K.2-…html` (§ 4 et § 8)
 
 [Action]
 0. Juger K.3 : migration complète (0 chemin mort), verdict de la pratique jugée (intention du repo
    Architecture-des-skills-Anthropic ↔ compréhension actuelle de Yanis).
 1. Juger les 2 fiches (gabarit 8 sections, liens C2 du kernel J : janvier → CPE → Claire → claude-prostheses).
-2. Écrire le kernel `seances/L.1-memoire-claude-prostheses/AAAA-MM-JJ-L.1-memoire-claude-prostheses.md` (contrat seul, fiche
+2. Écrire le kernel `seances/L-<slug>/L.1-memoire-claude-prostheses/AAAA-MM-JJ-L.1-memoire-claude-prostheses.md` (contrat seul, fiche
    8 sections ; dépôt vivant et privé, le plus gros : prévoir le budget).
 3. Mettre à jour `task_plan.md` et le README ; clôture = findings + /goedel (kernel L) + ledger.
 

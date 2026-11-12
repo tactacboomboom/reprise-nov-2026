@@ -4,7 +4,8 @@ Reprise après réinstallation du Custom PC (09/11/2026) : analyser les repos Gi
 pilotées par kernels. Index des séances : `README.md`.
 - `task_plan.md` : le plan (phases, tâches dérivées, décisions ; gabarit /pwf), mis à jour par le
   pilote à chaque fan-in ; jamais de tâches dans le README
-- `seances/<code>-<slug>/` : UN dossier par séance (depuis K.3, 12/11), à plat. Il contient le
+- `seances/<pilote>-<slug>/` : UN dossier par pilote, et dedans UN sous-dossier par contrat
+  `<Pilote.N>-<slug>/` (K.3, 12/11 ; 1 niveau, pas plus). Chaque dossier de séance contient le
   kernel d'OUVERTURE (`AAAA-MM-JJ-<code>-<slug>.md`, code = celui de la séance qui s'ouvre avec :
   lettre du pilote ou `Pilote.N` — voir § Nommage des séances), le livrable (fiche mémoire HTML
   `AAAA-MM-JJ-<code>-<slug>.html` depuis la vague 2 ; findings `.md` avant et pour les pilotes) et,
@@ -21,7 +22,7 @@ pilotées par kernels. Index des séances : `README.md`.
 - Ce dossier est le repo git `tactacboomboom/reprise-nov-2026` (public, depuis K.3). Le dossier
   `REPRISE NOV 2026` du Drive est FIGÉ au 12/11. Une séance travaille sur une branche
   `seance/<code>-<slug>` ; commit et PR seulement à la demande de Yanis ; merge = Yanis (ou sur sa demande).
-- Un contrat écrit DEUX fichiers dans son dossier `seances/<code>-<slug>/` : sa fiche mémoire HTML
+- Un contrat écrit DEUX fichiers dans son dossier `seances/<pilote>-<slug>/<Pilote.N>-<slug>/` : sa fiche mémoire HTML
   et, à la clôture, son kernel /goedel (plus de kernel collé dans le chat). Ne jamais modifier les fichiers d'une
   autre séance, ni le README, ni `task_plan.md`, ni ce CLAUDE.md, ni le gabarit (réservés au pilote).
 - Budget : ≤ 70 % mesuré sur la status bar. Au-delà : écrire la fiche telle quelle, statut `partiel`.
@@ -53,7 +54,7 @@ questions** (verdict RÉCUPÉRER / ARCHIVER / IGNORER, réutilisable → chemin,
 - Un kernel porte le code de la séance qui S'OUVRE avec lui (règle de I, 11/11). La clôture d'un
   pilote = le kernel d'ouverture du pilote suivant : I écrit `…-J-pilotage-vague-4.md`
   (`code : J · parent : I · type : lancement`). Ce kernel liste dans [Fichiers à charger] les
-  clôtures `seances/J.N-<slug>/…-J.N-cloture.md` et les fiches des contrats : `/debut-session`
+  clôtures `seances/J-pilotage-vague-4/J.N-<slug>/…-J.N-cloture.md` et les fiches des contrats : `/debut-session`
   les lit sans copier-coller. (Exception historique : I s'est ouvert avec le kernel nommé H.)
 - Contrat parallèle = `Pilote.N` (D.1, D.2…), N jamais réutilisé. Pas de sous-contrat (D.1.1).
 - Parent = la séance qui fait le fan-in (pas forcément l'auteur du kernel).

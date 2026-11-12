@@ -1,7 +1,7 @@
 # Task Plan: REPRISE NOV 2026
 
 <!-- Gabarit /pwf (planning-with-files). Mis à jour par le PILOTE à chaque fan-in.
-     Index des séances : README.md · une séance = un dossier seances/<code>-<slug>/ (kernels + livrables) -->
+     Index des séances : README.md · un pilote = un dossier seances/<pilote>-<slug>/, ses contrats dedans (kernels + livrables) -->
 
 ## 🎯 Goal
 Rendre à Yanis la mémoire de ses repos GitHub `tactacboomboom`, puis réinstaller l'utile dans le
@@ -19,7 +19,7 @@ n'en est pas la preuve.
 - [x] Vague 2 : H.1 PLUG-INS + graphify (ARCHIVER) ∥ H.2 audit-repo (ARCHIVER)
 - [x] Vague 3 : I.1 CPE-PWF-Engine (ARCHIVER) ∥ I.2 conformité Anthropic (ARCHIVER le repo, projet à reprendre)
 - [x] Vague 4 : J.1 Claire + claire-app (ARCHIVER) ∥ J.2 cockpit-solo + De-l-Intention-a-l-Execution + chaine-intention-artefacts (ARCHIVER)
-- [x] K.3 (seul, AVANT la vague 5, 12/11) : rangement par séance (`seances/<code>-<slug>/`) + repo git
+- [x] K.3 (seul, AVANT la vague 5, 12/11) : rangement par séance (`seances/<pilote>-<slug>/<Pilote.N>-<slug>/`) + repo git
   public `tactacboomboom/reprise-nov-2026` hors Drive ; Drive figé. 1er essai de la phase 4 : Yanis
   n'a pas pu décrire l'architecture Anthropic d'un dossier → écart total sur le « comment » (findings K.3)
 - [ ] Vague 5 (pilote K, fiche 8 sections) : K.1 test-ia + CARTE-des-richesses (janvier) ∥ K.2 Anthropologie + projet-amelioration-fin-session + voyage_voyage (mai–juin)
@@ -95,7 +95,7 @@ Décisions en attente :
 | Vague 5 = passe complète des petits repos restants, puis vague 6 = claude-prostheses seul (Yanis, J, 11/11) | Finir par le plus gros morceau ; avoir tous les repos pour la carte et le rangement |
 | Exception à « vagues d'abord » : K.3 architecture + migration avant la vague 5 ; repo git dédié au dossier « bientôt », pas maintenant (Yanis, J, 11/11) | Migrer à 41 fichiers coûte moins qu'à 55 ; reprendre ses automatismes commit/PR |
 | Récupération de la mémoire = pratique jugée, pas une fiche (Yanis, J, 11/11) | « Un jugement sur ma mémoire n'est pas une preuve de sa récupération » |
-| Rangement par séance `seances/<code>-<slug>/`, noms de fichiers inchangés (Yanis, K.3, 12/11) | Un contrat = 1 dossier au lieu de 3 ; aide surtout l'humain (Claude ne lit pas un sous-dossier tout seul : expert Anthropic) ; modèle « package » de Google/Bazel |
+| Rangement par séance, contrats imbriqués dans leur pilote `seances/<pilote>-<slug>/<Pilote.N>-<slug>/`, noms de fichiers inchangés (Yanis, K.3, 12/11) | Un contrat = 1 dossier au lieu de 3 ; imbriqué pour rester lisible quand les séances se multiplient (Yanis) ; aide surtout l'humain (Claude ne lit pas un sous-dossier tout seul : expert Anthropic) ; modèle « package » de Google/Bazel |
 | Repo git créé MAINTENANT (lève D3 de K.3) : `C:\Users\bensa\00_MES-PROJETS\reprise-nov-2026`, public, Drive figé + note (Yanis, K.3, 12/11) | « Quitte à faire le travail, autant bien le faire maintenant » ; `git mv` garde la trace des déplacements |
 | PR faites par Claude à la demande de Yanis ; la première fusion se fait ensemble (Yanis, K.3) | Projet solo : pas de CODEOWNERS, cycle ticket → PR → merge léger |
 | Préparation git : `.gitattributes` (LF) fait ; modèle de PR et convention de commits `<code>: <verbe> …` à décider plus tard (K.3) | Sans sur-ingénierie pour un solo (spécialiste GAFAM) |
