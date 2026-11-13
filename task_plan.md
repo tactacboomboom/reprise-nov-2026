@@ -10,7 +10,7 @@ de ses outils coïncide avec leur intention d'origine, pratique jugée par Claud
 n'en est pas la preuve.
 
 ## 📍 Current Phase
-**Phase 1** (modulo « repos ») : vague 6 close (L.1 ; fan-in L, 12/11) ; prochaine étape : vague 7 = M.1 « où j'en étais au 23/06 » ∥ M.2 « chaîne E » (kernels écrits par L), fan-in par le pilote M.
+**Phase 1** (modulo « repos ») : vague 7 close (M.1, M.2 ; fan-in M, 13/11) ; prochaine étape : vague 8 = N.1 « rôles + Scrum » ∥ N.2 « RAG + vision » (kernels écrits par M), fan-in par le pilote N, puis la convergence.
 Ordre du recouvrement de mémoire (Yanis, L, 12/11) : modulo **repos** (phases 1–2) → modulo **vault** → modulo **skills** ; aucune tâche ni projet nouveau avant.
 
 ## 🗓 Phases
@@ -34,10 +34,16 @@ Ordre du recouvrement de mémoire (Yanis, L, 12/11) : modulo **repos** (phases 1
     Repo « synthèse » de 6 sous-projets ; E (chaîne MRD → Code) a absorbé le reste, structure finie, verrouillage non
     (arrêt : voyage du 01/07). 4 contrats proposés (findings L.1 F9) ; fan-in L (12/11) : fiche conforme, Claire = ancien
     nom de claude-prostheses (DEC-16), ledger ANTÉRIEUR à `metrics/sessions.csv` (findings L)
-- [ ] Vague 7 (pilote M) : M.1 « où j'en étais au 23/06 » (sous-projet E : statut de chaque gabarit, kernel AZ, SRD) ∥
+- [x] Vague 7 (pilote M) : M.1 « où j'en étais au 23/06 » (sous-projet E : statut de chaque gabarit, kernel AZ, SRD) ∥
   M.2 « la chaîne E » (nilpotence, ponçage, forges, R-gate) — kernels écrits par L (12/11)
-- [ ] Vague 8 (pilote N) : N.1 « rôles + Scrum » (sous-projets B, C) ∥ N.2 « RAG + vision » (docs/vision, `7880faf`, `115af31`)
-  — kernels à écrire par M. Les 4 contrats de L.1 AVANT la fin du modulo (Yanis, L)
+  — M.2 fait (12/11, complet) : RÉCUPÉRER R-gate + « générer librement, vérifier mécaniquement » + boucle échec → mécaniser ;
+    ARCHIVER la chaîne à 5 documents ; « le rythme a pris le pas sur la preuve » ; d²=0 testé une fois → FAIL.
+  — M.1 fait (12/11, complet) : RÉCUPÉRER l'état au 23/06 « comme carte, pas comme chantier » ; NFR sans parent → SRD attend
+    le PRD → Code plafonné ; « la théorie s'arrête là où commence le réel ». Fait APRÈS M.2 (« comment avant pourquoi », Yanis).
+    Fan-in M (13/11) : fiches conformes, mur commun = ANCRAGE (racine = intention humaine) (findings M)
+- [ ] Vague 8 (pilote N) : N.1 « rôles + Scrum » (sous-projets B, C : QUI fait avancer la chaîne) ∥ N.2 « RAG + vision »
+  (docs/vision, `7880faf`, `115af31` : POURQUOI) — kernels écrits par M (13/11), avec des questions à garder ou retirer
+  en séance. Les 4 contrats de L.1 AVANT la fin du modulo (Yanis, L)
 - `-my-claude-config` : config actuelle, pas un souvenir → modulo **skills** (Yanis, L, 12/11), pas de contrat dans le modulo repos
 - **Status:** in_progress
 
@@ -46,6 +52,13 @@ Ordre du recouvrement de mémoire (Yanis, L, 12/11) : modulo **repos** (phases 1
 - [ ] Cartographier les 18 repos `tactacboomboom` : les liens entre les prothèses (lignée janvier → CPE → Claire → claude-prostheses)
 - [ ] Proposer le tri / classement / rangement / organisation des repos (archived, privé, supprimé…)
 - [ ] Décider quoi réinstaller
+- [ ] 21. **« Test hypothétique »** (proposé par M.2, cadré par Yanis, M, 13/11) : théorisation sous conditions, « une vue
+  de l'esprit, pour mieux cartographier ce qui restera à faire » ; pas un projet. Si la chaîne était nilpotente et la team
+  Scrum fonctionnelle, que resterait-il pour un nouveau projet ? Piste de Yanis : les interviews (« Questions de discovery »
+  des gabarits, exemptées du linéage) = 1er modulo des métriques = l'ANCRAGE ; + Team Charter (prévu le 30/05, jamais écrit).
+  Entrées : fiches M.1, M.2, N.1, N.2 (colonne « encore voulu aujourd'hui »).
+- [ ] Questions transmises par M : SRD verrouillable ou moule périmé (M.1) ? skill global `/rgate` (M.2) ?
+  fusionner `sprint-15` dans `master` du repo étudié (M.1 Q3, décision Yanis) ?
 - **Status:** pending
 
 ### Phase 3: Prochain modulo (tâches dérivées des fiches)
@@ -110,6 +123,7 @@ Décisions en attente :
 - [ ] 7. **Juges R-gate = persona-prothèses** : la vision de Yanis relève du travail de la séance B
   (`seances/B-debut-session/2026-11-09-B-debut-session-r-gate.md`), à y rattacher.
   L.1 : R-gate né dans claude-prostheses le 03/06 ; `c717e16` « Reviewer = Scrum Master via R-gate » (findings L.1 F6).
+  M.2 : en juin, juges ≠ personas, volontairement (« un mécanisme, pas un titulaire ») ; question reprise par N.1 (Q1).
 - [ ] 8. **Dossiers du vault Clear Sky et SaaS-Traduction** (`vault/protocole/CPE/sources/`, 21 et 15
   fichiers) : les sources primaires de CPE, plus complètes que le repo. Faut-il les lire ?
 - **Status:** pending
@@ -150,6 +164,10 @@ Décisions en attente :
 | Contrats proposés par L.1 renumérotés : un contrat porte la lettre du pilote qui fait son fan-in (L.2 → M.1, L.3 → M.2, L.4 → N.1, L.5 → N.2) (L, 12/11) | Le pilote L se clôt avant eux ; règle « Parent = la séance qui fait le fan-in » (CLAUDE.md) |
 | Ordre : modulo repos → modulo vault (plusieurs contrats) → modulo skills (dont my-claude-config) ; tâches et projets (essai d'usage compris) seulement après (Yanis, L, 12/11) | Recouvrement de mémoire d'abord ; l'essai d'usage « n'est pas un petit morceau » |
 | Privatiser les repos à la fin du modulo (tâche 19) ; d'ici là la fiche L.1 reste publique telle quelle (Yanis, L, 12/11) | « Ça devient sensible » |
+| Fiches M.1/M.2 publiques telles quelles, contenu personnel accepté → tâche 19 (Yanis, M, 13/11) | Même règle que L.1 |
+| Status bar : Yanis seul maître ; plus aucune consigne de relevé dans les kernels ni demande en séance (Yanis, M, 13/11) | « Je suis le seul maître de la status bar » ; remplace « demander la status bar avant la fiche » (L.1) |
+| « Test hypothétique » = théorisation sous conditions en convergence (tâche 21), pas un projet (Yanis, M, 13/11) | « Une vue de l'esprit, pour mieux cartographier ce qui restera à faire » |
+| Ordre « comment avant pourquoi » conseillé aux contrats (Yanis, M, 13/11) | Yanis a fait M.2 avant M.1 : se souvenir de la construction avant l'arrêt |
 
 ## 🚨 Errors Encountered
 | Error | Attempt | Resolution |
@@ -166,3 +184,6 @@ Décisions en attente :
 | L.1 : budget dépassé (77 % → 87 %), fiche écrite sans relevé de status bar | L.1 | Fiche `partiel` ; demander la status bar avant la fiche, découper en contrats dès 70 % |
 | PR #8 (L.1) fusionnée AVANT le contrôle « contenu sensible » que le kernel L confiait au pilote (C2) | L | Relu après coup : aucun secret ; éléments personnels acceptés par Yanis → tâche 19. Pour M.1/M.2 : contrôle par le contrat lui-même avant commit |
 | `/debut-session` lancé sur la CLÔTURE de L.1 au lieu du kernel d'ouverture de L : lieu (worktree) et [Fichiers à charger] absents du brief | L | Kernel L trouvé dans `seances/L-pilotage-vague-6/` et appliqué ; ouvrir un pilote avec SON kernel |
+| PR #10, #11 (M.2, M.1) fusionnées avant le contrôle « contenu sensible » du pilote (3e fois) | M | Relu après coup, aucun secret ; Yanis accepte → tâche 19. Kernels N : contrôle par le contrat AVANT commit |
+| Worktree du pilote M absent au démarrage, séance ouverte sur `main` en retard de 2 merges | M | Détecté par /debut-session ; `git pull` puis `git worktree add ../reprise-nov-2026-M` avant toute écriture |
+| Budgets dépassés : M.1 71 %, M.2 111 % | M.1, M.2 | Non corrigé par une règle : Yanis seul maître de la status bar (décision ci-dessus) |
