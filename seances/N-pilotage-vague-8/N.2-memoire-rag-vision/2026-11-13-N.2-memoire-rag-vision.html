@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vision et RAG — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+pre.schema{background:var(--chip);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;line-height:1.45;margin:6px 0 12px}
+h3{font-size:13.5px;margin:12px 0 6px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>claude-prostheses — vision et RAG</h1>
+  <div class="meta">
+    2026-05-25 → 2026-06-01 · 27 commits de la lignée (sur 369 du repo) · 7 fichiers <code>docs/vision/</code> + 4 corpus <code>frameworks.md</code> ·
+    lignée arrêtée (repo arrêté le 23/06) · séance N.2 ← parent N · 2026-11-13 · statut partiel (budget 76 % ; questions à Yanis ouvertes, § 8)
+  </div>
+  <span class="badge v-recup">RÉCUPÉRER</span> <span class="chip">la vision + les fonctions cachées sous « RAG » ; le mot RAG : ARCHIVER</span>
+</header>
+
+<p class="lead">Le POURQUOI de claude-prostheses : une vision dictée d'un trait le 26/05 (des collègues IA, un tableau de bord par projet, une discipline quotidienne), et un RAG par rôle qui devait la nourrir. Le RAG n'a existé que sous une forme minimale, construite le même jour, puis jamais enrichie. En séance, le mot « RAG » s'est révélé couvrir cinq choses différentes, qu'il faut désormais nommer chacune par son nom.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>Le 25/05, le repo naît comme trois skills qui <b>compressent du contexte</b> au chargement (indie-dev, pm, dev-anthropic) <span class="ref">[1]</span>. Le 26/05, pendant la séance C7, une session de la veille « a sauté » : Yanis redicte sa vision d'un trait, et Claude la capture mot pour mot dans <code>vision-systeme.md</code>, avec la mention « à ne jamais perdre » <span class="ref">[2]</span>. Le RAG est formulé dans la même séance comme la « thèse centrale du produit » <span class="ref">[3]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p><b>Vision :</b> un tableau de bord par projet qui contient tous les documents qui « réduisent l'intention » jusqu'à l'exécution ; des « collègues IA » dont Yanis joue lui-même chaque rôle ; une journée type de 08:00 au soir <span class="ref">[2]</span>. Le court terme prime : « fonctionner pour lui seul », vite, pour générer des revenus <span class="ref">[2]</span>.<br>
+    <b>RAG :</b> un « fine-tuning sans GPU ». Chaque rôle reçoit sa documentation spécialisée, compressée et injectée au contexte. Bénéfice double : le rôle se spécialise, et Yanis apprend le métier en le nourrissant (« la prothèse est le manuel d'apprentissage ») <span class="ref">[3]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 1 — La compression au chargement (3 commits) · 25/05</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-25</td><td><code>fe98d86</code> trois skills avec un script <code>*_context.py</code> chacun ; <code>f1ecbb3</code> <code>compress_context.py</code> fonctionnel (1669 tokens) + superpowers-guide ; <code>0c71b5f</code> contexte pm découpé en Tier 1 (kernel) et Tier 2 (sprint)</td><td>Charger un rôle avec un résumé de ses sources plutôt qu'avec les sources entières</td><td>Le mécanisme « savoir compressé → injecté au contexte » existe avant d'avoir un nom <span class="ref">[1]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — La vision dictée et la thèse RAG (11 commits) · 26/05, séance C7</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-26</td><td><code>79fb6ec</code> monologue capturé dans <code>vision-systeme.md</code> ; <code>46a29e1</code> matrice chaîne de valeur × 11 buckets, récupérée du Drive ; <code>fec9769</code> leçons de l'audit des ~330 skills d'alirezarezvani ; <code>8038193</code>, <code>c559b05</code> matrice rôles × documents + journée type ; <code>dfd40b1</code> méta-projet et horizons ; <code>b1504de</code> architecture coarse → fine ; <code>8ae30c2</code> findings de C7</td><td>Ne plus perdre une vision redictée après une session perdue</td><td>Une source unique et datée de l'intention <span class="ref">[2]</span></td></tr>
+    <tr><td class="d">2026-05-26</td><td><code>7880faf</code> « RAG-as-fine-tuning », thèse centrale ; <code>115af31</code> les 3 sources de nourrissage + le trou du « dispatcher » ; <code>f024403</code> design doc du méta-projet (« chaque prothèse entraînable via RAG »)</td><td>Donner aux rôles un savoir propre sans entraîner de modèle</td><td>Une architecture cible par rôle : <code>SKILL.md</code> + <code>references/</code> + <code>graphify/</code> <span class="ref">[3]</span><span class="ref">[4]</span><span class="ref">[5]</span></td></tr>
+  </table>
+  <div class="phase">Phase 3 — La forme minimale construite (8 commits) · 26–27/05</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-26</td><td><code>ede0262</code>, <code>27094f8</code>, <code>64decc1</code>, <code>486c96b</code> un <code>frameworks.md</code> par rôle (PO, SM, Dev Team, Stakeholder), présenté comme un « Corpus RAG minimal… à enrichir session après session via /fin-session »</td><td>Source 2 (docs théoriques) amorcée pour les 4 rôles Scrum</td><td>Les rôles ont une base, mais elle n'a jamais été enrichie (le seul commit suivant est un déplacement, le 29/05) <span class="ref">[6]</span></td></tr>
+    <tr><td class="d">2026-05-27</td><td><code>daf02ee</code> matrice rôles × documents avec des colonnes RAG / Fine-Tuning ; <code>b9777d8</code>, <code>2b56d59</code>, <code>ebac0b6</code> Sprint 1 « Dispatcher » : <code>/dispatch</code> envoie une <b>demande</b> vers le bon skill, par mots-clés</td><td>Combler le trou « dispatcher » nommé la veille</td><td>Un routeur demande → skill existe, mais ce n'est pas le dispatcher note <code>/n1n4</code> → rôle que demandait <code>115af31</code> (interprété) <span class="ref">[7]</span></td></tr>
+  </table>
+  <div class="phase">Phase 4 — Rangement et cap, puis silence (5 commits) · 29/05 → 01/06</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-29</td><td><code>071f9db</code> les rôles déplacés vers <code>.claude/skills/</code></td><td>Mise en conformité avec la structure des skills</td><td>Dernier commit à toucher les corpus <span class="ref">[6]</span></td></tr>
+    <tr><td class="d">2026-05-30</td><td><code>a7ba53e</code> <code>orchestration-protheses.md</code> : prothèses reliées entre elles, enveloppe de tokens, « contrat-API » ; <code>13c5d3e</code> stratégie de mise sur le marché + lien Team Charter</td><td>Garder le cap long terme sans le planifier</td><td>« Non planifié — sert de cap, pas de backlog… Ne rien démarrer maintenant » <span class="ref">[8]</span></td></tr>
+    <tr><td class="d">2026-05-31 → 06-01</td><td><code>b9a4dcb</code> VISION-3 : faire de <code>/indie-dev</code> un RAG, « à reprendre comme initiative dédiée » ; <code>00c5dff</code> critère de choix du domaine : « RAG sur un corpus curé partitionné par rôle, PAS du fine-tuning »</td><td>Le RAG rebascule en idée pendant que la chaîne de documents prend le repo</td><td>Dernières traces du RAG ; aucun commit RAG ensuite <span class="ref">[9]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Évolution de la pensée</h2>
+  <h3>A. Les étapes, en schéma</h3>
+<pre class="schema">ÉTAPE 0 · 25/05 — COMPRESSER POUR CHARGER UN RÔLE                        [1]
+   un rôle = un SKILL.md + un script qui résume ses sources au chargement
+          │
+          ▼
+ÉTAPE 1 · 26/05 — LA VISION REDICTÉE · monologue capturé mot pour mot   [2]
+   difficulté : la session de la veille « a sauté », la vision se perd
+   réponse    : vision-systeme.md, « à ne jamais perdre » ; 4 horizons
+                (moi seul → revenus → entreprise → réseau)
+          │
+          ▼
+ÉTAPE 2 · 26/05 — LE RAG NOMMÉ · « fine-tuning sans GPU »                [3][4]
+   difficulté : un rôle ne sait rien du vrai métier
+   réponse    : references/ compressées par rôle + 3 sources
+                (conversations /n1n4 · docs théoriques · usage réel)
+   trou nommé : le dispatcher note → rôle
+          │
+          ▼
+ÉTAPE 3 · 26–27/05 — LA FORME MINIMALE                                    [6][7]
+   construit : 4 frameworks.md (source 2) + /dispatch (demande → skill)
+   non construit : decisions-log.md, graphify/ par rôle, dispatcher /n1n4
+          │
+          ▼
+ÉTAPE 4 · 30/05 → 01/06 — LE CAP SANS PLAN                                [8][9]
+   orchestration-protheses.md : « ne rien démarrer maintenant »
+   le RAG redevient une idée (VISION-3) ; la chaîne MRD → Code absorbe tout
+          │
+          ▼
+APRÈS · 08/06 — l'ANCRAGE réclame une racine, « l'intention d'un humain » (M.2)
+   la vision du 26/05 était cette intention, écrite (lien interprété)</pre>
+  <h3>B. Les difficultés rencontrées, et ce que Yanis en a fait</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>Difficulté</th><th>Réponse dans ce repo</th><th>Ce qu'elle est devenue ensuite (autres repos, setup actuel)</th></tr>
+    <tr><td>Une session perdue efface la vision</td><td>Capture verbatim + LINEAGE dans <code>docs/vision/</code> <span class="ref">[2]</span></td><td>Kernels /goedel (né le 28/05, <code>853069b</code>) et /debut-session, aujourd'hui globaux <span class="ref">[10]</span></td></tr>
+    <tr><td>Les rôles ne savent pas le métier</td><td>Corpus <code>frameworks.md</code> minimal par rôle <span class="ref">[6]</span></td><td>Jamais enrichi ; la chaîne E forge plutôt des <b>outils</b> (24 gabarits <code>tool-template-*</code> sur sprint-15) que des corpus de rôle (interprété) <span class="ref">[11]</span></td></tr>
+    <tr><td>Les notes <code>/n1n4</code> restent dans le vault</td><td>Trou nommé ; <code>/dispatch</code> construit pour un autre usage <span class="ref">[4]</span><span class="ref">[7]</span></td><td>À confirmer par Yanis (le vault n'a pas été lu ici)</td></tr>
+    <tr><td>Évaluer les vraies sessions (source 3, « la plus importante »)</td><td>Prévu : <code>/fin-session</code> → <code>decisions-log.md</code> du rôle <span class="ref">[3]</span><span class="ref">[4]</span></td><td><code>/fin-session</code> existe et a été monté au global le 09/11, mais il extrait des heuristiques, pas un journal par rôle <span class="ref">[10]</span></td></tr>
+  </table>
+  </div>
+  <h3>C. Ce que les traces ajoutent au souvenir</h3>
+  <p>(1) Le RAG n'était pas d'abord « un RAG sur les conversations de Yanis ». Dans <code>115af31</code>, les conversations sont la source 1, classée <b>3<sup>e</sup></b> en priorité. La source n°1 est l'usage réel évalué par Yanis (« RLHF manuel ») <span class="ref">[4]</span>. (2) Le RAG a bien été construit, sous une forme minimale (4 corpus, le 26/05). Ce qui manque, c'est son <b>enrichissement</b> <span class="ref">[6]</span>. (3) Un « dispatcher » a été livré le 27/05, mais il route les demandes et non les notes : le nom a été réutilisé pour autre chose (interprété) <span class="ref">[7]</span>.</p>
+  <p>(4) <b>« RAG » a cinq sens dans le repo.</b> Au sens littéral (<i>Retrieval-Augmented Generation</i>), le RAG <b>cherche à la demande</b>, à chaque question, quelques passages dans un corpus extérieur au modèle, et les ajoute au prompt. Yanis reconnaît avoir employé le mot plutôt comme une métaphore <span class="ref">[13]</span>.</p>
+  <div class="scroll"><table>
+    <tr><th>Sens</th><th>Où</th><th>Recherche à la demande ?</th><th>Nom exact</th></tr>
+    <tr><td>A · doc compressée chargée avec le rôle (« fine-tuning sans GPU »)</td><td><code>7880faf</code>, 4 <code>frameworks.md</code></td><td>non, tout est chargé d'avance</td><td>spécialisation par contexte <span class="ref">[3]</span><span class="ref">[6]</span></td></tr>
+    <tr><td>B · les 3 sources qui nourrissent les rôles, « RLHF manuel »</td><td><code>115af31</code></td><td>non, c'est l'amont</td><td>alimentation / curation du savoir + boucle de retour <span class="ref">[4]</span></td></tr>
+    <tr><td>C · « chaque rôle lit son graphify avant d'ouvrir des fichiers »</td><td>design doc l.153</td><td>oui</td><td>RAG au sens propre, sur un graphe <span class="ref">[5]</span></td></tr>
+    <tr><td>D · retrouver le bon outil, concept ou conversation à la demande</td><td>VISION-3, <code>b9a4dcb</code></td><td>oui</td><td>RAG au sens propre, appliqué aux outils <span class="ref">[9]</span></td></tr>
+    <tr><td>E · « réduction du nuage de points », « chaque salarié a son propre RAG »</td><td><code>00c5dff</code>, horizons</td><td>—</td><td>métaphore : spécialiser, mémoire personnelle <span class="ref">[2]</span><span class="ref">[9]</span></td></tr>
+  </table></div>
+  <p>(5) <b>Le fil commun est le prompt unique.</b> Yanis se souvient d'avoir conclu qu'une instance Claude optimisée ne dépasse pas un seul prompt, et que converser est une perte. D'où les dispatchers et les routers <span class="ref">[13]</span>. Les cinq sens répondent tous à la question « comment le bon savoir et le bon outil arrivent-ils dans ce prompt ? » (interprété). Le skill actuel <code>/debut-session</code> écrit le même idéal : « une séance = une requête » <span class="ref">[15]</span>. Yanis lit dans ces sens trois <b>intentions</b> : réduire les biais, enrichir les générations, ne pas dériver de l'intention. Il y voit aussi trois <b>mécaniques</b> inévitables dans une équipe simulée : orchestration, ingénierie de prompt, réduction du coût <span class="ref">[14]</span>. Les traces en portent déjà des pièces (rattachement interprété) :</p>
+<pre class="schema">POURQUOI   réduire les biais      enrichir les générations   ne pas dériver
+           source 3, R-gate        A, C, D                    linéage, ANCRAGE, kernel,
+                                                              « challenger d'intention » (30/05)
+COMMENT    orchestration          ingénierie de prompt       coût des modèles
+           dispatcher, router,     contrats, kernels, A       ledger Ops ; au démarrage le kernel
+           enveloppe de tokens                                pèse ~0,4K sur ~12K injectés (31/05)</pre>
+  <p>(6) <b>Un rôle efficace = un cadre + un enrichissement</b> (formule de Yanis <span class="ref">[16]</span>). Les <code>frameworks.md</code> se disent « corpus RAG minimal… à enrichir », mais ils contiennent surtout des classiques que le modèle connaît déjà (RICE, INVEST, TDD), dans un même moule : méthode, exemple, <b>règle obligatoire</b>, anti-patterns. Ils <b>cadrent</b> donc plus qu'ils n'enrichissent : ils servent à réduire les biais et à ne pas dériver <span class="ref">[6]</span>. L'enrichissement réel, ce que nul modèle ne sait (les notes de Yanis, ses vraies sessions, sources 1 et 3), n'a jamais été construit. Des pièces de la mécanique de construction d'un rôle existent, éparpillées : la loi de scission (quand un rôle naît), l'architecture <code>7880faf</code> (de quoi il est fait), le moule des fiches (le gabarit du cadre). Restent à définir : qui écrit le cadre, comment chaque source entre dans le rôle, comment vérifier que le rôle s'améliore <span class="ref">[2]</span><span class="ref">[3]</span>.</p>
+</section>
+
+<section>
+  <h2>5 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">docs/vision/</span> La source de l'intention du méta-projet. Le design doc et <code>orchestration-protheses.md</code> la citent comme parent <span class="ref">[5]</span><span class="ref">[8]</span>. Pour la question « vision spec ou vision théorique » : <code>vision-systeme.md</code> est la vision <b>théorique</b> (monologue + concepts), <code>orchestration-protheses.md</code> est un <b>cap</b> explicitement non planifié, et la <b>spec</b> est un troisième fichier, le design doc <code>docs/superpowers/specs/2026-05-26-claude-prostheses-design.md</code> <span class="ref">[5]</span><span class="ref">[8]</span>.</li>
+    <li><span class="chip">skills des rôles</span> <code>references/frameworks.md</code> = le RAG réel, chargé avec le rôle <span class="ref">[6]</span>.</li>
+    <li><span class="chip">/dispatch</span> Routeur demande → skill (6 routes, mots-clés) <span class="ref">[7]</span>.</li>
+    <li><span class="chip">claude-mem</span> Rangé dans la matrice comme « Knowledge/RAG », installé <span class="ref">[11]</span>.</li>
+    <li><span class="chip">compression du 25/05</span> Les scripts <code>*_context.py</code> font déjà ce que <code>7880faf</code> appelle le RAG (« documentation compressée injectée au contexte »). Ce sont donc la forme manuelle du RAG (lien interprété, confiance élevée sur le mécanisme) <span class="ref">[1]</span><span class="ref">[3]</span>.</li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>6 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> chaque matin à 08:00 : planning → rituel de lancement → 2 sessions de ~5 h → réunions simulées entre rôles → compte rendu, mail, todo <span class="ref">[2]</span>. Chaque fin de session : <code>/fin-session</code> nourrit le rôle utilisé <span class="ref">[3]</span>.</li>
+      <li><b>Réel :</b> le tableau ci-dessous. Les déclencheurs d'usage réel ne sont pas dans les traces : à confirmer par Yanis.</li>
+    </ul>
+    <div class="scroll"><table>
+      <tr><th>Élément</th><th>Prévu (26/05)</th><th>Réel (traces)</th></tr>
+      <tr><td>Tableau de bord</td><td>Un par projet, avec la volatilité des documents</td><td>Jamais construit (« ❌ à créer ») <span class="ref">[2]</span></td></tr>
+      <tr><td>Collègues IA</td><td>5 rôles, réunions simulées</td><td>Rôles + salle virtuelle construits (→ N.1) <span class="ref">[8]</span></td></tr>
+      <tr><td>RAG</td><td>3 sources, journal, graphe par rôle</td><td>4 corpus minimaux, jamais enrichis <span class="ref">[6]</span></td></tr>
+      <tr><td>Chaîne</td><td>MRD → Code, R1–R4</td><td>A absorbé le repo jusqu'au 23/06 (→ M.1/M.2) <span class="ref">[12]</span></td></tr>
+      <tr><td>Journée type</td><td>Rituels de 08:00 au soir</td><td>À confirmer par Yanis</td></tr>
+    </table></div>
+  </section>
+  <section>
+    <h2>7 · Où je me suis arrêté</h2>
+    <p>Dernière trace du RAG le 01/06. Sur la question « abandonné ou reporté ? », les traces penchent vers <b>reporté sans date</b> : il est toujours dit voulu (« à reprendre comme initiative dédiée »), mais il est passé derrière la chaîne de documents, choix que Yanis assume (« c'était nécessaire », L.1) <span class="ref">[9]</span><span class="ref">[12]</span>. Ce qui manquait : le dispatcher note → rôle, le <code>decisions-log.md</code> par rôle, et un usage réel des rôles sur un vrai projet pour alimenter la source 3. Raison probable : le budget (forfait « juste juste ») a été mis sur la chaîne, puis le voyage du 01/07 (L.1) <span class="ref">[12]</span>. À confirmer par Yanis.</p>
+    <p><b>Anomalie :</b> les <code>SKILL.md</code> des rôles disent « Charge mes frameworks : <code>roles/…/references/frameworks.md</code> ». Or le dossier <code>roles/</code> a été supprimé le 29/05 (<code>071f9db</code>) et n'existe sur aucune branche. Le chemin écrit mène nulle part depuis cette date ; on ignore si les fiches ont encore été lues ensuite <span class="ref">[17]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>8 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur la vision et le RAG) :</b> RÉCUPÉRER la vision : c'est l'intention humaine écrite que l'ANCRAGE réclamait comme racine, et elle tient en 7 fichiers. ARCHIVER le <b>mot</b> RAG, qui cachait plusieurs choses ; RÉCUPÉRER les fonctions qu'il cachait, chacune sous son nom exact : routage, spécialisation (cadre), récupération à la demande, alimentation. Le code (4 corpus, <code>/dispatch</code>) n'est pas à reprendre tel quel.</li>
+    <li><b>Réutilisable :</b> le vocabulaire exact des 5 sens (§ 4 C) → langage commun de la reprise de claude-prostheses ; la formule « rôle = cadre + enrichissement » ; le moule des <code>frameworks.md</code> (méthode, exemple, règle obligatoire, anti-patterns) → gabarit du cadre d'un rôle ; le modèle des 3 sources et leur ordre de priorité (<code>115af31</code>) → base de l'enrichissement ; la loi de scission « on ne scinde pas par anticipation » → règle de conception des rôles ; le tableau des 4 horizons → cadrage du but actuel. Chemins de destination : à décider par le pilote.</li>
+    <li><b>Conflits gouvernance :</b> aucun identifié (aucune règle citée ; <code>gouvernance-regles.md</code> non lu par cette séance).</li>
+    <li><b>À confirmer par Yanis :</b>
+      (a) Qu'attendait-il du RAG que les kernels /goedel ne donnent pas ?
+      (b) Dans le monologue du 26/05, qu'est-ce qui est encore vrai, qu'est-ce qui est périmé ?
+      (c) « Des choses claires et simples à faire chaque jour » : est-ce encore son but ?
+      (d) Le RAG est-il abandonné ou reporté ?
+      (e) Le projet « cloner mon cerveau » est-il ce RAG ? Les traces disent « prothèse = clone numérique, RAG par rôle » (<code>00c5dff</code>), donc un clone par <b>rôle</b>, pas de Yanis entier <span class="ref">[9]</span>.
+      (f) Le dispatcher note → rôle a-t-il existé ailleurs, dans le vault ?
+      (g) Dette de compréhension assumée : Yanis sent ces concepts (5 sens, intentions × mécaniques, cadre + enrichissement) comme centraux sans encore les concevoir clairement. C'est une hypothèse à tester en pratique (phase 4), pas encore une preuve.
+      (h) Parmi les 5 sens, lequel avait-il le plus en tête en disant « RAG » ?</li>
+    <li><b>Pour la convergence :</b> la vision est la racine candidate de la chaîne E (M.1, M.2 F8 : Team Charter prévu puis sauté) ; les rôles qu'elle décrit → N.1 ; <code>/fin-session</code> (global depuis le 09/11) devait être le capteur de la source 3, mais il extrait des heuristiques de travail, pas un journal par rôle ; le skill actuel <code>router</code> est un descendant possible de <code>/dispatch</code> (relevé par N.1, aucune trace ne les relie) <span class="ref">[18]</span>.</li>
+    <li><b>Proposition au pilote :</b> (1) La séance vault (tâche 16) : vérifier les notes <code>/n1n4</code> (source 1), la note d'origine de la matrice chaîne de valeur et tout dispatcher vers les rôles. (2) <code>rag_concepts</code> (H.1 : 1 commit, aucun code RAG) : son rattachement à cette lignée n'a pas été vérifié ici (un autre repo), à trancher. (3) La tâche 19 (repo public) : <code>vision-systeme.md</code> est un monologue personnel ; cette fiche n'en cite que de courtes phrases. (4) Décision de Yanis : le sujet RAG reste dans ce contrat et ne part pas au « modulo skill ». (5) Définir la <b>mécanique de construction d'un rôle</b> (cadre + 3 sources d'enrichissement + vérification que le rôle s'améliore) : une étape que Yanis juge cruciale pour la suite de claude-prostheses. Séance ou phase : au pilote de décider <span class="ref">[16]</span>.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li><code>git show --stat fe98d86 f1ecbb3</code> + <code>git show -s 0c71b5f</code> (25/05) · certaine</li>
+    <li><code>docs/vision/vision-systeme.md:12-180</code> (sprint-15 ; identique sur master), commits <code>79fb6ec</code>, <code>dfd40b1</code>, <code>c559b05</code>, <code>b1504de</code> · certaine</li>
+    <li><code>git show 7880faf -- findings.md</code> (+41 lignes) · certaine</li>
+    <li><code>git show 115af31 -- findings.md</code> (+28 lignes) · certaine</li>
+    <li><code>docs/superpowers/specs/2026-05-26-claude-prostheses-design.md:25,51,153,181</code> (<code>f024403</code>) · certaine</li>
+    <li><code>.claude/skills/product-owner/references/frameworks.md:1-4</code> ; <code>git log --follow</code> des 4 <code>frameworks.md</code> : création le 26/05, seul commit suivant <code>071f9db</code> (29/05, déplacement) · certaine</li>
+    <li><code>docs/superpowers/plans/2026-05-27-sprint1-dispatcher.md:1-30</code>, <code>.claude/skills/dispatcher/SKILL.md</code>, <code>2b56d59</code>, <code>ebac0b6</code> ; écart avec le dispatcher de <code>115af31</code> · certaine (le fait), élevée (l'interprétation)</li>
+    <li><code>docs/vision/orchestration-protheses.md:1-81</code> (<code>a7ba53e</code>, 30/05) · certaine</li>
+    <li><code>docs/findings/2026-05-31-session-input-langage-ubiquitaire.md:103-108</code> (<code>b9a4dcb</code>) ; <code>docs/findings/2026-06-01-critere-selection-domaine-prothese.md:16,34-37</code> (<code>00c5dff</code>) ; <code>git log | grep -i rag</code> : après le 01/06, seuls des « ancrage » correspondent, aucun commit RAG · élevée</li>
+    <li><code>853069b</code> (28/05, goedel) ; <code>70d3ebe</code> (09/11, « retrait de goedel et fin-session du projet (montés au global) », branche master) · certaine</li>
+    <li><code>git ls-tree origin/sprint-15</code> : 24 <code>pipeline/references/tool-template-*.md</code>, aucun <code>decisions-log.md</code> ni <code>graphify/</code> par rôle ; <code>docs/vision/roles-documents-matrix.md:186</code> (claude-mem) · certaine</li>
+    <li>Findings L.1 F3, F4, F5 (<code>seances/L-pilotage-vague-6/L.1-…-findings.md</code>) ; findings M.2 F8 · élevée (séances antérieures)</li>
+    <li>Témoignage de Yanis (2026-11-13, séance N.2) · certaine (déclaratif)
+      <blockquote>Un des problèmes avec les humains, c'est qu'ils utilisent des termes sans en connaître profondément le sens. En l'occurence, j'ai utilisé le terme RAG à tord et à travers pour certainement parler de plusieurs choses différentes. […] RAG est un mot "savent" et nouveau que j'ai utiliser probablement comme "métaphore" plus que comme son sens littéral. […] PS : Je me souviens être arrivé à la conclusion que une instance claude optimisé au maximum avec tout mon système de connecté ne pouvait dépasser 1 seul prompt. Converser avec claude est en réalité une perte multi-niveau. Et pour de l'orchestration d'ia efficace, il faut un système et des contrats clairs et fonctionnels. Voilà pourquoi j'avais notamment conçu des skill de distacher, router. Car je voulais qu'en un seul prompt, tout soi compris et réaliser.</blockquote></li>
+    <li>Témoignage de Yanis (2026-11-13, séance N.2) · certaine (déclaratif)
+      <blockquote>On hésitait à ce que ce contrat devait être relégé au modulo skill. Mais en fait il a parfaitement sa place ici. […] Pour le moment, je n'arrive pas à conçevoir clairement ces concepts évoqués ici. Donc je vais avancer avec une dette de compréhension, mais mon subconscient me cri que ce que tu viens de dire est indiscutablement central. Premièrement, ces 5 définitions de RAG démontrent une volonté à : la réduction des biais, l'enrichissement des générations, la non dérivation de l'intention. Et, étant donné que le système à vocation à simuler une équipe scrum, et bien forcément, le système possède en son sein une mécanique d'optimisation de l'orchestration, de l'ingénierie de prompt, et de réduction du coût des modèls.</blockquote></li>
+    <li><code>C:\Users\bensa\.claude\skills\debut-session</code> (SKILL.md, en-tête) : « Idéal visé : une séance = une requête » · certaine</li>
+    <li>Témoignage de Yanis (2026-11-13, séance N.2) · certaine (déclaratif)
+      <blockquote>Donc, un rôle efficace c'est un rôle cadré, mais aussi enrichi par différentes sources. Et cette mécanique de construction de rôle n'a pas encore été bien défini mais elle va constituer une étape crutial dans le système.</blockquote></li>
+    <li><code>.claude/skills/product-owner/SKILL.md:36</code>, <code>scrum-master/SKILL.md:40</code> (chemin <code>roles/…</code>) ; <code>git ls-tree -d origin/sprint-15 roles</code> et <code>origin/master</code> : vide ; <code>071f9db</code> « remove empty roles/ dir » · certaine (le chemin), moyenne (l'effet sur la lecture)</li>
+    <li>Réponse de la séance N.1 sur le dispatcher, collée par Yanis en séance N.2 (2026-11-13) ; <code>docs/findings/2026-05-31-matrice-identite-contexte.md:97</code> (kernel ≈ 0,4K sur ~12K injectés) · élevée</li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>
