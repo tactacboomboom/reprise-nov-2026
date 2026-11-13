@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Fiche mémoire N.1 — gabarit gabarits/fiche-memoire.html (8 sections). -->
+<title>Rôles et Scrum — fiche mémoire</title>
+<style>
+:root{
+  --bg:#fbfaf8;--card:#ffffff;--ink:#1d1d1b;--mute:#6b6a66;--line:#e4e1db;
+  --accent:#3d5a80;--ok:#2e7d4f;--warn:#a86b00;--no:#9a3b3b;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}}
+:root[data-theme="dark"]{
+  --bg:#17181a;--card:#1f2124;--ink:#e8e6e1;--mute:#9a9893;--line:#33363a;
+  --accent:#8fb3e0;--ok:#6cc08f;--warn:#e0a84a;--no:#e08585;--chip:#2a2e35;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+header h1{margin:0;font-size:24px}
+.meta{color:var(--mute);font-size:13px;margin:4px 0 12px}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.v-recup{background:var(--ok)}.v-archiv{background:var(--warn)}.v-ignor{background:var(--no)}
+.lead{font-size:17px;border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 20px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0}
+h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.two section{margin:0}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.phase{font-weight:600;margin:10px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td,th{padding:5px 6px;border-top:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--mute);font-weight:500;font-size:12px}
+td.d{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+ul{margin:0;padding-left:18px}li{margin:2px 0}
+.chip{display:inline-block;background:var(--chip);border-radius:6px;padding:0 6px;font-size:12.5px}
+.ref{color:var(--accent);font-size:11px;vertical-align:super}
+footer{font-size:12px;color:var(--mute);margin-top:20px}
+footer ol{padding-left:18px}
+footer blockquote{margin:4px 0 8px;padding-left:10px;border-left:2px solid var(--line);font-style:italic}
+pre.schema{background:var(--chip);border-radius:8px;padding:10px 12px;overflow-x:auto;font-size:12.5px;line-height:1.45;margin:6px 0 12px}
+h3{font-size:13.5px;margin:12px 0 6px}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>claude-prostheses · rôles + Scrum (sous-projets B et C)</h1>
+  <div class="meta">
+    2026-05-26 → 2026-06-23 · ~161 commits du périmètre (sur 369, branche sprint-15) · 6 skills, 10 dossiers de sprint ·
+    endormi depuis le 23/06 · séance N.1 ← parent N · 2026-11-13 · statut complet
+  </div>
+  <span class="badge v-archiv">ARCHIVER</span>
+</header>
+
+<p class="lead">Une équipe Scrum de quatre prothèses (PO, Scrum Master, Dev Team, Stakeholder),
+jouée par un seul Claude dans une « salle virtuelle » : pour Yanis, d'abord une école de Scrum,
+et l'esquisse de l'équipe qui devait un jour écrire et faire avancer la chaîne de documents.</p>
+
+<div class="two">
+  <section>
+    <h2>1 · Déclencheur</h2>
+    <p>Le 26/05, la séance C7 pose la vision : une « dreamteam solo » de rôles projetés sur la chaîne
+    de documents <span class="ref">[5]</span>, et la question « comment nourrir un rôle ? ». Yanis veut
+    envoyer ses notes <code>/n1n4</code> « aux bons rôles », mais un « dispatcher » manque <span class="ref">[1]</span>.
+    L'idée d'un « simulateur multi-rôles » existait déjà dans son vault, recopiée dans le repo
+    ce jour-là <span class="ref">[15]</span>. Yanis dit l'avoir fait d'abord pour apprendre le protocole Scrum <span class="ref">[20]</span>.</p>
+  </section>
+  <section>
+    <h2>2 · Objectif</h2>
+    <p>Faire intervenir les personas-prothèses de Scrum pour traiter les stories et les epics du PRD
+    <span class="ref">[20]</span>. Le but était un système « transmissible », qu'un autre développeur IA
+    pourrait reprendre sans Yanis. Le chemin choisi était une spirale : la gêne ressentie pendant
+    une cérémonie enrichit le rôle à la rétrospective <span class="ref">[2]</span>. À terme, un seul
+    prompt devait suffire pour que tout soit compris et réalisé <span class="ref">[20]</span>.</p>
+  </section>
+</div>
+
+<section>
+  <h2>3 · Frise des commits</h2>
+  <div class="scroll">
+  <div class="phase">Phase 1 — Les quatre rôles · 26/05 (~21 commits)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-26</td><td>Vision C7 : matrice rôles × documents, thèse « RAG », 3 sources pour nourrir les rôles</td><td>Donner une équipe à un développeur seul</td><td>Chaque document de la chaîne a un auteur désigné <span class="ref">[5]</span><span class="ref">[1]</span></td></tr>
+    <tr><td class="d">2026-05-26</td><td>Sprints 1 à 4 : un skill par rôle (PO, SM, Dev Team, Stakeholder), chacun avec SKILL.md, frameworks.md, LINEAGE et 3 tests d'acceptation</td><td>Un rôle « invocable » et vérifié</td><td>4 rôles validés en une journée (3/3 tests) <span class="ref">[3]</span></td></tr>
+  </table>
+  <div class="phase">Phase 2 — La salle et la spirale · 27–28/05 (~44 commits)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-27</td><td>Spec de la spirale A → B, puis dispatcher (routage par mots-clés, 11 tests)</td><td>Apprendre les rituels de l'intérieur ; savoir quel rôle appeler</td><td>Sprint 1 « strict » <span class="ref">[2]</span><span class="ref">[14]</span></td></tr>
+    <tr><td class="d">2026-05-27</td><td>Salle virtuelle : un PoW par rôle, un <code>_meeting.md</code>, un dashboard HTML ; puis « dialogue-first » (le dialogue précède le PoW)</td><td>Les PoW des sprints 2–3 étaient écrits sans discussion</td><td>Une réunion tracée et visible <span class="ref">[4]</span><span class="ref">[17]</span></td></tr>
+    <tr><td class="d">2026-05-27→28</td><td>Sprint 4 (5 cérémonies, 15 PoW), sprint 5 complet ; le 28/05 les cérémonies du sprint 6 sont abandonnées, remplacées par le pipeline Superpowers × Scrum</td><td>« Effort de reconstruction > valeur »</td><td>Le rythme repart du sprint 7 <span class="ref">[6]</span></td></tr>
+  </table>
+  <div class="phase">Phase 3 — La mécanique contre l'oubli · 29–31/05 (~79 commits)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-05-29</td><td>Skills déplacés dans <code>.claude/skills/</code> ; scaffold de 24 fichiers par sprint, lint, hook pre-commit</td><td>Rendre les cérémonies impossibles à sauter</td><td>Structure identique à chaque sprint <span class="ref">[8]</span></td></tr>
+    <tr><td class="d">2026-05-29</td><td><code>sprint_gate.py</code> + hook PreToolUse : bloque un skill Superpowers tant que la cérémonie requise n'est pas commitée et remplie</td><td>Les cérémonies étaient « remplies rétroactivement ou pas du tout »</td><td>« Premier sprint sans retro-fill » (sprint 10) <span class="ref">[7]</span></td></tr>
+    <tr><td class="d">2026-05-30→31</td><td>13 gabarits de PoW par cérémonie ; sprint 12 conçoit la chaîne MRD → Code ; sprints 13–14, <code>closing_lint</code></td><td>Des PoW de qualité ; un harnais de clôture</td><td>La chaîne de documents naît DANS un sprint <span class="ref">[8]</span></td></tr>
+  </table>
+  <div class="phase">Phase 4 — Sortie de scène · 01/06 → 23/06 (~17 commits)</div>
+  <table>
+    <tr><th>Date</th><th>Ce qui a été fait</th><th>Pourquoi</th><th>Bénéfice</th></tr>
+    <tr><td class="d">2026-06-01</td><td>Règle : pas de salle virtuelle en amont (MRD → PRD), car les cérémonies opèrent sur des stories et les stories n'existent qu'à partir du PRD</td><td>Focus total sur la chaîne E</td><td>Séances bornées, 1 document par séance <span class="ref">[11]</span></td></tr>
+    <tr><td class="d">2026-06-03→09</td><td>« Reviewer = Scrum Master via R-gate » ; re-gate aveugle de 3 juges sur 3 modèles</td><td>Indépendance des regards</td><td>Le seul vrai fan-out du repo <span class="ref">[12]</span></td></tr>
+    <tr><td class="d">2026-06-22→23</td><td>Quatuor v2.0 : sprint-planning, sprint-review, retrospective, gate-dod deviennent des outils formels du maillon Code</td><td>Forger les outils de la rupture SRD → Code</td><td>Définitions rigoureuses, mais 0 mention de PO, SM ou Dev Team <span class="ref">[13]</span></td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>4 · Évolution de la pensée</h2>
+  <h3>A. Les étapes, en schéma</h3>
+<pre class="schema">ÉTAPE 0 · 26/05 — UN DÉVELOPPEUR SEUL VEUT UNE ÉQUIPE                    [1][5]
+   chaque document de la chaîne doit avoir un auteur ; les rôles doivent être nourris
+          │
+          ▼
+ÉTAPE 1 · 26/05 — QUATRE SKILLS DE RÔLE · un rôle = un skill testé        [3]
+   difficulté : un rôle isolé ne vit pas, il faut des réunions
+   réponse    : la spirale A → B et la salle virtuelle
+          │
+          ▼
+ÉTAPE 2 · 27/05 — LA SALLE VIRTUELLE · réunions tracées, dashboard         [4][17]
+   difficulté : des PoW écrits sans discussion = inventés
+   réponse    : « dialogue-first », joué EN LIGNE, visible de Yanis
+                (alors que la matrice notait « fan-out » le même jour)    [5]
+          │
+          ▼
+ÉTAPE 3 · 28–29/05 — LA MÉCANIQUE · scaffold, lint, sprint_gate            [6][7][8]
+   difficulté : les cérémonies sautées ou remplies après coup
+   réponse    : un hook qui BLOQUE (les scripts = les cicatrices)
+          │
+          ▼
+ÉTAPE 4 · 30/05–01/06 — LA CHAÎNE SORT DU SPRINT ET L'ABSORBE              [8][11]
+   difficulté : pas de stories avant le PRD → pas de cérémonies en amont
+   réponse    : focus sur la chaîne E ; les rôles restent au repos
+          │
+          ▼
+ÉTAPE 5 · 03–23/06 — CE QUI SURVIT                                          [12][13]
+   le fan-out passe aux JUGES (R-gate) ; les cérémonies deviennent des outils
+   sans personas ; le Stakeholder survit comme « altérité décisionnaire »</pre>
+  <h3>B. Les difficultés rencontrées, et ce que Yanis en a fait</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>Difficulté</th><th>Réponse dans ce repo</th><th>Ce qu'elle est devenue ensuite (autres repos, setup actuel)</th></tr>
+    <tr><td>Un seul Claude joue les 4 rôles : c'est biaisé</td><td>Dialogue en ligne pour au moins le voir <span class="ref">[4]</span><span class="ref">[9]</span></td><td>Le fan-out indépendant n'est réalisé que pour les juges R-gate <span class="ref">[12]</span> ; Yanis veut désormais des personas en fan-out ou dans des instances séparées <span class="ref">[20]</span></td></tr>
+    <tr><td>Cérémonies sautées ou écrites après coup</td><td><code>sprint_gate.py</code>, scaffold, lint, pre-commit <span class="ref">[7]</span><span class="ref">[8]</span></td><td>Même logique dans les gates DoR/DoD de la chaîne <span class="ref">[13]</span> ; à confirmer par Yanis pour le setup actuel</td></tr>
+    <tr><td>Nourrir les rôles avec ses notes : le « dispatcher manquant »</td><td>Un dispatcher construit… qui envoie une TÂCHE vers un SKILL, pas une NOTE vers un RÔLE <span class="ref">[1]</span><span class="ref">[14]</span></td><td>Le besoin n'a jamais été comblé (aucun frameworks.md enrichi après le 26/05) <span class="ref">[10]</span> ; le skill <code>router</code> actuel en est peut-être le descendant (à confirmer par Yanis) <span class="ref">[18]</span></td></tr>
+    <tr><td>Converser coûte : « une perte multi-niveau »</td><td>Router chaque prompt par son lignage (31/05) <span class="ref">[16]</span></td><td>« Une séance = une requête » dans <code>/debut-session</code> aujourd'hui <span class="ref">[16]</span></td></tr>
+  </table>
+  </div>
+  <h3>C. Ce que les traces ajoutent au souvenir</h3>
+  <p>(1) Le fan-out que Yanis imagine aujourd'hui était écrit dès le 27/05, dans la matrice
+  (« /salle-virtuelle + superpowers (fan-out) »). L'exécution est restée en ligne par choix de
+  traçabilité <span class="ref">[5]</span><span class="ref">[4]</span>. (2) La chaîne de documents est née
+  dans un sprint Scrum (sprint 12, 30/05), puis a absorbé la mécanique qui l'avait produite <span class="ref">[8]</span>.
+  (3) Le dispatcher est né d'un besoin d'ALIMENTATION des rôles et a glissé vers le ROUTAGE <span class="ref">[1]</span><span class="ref">[14]</span>.
+  (4) Interprétation de Claude, à juger par Yanis : tout a été dessiné en deux jours (26–27/05), puis
+  une seule couche a été creusée. Les rôles ont tourné à vide, sur l'outillage du repo, jamais sur
+  les stories d'un vrai PRD. La chaîne a été construite nue, sans personas auteurs ni savoir de rôle
+  <span class="ref">[19]</span> :</p>
+<pre class="schema">                 Δ INTENTION DE YANIS (kernel · Team Charter prévu, jamais écrit)
+                                    │
+ 1. CHAÎNE (le QUOI)    MRD ─R1→ BRD ─R2→ PRD ─R3→ SRD ─R4→ Code    construite, non verrouillée
+        │ chaque document a…            │ le PRD produit les STORIES
+ 2. RÔLES (le QUI)                   3. SCRUM (le QUAND)
+    PO auteur MRD/BRD/PRD               amont : séances, pas de cérémonies
+    Dev Team auteur SRD/Code            aval : cérémonies sur les stories, gates
+    SM auteur Team Charter              salle virtuelle = la scène
+    Stakeholder approbateur             joué sprints 2–14, hors chaîne
+    figés au 30/05
+        │
+ 4. SAVOIR DU RÔLE (« RAG »)    A figé · B alimentation, C/D récupération : jamais construits
+ 5. ROUTAGE                     dispatcher (27/05) → router (aujourd'hui ?)
+ 6. JUGEMENT INDÉPENDANT        R-gate : 3 juges, 3 modèles = le seul fan-out réel
+                                    │
+                        ═══ LE PROMPT UNIQUE (visé) ═══</pre>
+  <p>Ce dessin est cohérent, il n'est pas prouvé. La preuve viendra de la pratique (phase 4 du plan).</p>
+</section>
+
+<section>
+  <h2>5 · Place dans l'arsenal</h2>
+  <ul>
+    <li><span class="chip">skill ×4</span> <code>product-owner</code>, <code>scrum-master</code>, <code>dev-team</code>, <code>stakeholder</code> : skills locaux au repo (<code>.claude/skills/</code>), appelés par la salle virtuelle pour écrire les PoW <span class="ref">[3]</span><span class="ref">[4]</span></li>
+    <li><span class="chip">skill</span> <code>salle-virtuelle</code> : orchestre une cérémonie (ordre de parole, PoW, <code>_meeting.md</code>) ; <code>generate_dashboard.py</code> produit un dashboard par sprint, publié sur Vercel (racine → sprint 14) <span class="ref">[4]</span><span class="ref">[17]</span></li>
+    <li><span class="chip">skill</span> <code>dispatcher</code> : aiguillage par mots-clés vers 6 skills, sans IA <span class="ref">[14]</span></li>
+    <li><span class="chip">hook</span> <code>sprint_gate.py</code> en PreToolUse sur l'outil Skill, dans le settings.json du projet <span class="ref">[7]</span></li>
+    <li><span class="chip">routine</span> scaffold 24 fichiers + lint + pre-commit + <code>closing_lint</code> à chaque sprint <span class="ref">[8]</span></li>
+    <li><span class="chip">repo</span> ces cérémonies sont devenues 4 outils du maillon Code de la chaîne E (v2.0, 23/06) <span class="ref">[13]</span></li>
+  </ul>
+</section>
+
+<div class="two">
+  <section>
+    <h2>6 · Ce qui déclenchait l'usage</h2>
+    <ul>
+      <li><b>Prévu :</b> chaque séance = un micro-Scrum ; une gêne pendant une cérémonie → la rétrospective enrichit le <code>frameworks.md</code> du rôle ; « graduation » quand le mini-standup devient naturel <span class="ref">[2]</span></li>
+      <li><b>Réel :</b> Yanis donne l'intention ; Claude joue seul les 4 rôles en ligne (146 répliques SM, 93 Dev Team, 70 PO, 15 Stakeholder, 0 de Yanis) ; les gates imposent l'ordre. Le but vécu : apprendre Scrum. Aucun rôle n'a été enrichi par la boucle <span class="ref">[9]</span><span class="ref">[10]</span><span class="ref">[20]</span></li>
+      <li><b>Après le 01/06 :</b> plus aucun déclencheur, car la chaîne n'a jamais livré de stories à refiner <span class="ref">[11]</span></li>
+    </ul>
+  </section>
+  <section>
+    <h2>7 · Où je me suis arrêté</h2>
+    <p>Dernier commit d'un rôle le 30/05, dernière cérémonie le 31/05 (sprint 14) ; aucun commit sur
+    les rôles, la salle, le dispatcher ou <code>sprints/</code> après le 01/06 <span class="ref">[10]</span>. Raison :
+    focus choisi sur la chaîne E <span class="ref">[19]</span>, qui n'a jamais atteint un Code verrouillé, donc
+    jamais produit de stories <span class="ref">[11]</span>. Il manquait : des personas dans des instances
+    séparées, l'alimentation de leur savoir, et le branchement sur le PRD <span class="ref">[20]</span>.
+    Rôle le plus dur à jouer : à confirmer par Yanis (« je sais plus »).</p>
+  </section>
+</div>
+
+<section>
+  <h2>8 · Tri et questions</h2>
+  <ul>
+    <li><b>Verdict (sur le repo) :</b> ARCHIVER la forme de mai (4 rôles figés, cérémonies jouées par un seul Claude, sprints sur l'outillage). Elle a rempli son rôle d'école ; la mécanique visée (fan-out × chaîne) reste à concevoir. Verdict sur les 4 skills de rôle : provisoire, en attente de N.2 (voir la question ci-dessous).</li>
+    <li><b>Réutilisable :</b> (1) les 4 <code>frameworks.md</code> (<code>claude-prostheses/.claude/skills/&lt;rôle&gt;/references/frameworks.md</code>) → matière de la séance d'assemblage ; (2) le motif PoW + <code>_meeting.md</code> + dashboard de la salle virtuelle → futur fan-in des personas ; (3) le motif <code>sprint_gate.py</code> (un hook bloque un skill tant que son prérequis n'est pas commité). Destination dans le setup : à confirmer par Yanis (rien n'est installé ici).</li>
+    <li><b>Conflits gouvernance :</b> R7 (hooks = comportements déterministes) respecté par <code>sprint_gate.py</code> ; R8 (skills projet dans <code>.claude/skills/</code> commités) respecté depuis le 29/05 ; R10 : les skills de rôle ne vivent que dans le repo, pas dans <code>G:\Mon Drive\10 - Claude\SKILLS\</code>, ce qui est à trancher s'ils sont récupérés <span class="ref">[21]</span>.</li>
+    <li><b>À confirmer par Yanis :</b> les 4 skills de rôle : RÉCUPÉRER, ARCHIVER ou matière du modulo skills (après N.2) ? Le rôle le plus dur ou le plus sauté ? Quand la conclusion « une instance ne dépasse pas 1 prompt » est-elle née ? <code>router</code> descend-il du dispatcher ? D'où vient « simulateur multi-rôles » dans le vault ? Quelle était l'adresse du site Vercel ?</li>
+    <li><b>Pour la convergence :</b> N.2 (RAG) : le dispatcher est né dans l'étage ALIMENTATION (sens B), pas ROUTAGE ; le sens A est figé depuis le 26/05. M.2 F7 (chaîne × persona : commencé, pas assemblé) et F8 (Team Charter, racine sautée) ; L.1 F6 (R-gate rattaché au Scrum Master).</li>
+    <li><b>Proposition au pilote :</b> une séance d'assemblage à créer : brancher le fan-out du R-gate sur les personas (une instance par rôle, nourrie de son savoir, sur les stories du PRD), avec la salle virtuelle comme agrégateur de fan-in ; transmettre à N.2, au fan-in, la précision sur le dispatcher.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>Preuves</b> (source · confiance : certaine / élevée / moyenne)
+  <ol>
+    <li><code>115af31</code> (26/05) finding « 3 sources nourrissage rôles + GAP dispatcher », avec la citation de Yanis en C7 : « ça aurait été génial de pouvoir les dispatcher aux bons rôles » · certaine</li>
+    <li><code>bb01581</code> (27/05) <code>docs/superpowers/specs/2026-05-27-bootstrap-scrum-spiral-design.md</code> : point fixe « transmissible », boucle d'enrichissement, 4 invariants · certaine</li>
+    <li><code>git log</code> du 26/05, <code>69cb9f1</code> → <code>9e138b7</code> : sprints 1–4 (PO, SM, Dev Team, Stakeholder), tests 3/3 · certaine</li>
+    <li>Dispatcher <code>eda57ca</code>–<code>9af9904</code> ; salle virtuelle <code>6227a56</code>–<code>aa3128e</code> ; <code>93f00bb</code> « dialogue-first invariant » : « Dans la conversation principale (visible de Yanis), joue chaque rôle à tour de rôle » ; <code>sprints/sprint-2</code> et <code>sprint-3</code> sans <code>_dialogue.md</code> · certaine</li>
+    <li><code>daf02ee</code> (27/05) <code>docs/vision/roles-documents-matrix.md:134</code> « /salle-virtuelle + superpowers (fan-out) » ; RACI aux lignes 48–54 · certaine</li>
+    <li><code>547d3fc</code>, <code>cb22155</code> (28/05) : cérémonies du sprint 6 abandonnées, « décision consciente » · certaine</li>
+    <li><code>e416cd3</code> spec sprint-gate § 1 : « Les .md de cérémonie étaient remplis rétroactivement ou pas du tout » ; <code>75a8c73</code>, <code>b15261b</code> ; <code>sprints/sprint-10/retrospective/_dialogue.md</code> « zéro rétro-fill » · certaine</li>
+    <li><code>221dcac</code>, <code>f2670ab</code>, <code>8da74ef</code> (29/05) ; <code>3475be9</code> + 13 gabarits de PoW (30/05) ; <code>292aecd</code> « spec(sprint-12): design pipeline documents — MRD/BRD/PRD/SRD/Code » ; <code>e17cec8</code> (31/05) · certaine</li>
+    <li>Décompte des répliques <code>**Rôle :**</code> dans <code>sprints/**/_dialogue.md</code> : SM 146, Dev Team 93, PO 70, Stakeholder 15, aucune réplique de Yanis (il n'est cité que dans des PoW, sprint 14) · certaine</li>
+    <li><code>git log</code> par skill : dernier commit d'un rôle le 30/05 (<code>4bc03e4</code>) ; aucun commit sur <code>sprints/</code>, la salle virtuelle, le dispatcher, <code>sprint_gate.py</code> ou la matrice après le 01/06 ; <code>frameworks.md</code> : 26/05 + déplacement le 29/05 · certaine (« déplacement seul » : élevée)</li>
+    <li><code>87e3312</code> <code>docs/findings/2026-06-01-pipeline-amont-aval-salle-virtuelle.md</code> : « les cérémonies opèrent sur des stories » · certaine</li>
+    <li><code>c717e16</code> (03/06) « Reviewer=Scrum Master via R-gate » ; <code>docs/poncage-state-SRD.md:96</code> E-4 « re-gate AVEUGLE 3 juges (opus/sonnet/haiku, 3 stances, prompts distincts) » (09/06) · certaine</li>
+    <li><code>a3fd1a2</code>, <code>ee6f3e9</code>, <code>c7c62d0</code>, <code>4e109e0</code>, <code>f8353e4</code> (22–23/06) ; dans les 4 tool-templates v2.0 : 0 « Product Owner », 0 « Scrum Master », 0 « Dev Team », 0 « PoW » ; « Stakeholder » ×5 dans sprint-review · certaine</li>
+    <li><code>.claude/skills/dispatcher/scripts/dispatch.py</code> (score = confiance × mots trouvés), <code>data/matrix-routes.json</code> ; dette S5-03 dans <code>sprints/sprint-4/refinement/_dialogue.md</code>, sans commit correspondant · élevée</li>
+    <li><code>docs/vision/matrice-chaine-valeur.md:128</code> « Multi-Agent · Concevoir simulateur multi-rôles », ajouté par <code>46a29e1</code> « récupérée depuis Drive vault » (26/05) · élevée (date d'origine inconnue)</li>
+    <li><code>docs/findings/2026-05-31-volatilite-documentaire.md</code> § 3 « router chaque prompt par son lignage » ; skill <code>debut-session</code> actuel : « Idéal visé : une séance = une requête » · certaine</li>
+    <li><code>sprints/*/dashboard.html</code> (9 remplis, sprint 9 vide) ; <code>86d1ff0</code>, <code>85e4548</code> ; <code>vercel.json</code> racine → <code>sprints/sprint-14/dashboard.html</code> ; adresse du site absente du repo · certaine</li>
+    <li><code>~/.claude/skills/router/SKILL.md</code> : « Détecte le cerveau (C1/C2/C3), le cluster et le skill à invoquer » · certaine (existence) ; lien avec le dispatcher : à confirmer</li>
+    <li>Findings L.1 F3, F5, F6 et M.2 F7, F8 ; échanges de la séance N.2 relayés par Yanis le 13/11 (5 sens de « RAG ») · moyenne (relayé, non revérifié par N.1)</li>
+    <li>Témoignage de Yanis (13/11/2026, séance N.1) · certaine (déclaratif)
+      <blockquote>« Je crois que claude les jouait seul. Mais je réalise que c'était in-line (sauf si tu trouve une contradiction). Mais forcément c'est biaisé. En tout cas, l'idée qu'expose le dashboard est très intéressante. Je me rappel avoir fais ça plus pour "apprendre" le protocole scrum. Mais ce dashboard expose bien la vision que j'avais : faire intervenir les persona-prothèse de scrum pour résoudre les stories, Epic, etc défini dans le PRD. Mais pour que ça ai du sens il aurait au moins fallu que ces personnages interviennent en fan-out ou dans des instances différentes. »</blockquote>
+      <blockquote>« 7. Je sais plus. 8. déjà pour me familiariser. Ensuite pourquoi pas ? Q1. Franchement j'avançais à taton. Je n'avais aucune idée du système final. »</blockquote>
+      <blockquote>« Je me souviens être arrivé à la conclusion que une instance claude optimisé au maximum avec tout mon système de connecté ne pouvait dépasser 1 seul prompt. Converser avec claude est en réalité une perte multi-niveau. Et pour de l'orchestration d'ia efficace, il faut un système et des contrats clairs et fonctionnels. Voilà pourquoi j'avais notamment conçu des skill de distacher, router. Car je voulais qu'en un seul prompt, tout soi compris et réaliser. »</blockquote></li>
+    <li><code>G:\Mon Drive\10 - Claude\TRANSVERS\gouvernance-regles.md</code> lignes 57–60 (R7, R8, R10) · certaine</li>
+  </ol>
+</footer>
+
+</main>
+</body>
+</html>
