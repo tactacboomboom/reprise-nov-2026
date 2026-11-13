@@ -9,9 +9,9 @@ qui fait le fan-in. Détail : `CLAUDE.md` § Nommage des séances.
 
 ## En cours
 <!-- Mis à jour par le pilote à chaque fan-in. L'état vit ici, jamais dans les chemins. -->
-- **Pilote L (vague 6)** : `seances/L-pilotage-vague-6/` — L.1 ✓ (partiel) · fan-in fait (12/11)
-- **Pilote M (vague 7)** : `seances/M-pilotage-vague-7/` — M.1 « où j'en étais au 23/06 » ∥ M.2 « chaîne E » : kernels prêts
-- **Ensuite** : vague 8 (N.1 rôles + Scrum ∥ N.2 RAG + vision) → convergence (fin du modulo repos) → modulo vault → modulo skills
+- **Pilote M (vague 7)** : `seances/M-pilotage-vague-7/` — M.1 ✓ · M.2 ✓ · fan-in fait (13/11)
+- **Pilote N (vague 8)** : `seances/N-pilotage-vague-8/` — N.1 « rôles + Scrum » ∥ N.2 « RAG + vision » : kernels prêts
+- **Ensuite** : convergence (fin du modulo repos) → modulo vault → modulo skills
 
 ## Lancer une séance
 Une séance = un worktree (séances parallèles : jamais deux séances dans le même dossier) :
@@ -54,9 +54,12 @@ est FIGÉ au 12/11 : on ne travaille plus dedans.
 | K.4 | K | 5 (ouvert par K.2) | Exécution : mettre le repo privé Anthropologie aux bonnes pratiques (SVD calculée) | `2026-11-12-K.4-anthropologie-pro.md` (lancement, écrit par K.2) · `2026-11-12-K.4-cloture.md` | `2026-11-12-K.4-anthropologie-pro-findings.md` | fait (repo étudié : PR #1 mergée, archivé en témoin) |
 | L | K | pilote 6 | Fan-in de la vague 6 : juge L.1, découpe claude-prostheses en 4 contrats (vagues 7–8), écrit les kernels M.1/M.2 | `2026-11-12-L-pilotage-vague-6.md` (écrit par K à sa clôture) | `2026-11-12-L-pilotage-vague-6-findings.md` | fan-in fait |
 | L.1 | L | 6 | claude-prostheses seul : fin de la lignée, le plus gros morceau (Yanis, J) | `2026-11-12-L.1-memoire-claude-prostheses.md` (lancement, écrit par K) · `2026-11-12-L.1-cloture.md` | `2026-11-12-L.1-memoire-claude-prostheses.html` · `…-findings.md` | fiche écrite (RÉCUPÉRER, partiel) |
-| M | L | pilote 7 | Fan-in de la vague 7 : juge M.1/M.2, écrit les kernels N.1/N.2 | `2026-11-12-M-pilotage-vague-7.md` (écrit par L à sa clôture) | — | prêt |
-| M.1 | M | 7 | claude-prostheses, sous-projet E : « où j'en étais au 23/06 » (statut de chaque gabarit, kernel AZ) | `2026-11-12-M.1-memoire-etat-23-06.md` (lancement, écrit par L) | — | prêt |
-| M.2 | M | 7 | claude-prostheses, sous-projet E : « la chaîne E » (nilpotence, ponçage, forges, R-gate) | `2026-11-12-M.2-memoire-chaine-e.md` (lancement, écrit par L) | — | prêt |
+| M | L | pilote 7 | Fan-in de la vague 7 : juge M.1/M.2, écrit les kernels N, N.1, N.2 | `2026-11-12-M-pilotage-vague-7.md` (écrit par L à sa clôture) | `2026-11-13-M-pilotage-vague-7-findings.md` | fan-in fait |
+| M.1 | M | 7 | claude-prostheses, sous-projet E : « où j'en étais au 23/06 » (statut de chaque gabarit, kernel AZ) | `2026-11-12-M.1-memoire-etat-23-06.md` (lancement, écrit par L) · `2026-11-12-M.1-cloture.md` | `2026-11-12-M.1-memoire-etat-23-06.html` | fiche écrite (RÉCUPÉRER comme carte) |
+| M.2 | M | 7 | claude-prostheses, sous-projet E : « la chaîne E » (nilpotence, ponçage, forges, R-gate) | `2026-11-12-M.2-memoire-chaine-e.md` (lancement, écrit par L) · `2026-11-12-M.2-cloture.md` | `2026-11-12-M.2-memoire-chaine-e.html` · `…-findings.md` | fiche écrite (RÉCUPÉRER 3 pièces, ARCHIVER la chaîne) |
+| N | M | pilote 8 | Fan-in de la vague 8 : juge N.1/N.2, écrit le kernel de la convergence | `2026-11-13-N-pilotage-vague-8.md` (écrit par M à sa clôture) | — | prêt |
+| N.1 | N | 8 | claude-prostheses, sous-projets B, C : « rôles + Scrum » (QUI fait avancer la chaîne) | `2026-11-13-N.1-memoire-roles-scrum.md` (lancement, écrit par M) | — | prêt |
+| N.2 | N | 8 | claude-prostheses : « RAG + vision » (POURQUOI : vision du 26/05, RAG jamais construit) | `2026-11-13-N.2-memoire-rag-vision.md` (lancement, écrit par M) | — | prêt |
 | — | — | — | Convergence = fin du modulo repos (lettre de pilote, parent = dernier pilote) : lit toutes les fiches, carte + tri des 18 repos, heuristiques | après la vague 8 | — | prévu |
 
 ## Rangement (K.3, 12/11)
@@ -175,5 +178,8 @@ séance ; le kernel du pilote les liste dans [Fichiers à charger], donc plus de
 - **Piège du nom ornemental** (H2 de /fin-session) : Anthropologie (σ écrits à la main ; K.4 recalcule :
   2 axes réels, σ₁ ≈ 92 %, pas 3 ; 6 dimensions chiffrées sur 8), fin-session
   (troncateur « d'Eckart-Young » réfuté), peut-être Claire → à suivre sur la carte.
+- **Cohérent ≠ vrai** (M.1, M.2) : la chaîne E a prouvé sa logique, jamais le terrain ; SRD et Code sont « la frontière
+  vers le réel ». Biais à surveiller dans la reprise elle-même : « le rythme a pris le pas sur la preuve ». R-gate : 3 usages
+  (claude-prostheses, fin-session, Mongolie), une seule définition à fixer.
 - **Circuit des audits** : `PLUG-INS/<nom>/` sur le Drive = seule maison (R13) ; vitrine
   audit-repo/Vercel redondante (H.1 Q4 + H.2 Q1, recommandation de H).
